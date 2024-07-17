@@ -1,13 +1,13 @@
 [gd_scene load_steps=3 format=3 uid="uid://1vrxk6abwdej"]
 
-[ext_resource type="Texture2D" uid="uid://dgtcvtfn1nejs" path="res://Art/combat.png" id="1_ep6ee"]
+[ext_resource type="Texture2D" uid="uid://dascvipnt73m0" path="res://assets/placeholders/combat.png" id="1_3rc0r"]
 [ext_resource type="PackedScene" uid="uid://cp1tiqnusfo0i" path="res://battle_systems/Objects/FlaskBar/flask_bar.tscn" id="2_pbss5"]
 
 [node name="Table" type="Node2D"]
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_ep6ee")
+texture = ExtResource("1_3rc0r")
 region_enabled = true
 region_rect = Rect2(0, 720, 640, 360)
 

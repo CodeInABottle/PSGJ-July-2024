@@ -41,8 +41,9 @@ enabled=PackedStringArray("res://addons/HTNDomainManager/plugin.cfg")
 [file_customization]
 
 folder_colors={
-"res://Art/": "red",
 "res://addons/": "purple",
+"res://assets/": "red",
+"res://autoload/": "teal",
 "res://battle_systems/": "blue"
 }
 
