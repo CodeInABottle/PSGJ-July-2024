@@ -6,3 +6,6 @@ savefiles/
 *.kra
 *.ase
 *.*~
+
+.vscode/
+*.import
