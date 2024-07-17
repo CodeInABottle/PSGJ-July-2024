@@ -1,0 +1,26 @@
+[gd_scene load_steps=3 format=3 uid="uid://1vrxk6abwdej"]
+
+[ext_resource type="Texture2D" uid="uid://dgtcvtfn1nejs" path="res://Art/combat.png" id="1_ep6ee"]
+[ext_resource type="PackedScene" uid="uid://cp1tiqnusfo0i" path="res://battle_systems/Objects/FlaskBar/flask_bar.tscn" id="2_pbss5"]
+
+[node name="Table" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_ep6ee")
+region_enabled = true
+region_rect = Rect2(0, 720, 640, 360)
+
+[node name="FlaskBar" parent="." instance=ExtResource("2_pbss5")]
+offset_left = -127.0
+offset_top = -133.0
+offset_right = -53.0
+offset_bottom = -38.0
+color = Color(0.83, 0, 0.345833, 1)
+
+[node name="FlaskBar2" parent="." instance=ExtResource("2_pbss5")]
+offset_left = -179.0
+offset_top = -113.0
+offset_right = -105.0
+offset_bottom = -18.0
+color = Color(0, 0.638, 0.87, 1)

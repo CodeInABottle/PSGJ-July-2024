@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://vnek1x1daekw"]
+
+[ext_resource type="PackedScene" uid="uid://cp02k4l0gw3u0" path="res://battle_systems/EntityComponents/BaseAIEntity/ai_entity.tscn" id="1_mvre7"]
+[ext_resource type="Texture2D" uid="uid://dgtcvtfn1nejs" path="res://Art/combat.png" id="2_yj173"]
+
+[node name="ChickenEntity" instance=ExtResource("1_mvre7")]
+max_health = 200
+
+[node name="Sprite2D" parent="." index="1"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_yj173")
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 360)

@@ -1,0 +1,52 @@
+[gd_scene load_steps=12 format=3 uid="uid://b3gb6j2g64qqa"]
+
+[ext_resource type="Script" path="res://battle_systems/BattlefieldManager.gd" id="1_ubwb4"]
+[ext_resource type="Script" path="res://battle_systems/InitiativeTracker.gd" id="2_oep6u"]
+[ext_resource type="Script" path="res://battle_systems/CombatStateMachine.gd" id="3_com16"]
+[ext_resource type="Script" path="res://battle_systems/States/IdleState.gd" id="4_63esm"]
+[ext_resource type="Script" path="res://battle_systems/States/PlayerState.gd" id="4_q2neg"]
+[ext_resource type="Script" path="res://battle_systems/States/EnemyState.gd" id="5_04e5c"]
+[ext_resource type="Script" path="res://battle_systems/States/InitiativeFetch.gd" id="5_aygw2"]
+[ext_resource type="Script" path="res://battle_systems/States/RewardState.gd" id="6_28yvg"]
+[ext_resource type="Script" path="res://battle_systems/States/GameOverState.gd" id="7_hc5bd"]
+[ext_resource type="PackedScene" uid="uid://bw5wgs3tjxkp1" path="res://battle_systems/EntityComponents/PlayerEntity/player_entity.tscn" id="8_4gulr"]
+[ext_resource type="PackedScene" uid="uid://1vrxk6abwdej" path="res://battle_systems/Objects/Table/table.tscn" id="9_ou7kj"]
+
+[node name="Battlefield" type="Node"]
+script = ExtResource("1_ubwb4")
+
+[node name="InitiativeTracker" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_oep6u")
+
+[node name="CombatStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_com16")
+
+[node name="IdleState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("4_63esm")
+
+[node name="InitiativeFetch" type="Node" parent="CombatStateMachine"]
+script = ExtResource("5_aygw2")
+
+[node name="PlayerState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("4_q2neg")
+
+[node name="EnemyState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("5_04e5c")
+
+[node name="RewardState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("6_28yvg")
+
+[node name="GameOverState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("7_hc5bd")
+
+[node name="PlayerEntity" parent="." instance=ExtResource("8_4gulr")]
+unique_name_in_owner = true
+position = Vector2(153, 238)
+
+[node name="EntitySpawnLocation" type="Marker2D" parent="."]
+position = Vector2(445, 128)
+
+[node name="Table" parent="." instance=ExtResource("9_ou7kj")]
+position = Vector2(445, 291)

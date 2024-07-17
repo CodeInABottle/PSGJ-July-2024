@@ -9,7 +9,8 @@ var _finished_setup := false
 
 func _ready() -> void:
 	_setup()
-	initiative_tracker.setup_initiative()
+	initiative_tracker.initialize_order()
+	combat_state_machine.switch_state("InitiativeFetch")
 	combat_state_machine.start()
 	_finished_setup = true
 
