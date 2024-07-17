@@ -41,8 +41,13 @@ enabled=PackedStringArray("res://addons/HTNDomainManager/plugin.cfg")
 [file_customization]
 
 folder_colors={
+"res://BattleSystems/": "blue",
 "res://addons/": "purple"
 }
+
+[godot_hub]
+
+config/favorite=true
 
 [rendering]
 
