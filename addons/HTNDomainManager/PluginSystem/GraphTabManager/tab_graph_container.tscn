@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bel7aoiqishu0"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/GraphTabManager/TabContainerManager.gd" id="1_pcpig"]
+
+[node name="TabContainer" type="TabContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+script = ExtResource("1_pcpig")
+
+[connection signal="tab_button_pressed" from="." to="." method="_on_tab_button_pressed"]
+[connection signal="tab_changed" from="." to="." method="_on_tab_changed"]

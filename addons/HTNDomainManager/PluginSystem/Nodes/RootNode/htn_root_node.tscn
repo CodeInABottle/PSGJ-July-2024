@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://d3hgtucf5et3h"]
+
+[ext_resource type="PackedScene" uid="uid://bt445iqt61atd" path="res://addons/HTNDomainManager/PluginSystem/Nodes/BaseNode/htn_base_node.tscn" id="1_4w2fg"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/Nodes/RootNode/HTNRootNode.gd" id="2_k5sy2"]
+
+[node name="HTNRootNode" instance=ExtResource("1_4w2fg")]
+title = "Root"
+slot/0/right_enabled = true
+slot/0/right_type = 1
+slot/0/right_color = Color(0.309804, 0.560784, 0.729412, 1)
+script = ExtResource("2_k5sy2")
+
+[node name="Output" parent="HBoxContainer" index="2"]
+text = "Methods"

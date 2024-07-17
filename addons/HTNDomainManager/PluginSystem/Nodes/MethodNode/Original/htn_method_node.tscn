@@ -1,0 +1,76 @@
+[gd_scene load_steps=4 format=3 uid="uid://d3w758d80d854"]
+
+[ext_resource type="PackedScene" uid="uid://bt445iqt61atd" path="res://addons/HTNDomainManager/PluginSystem/Nodes/BaseNode/htn_base_node.tscn" id="1_rpdsu"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/Nodes/MethodNode/Original/HTNMethodNode.gd" id="2_didlq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pv0eo"]
+
+[node name="HTNMethodNode" instance=ExtResource("1_rpdsu")]
+title = "Method"
+slot/0/left_enabled = true
+slot/0/left_type = 1
+slot/0/left_color = Color(0.309804, 0.560784, 0.729412, 1)
+slot/0/right_enabled = true
+slot/0/right_type = 2
+slot/0/right_color = Color(0.27451, 0.509804, 0.196078, 1)
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+script = ExtResource("2_didlq")
+
+[node name="HBoxContainer" parent="." index="1"]
+mouse_filter = 2
+
+[node name="Input" parent="HBoxContainer" index="0"]
+text = "Splitter/Root"
+
+[node name="HSeparator" parent="HBoxContainer" index="1"]
+mouse_filter = 2
+
+[node name="Output" parent="HBoxContainer" index="2"]
+text = "Action"
+
+[node name="Conditions" type="Button" parent="." index="2"]
+layout_mode = 2
+text = "Edit Conditions"
+
+[node name="Priority" type="HBoxContainer" parent="." index="3"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Priority" index="0"]
+layout_mode = 2
+tooltip_text = "A higher number will be evaulated first compared to a lower number."
+mouse_filter = 0
+text = "Priority"
+
+[node name="HSeparator" type="HSeparator" parent="Priority" index="1"]
+layout_mode = 2
+size_flags_horizontal = 3
+mouse_filter = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pv0eo")
+
+[node name="SpinBox" type="SpinBox" parent="Priority" index="2"]
+unique_name_in_owner = true
+layout_mode = 2
+rounded = true
+allow_greater = true
+allow_lesser = true
+
+[connection signal="pressed" from="Conditions" to="." method="_on_conditions_pressed"]
+[connection signal="value_changed" from="Priority/SpinBox" to="." method="_on_spin_box_value_changed"]

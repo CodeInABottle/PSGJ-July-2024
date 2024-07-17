@@ -1,0 +1,31 @@
+[gd_scene load_steps=2 format=3 uid="uid://bt445iqt61atd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_uiy5p"]
+
+[node name="HTNBaseNode" type="GraphNode"]
+offset_right = 9.0
+offset_bottom = 55.0
+slot/0/left_enabled = false
+slot/0/left_type = 0
+slot/0/left_color = Color(1, 1, 1, 1)
+slot/0/left_icon = null
+slot/0/right_enabled = false
+slot/0/right_type = 0
+slot/0/right_color = Color(1, 1, 1, 1)
+slot/0/right_icon = null
+slot/0/draw_stylebox = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Input" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_uiy5p")
+
+[node name="Output" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+horizontal_alignment = 2

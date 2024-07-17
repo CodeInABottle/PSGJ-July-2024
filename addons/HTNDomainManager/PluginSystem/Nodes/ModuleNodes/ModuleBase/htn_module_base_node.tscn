@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://cfjx17roykbet"]
+
+[ext_resource type="PackedScene" uid="uid://bt445iqt61atd" path="res://addons/HTNDomainManager/PluginSystem/Nodes/BaseNode/htn_base_node.tscn" id="1_aqris"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/Nodes/ModuleNodes/ModuleBase/HTNModuleBaseNode.gd" id="2_gcm5a"]
+
+[node name="HTNModuleBaseNode" instance=ExtResource("1_aqris")]
+title = "Module Base Node"
+slot/0/left_enabled = true
+slot/0/left_type = 2
+slot/0/left_color = Color(0.27451, 0.509804, 0.196078, 1)
+slot/0/right_enabled = true
+slot/0/right_type = 2
+slot/0/right_color = Color(0.27451, 0.509804, 0.196078, 1)
+script = ExtResource("2_gcm5a")
+
+[node name="Input" parent="HBoxContainer" index="0"]
+text = "Action"
+
+[node name="Output" parent="HBoxContainer" index="2"]
+text = "Action"

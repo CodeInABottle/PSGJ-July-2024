@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dvs02ril64b3n"]
+
+[ext_resource type="Theme" uid="uid://diu3ahrw1puva" path="res://addons/HTNDomainManager/PluginSystem/PluginTheme.tres" id="1_aygdq"]
+[ext_resource type="PackedScene" uid="uid://driybkq8qi0rh" path="res://addons/HTNDomainManager/PluginSystem/Components/DeleteButton.tscn" id="2_bl8dj"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/DomainPanel/DomainLine/DomainLine.gd" id="2_i6n0k"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ttwcq"]
+
+[node name="DomainLine" type="HBoxContainer"]
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -16.5
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_aygdq")
+script = ExtResource("2_i6n0k")
+
+[node name="DeleteButton" parent="." instance=ExtResource("2_bl8dj")]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="."]
+custom_minimum_size = Vector2(8, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_ttwcq")
+
+[node name="DomainButton" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Domain Name"
+
+[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="DomainButton" to="." method="_on_domain_button_pressed"]

@@ -1,0 +1,65 @@
+[gd_scene load_steps=4 format=3 uid="uid://dovx8vvoij5oj"]
+
+[ext_resource type="PackedScene" uid="uid://bt445iqt61atd" path="res://addons/HTNDomainManager/PluginSystem/Nodes/BaseNode/htn_base_node.tscn" id="1_m2ojy"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/Nodes/DomainNode/HTNDomainNode.gd" id="2_7vu7l"]
+[ext_resource type="Texture2D" uid="uid://o5dlwdcrfau5" path="res://addons/HTNDomainManager/PluginSystem/Icons/Warning.svg" id="3_vxc68"]
+
+[node name="HTNDomainNode" instance=ExtResource("1_m2ojy")]
+title = "Domain Link"
+slot/0/left_enabled = true
+slot/0/left_type = 2
+slot/0/left_color = Color(0.27451, 0.509804, 0.196078, 1)
+slot/0/right_enabled = true
+slot/0/right_type = 2
+slot/0/right_color = Color(0.27451, 0.509804, 0.196078, 1)
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+slot/2/left_enabled = false
+slot/2/left_type = 0
+slot/2/left_color = Color(1, 1, 1, 1)
+slot/2/left_icon = null
+slot/2/right_enabled = false
+slot/2/right_type = 0
+slot/2/right_color = Color(1, 1, 1, 1)
+slot/2/right_icon = null
+slot/2/draw_stylebox = true
+script = ExtResource("2_7vu7l")
+
+[node name="Input" parent="HBoxContainer" index="0"]
+text = "Action"
+
+[node name="Output" parent="HBoxContainer" index="2"]
+text = "Action"
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="." index="2"]
+layout_mode = 2
+
+[node name="WarningSymbol" type="TextureRect" parent="HBoxContainer2" index="0"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(16, 16)
+layout_mode = 2
+texture = ExtResource("3_vxc68")
+expand_mode = 1
+stretch_mode = 4
+
+[node name="ShowLinkButton" type="Button" parent="HBoxContainer2" index="1"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+text = "Open"
+
+[node name="DomainOptionButton" type="OptionButton" parent="." index="3"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+allow_reselect = true
+
+[connection signal="pressed" from="HBoxContainer2/ShowLinkButton" to="." method="_on_show_link_button_pressed"]
+[connection signal="item_selected" from="DomainOptionButton" to="." method="_on_domain_option_button_item_selected"]

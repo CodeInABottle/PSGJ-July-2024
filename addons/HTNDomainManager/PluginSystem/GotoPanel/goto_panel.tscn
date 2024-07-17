@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://4rfd8im0s35y"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/GotoPanel/GotoPanelManager.gd" id="1_yqmjt"]
+
+[node name="GotoPanel" type="VBoxContainer"]
+custom_minimum_size = Vector2(300, 0)
+anchors_preset = -1
+anchor_right = 0.234
+anchor_bottom = 1.0
+offset_right = -43.52
+grow_vertical = 2
+script = ExtResource("1_yqmjt")
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="GotoRootButton" type="Button" parent="HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+disabled = true
+text = "Go To Root"
+
+[node name="HSeparator" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="SearchBar" type="LineEdit" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Search..."
+editable = false
+
+[node name="HSeparator2" type="HSeparator" parent="."]
+layout_mode = 2
+
+[node name="GotoContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="HBoxContainer/GotoRootButton" to="." method="_on_goto_root_button_pressed"]
+[connection signal="text_changed" from="SearchBar" to="." method="_on_search_bar_text_changed"]

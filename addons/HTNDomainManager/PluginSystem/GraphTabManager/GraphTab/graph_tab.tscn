@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://3a5e3n4jujsg"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/GraphTabManager/GraphTab/GraphTabManager.gd" id="1_rn0ob"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3prqo"]
+
+[node name="Create New Domain" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rn0ob")
+
+[node name="EmptyFieldsContainer" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -320.0
+offset_top = -21.5
+offset_right = 320.0
+offset_bottom = 68.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DomainLineEdit" type="LineEdit" parent="EmptyFieldsContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Domain Name"
+
+[node name="HBoxContainer" type="HBoxContainer" parent="EmptyFieldsContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="EmptyFieldsContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3prqo")
+
+[node name="CreateButton" type="Button" parent="EmptyFieldsContainer/HBoxContainer"]
+layout_mode = 2
+text = "Create Domain"
+
+[node name="HSeparator2" type="HSeparator" parent="EmptyFieldsContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_3prqo")
+
+[connection signal="pressed" from="EmptyFieldsContainer/HBoxContainer/CreateButton" to="." method="_on_create_button_pressed"]

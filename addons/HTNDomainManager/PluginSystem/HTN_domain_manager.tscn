@@ -1,0 +1,204 @@
+[gd_scene load_steps=16 format=3 uid="uid://bxjws2hrnn63e"]
+
+[ext_resource type="Theme" uid="uid://diu3ahrw1puva" path="res://addons/HTNDomainManager/PluginSystem/PluginTheme.tres" id="1_4moif"]
+[ext_resource type="PackedScene" uid="uid://bel7aoiqishu0" path="res://addons/HTNDomainManager/PluginSystem/GraphTabManager/tab_graph_container.tscn" id="2_n8gmp"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/HTNDomainManager.gd" id="2_un2xf"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/Validator.gd" id="3_ajrvj"]
+[ext_resource type="PackedScene" uid="uid://53r2l0aa47xe" path="res://addons/HTNDomainManager/PluginSystem/NodeSpawnMenu/node_spawn_menu.tscn" id="4_2r86d"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/NotificationHandler.gd" id="4_45g3y"]
+[ext_resource type="PackedScene" uid="uid://bl31umnhdg1uw" path="res://addons/HTNDomainManager/PluginSystem/TaskPanel/task_panel.tscn" id="4_dcdp5"]
+[ext_resource type="PackedScene" uid="uid://4rfd8im0s35y" path="res://addons/HTNDomainManager/PluginSystem/GotoPanel/goto_panel.tscn" id="5_arhpn"]
+[ext_resource type="PackedScene" uid="uid://d2k5i0p65qudy" path="res://addons/HTNDomainManager/PluginSystem/ConditionEditor/condition_editor.tscn" id="5_j8nky"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/SerializationScripts/DomainLoader.gd" id="5_jn8qg"]
+[ext_resource type="PackedScene" uid="uid://bt8e1tea2412b" path="res://addons/HTNDomainManager/PluginSystem/EffectEditor/effect_editor.tscn" id="6_kek1x"]
+[ext_resource type="PackedScene" uid="uid://b82i43crgrl08" path="res://addons/HTNDomainManager/PluginSystem/DomainPanel/domain_panel.tscn" id="8_jvc2b"]
+[ext_resource type="PackedScene" uid="uid://ds1u2m48u03x8" path="res://addons/HTNDomainManager/PluginSystem/WarningBox/warning_box.tscn" id="14_lspda"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_icatj"]
+font_color = Color(0.878431, 0.878431, 0.878431, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o5cyj"]
+
+[node name="HTNDomainManager" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+mouse_filter = 2
+theme = ExtResource("1_4moif")
+script = ExtResource("2_un2xf")
+metadata/_edit_lock_ = true
+
+[node name="Validator" type="Control" parent="." node_paths=PackedStringArray("goto_panel")]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("3_ajrvj")
+goto_panel = NodePath("../ContainerRoot/PluginContainer/ContentContainer/EditorContainer/LeftSidePanelContainer/GotoPanel")
+
+[node name="DomainLoader" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_jn8qg")
+
+[node name="NotificationHandler" type="Control" parent="."]
+unique_name_in_owner = true
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("4_45g3y")
+
+[node name="Timer" type="Timer" parent="NotificationHandler"]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="ContainerRoot" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+metadata/_edit_lock_ = true
+
+[node name="PluginContainer" type="VBoxContainer" parent="ContainerRoot"]
+layout_mode = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="NoticeLabel" type="Label" parent="ContainerRoot/PluginContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+size_flags_horizontal = 3
+label_settings = SubResource("LabelSettings_icatj")
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 4
+metadata/_edit_lock_ = true
+
+[node name="ContentContainer" type="VBoxContainer" parent="ContainerRoot/PluginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="ToolBox" type="HBoxContainer" parent="ContainerRoot/PluginContainer/ContentContainer"]
+layout_mode = 2
+
+[node name="TaskPanelButton" type="Button" parent="ContainerRoot/PluginContainer/ContentContainer/ToolBox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Task Panel"
+
+[node name="GotoPanelButton" type="Button" parent="ContainerRoot/PluginContainer/ContentContainer/ToolBox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Goto Panel"
+
+[node name="GraphToolsToggle" type="CheckButton" parent="ContainerRoot/PluginContainer/ContentContainer/ToolBox"]
+unique_name_in_owner = true
+layout_mode = 2
+button_pressed = true
+text = "Graph Tools"
+
+[node name="HSeparator" type="HSeparator" parent="ContainerRoot/PluginContainer/ContentContainer/ToolBox"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_o5cyj")
+
+[node name="ClearGraphButton" type="Button" parent="ContainerRoot/PluginContainer/ContentContainer/ToolBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Clear Graph"
+
+[node name="BuildDomainButton" type="Button" parent="ContainerRoot/PluginContainer/ContentContainer/ToolBox"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Build Domain"
+
+[node name="DomainPanelButton" type="Button" parent="ContainerRoot/PluginContainer/ContentContainer/ToolBox"]
+unique_name_in_owner = true
+layout_mode = 2
+toggle_mode = true
+text = "Domain Panel"
+
+[node name="EditorContainer" type="HBoxContainer" parent="ContainerRoot/PluginContainer/ContentContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 0
+
+[node name="LeftSidePanelContainer" type="PanelContainer" parent="ContainerRoot/PluginContainer/ContentContainer/EditorContainer"]
+layout_mode = 2
+
+[node name="TaskPanel" parent="ContainerRoot/PluginContainer/ContentContainer/EditorContainer/LeftSidePanelContainer" instance=ExtResource("4_dcdp5")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="GotoPanel" parent="ContainerRoot/PluginContainer/ContentContainer/EditorContainer/LeftSidePanelContainer" instance=ExtResource("5_arhpn")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="LeftVSeparator" type="VSeparator" parent="ContainerRoot/PluginContainer/ContentContainer/EditorContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="TabContainer" parent="ContainerRoot/PluginContainer/ContentContainer/EditorContainer" node_paths=PackedStringArray("node_spawn_menu", "graph_tools_toggle") instance=ExtResource("2_n8gmp")]
+unique_name_in_owner = true
+layout_mode = 2
+node_spawn_menu = NodePath("../../../../../NodeSpawnMenu")
+graph_tools_toggle = NodePath("../../ToolBox/GraphToolsToggle")
+
+[node name="RightVSeparator" type="VSeparator" parent="ContainerRoot/PluginContainer/ContentContainer/EditorContainer"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="RightSidePanelContainer" type="PanelContainer" parent="ContainerRoot/PluginContainer/ContentContainer/EditorContainer"]
+layout_mode = 2
+
+[node name="DomainPanel" parent="ContainerRoot/PluginContainer/ContentContainer/EditorContainer/RightSidePanelContainer" instance=ExtResource("8_jvc2b")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+
+[node name="NodeSpawnMenu" parent="." instance=ExtResource("4_2r86d")]
+unique_name_in_owner = true
+
+[node name="ConditionEditor" parent="." instance=ExtResource("5_j8nky")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[node name="EffectEditor" parent="." instance=ExtResource("6_kek1x")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+
+[node name="WarningBox" parent="." instance=ExtResource("14_lspda")]
+unique_name_in_owner = true
+layout_mode = 1
+
+[connection signal="timeout" from="NotificationHandler/Timer" to="NotificationHandler" method="_on_timer_timeout"]
+[connection signal="toggled" from="ContainerRoot/PluginContainer/ContentContainer/ToolBox/TaskPanelButton" to="." method="_on_task_panel_button_toggled"]
+[connection signal="toggled" from="ContainerRoot/PluginContainer/ContentContainer/ToolBox/GotoPanelButton" to="." method="_on_goto_panel_button_toggled"]
+[connection signal="toggled" from="ContainerRoot/PluginContainer/ContentContainer/ToolBox/GraphToolsToggle" to="." method="_on_graph_tools_toggle_toggled"]
+[connection signal="pressed" from="ContainerRoot/PluginContainer/ContentContainer/ToolBox/ClearGraphButton" to="." method="_on_clear_graph_button_pressed"]
+[connection signal="pressed" from="ContainerRoot/PluginContainer/ContentContainer/ToolBox/BuildDomainButton" to="." method="_on_build_domain_button_pressed"]
+[connection signal="toggled" from="ContainerRoot/PluginContainer/ContentContainer/ToolBox/DomainPanelButton" to="." method="_on_domain_panel_button_toggled"]

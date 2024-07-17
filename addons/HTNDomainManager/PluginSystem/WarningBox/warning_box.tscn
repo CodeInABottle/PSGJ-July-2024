@@ -1,0 +1,104 @@
+[gd_scene load_steps=6 format=3 uid="uid://ds1u2m48u03x8"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/WarningBox/WarningBoxManager.gd" id="1_28qqo"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_36x8w"]
+bg_color = Color(0.0627451, 0.0627451, 0.0627451, 0.490196)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o4n5q"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3gj4k"]
+font_size = 36
+font_color = Color(1, 0.976471, 0.0352941, 1)
+outline_size = 20
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l8caf"]
+
+[node name="WarningBox" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_36x8w")
+script = ExtResource("1_28qqo")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_o4n5q")
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Warning"
+label_settings = SubResource("LabelSettings_3gj4k")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HSeparator4" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_o4n5q")
+
+[node name="MessageLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+text = "You are about to delete an unsaved tab.
+Continue?"
+label_settings = SubResource("LabelSettings_3gj4k")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+metadata/_edit_use_anchors_ = true
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_o4n5q")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+custom_minimum_size = Vector2(0, 64)
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l8caf")
+
+[node name="AcceptButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Accept"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l8caf")
+
+[node name="DeclineButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "Decline"
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_l8caf")
+
+[node name="HSeparator3" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_o4n5q")
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/AcceptButton" to="." method="_on_accept_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/DeclineButton" to="." method="_on_decline_button_pressed"]

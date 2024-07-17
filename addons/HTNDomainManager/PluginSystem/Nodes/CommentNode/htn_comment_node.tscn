@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://cyurpxvki5qdm"]
+
+[ext_resource type="PackedScene" uid="uid://bt445iqt61atd" path="res://addons/HTNDomainManager/PluginSystem/Nodes/BaseNode/htn_base_node.tscn" id="1_cebkx"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/Nodes/CommentNode/HTNCommentNode.gd" id="2_d5ec5"]
+
+[node name="HTNCommentNode" instance=ExtResource("1_cebkx")]
+offset_right = 148.0
+offset_bottom = 89.0
+resizable = true
+title = "Comment Node"
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("2_d5ec5")
+
+[node name="HBoxContainer" parent="." index="1"]
+visible = false
+
+[node name="TextEdit" type="TextEdit" parent="." index="2"]
+layout_mode = 2
+size_flags_vertical = 3
+placeholder_text = "Comment"

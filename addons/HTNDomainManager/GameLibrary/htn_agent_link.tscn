@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://do8npoujehqop"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Scripts/HTNAgentLink.gd" id="1_xd0ug"]
+
+[node name="HTNAgentLink" type="Node"]
+script = ExtResource("1_xd0ug")

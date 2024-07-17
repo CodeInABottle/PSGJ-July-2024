@@ -1,0 +1,89 @@
+[gd_scene load_steps=6 format=3 uid="uid://bt8e1tea2412b"]
+
+[ext_resource type="Theme" uid="uid://diu3ahrw1puva" path="res://addons/HTNDomainManager/PluginSystem/PluginTheme.tres" id="1_2glyj"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/EffectEditor/EffectEditorManager.gd" id="2_itiv2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xuhe8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lncrt"]
+
+[sub_resource type="StyleBoxLine" id="StyleBoxLine_e5fst"]
+color = Color(0.0666667, 0.0784314, 0.0941176, 1)
+thickness = 6
+
+[node name="EffectEditor" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_2glyj")
+script = ExtResource("2_itiv2")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.0125
+anchor_top = 0.0222222
+anchor_right = 0.9875
+anchor_bottom = 0.977778
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="NicknameLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Nickname..."
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(8, 8)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xuhe8")
+
+[node name="AddButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Add Effect"
+
+[node name="HSeparator2" type="HSeparator" parent="VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(64, 0)
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_lncrt")
+
+[node name="CloseButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Close"
+
+[node name="Searchbar" type="LineEdit" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+placeholder_text = "Search..."
+
+[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxLine_e5fst")
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+horizontal_scroll_mode = 0
+
+[node name="LineContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/AddButton" to="." method="_on_add_button_pressed"]
+[connection signal="pressed" from="VBoxContainer/HBoxContainer/CloseButton" to="." method="_on_close_button_pressed"]
+[connection signal="text_changed" from="VBoxContainer/Searchbar" to="." method="_on_searchbar_text_changed"]

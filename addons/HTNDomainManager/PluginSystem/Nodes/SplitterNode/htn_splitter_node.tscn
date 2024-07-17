@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2yw2p1u7jucy"]
+
+[ext_resource type="PackedScene" uid="uid://bt445iqt61atd" path="res://addons/HTNDomainManager/PluginSystem/Nodes/BaseNode/htn_base_node.tscn" id="1_24wni"]
+[ext_resource type="Script" path="res://addons/HTNDomainManager/PluginSystem/Nodes/SplitterNode/HTNSplitterNode.gd" id="2_o501p"]
+
+[node name="HTNSplitterNode" instance=ExtResource("1_24wni")]
+offset_right = 214.0
+offset_bottom = 111.0
+resizable = true
+title = "Splitter Node"
+slot/0/left_enabled = true
+slot/0/left_type = 2
+slot/0/left_color = Color(0.27451, 0.509804, 0.196078, 1)
+slot/0/right_enabled = true
+slot/0/right_type = 1
+slot/0/right_color = Color(0.309804, 0.560784, 0.729412, 1)
+slot/1/left_enabled = false
+slot/1/left_type = 0
+slot/1/left_color = Color(1, 1, 1, 1)
+slot/1/left_icon = null
+slot/1/right_enabled = false
+slot/1/right_type = 0
+slot/1/right_color = Color(1, 1, 1, 1)
+slot/1/right_icon = null
+slot/1/draw_stylebox = true
+script = ExtResource("2_o501p")
+
+[node name="Input" parent="HBoxContainer" index="0"]
+text = "Action"
+
+[node name="Output" parent="HBoxContainer" index="2"]
+text = "Methods"
+
+[node name="NickName" type="LineEdit" parent="." index="2"]
+layout_mode = 2
+placeholder_text = "Nick Name (Optional)"
+
+[connection signal="text_submitted" from="NickName" to="." method="_on_nick_name_text_submitted"]

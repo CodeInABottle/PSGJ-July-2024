@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bj7gnohb2c23"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Scripts/HTNCommunicationHUB.gd" id="1_45822"]
+
+[node name="HTNCommHUB" type="Node"]
+script = ExtResource("1_45822")
