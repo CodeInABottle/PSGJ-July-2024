@@ -1,2 +1,10 @@
 # Godot 4+ specific ignores
 .godot/
+
+# Art Files
+savefiles/
+*.kra
+*.ase
+
+.vscode/
+*.import
