@@ -24,6 +24,7 @@ func load_overworld_database() -> void:
 
 func attempt_load() -> void:
 	if load_pending:
+		load_pending = false
 		set_player_position(current_save_dictionary)
 
 func generate_scene_from_string(save_string: String) -> void:
@@ -33,6 +34,8 @@ func generate_scene_from_string(save_string: String) -> void:
 		var save_dictionary: Dictionary = Marshalls.base64_to_variant(save_string)
 		current_save_dictionary = save_dictionary
 		load_pending = true
+		get_tree().change_scene_to_file("res://areas/area_0.tscn")
+	else:
 		get_tree().change_scene_to_file("res://areas/area_0.tscn")
 
 func set_player_position(save_dictionary: Dictionary) -> void:
