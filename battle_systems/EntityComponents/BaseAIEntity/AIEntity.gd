@@ -20,8 +20,11 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 			actions_completed.emit()
 	)
 
-func update(_delta: float) -> void:
-	pass
+func regen_ap() -> void:
+	_alchemy_points = clampi(_alchemy_points + _data.ap_regen_rate, 0, _data.max_alchemy_points)
+
+func get_speed() -> int:
+	return _data.speed
 
 func is_dead() -> bool:
 	return _health <= 0
@@ -29,8 +32,24 @@ func is_dead() -> bool:
 func issue_actions() -> void:
 	htn_planner.handle_planning(self, _generate_world_states())
 
-func get_speed() -> int:
-	return _data.speed
+func activate_ability(ability_idx: int) -> void:
+	if ability_idx < 0 or ability_idx > _data.abilities.size(): return
+
+	var ability_data: BattlefieldAbility = _data.abilities[ability_idx]
+	if ability_data.damage > 0:
+		# Do damage to player
+		pass
+
+	match ability_data.effect:
+		0:	# None
+			pass
+		1:	# Heal
+			_health = clampi(_health + ability_data.healing, 0, _data.max_health)
+		2, 3, 4, 5:	# Burning, Drowning, Suffication, Daze
+			# Apply Effect to player
+			pass
+
+	_alchemy_points -= ability_data.get_ap_usage()
 
 func _generate_world_states() -> Dictionary:
 	var data := {

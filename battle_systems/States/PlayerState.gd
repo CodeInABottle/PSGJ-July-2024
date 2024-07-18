@@ -2,11 +2,11 @@ extends Node
 
 @onready var initiative_tracker: BattlefieldInitiativeTracker = %InitiativeTracker
 @onready var control_shield: Panel = %ControlShield
+@onready var player_entity: BattlefieldPlayerEntity = %PlayerEntity
 
 func enter() -> void:
-	# regen AP
+	player_entity.regen_ap()
 	control_shield.hide()
-	pass
 
 func exit() -> void:
 	control_shield.show()

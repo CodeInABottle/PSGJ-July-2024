@@ -9,6 +9,7 @@ var _entered := false
 func enter() -> void:
 	_current_enemy = initiative_tracker.current_entity as BattlefieldAIEntity
 	_current_enemy.actions_completed.connect(_on_action_complete)
+	_current_enemy.regen_ap()
 	_current_enemy.issue_actions()
 	_entered = true
 
@@ -22,10 +23,8 @@ func exit() -> void:
 		initiative_tracker.report_requeue()
 	_current_enemy = null
 
-func update(delta: float) -> void:
-	if not _entered: return
-
-	_current_enemy.update(delta)
+func update(_delta: float) -> void:
+	pass
 
 func _on_action_complete() -> void:
 	combat_state_machine.switch_state("InitiativeFetch")

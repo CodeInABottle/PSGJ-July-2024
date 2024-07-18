@@ -10,6 +10,7 @@ extends Resource
 @export var ap_regen_rate: int
 
 @export_category("Behaviors")
+@export var resonate: TypeChart.ResonateType = TypeChart.ResonateType.NONE
 @export var domain: StringName
 @export var abilities: Array[BattlefieldAbility]
 

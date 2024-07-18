@@ -1,6 +1,6 @@
 extends Node
 
-enum WeaknessType {
+enum ResonateType {
 	NONE = 0,
 	EARTH = 0b1000,
 	WATER = 0b0100,
@@ -9,8 +9,8 @@ enum WeaknessType {
 	SALT = 0b1100,	# Earth + Water
 	MERCURY = 0b0110,	# Water + Air
 	SULPHUR = 0b0011,	# Air + Fire
-	CELESTIAL_QUARTZ = 0b1110,	# Earth + Water + Air
-	CELESTIAL_NITER = 0b0111,	# Water + Air + Fire
+	CELESTIAL = 0b1110,	# Earth + Water + Air
+	NITER = 0b0111,	# Water + Air + Fire
 	METAL = 0b1111	# All
 }
 
@@ -23,11 +23,10 @@ enum Effect {
 	DAZE = 5,		# Earth
 }
 
-const PRIMARY_REAGENTS := [WeaknessType.EARTH, WeaknessType.WATER, WeaknessType.AIR, WeaknessType.FIRE]
-const COMPOUND_REAGENTS := [WeaknessType.SALT, WeaknessType.MERCURY, WeaknessType.SULPHUR]
-const CELESTIALS := [WeaknessType.CELESTIAL_QUARTZ, WeaknessType.CELESTIAL_NITER]
+const PRIMARY_REAGENTS := [ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
+const COMPOUND_REAGENTS := [ResonateType.SALT, ResonateType.MERCURY, ResonateType.SULPHUR]
 
-func is_effective_against(current_types: Array[WeaknessType], opponent_type: WeaknessType) -> bool:
+func is_effective_against(current_types: Array[ResonateType], opponent_type: ResonateType) -> bool:
 	# Only a single element -- Primary reagents only
 	if current_types.size() == 1:
 		assert(
@@ -43,7 +42,7 @@ func is_effective_against(current_types: Array[WeaknessType], opponent_type: Wea
 
 	# Combine all bits
 	var flags: int = 0
-	for type: WeaknessType in current_types:
+	for type: ResonateType in current_types:
 		flags |= type
 
 	# Compare each bit to see if it matches
@@ -59,8 +58,8 @@ func is_effective_against(current_types: Array[WeaknessType], opponent_type: Wea
 
 	return true
 
-func _parse_ability_tier(reagent: WeaknessType) -> int:
+func _parse_ability_tier(reagent: ResonateType) -> int:
 	if reagent in PRIMARY_REAGENTS: return 1
 	if reagent in COMPOUND_REAGENTS: return 2
-	if reagent in CELESTIALS: return 3
+	if reagent == ResonateType.CELESTIAL or reagent == ResonateType.NITER: return 3
 	return 4
