@@ -1,0 +1,28 @@
+[gd_scene load_steps=4 format=3 uid="uid://pvgfckq2e3xo"]
+
+[ext_resource type="Script" path="res://battle_systems/Objects/Reagent/ReagentDropHandler/ReagentDropHandler.gd" id="1_otk8b"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_d5bf0"]
+size = Vector2(248, 236)
+
+[sub_resource type="Curve2D" id="Curve2D_d0kyj"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 64, -64, 64.4589, -0.0680889, -64.4589, 0.0680889, 0, -32, 0, 0, 0, 0, -64, -64, -64.1063, 0.113314, 64.1063, -0.113314, 0, -80, 0, 0, 0, 0, 64, -64)
+}
+point_count = 5
+
+[node name="ReagentDropHandler" type="Node2D"]
+y_sort_enabled = true
+script = ExtResource("1_otk8b")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_d5bf0")
+
+[node name="Path2D" type="Path2D" parent="."]
+unique_name_in_owner = true
+curve = SubResource("Curve2D_d0kyj")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,0 +1,66 @@
+[gd_scene load_steps=13 format=3 uid="uid://b3gb6j2g64qqa"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/InitiativeTracker.gd" id="2_oep6u"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/CombatStateMachine.gd" id="3_com16"]
+[ext_resource type="Script" path="res://battle_systems/States/IdleState.gd" id="4_63esm"]
+[ext_resource type="Script" path="res://battle_systems/States/PlayerState.gd" id="4_q2neg"]
+[ext_resource type="Script" path="res://battle_systems/States/EnemyState.gd" id="5_04e5c"]
+[ext_resource type="Script" path="res://battle_systems/States/InitiativeFetch.gd" id="5_aygw2"]
+[ext_resource type="Script" path="res://battle_systems/States/RewardState.gd" id="6_28yvg"]
+[ext_resource type="Script" path="res://battle_systems/States/GameOverState.gd" id="7_hc5bd"]
+[ext_resource type="PackedScene" uid="uid://bw5wgs3tjxkp1" path="res://battle_systems/EntityComponents/PlayerEntity/player_entity.tscn" id="8_4gulr"]
+[ext_resource type="PackedScene" uid="uid://1vrxk6abwdej" path="res://battle_systems/Objects/Table/table.tscn" id="9_ou7kj"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_altgx"]
+
+[node name="Battlefield" type="Node"]
+script = ExtResource("1_ubwb4")
+
+[node name="InitiativeTracker" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_oep6u")
+
+[node name="CombatStateMachine" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_com16")
+
+[node name="IdleState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("4_63esm")
+
+[node name="InitiativeFetch" type="Node" parent="CombatStateMachine"]
+script = ExtResource("5_aygw2")
+
+[node name="PlayerState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("4_q2neg")
+
+[node name="EnemyState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("5_04e5c")
+
+[node name="RewardState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("6_28yvg")
+
+[node name="GameOverState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("7_hc5bd")
+
+[node name="PlayerEntity" parent="." instance=ExtResource("8_4gulr")]
+unique_name_in_owner = true
+position = Vector2(153, 238)
+
+[node name="EntitySpawnLocation" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(445, 181)
+
+[node name="Table" parent="." instance=ExtResource("9_ou7kj")]
+position = Vector2(445, 291)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ControlShield" type="Panel" parent="CanvasLayer"]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_altgx")
