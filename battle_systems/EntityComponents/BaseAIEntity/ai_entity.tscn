@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp02k4l0gw3u0"]
+[gd_scene load_steps=5 format=3 uid="uid://cp02k4l0gw3u0"]
 
 [ext_resource type="PackedScene" uid="uid://dq8pw0fxci53d" path="res://battle_systems/EntityComponents/BaseEntity/entity.tscn" id="1_uskaq"]
 [ext_resource type="Script" path="res://battle_systems/EntityComponents/BaseAIEntity/AIEntity.gd" id="2_6kwgp"]
 [ext_resource type="PackedScene" uid="uid://buh35bnijt1om" path="res://addons/HTNDomainManager/GameLibrary/htn_planner.tscn" id="3_nwu2m"]
+[ext_resource type="PackedScene" uid="uid://dob0l3mbcorkh" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.tscn" id="5_qnl64"]
 
 [node name="AIEntity" instance=ExtResource("1_uskaq")]
 script = ExtResource("2_6kwgp")
@@ -13,3 +14,10 @@ region_rect = Rect2(0, 0, 640, 360)
 
 [node name="HTNPlanner" parent="." index="1" instance=ExtResource("3_nwu2m")]
 unique_name_in_owner = true
+
+[node name="EnemyStatusIndicator" parent="." index="2" instance=ExtResource("5_qnl64")]
+unique_name_in_owner = true
+offset_left = 130.0
+offset_top = -16.0
+offset_right = 130.0
+offset_bottom = -16.0

@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=3 uid="uid://dob0l3mbcorkh"]
+
+[ext_resource type="Script" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.gd" id="1_ecu7o"]
+[ext_resource type="PackedScene" uid="uid://c2va6bcydygut" path="res://battle_systems/Objects/ResonateIndicator/resonate_indicator.tscn" id="1_kpuy1"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my1by"]
+bg_color = Color(0.42, 0.1008, 0.13804, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sshjb"]
+bg_color = Color(0.92, 0.2208, 0.302373, 1)
+
+[node name="EnemyStatusIndicator" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_ecu7o")
+
+[node name="ProgressBar" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -256.0
+offset_top = 8.0
+offset_right = -16.0
+offset_bottom = 16.0
+grow_horizontal = 0
+theme_override_styles/background = SubResource("StyleBoxFlat_my1by")
+theme_override_styles/fill = SubResource("StyleBoxFlat_sshjb")
+step = 1.0
+value = 44.0
+rounded = true
+fill_mode = 1
+show_percentage = false
+
+[node name="ResonateIndicator" parent="." instance=ExtResource("1_kpuy1")]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)

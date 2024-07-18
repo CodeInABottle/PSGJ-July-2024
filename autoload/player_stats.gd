@@ -27,6 +27,9 @@ const LEVEL_DATA: Array[Dictionary] = [
 	},
 ]
 
+# { shadow_name (String) : [ (ability_names (String))... ] }
+var _current_unlocked_shadows: Dictionary = {}
+
 var level: int = 0:
 	set(value):
 		level = clampi(value, 0, 4)
@@ -52,12 +55,21 @@ func reset_alchemy_points() -> void:
 func get_max_alchemy_points() -> int:
 	return LEVEL_DATA[level]["AP"]
 
+func unlock_shadow(shadow_name: String, abilities: Array[String]) -> void:
+	if shadow_name not in _current_unlocked_shadows:
+		_current_unlocked_shadows[shadow_name] = []
+	for ability: String in abilities:
+		if ability in _current_unlocked_shadows[shadow_name]: continue
+		_current_unlocked_shadows[shadow_name].push_back(ability)
+
 func load_data(data: Dictionary) -> void:
 	level = data.get("level", 0)
 	health = data.get("health", MAX_HEALTH)
+	_current_unlocked_shadows = data.get("unlocked_shadow_data", {})
 
 func get_save_data() -> Dictionary:
 	return {
 		"level": level,
 		"health": health,
+		"unlocked_shadow_data": _current_unlocked_shadows
 	}
