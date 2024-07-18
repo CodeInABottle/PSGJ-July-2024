@@ -5,6 +5,7 @@ signal actions_completed
 
 @onready var htn_planner: HTNPlanner = %HTNPlanner
 @onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var enemy_status_indicator: BattlefieldEnemyStatusIndicator = %EnemyStatusIndicator
 
 var _data: BattlefieldEnemyData
 var _alchemy_points: int
@@ -19,12 +20,18 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 		func() -> void:
 			actions_completed.emit()
 	)
+	enemy_status_indicator.set_resonate(data.resonate)
+	enemy_status_indicator.set_health_data(data.max_health)
 
 func regen_ap() -> void:
 	_alchemy_points = clampi(_alchemy_points + _data.ap_regen_rate, 0, _data.max_alchemy_points)
 
 func get_speed() -> int:
 	return _data.speed
+
+func take_damage(damage: int) -> void:
+	_health = clampi(_health-damage, 0, _data.max_health)
+	enemy_status_indicator.update_health(_health)
 
 func is_dead() -> bool:
 	return _health <= 0

@@ -4,6 +4,7 @@
 # Save Files
 *.kra
 *.aseprite
+*.pxo
 *.*~
 
 .vscode/
