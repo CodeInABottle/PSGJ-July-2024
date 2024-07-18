@@ -7,5 +7,9 @@
 [node name="AIEntity" instance=ExtResource("1_uskaq")]
 script = ExtResource("2_6kwgp")
 
+[node name="Sprite2D" parent="." index="0"]
+region_enabled = true
+region_rect = Rect2(0, 0, 640, 360)
+
 [node name="HTNPlanner" parent="." index="1" instance=ExtResource("3_nwu2m")]
 unique_name_in_owner = true

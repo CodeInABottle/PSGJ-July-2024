@@ -7,7 +7,7 @@
 [node name="FlaskBar" type="TextureProgressBar"]
 offset_right = 74.0
 offset_bottom = 95.0
-value = 43.0
+value = 38.0
 rounded = true
 fill_mode = 3
 texture_over = ExtResource("1_1yxs6")
