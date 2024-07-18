@@ -20,6 +20,8 @@ config/icon="res://icon.svg"
 
 HTNDatabase="*res://addons/HTNDomainManager/GameLibrary/Scripts/HTNDatabase.gd"
 HTNGlobals="*res://addons/HTNDomainManager/PluginSystem/HTNGlobals.gd"
+TypeChart="*res://autoload/TypeChart.gd"
+EnemyDatabase="*res://autoload/EnemyDatabase.gd"
 
 [display]
 
@@ -44,6 +46,7 @@ folder_colors={
 "res://addons/": "purple",
 "res://assets/": "red",
 "res://autoload/": "teal",
+"res://battle_resources/": "purple",
 "res://battle_systems/": "blue"
 }
 

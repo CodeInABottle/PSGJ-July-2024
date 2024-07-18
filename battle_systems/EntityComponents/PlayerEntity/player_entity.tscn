@@ -6,6 +6,7 @@
 
 [node name="PlayerEntity" instance=ExtResource("1_bj848")]
 script = ExtResource("2_f6smv")
+speed = 10
 
 [node name="Sprite2D" parent="." index="0"]
 scale = Vector2(0.5, 0.5)

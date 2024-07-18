@@ -64,7 +64,6 @@ var _is_planning := false
 var _queued_AI_behavior: StringName = ""
 
 func _ready() -> void:
-	assert(not domain_name.is_empty(), "You forgot to select a domain silly. :D")
 	interrupt_plan.connect(_state_manager.on_interrupt)
 
 func _physics_process(_delta: float) -> void:
@@ -131,6 +130,7 @@ func handle_planning(agent: Node, world_state: Dictionary) -> void:
 ## by sending the recieved data to the [method execute_plan] function.[br]
 ## [b]IMPORTANT:[/b] This will NOT have the agent executing tasks by itself.
 func generate_plan(world_states: Dictionary) -> Array:
+	assert(not domain_name.is_empty(), "You forgot to select a domain silly. :D")
 	return _generate_plan_from_domain(domain_name, world_states)[0]
 
 ## This can be used to manually execute a plan.[br]

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=3 format=3 uid="uid://c2smxke2fh124"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_tofy1"]
+[ext_resource type="Texture2D" uid="uid://dascvipnt73m0" path="res://assets/placeholders/combat.png" id="2_qwdn1"]
+
+[resource]
+script = ExtResource("1_tofy1")
+name = "Chicken"
+speed = 11
+max_health = 200
+max_alchemy_points = 100
+ap_regen_rate = 100
+domain = &"Basic"
+abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([])
+sprite = ExtResource("2_qwdn1")

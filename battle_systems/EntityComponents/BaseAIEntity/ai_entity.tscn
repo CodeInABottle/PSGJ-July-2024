@@ -2,12 +2,10 @@
 
 [ext_resource type="PackedScene" uid="uid://dq8pw0fxci53d" path="res://battle_systems/EntityComponents/BaseEntity/entity.tscn" id="1_uskaq"]
 [ext_resource type="Script" path="res://battle_systems/EntityComponents/BaseAIEntity/AIEntity.gd" id="2_6kwgp"]
-[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Scripts/HTNPlanner.gd" id="3_ucw38"]
+[ext_resource type="PackedScene" uid="uid://buh35bnijt1om" path="res://addons/HTNDomainManager/GameLibrary/htn_planner.tscn" id="3_nwu2m"]
 
 [node name="AIEntity" instance=ExtResource("1_uskaq")]
 script = ExtResource("2_6kwgp")
-max_health = 200
 
-[node name="HTNPlanner" type="Node" parent="." index="0"]
+[node name="HTNPlanner" parent="." index="1" instance=ExtResource("3_nwu2m")]
 unique_name_in_owner = true
-script = ExtResource("3_ucw38")

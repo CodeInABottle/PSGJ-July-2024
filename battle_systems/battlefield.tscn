@@ -1,8 +1,8 @@
 [gd_scene load_steps=12 format=3 uid="uid://b3gb6j2g64qqa"]
 
-[ext_resource type="Script" path="res://battle_systems/BattlefieldManager.gd" id="1_ubwb4"]
-[ext_resource type="Script" path="res://battle_systems/InitiativeTracker.gd" id="2_oep6u"]
-[ext_resource type="Script" path="res://battle_systems/CombatStateMachine.gd" id="3_com16"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/InitiativeTracker.gd" id="2_oep6u"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/CombatStateMachine.gd" id="3_com16"]
 [ext_resource type="Script" path="res://battle_systems/States/IdleState.gd" id="4_63esm"]
 [ext_resource type="Script" path="res://battle_systems/States/PlayerState.gd" id="4_q2neg"]
 [ext_resource type="Script" path="res://battle_systems/States/EnemyState.gd" id="5_04e5c"]
@@ -46,6 +46,7 @@ unique_name_in_owner = true
 position = Vector2(153, 238)
 
 [node name="EntitySpawnLocation" type="Marker2D" parent="."]
+unique_name_in_owner = true
 position = Vector2(445, 128)
 
 [node name="Table" parent="." instance=ExtResource("9_ou7kj")]
