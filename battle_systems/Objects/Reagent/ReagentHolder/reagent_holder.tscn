@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://dqj4gk0xukero"]
+
+[ext_resource type="Script" path="res://battle_systems/Objects/Reagent/ReagentHolder/ReagentHolder.gd" id="1_uy063"]
+
+[node name="ReagentHolder" type="Sprite2D"]
+scale = Vector2(0.25, 0.25)
+script = ExtResource("1_uy063")
