@@ -22,6 +22,13 @@ HTNDatabase="*res://addons/HTNDomainManager/GameLibrary/Scripts/HTNDatabase.gd"
 HTNGlobals="*res://addons/HTNDomainManager/PluginSystem/HTNGlobals.gd"
 TypeChart="*res://autoload/TypeChart.gd"
 EnemyDatabase="*res://autoload/EnemyDatabase.gd"
+SaveManager="*res://autoload/save_manager.gd"
+PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+
+[debug]
+
+gdscript/warnings/untyped_declaration=1
+gdscript/warnings/inferred_declaration=1
 
 [display]
 
@@ -38,7 +45,7 @@ export/convert_text_resources_to_binary=false
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/HTNDomainManager/plugin.cfg")
+enabled=PackedStringArray("res://addons/HTNDomainManager/plugin.cfg", "res://addons/phantom_camera/plugin.cfg")
 
 [file_customization]
 
