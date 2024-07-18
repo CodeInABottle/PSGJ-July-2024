@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://k0q1xi88ww6c"]
+[gd_scene load_steps=12 format=3 uid="uid://k0q1xi88ww6c"]
 
 [ext_resource type="Texture2D" uid="uid://exyky00dmbb7" path="res://assets/placeholders/tilemap_packed.png" id="1_0cu3s"]
 [ext_resource type="Script" path="res://player/character_controller.gd" id="2_5rg3i"]
 [ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="3_iwf3k"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera/phantom_camera_2d.gd" id="4_0uldw"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="4_osgl5"]
+[ext_resource type="Script" path="res://ui/pause_menu_controller.gd" id="5_7o2yy"]
 [ext_resource type="Script" path="res://addons/phantom_camera/scripts/resources/tween_resource.gd" id="5_d41jt"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_doyf5"]
@@ -590,7 +591,26 @@ dead_zone_height = 0.25
 [node name="PhantomCameraHost" type="Node" parent="Camera2D"]
 script = ExtResource("4_osgl5")
 
-[node name="CharacterBody2D" type="CharacterBody2D" parent="."]
+[node name="Control" type="Control" parent="Camera2D" node_paths=PackedStringArray("save_button")]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("5_7o2yy")
+save_button = NodePath("VBoxContainer/Button")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Camera2D/Control"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 123.0
+offset_right = 262.0
+offset_bottom = 163.0
+
+[node name="Button" type="Button" parent="Camera2D/Control/VBoxContainer"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="." groups=["player"]]
 motion_mode = 1
 script = ExtResource("2_5rg3i")
 
