@@ -49,10 +49,11 @@ position = Vector2(153, 238)
 
 [node name="EntitySpawnLocation" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(445, 128)
+position = Vector2(445, 181)
 
-[node name="Table" parent="." instance=ExtResource("9_ou7kj")]
+[node name="Table" parent="." node_paths=PackedStringArray("battlefield_manager") instance=ExtResource("9_ou7kj")]
 position = Vector2(445, 291)
+battlefield_manager = NodePath("..")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

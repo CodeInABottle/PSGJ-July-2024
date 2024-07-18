@@ -1,9 +1,34 @@
-[gd_scene load_steps=3 format=3 uid="uid://1vrxk6abwdej"]
+[gd_scene load_steps=17 format=3 uid="uid://1vrxk6abwdej"]
 
 [ext_resource type="Texture2D" uid="uid://dascvipnt73m0" path="res://assets/placeholders/combat.png" id="1_3rc0r"]
+[ext_resource type="Script" path="res://battle_systems/Objects/Table/TableManager.gd" id="1_y84yb"]
 [ext_resource type="PackedScene" uid="uid://cp1tiqnusfo0i" path="res://battle_systems/Objects/FlaskBar/flask_bar.tscn" id="2_pbss5"]
+[ext_resource type="PackedScene" uid="uid://bjf47pm1dcukq" path="res://battle_systems/Objects/Reagent/reagent.tscn" id="3_p5eso"]
+[ext_resource type="PackedScene" uid="uid://pvgfckq2e3xo" path="res://battle_systems/Objects/Reagent/ReagentDropHandler/reagent_drop_handler.tscn" id="3_ppdie"]
+[ext_resource type="Texture2D" uid="uid://befldj16nif7o" path="res://assets/placeholders/Water.png" id="4_qykl7"]
+[ext_resource type="Texture2D" uid="uid://cag848673ilfl" path="res://assets/placeholders/Earth.png" id="5_0oi02"]
+[ext_resource type="Texture2D" uid="uid://b2f5rsd7fq2yl" path="res://assets/placeholders/Air.png" id="6_bo1ty"]
+[ext_resource type="Texture2D" uid="uid://cgfo3chfee2bk" path="res://assets/placeholders/Fire.png" id="7_qgiy1"]
+[ext_resource type="PackedScene" uid="uid://dqj4gk0xukero" path="res://battle_systems/Objects/Reagent/ReagentHolder/reagent_holder.tscn" id="8_qtscy"]
+[ext_resource type="Texture2D" uid="uid://dga5220ux64n7" path="res://assets/placeholders/Papertowels.png" id="11_ne405"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qalqy"]
+size = Vector2(26, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bggjd"]
+size = Vector2(33, 38)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_uyn8s"]
+size = Vector2(32, 42)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k43ms"]
+size = Vector2(30, 49)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_t3j2v"]
+size = Vector2(30, 48)
 
 [node name="Table" type="Node2D"]
+script = ExtResource("1_y84yb")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.5, 0.5)
@@ -11,16 +36,100 @@ texture = ExtResource("1_3rc0r")
 region_enabled = true
 region_rect = Rect2(0, 720, 640, 360)
 
-[node name="FlaskBar" parent="." instance=ExtResource("2_pbss5")]
+[node name="HPFlaskBar" parent="." instance=ExtResource("2_pbss5")]
+unique_name_in_owner = true
 offset_left = -127.0
 offset_top = -133.0
 offset_right = -53.0
 offset_bottom = -38.0
 color = Color(0.83, 0, 0.345833, 1)
 
-[node name="FlaskBar2" parent="." instance=ExtResource("2_pbss5")]
+[node name="APFlaskBar" parent="." instance=ExtResource("2_pbss5")]
+unique_name_in_owner = true
 offset_left = -179.0
 offset_top = -113.0
 offset_right = -105.0
 offset_bottom = -18.0
 color = Color(0, 0.638, 0.87, 1)
+
+[node name="Reagents" type="Node2D" parent="."]
+
+[node name="ReagentDropHandler" parent="Reagents" node_paths=PackedStringArray("reagent_holder", "table") instance=ExtResource("3_ppdie")]
+position = Vector2(-314, -55)
+speed = 0.5
+reagent_holder = NodePath("../ReagentHolder")
+table = NodePath("../..")
+
+[node name="ReagentHolder" parent="Reagents" node_paths=PackedStringArray("drop_location") instance=ExtResource("8_qtscy")]
+top_level = true
+drop_location = NodePath("../ReagentDropHandler")
+
+[node name="Water" parent="Reagents" node_paths=PackedStringArray("table", "reagent_holder") instance=ExtResource("3_p5eso")]
+position = Vector2(-31, -54)
+table = NodePath("../..")
+reagent_holder = NodePath("../ReagentHolder")
+reagent_type = 4
+
+[node name="Sprite2D" parent="Reagents/Water" index="0"]
+texture = ExtResource("4_qykl7")
+
+[node name="CollisionShape2D" parent="Reagents/Water" index="1"]
+position = Vector2(-3, -2)
+shape = SubResource("RectangleShape2D_qalqy")
+
+[node name="Earth" parent="Reagents" node_paths=PackedStringArray("table", "reagent_holder") instance=ExtResource("3_p5eso")]
+position = Vector2(6, -67)
+table = NodePath("../..")
+reagent_holder = NodePath("../ReagentHolder")
+reagent_type = 8
+
+[node name="Sprite2D" parent="Reagents/Earth" index="0"]
+texture = ExtResource("5_0oi02")
+
+[node name="CollisionShape2D" parent="Reagents/Earth" index="1"]
+position = Vector2(0.5, 6)
+shape = SubResource("RectangleShape2D_bggjd")
+
+[node name="Air" parent="Reagents" node_paths=PackedStringArray("table", "reagent_holder") instance=ExtResource("3_p5eso")]
+position = Vector2(52, -48)
+table = NodePath("../..")
+reagent_holder = NodePath("../ReagentHolder")
+reagent_type = 2
+
+[node name="Sprite2D" parent="Reagents/Air" index="0"]
+texture = ExtResource("6_bo1ty")
+
+[node name="CollisionShape2D" parent="Reagents/Air" index="1"]
+position = Vector2(-2, 0)
+shape = SubResource("RectangleShape2D_uyn8s")
+
+[node name="Fire" parent="Reagents" node_paths=PackedStringArray("table", "reagent_holder") instance=ExtResource("3_p5eso")]
+position = Vector2(97, -61)
+table = NodePath("../..")
+reagent_holder = NodePath("../ReagentHolder")
+reagent_type = 1
+
+[node name="Sprite2D" parent="Reagents/Fire" index="0"]
+texture = ExtResource("7_qgiy1")
+
+[node name="CollisionShape2D" parent="Reagents/Fire" index="1"]
+position = Vector2(-1, -2.5)
+shape = SubResource("RectangleShape2D_k43ms")
+
+[node name="PaperTowel" parent="Reagents" node_paths=PackedStringArray("table", "reagent_holder") instance=ExtResource("3_p5eso")]
+position = Vector2(-99, 37)
+table = NodePath("../..")
+reagent_holder = NodePath("../ReagentHolder")
+
+[node name="Sprite2D" parent="Reagents/PaperTowel" index="0"]
+texture = ExtResource("11_ne405")
+
+[node name="CollisionShape2D" parent="Reagents/PaperTowel" index="1"]
+position = Vector2(0, 2)
+shape = SubResource("RectangleShape2D_t3j2v")
+
+[editable path="Reagents/Water"]
+[editable path="Reagents/Earth"]
+[editable path="Reagents/Air"]
+[editable path="Reagents/Fire"]
+[editable path="Reagents/PaperTowel"]

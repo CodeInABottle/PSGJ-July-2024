@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=3 format=3 uid="uid://c2smxke2fh124"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=4 format=3 uid="uid://c2smxke2fh124"]
 
+[ext_resource type="Resource" uid="uid://ckah1sy1oqgi2" path="res://battle_resources/abilities/Peck.tres" id="1_d477t"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_tofy1"]
 [ext_resource type="Texture2D" uid="uid://dascvipnt73m0" path="res://assets/placeholders/combat.png" id="2_qwdn1"]
 
@@ -10,6 +11,7 @@ speed = 11
 max_health = 200
 max_alchemy_points = 100
 ap_regen_rate = 100
+resonate = 0
 domain = &"Basic"
-abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([])
+abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_d477t")])
 sprite = ExtResource("2_qwdn1")

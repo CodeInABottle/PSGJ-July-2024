@@ -1,6 +1,8 @@
 class_name BattlefieldManager
 extends Node
 
+signal AP_changed
+
 const AI_ENTITY = preload("res://battle_systems/EntityComponents/BaseAIEntity/ai_entity.tscn")
 
 @onready var initiative_tracker: BattlefieldInitiativeTracker = %InitiativeTracker
@@ -9,10 +11,16 @@ const AI_ENTITY = preload("res://battle_systems/EntityComponents/BaseAIEntity/ai
 @onready var entity_spawn_location: Marker2D = %EntitySpawnLocation
 
 var _finished_setup := false
+var alchemy_points := 3:
+	set(value):
+		alchemy_points = clampi(value, 0, MAX_ALCHEMY_POINTS)
+		AP_changed.emit()
 
-# TEMP
+#region TEMP -- Remove on Integration
+const MAX_ALCHEMY_POINTS := 3
 func _ready() -> void:
 	setup_battle("Chicken")
+#endregion
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	initiative_tracker.register_entity(player_entity)
