@@ -14,6 +14,15 @@ enum WeaknessType {
 	METAL = 0b1111	# All
 }
 
+enum Effect {
+	NONE = 0,
+	HEAL = 1,
+	BURNING = 2,	# Fire
+	DROWNING = 3,	# Water
+	SUFFICATION = 4,# Air
+	DAZE = 5,		# Earth
+}
+
 const PRIMARY_REAGENTS := [WeaknessType.EARTH, WeaknessType.WATER, WeaknessType.AIR, WeaknessType.FIRE]
 const COMPOUND_REAGENTS := [WeaknessType.SALT, WeaknessType.MERCURY, WeaknessType.SULPHUR]
 const CELESTIALS := [WeaknessType.CELESTIAL_QUARTZ, WeaknessType.CELESTIAL_NITER]
@@ -25,7 +34,10 @@ func is_effective_against(current_types: Array[WeaknessType], opponent_type: Wea
 			current_types[0] in PRIMARY_REAGENTS,
 			"Every Ability either uses up to 2 reagents that consist of primary reagents."
 		)
-		# No effectiveness horizontally
+		# check effectiveness horizontally
+		if _parse_ability_tier(opponent_type) == 1:
+			if current_types[0] == opponent_type:
+				return true
 		# Need more than one reagent to combat the heigher tiers
 		return false
 

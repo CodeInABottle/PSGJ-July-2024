@@ -33,10 +33,16 @@ func get_speed() -> int:
 	return _data.speed
 
 func _generate_world_states() -> Dictionary:
-	return {
+	var data := {
 		"health": _health,
 		"max_health": _data.max_health,
 		"ap": _alchemy_points,
 		"max_ap": _data.max_alchemy_points,
 		"ap_regen_rate": _data.ap_regen_rate
 	}
+	var idx := 0
+	for ability: BattlefieldAbility in _data.abilities:
+		data.merge(ability.get_world_states(idx), true)
+		idx += 1
+
+	return data
