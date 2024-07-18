@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 
 HTNDatabase="*res://addons/HTNDomainManager/GameLibrary/Scripts/HTNDatabase.gd"
 HTNGlobals="*res://addons/HTNDomainManager/PluginSystem/HTNGlobals.gd"
+SaveManager="*res://autoload/save_manager.gd"
 
 [display]
 
