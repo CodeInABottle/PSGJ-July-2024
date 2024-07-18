@@ -25,6 +25,7 @@ EnemyDatabase="*res://autoload/enemy_database.gd"
 PlayerStats="*res://autoload/player_stats.gd"
 SaveManager="*res://autoload/save_manager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
+DialogueManager="*res://autoload/dialogue_manager.gd"
 
 [debug]
 
