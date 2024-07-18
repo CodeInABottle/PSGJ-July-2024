@@ -23,8 +23,10 @@ enum Effect {
 	DAZE = 5,		# Earth
 }
 
-const PRIMARY_REAGENTS := [ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
-const COMPOUND_REAGENTS := [ResonateType.SALT, ResonateType.MERCURY, ResonateType.SULPHUR]
+const PRIMARY_REAGENTS: Array[ResonateType]\
+	= [ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
+const COMPOUND_REAGENTS: Array[ResonateType]\
+	= [ResonateType.SALT, ResonateType.MERCURY, ResonateType.SULPHUR]
 
 func is_effective_against(current_types: Array[ResonateType], opponent_type: ResonateType) -> bool:
 	# Only a single element -- Primary reagents only

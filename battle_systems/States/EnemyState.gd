@@ -4,7 +4,7 @@ extends Node
 @onready var initiative_tracker: BattlefieldInitiativeTracker = %InitiativeTracker
 
 var _current_enemy: BattlefieldAIEntity
-var _entered := false
+var _entered: bool = false
 
 func enter() -> void:
 	_current_enemy = initiative_tracker.current_entity as BattlefieldAIEntity

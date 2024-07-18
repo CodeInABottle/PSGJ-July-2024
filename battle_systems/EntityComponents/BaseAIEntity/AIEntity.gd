@@ -52,14 +52,14 @@ func activate_ability(ability_idx: int) -> void:
 	_alchemy_points -= ability_data.get_ap_usage()
 
 func _generate_world_states() -> Dictionary:
-	var data := {
+	var data: Dictionary = {
 		"health": _health,
 		"max_health": _data.max_health,
 		"ap": _alchemy_points,
 		"max_ap": _data.max_alchemy_points,
 		"ap_regen_rate": _data.ap_regen_rate
 	}
-	var idx := 0
+	var idx: int = 0
 	for ability: BattlefieldAbility in _data.abilities:
 		data.merge(ability.get_world_states(idx), true)
 		idx += 1

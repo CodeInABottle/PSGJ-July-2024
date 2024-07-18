@@ -5,8 +5,8 @@ extends Node
 var _states: Dictionary = {}
 var _last_state: StringName = ""
 # Execute _last_state's exit and current_state's enter
-var _transfer_waiting := false
-var _is_enabled := false
+var _transfer_waiting: bool = false
+var _is_enabled: bool = false
 var current_state: StringName
 
 func _ready() -> void:

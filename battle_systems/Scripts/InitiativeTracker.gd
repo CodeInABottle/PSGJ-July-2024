@@ -7,7 +7,7 @@ signal new_turn_set
 
 # Player, Enemies
 var _intiative_order: Array[BattlefieldEntity] = []
-var _has_been_reported := true
+var _has_been_reported: bool = true
 var current_entity: BattlefieldEntity = null
 
 func initialize_order() -> void:

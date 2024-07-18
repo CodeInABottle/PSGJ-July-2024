@@ -1,11 +1,11 @@
 extends Node
 
-const ENEMY_DATA_PATH := "res://battle_resources/enemies/"
+const ENEMY_DATA_PATH: String = "res://battle_resources/enemies/"
 
 var _enemies: Dictionary = {}
 
 func _ready() -> void:
-	var resource_files := DirAccess.get_files_at(ENEMY_DATA_PATH)
+	var resource_files: PackedStringArray = DirAccess.get_files_at(ENEMY_DATA_PATH)
 	for resource_file: String in resource_files:
 		var data: BattlefieldEnemyData = load(ENEMY_DATA_PATH + resource_file)
 		if data == null: continue

@@ -3,7 +3,7 @@ extends Sprite2D
 
 @export var drop_location: BattlefieldReagentDropLocation
 
-var _held_reagent := TypeChart.ResonateType.NONE
+var _held_reagent: TypeChart.ResonateType = TypeChart.ResonateType.NONE
 
 func _physics_process(_delta: float) -> void:
 	if texture == null: return

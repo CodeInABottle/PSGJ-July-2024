@@ -17,7 +17,7 @@ extends Resource
 @export var reagent_b: TypeChart.ResonateType = TypeChart.ResonateType.NONE
 
 func get_ap_usage() -> int:
-	var ap_needed := 0
+	var ap_needed: int = 0
 	if reagent_a != TypeChart.ResonateType.NONE:
 		ap_needed += 1
 	if reagent_b != TypeChart.ResonateType.NONE:
@@ -31,7 +31,7 @@ func get_world_states(idx: int) -> Dictionary:
 	elif effect > 1:	# Effect
 		over_time_value = damage_over_time
 
-	var ap_needed := get_ap_usage()
+	var ap_needed: int = get_ap_usage()
 	assert(ap_needed > 0, "Abilities require at least one reagent.")
 
 	return {

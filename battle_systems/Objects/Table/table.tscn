@@ -54,19 +54,17 @@ color = Color(0, 0.638, 0.87, 1)
 
 [node name="Reagents" type="Node2D" parent="."]
 
-[node name="ReagentDropHandler" parent="Reagents" node_paths=PackedStringArray("reagent_holder", "table") instance=ExtResource("3_ppdie")]
+[node name="ReagentDropHandler" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_ppdie")]
 position = Vector2(-314, -55)
 speed = 0.5
 reagent_holder = NodePath("../ReagentHolder")
-table = NodePath("../..")
 
 [node name="ReagentHolder" parent="Reagents" node_paths=PackedStringArray("drop_location") instance=ExtResource("8_qtscy")]
 top_level = true
 drop_location = NodePath("../ReagentDropHandler")
 
-[node name="Water" parent="Reagents" node_paths=PackedStringArray("table", "reagent_holder") instance=ExtResource("3_p5eso")]
+[node name="Water" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_p5eso")]
 position = Vector2(-31, -54)
-table = NodePath("../..")
 reagent_holder = NodePath("../ReagentHolder")
 reagent_type = 4
 
@@ -77,9 +75,8 @@ texture = ExtResource("4_qykl7")
 position = Vector2(-3, -2)
 shape = SubResource("RectangleShape2D_qalqy")
 
-[node name="Earth" parent="Reagents" node_paths=PackedStringArray("table", "reagent_holder") instance=ExtResource("3_p5eso")]
+[node name="Earth" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_p5eso")]
 position = Vector2(6, -67)
-table = NodePath("../..")
 reagent_holder = NodePath("../ReagentHolder")
 reagent_type = 8
 
@@ -90,9 +87,8 @@ texture = ExtResource("5_0oi02")
 position = Vector2(0.5, 6)
 shape = SubResource("RectangleShape2D_bggjd")
 
-[node name="Air" parent="Reagents" node_paths=PackedStringArray("table", "reagent_holder") instance=ExtResource("3_p5eso")]
+[node name="Air" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_p5eso")]
 position = Vector2(52, -48)
-table = NodePath("../..")
 reagent_holder = NodePath("../ReagentHolder")
 reagent_type = 2
 
@@ -103,9 +99,8 @@ texture = ExtResource("6_bo1ty")
 position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_uyn8s")
 
-[node name="Fire" parent="Reagents" node_paths=PackedStringArray("table", "reagent_holder") instance=ExtResource("3_p5eso")]
+[node name="Fire" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_p5eso")]
 position = Vector2(97, -61)
-table = NodePath("../..")
 reagent_holder = NodePath("../ReagentHolder")
 reagent_type = 1
 
@@ -116,9 +111,8 @@ texture = ExtResource("7_qgiy1")
 position = Vector2(-1, -2.5)
 shape = SubResource("RectangleShape2D_k43ms")
 
-[node name="PaperTowel" parent="Reagents" node_paths=PackedStringArray("table", "reagent_holder") instance=ExtResource("3_p5eso")]
+[node name="PaperTowel" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_p5eso")]
 position = Vector2(-99, 37)
-table = NodePath("../..")
 reagent_holder = NodePath("../ReagentHolder")
 
 [node name="Sprite2D" parent="Reagents/PaperTowel" index="0"]

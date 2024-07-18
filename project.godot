@@ -20,8 +20,9 @@ config/icon="res://icon.svg"
 
 HTNDatabase="*res://addons/HTNDomainManager/GameLibrary/Scripts/HTNDatabase.gd"
 HTNGlobals="*res://addons/HTNDomainManager/PluginSystem/HTNGlobals.gd"
-TypeChart="*res://autoload/TypeChart.gd"
-EnemyDatabase="*res://autoload/EnemyDatabase.gd"
+TypeChart="*res://autoload/type_chart.gd"
+EnemyDatabase="*res://autoload/enemy_database.gd"
+PlayerStats="*res://autoload/player_stats.gd"
 SaveManager="*res://autoload/save_manager.gd"
 PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_camera_manager.gd"
 
@@ -51,10 +52,13 @@ enabled=PackedStringArray("res://addons/HTNDomainManager/plugin.cfg", "res://add
 
 folder_colors={
 "res://addons/": "purple",
+"res://areas/": "orange",
 "res://assets/": "red",
 "res://autoload/": "teal",
 "res://battle_resources/": "purple",
-"res://battle_systems/": "blue"
+"res://battle_systems/": "blue",
+"res://player/": "blue",
+"res://ui/": "pink"
 }
 
 [godot_hub]
