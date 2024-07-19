@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://dkv0v1k16bwca"]
+
+[ext_resource type="Script" path="res://addons/phantom_camera/scripts/phantom_camera_host/phantom_camera_host.gd" id="1_xfcqw"]
+[ext_resource type="Script" path="res://ui/pause_menu_controller.gd" id="2_r754v"]
+
+[node name="Camera2D" type="Camera2D"]
+
+[node name="PhantomCameraHost" type="Node" parent="."]
+script = ExtResource("1_xfcqw")
+
+[node name="PauseMenu" type="Control" parent="." node_paths=PackedStringArray("save_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_r754v")
+save_button = NodePath("VBoxContainer/Button")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 0
+offset_left = 222.0
+offset_top = 123.0
+offset_right = 262.0
+offset_bottom = 163.0
+
+[node name="Button" type="Button" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+text = "SAVE"

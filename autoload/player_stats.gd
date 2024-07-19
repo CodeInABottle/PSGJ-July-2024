@@ -71,7 +71,7 @@ func load_data(data: Dictionary) -> void:
 	level = data.get("level", 0)
 	health = data.get("health", health)
 	max_health = data.get("max_health", max_health)
-	player.set_global_position(data.get("position", player.get_global_position()))
+	player.teleport_to(data.get("position", player.get_global_position()))
 	_current_unlocked_shadows = data.get("unlocked_shadow_data", {})
 
 func get_save_data() -> Dictionary:

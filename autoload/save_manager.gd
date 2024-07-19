@@ -22,10 +22,13 @@ func _process(delta):
 func load_overworld_database() -> void:
 	pass
 
-func attempt_load() -> void:
+func attempt_load() -> bool:
 	if load_pending:
 		load_pending = false
 		PlayerStats.load_data.call_deferred(current_save_dictionary)
+		return true
+	else:
+		return false
 
 func generate_scene_from_string(save_string: String) -> void:
 	if is_save_string_secret(save_string):
@@ -34,9 +37,8 @@ func generate_scene_from_string(save_string: String) -> void:
 		var save_dictionary: Dictionary = Marshalls.base64_to_variant(save_string)
 		current_save_dictionary = save_dictionary
 		load_pending = true
-		get_tree().change_scene_to_file("res://areas/area_0.tscn")
-	else:
-		get_tree().change_scene_to_file("res://areas/area_0.tscn")
+	
+	LevelManager.load_world("area_0")
 
 func generate_save_string() -> String:
 	var save_dictionary: Dictionary = PlayerStats.get_save_data()

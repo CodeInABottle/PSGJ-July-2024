@@ -1,3 +1,7 @@
 [gd_scene format=3 uid="uid://dyelqemredawb"]
 
 [node name="Main" type="Node"]
+
+[node name="World" type="Node" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
