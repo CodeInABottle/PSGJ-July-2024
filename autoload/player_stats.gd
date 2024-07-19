@@ -59,6 +59,9 @@ func _ready() -> void:
 func reset_alchemy_points() -> void:
 	alchemy_points = get_max_alchemy_points()
 
+func regen_alchemy_points() -> void:
+	alchemy_points += LEVEL_DATA[level]["Regen"]
+
 func get_max_alchemy_points() -> int:
 	return LEVEL_DATA[level]["AP"]
 

@@ -8,6 +8,7 @@ const AI_ENTITY: PackedScene = preload("res://battle_systems/EntityComponents/Ba
 @onready var player_entity: BattlefieldPlayerEntity = %PlayerEntity
 @onready var entity_spawn_location: Marker2D = %EntitySpawnLocation
 @onready var table: BattlefieldTable = $Table
+@onready var bell: Control = %Bell
 
 var _finished_setup: bool = false
 var _enemy: BattlefieldAIEntity = null
@@ -16,6 +17,10 @@ func _ready() -> void:
 	table.ability_execute_requested.connect(
 		func(ability_name: String) -> void:
 			_enemy.take_damage(EnemyDatabase.get_ability_damage(ability_name))
+	)
+	bell.pressed.connect(
+		func() -> void:
+			combat_state_machine.switch_state("InitiativeFetch")
 	)
 	# TEMP -- Remove on Integration
 	setup_battle("Chicken")

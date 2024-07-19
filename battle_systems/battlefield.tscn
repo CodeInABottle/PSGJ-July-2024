@@ -50,12 +50,20 @@ position = Vector2(153, 238)
 
 [node name="EntitySpawnLocation" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(445, 181)
+position = Vector2(368, 181)
 
 [node name="Table" parent="." instance=ExtResource("9_ou7kj")]
 position = Vector2(445, 291)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Bell" parent="CanvasLayer" instance=ExtResource("12_mie04")]
+unique_name_in_owner = true
+offset_left = 592.0
+offset_top = 64.0
+offset_right = 592.0
+offset_bottom = 64.0
+scale = Vector2(0.5, 0.5)
 
 [node name="ControlShield" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -65,6 +73,3 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_altgx")
-
-[node name="Bell" parent="." instance=ExtResource("12_mie04")]
-position = Vector2(528, 128)
