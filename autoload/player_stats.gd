@@ -29,7 +29,7 @@ const LEVEL_DATA: Array[Dictionary] = [
 
 # { shadow_name (String) : [ (ability_names (String))... ] }
 var _current_unlocked_shadows: Dictionary = {
-	"Chicken": [	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
+	"Chicken": [	# TEMP: Hard coding "insertion" for now
 		"Peck", "Smoke"
 	]
 }
