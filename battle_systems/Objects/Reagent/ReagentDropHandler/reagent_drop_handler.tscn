@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://pvgfckq2e3xo"]
+[gd_scene load_steps=5 format=3 uid="uid://pvgfckq2e3xo"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/Reagent/ReagentDropHandler/ReagentDropHandler.gd" id="1_otk8b"]
+[ext_resource type="PackedScene" uid="uid://dr2ppmkbletq1" path="res://battle_systems/Objects/RecipePage/recipe_page.tscn" id="2_4tglj"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d5bf0"]
 size = Vector2(248, 236)
@@ -23,6 +24,12 @@ shape = SubResource("RectangleShape2D_d5bf0")
 [node name="Path2D" type="Path2D" parent="."]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_d0kyj")
+
+[node name="RecipePage" parent="." instance=ExtResource("2_4tglj")]
+unique_name_in_owner = true
+offset_top = -144.0
+offset_bottom = -144.0
+scale = Vector2(0.75, 0.75)
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
