@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cteh4lifk6qu2"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/Data/Scripts/PickRandomAbility.gd" id="1_gknic"]
+
+[resource]
+script = ExtResource("1_gknic")
+requires_awaiting = false
