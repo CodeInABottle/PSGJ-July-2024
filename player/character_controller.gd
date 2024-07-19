@@ -1,24 +1,31 @@
+class_name Player
 extends CharacterBody2D
 
+@export var player_speed: float = 100.0
+@export var player_sprite: Sprite2D
+@export var player_camera: Camera2D
+@export var player_phantom_camera: PhantomCamera2D
 
-const SPEED = 300.0
-const JUMP_VELOCITY = -400.0
+const COLLISION_OFFSET: Vector2 = Vector2(0.0, -8.0)
 
-# Get the gravity from the project settings to be synced with RigidBody nodes.
-var gravity = ProjectSettings.get_setting("physics/2d/default_gravity")
+func _ready() -> void:
+	PlayerStats.player = self
 
-
-func _physics_process(delta):
-	var x_direction = Input.get_axis("ui_left", "ui_right")
-	if x_direction:
-		velocity.x = x_direction * SPEED
+func _physics_process(delta: float) -> void:
+	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+	if direction:
+		#velocity = velocity.lerp(direction * player_speed, 1.0)
+		velocity = direction * player_speed
 	else:
-		velocity.x = move_toward(velocity.x, 0, SPEED)
-
-	var y_direction = Input.get_axis("ui_up", "ui_down")
-	if y_direction:
-		velocity.y = y_direction * SPEED
-	else:
-		velocity.y = move_toward(velocity.y, 0, SPEED)
+		#velocity = velocity.lerp(Vector2.ZERO, 1.0)
+		velocity = Vector2.ZERO
 
 	move_and_slide()
+
+func _process(delta: float) -> void:
+	player_sprite.set_global_position(player_sprite.get_global_position().lerp(get_global_position() + COLLISION_OFFSET, 0.1))
+
+func teleport_to(new_position: Vector2) -> void:
+	set_global_position(new_position)
+	player_sprite.set_global_position(new_position)
+	player_camera.set_global_position(new_position + Vector2(100.0, 100.0))
