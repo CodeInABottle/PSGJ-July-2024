@@ -1,15 +1,135 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp02k4l0gw3u0"]
+[gd_scene load_steps=12 format=3 uid="uid://cp02k4l0gw3u0"]
 
 [ext_resource type="PackedScene" uid="uid://dq8pw0fxci53d" path="res://battle_systems/EntityComponents/BaseEntity/entity.tscn" id="1_uskaq"]
 [ext_resource type="Script" path="res://battle_systems/EntityComponents/BaseAIEntity/AIEntity.gd" id="2_6kwgp"]
+[ext_resource type="Texture2D" uid="uid://dascvipnt73m0" path="res://assets/placeholders/combat.png" id="3_h8461"]
 [ext_resource type="PackedScene" uid="uid://buh35bnijt1om" path="res://addons/HTNDomainManager/GameLibrary/htn_planner.tscn" id="3_nwu2m"]
+[ext_resource type="Texture2D" uid="uid://ce4g5tu2u1wvd" path="res://assets/placeholders/flash.png" id="5_mmji2"]
+
+[sub_resource type="Animation" id="Animation_b3s70"]
+resource_name = "Hurt"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.12, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.7, 0.392, 0.392, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6fi4d"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:self_modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_pxggm"]
+_data = {
+"Hurt": SubResource("Animation_b3s70"),
+"RESET": SubResource("Animation_6fi4d")
+}
+
+[sub_resource type="Animation" id="Animation_qqsam"]
+resource_name = "Flash"
+length = 0.25
+step = 0.01
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.06, 0.12, 0.18, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_26shr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_lf65t"]
+_data = {
+"Flash": SubResource("Animation_qqsam"),
+"RESET": SubResource("Animation_26shr")
+}
 
 [node name="AIEntity" instance=ExtResource("1_uskaq")]
 script = ExtResource("2_6kwgp")
 
 [node name="Sprite2D" parent="." index="0"]
+unique_name_in_owner = true
+texture = ExtResource("3_h8461")
 region_enabled = true
-region_rect = Rect2(0, 0, 640, 360)
+region_rect = Rect2(185, 0, 310, 190)
 
 [node name="HTNPlanner" parent="." index="1" instance=ExtResource("3_nwu2m")]
 unique_name_in_owner = true
+
+[node name="HurtPlayer" type="AnimationPlayer" parent="." index="2"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_pxggm")
+}
+
+[node name="FlashParent" type="Node2D" parent="." index="3"]
+modulate = Color(1, 1, 1, 0)
+
+[node name="Flash" type="Sprite2D" parent="FlashParent" index="0"]
+position = Vector2(90, -79)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_mmji2")
+
+[node name="Flash2" type="Sprite2D" parent="FlashParent" index="1"]
+position = Vector2(11, -59)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_mmji2")
+
+[node name="Flash3" type="Sprite2D" parent="FlashParent" index="2"]
+position = Vector2(122, 29)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_mmji2")
+
+[node name="Flash4" type="Sprite2D" parent="FlashParent" index="3"]
+position = Vector2(165, -33)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_mmji2")
+
+[node name="Flash5" type="Sprite2D" parent="FlashParent" index="4"]
+position = Vector2(11, 32)
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("5_mmji2")
+
+[node name="FlashPlayer" type="AnimationPlayer" parent="FlashParent" index="5"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_lf65t")
+}

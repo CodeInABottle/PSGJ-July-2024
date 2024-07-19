@@ -3,17 +3,28 @@ extends BattlefieldEntity
 
 signal actions_completed
 
+signal captured
+
+@onready var sprite_2d: Sprite2D = %Sprite2D
 @onready var htn_planner: HTNPlanner = %HTNPlanner
-@onready var sprite_2d: Sprite2D = $Sprite2D
+@onready var hurt_player: AnimationPlayer = %HurtPlayer
+@onready var flash_player: AnimationPlayer = %FlashPlayer
 
 var _enemy_status_indicator: BattlefieldEnemyStatusIndicator
 var _data: BattlefieldEnemyData
 var _alchemy_points: int
 var _health: int:
 	set(value):
+		if value < _health:
+			hurt_player.play("Hurt")
 		_health = clampi(value, 0, _data.max_health)
 		_enemy_status_indicator.update_health(_health)
-var _capture_value: int = 100
+var _capture_value: int = 100:
+	set(value):
+		_capture_value = value
+		print(_capture_value)
+		if is_captured():
+			captured.emit()
 
 func load_AI(data: BattlefieldEnemyData, enemy_status_indicator: BattlefieldEnemyStatusIndicator) -> void:
 	_enemy_status_indicator = enemy_status_indicator
@@ -38,6 +49,7 @@ func take_damage(damage_data: Dictionary) -> void:
 	_health -= damage_data["damage"]
 	if damage_data["resonate_type"] == _data.resonate:
 		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
+		flash_player.play("Flash")
 
 func is_dead() -> bool:
 	return _health <= 0

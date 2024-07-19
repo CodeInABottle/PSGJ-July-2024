@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=16 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/InitiativeTracker.gd" id="2_oep6u"]
@@ -10,6 +10,7 @@
 [ext_resource type="Script" path="res://battle_systems/States/RewardState.gd" id="6_28yvg"]
 [ext_resource type="Script" path="res://battle_systems/States/GameOverState.gd" id="7_hc5bd"]
 [ext_resource type="PackedScene" uid="uid://bw5wgs3tjxkp1" path="res://battle_systems/EntityComponents/PlayerEntity/player_entity.tscn" id="8_4gulr"]
+[ext_resource type="Script" path="res://battle_systems/States/CaptureState.gd" id="8_ibtg5"]
 [ext_resource type="PackedScene" uid="uid://1vrxk6abwdej" path="res://battle_systems/Objects/Table/table.tscn" id="9_ou7kj"]
 [ext_resource type="PackedScene" uid="uid://ddfc3cc4500hi" path="res://battle_systems/Objects/Bell/bell.tscn" id="12_mie04"]
 [ext_resource type="PackedScene" uid="uid://dob0l3mbcorkh" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.tscn" id="13_7ttxg"]
@@ -39,6 +40,9 @@ script = ExtResource("4_q2neg")
 [node name="EnemyState" type="Node" parent="CombatStateMachine"]
 script = ExtResource("5_04e5c")
 
+[node name="CaptureState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("8_ibtg5")
+
 [node name="RewardState" type="Node" parent="CombatStateMachine"]
 script = ExtResource("6_28yvg")
 
@@ -51,7 +55,7 @@ position = Vector2(153, 272)
 
 [node name="EntitySpawnLocation" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(458, 202)
+position = Vector2(458, 111)
 
 [node name="Table" parent="." instance=ExtResource("9_ou7kj")]
 position = Vector2(445, 291)

@@ -37,7 +37,7 @@ func setup_next_turn() -> void:
 
 	new_turn_set.emit()
 	current_entity = _intiative_order.pop_front()
-	print(current_entity)
+	#print(current_entity)
 	if current_entity is BattlefieldPlayerEntity:
 		combat_state_machine.switch_state("PlayerState")
 	else:

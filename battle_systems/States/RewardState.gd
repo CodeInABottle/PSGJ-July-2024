@@ -1,7 +1,7 @@
 extends Node
 
 func enter() -> void:
-	pass
+	print("Win")
 
 func exit() -> void:
 	pass

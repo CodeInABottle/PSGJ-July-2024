@@ -16,7 +16,7 @@ func enter() -> void:
 		_by_passed = true
 		return
 	elif _current_enemy.is_captured():
-		combat_state_machine.switch_state("RewardState")
+		combat_state_machine.switch_state("CaptureState")
 		_by_passed = true
 		return
 

@@ -53,3 +53,7 @@ func _generate_AI(enemy_name_encounter: String) -> void:
 	initiative_tracker.register_entity(ai_entity_instance)
 	# Going to need a rework for multiple enemies
 	_enemy = ai_entity_instance
+	_enemy.captured.connect(
+		func() -> void:
+			combat_state_machine.switch_state("CaptureState")
+	)
