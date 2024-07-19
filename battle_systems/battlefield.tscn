@@ -51,26 +51,26 @@ script = ExtResource("7_hc5bd")
 
 [node name="PlayerEntity" parent="." instance=ExtResource("8_4gulr")]
 unique_name_in_owner = true
-position = Vector2(153, 272)
+position = Vector2(200, 163)
 
 [node name="EntitySpawnLocation" type="Marker2D" parent="."]
 unique_name_in_owner = true
 position = Vector2(458, 111)
 
 [node name="Table" parent="." instance=ExtResource("9_ou7kj")]
-visible = false
-position = Vector2(445, 291)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Bell" parent="CanvasLayer" instance=ExtResource("12_mie04")]
 unique_name_in_owner = true
-visible = false
-offset_left = 48.0
-offset_top = 64.0
-offset_right = 48.0
-offset_bottom = 64.0
+offset_left = 585.0
+offset_top = 306.0
+offset_right = 585.0
+offset_bottom = 306.0
 scale = Vector2(0.5, 0.5)
+
+[node name="EnemyStatusIndicator" parent="CanvasLayer" instance=ExtResource("13_7ttxg")]
+unique_name_in_owner = true
 
 [node name="ControlShield" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -81,6 +81,3 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_altgx")
 metadata/_edit_lock_ = true
-
-[node name="EnemyStatusIndicator" parent="CanvasLayer" instance=ExtResource("13_7ttxg")]
-unique_name_in_owner = true
