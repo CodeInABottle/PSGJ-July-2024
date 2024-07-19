@@ -31,7 +31,7 @@ const LEVEL_DATA: Array[Dictionary] = [
 # { shadow_name (String) : [ (ability_names (String))... ] }
 var _current_unlocked_shadows: Dictionary = {
 	"Chicken": [	# TEMP: Hard coding "insertion" for now
-		"Peck", "Smoke"
+		"Peck", "Smoke", "MudSlide"
 	]
 }
 var _equipped_shadows: Array[String] = [
@@ -63,6 +63,9 @@ func _ready() -> void:
 
 func reset_alchemy_points() -> void:
 	alchemy_points = get_max_alchemy_points()
+
+func regen_alchemy_points() -> void:
+	alchemy_points += LEVEL_DATA[level]["Regen"]
 
 func get_max_alchemy_points() -> int:
 	return LEVEL_DATA[level]["AP"]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=8 format=3 uid="uid://ddfc3cc4500hi"]
+
+[ext_resource type="Texture2D" uid="uid://bu3xumeouurpd" path="res://assets/placeholders/bell.png" id="1_eudhh"]
+[ext_resource type="Script" path="res://battle_systems/Objects/Bell/bell.gd" id="1_q30p7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oan33"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2obr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5x55y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwg13"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_juddu"]
+
+[node name="Bell" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_q30p7")
+
+[node name="Sprite2D" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -128.0
+offset_right = 128.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_eudhh")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -86.0
+offset_top = -130.0
+offset_right = 86.0
+offset_bottom = 85.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_oan33")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o2obr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5x55y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xwg13")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_juddu")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

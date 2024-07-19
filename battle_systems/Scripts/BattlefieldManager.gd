@@ -7,13 +7,25 @@ const AI_ENTITY: PackedScene = preload("res://battle_systems/EntityComponents/Ba
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
 @onready var player_entity: BattlefieldPlayerEntity = %PlayerEntity
 @onready var entity_spawn_location: Marker2D = %EntitySpawnLocation
+@onready var table: BattlefieldTable = $Table
+@onready var bell: Control = %Bell
 
 var _finished_setup: bool = false
+var _enemy: BattlefieldAIEntity = null
 
-#region TEMP -- Remove on Integration
 func _ready() -> void:
+	table.ability_execute_requested.connect(
+		func(ability_name: String) -> void:
+			_enemy.take_damage(EnemyDatabase.get_ability_damage_data(ability_name))
+			_enemy.add_effect(EnemyDatabase.get_ability_effect_data(ability_name))
+	)
+	bell.pressed.connect(
+		func() -> void:
+			table.reagent_drop_handler.clear()
+			combat_state_machine.switch_state("InitiativeFetch")
+	)
+	# TEMP -- Remove on Integration
 	setup_battle("Chicken")
-#endregion
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	PlayerStats.reset_alchemy_points()
@@ -35,3 +47,5 @@ func _generate_AI(enemy_name_encounter: String) -> void:
 	entity_spawn_location.add_child(ai_entity_instance)
 	ai_entity_instance.load_AI(EnemyDatabase.get_enemy_data(enemy_name_encounter))
 	initiative_tracker.register_entity(ai_entity_instance)
+	# Going to need a rework for multiple enemies
+	_enemy = ai_entity_instance

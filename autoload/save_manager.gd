@@ -4,7 +4,7 @@ var secret_saves: Dictionary = {}
 var current_save_dictionary: Dictionary = {}
 var load_pending: bool = false
 
-func _ready():
+func _ready() -> void:
 	create_secret_saves()
 
 func create_secret_saves() -> void:
@@ -16,7 +16,7 @@ func is_save_string_secret(save_string: String) -> bool:
 	else:
 		return false
 
-func _process(delta):
+func _process(_delta: float) -> void:
 	pass
 
 func load_overworld_database() -> void:
@@ -45,7 +45,7 @@ func generate_save_string() -> String:
 	var save_dictionary: Dictionary = PlayerStats.get_save_data() # initialize w/ player saves
 	var level_save_dictionary: Dictionary = LevelManager.get_save_data()
 	save_dictionary.merge(level_save_dictionary)
-	
+
 	var save_string: String = Marshalls.variant_to_base64(save_dictionary)
-	
+
 	return save_string

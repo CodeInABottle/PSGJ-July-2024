@@ -5,7 +5,7 @@ extends HBoxContainer
 @onready var edit_button: Button = %EditButton
 
 func initialize(task_name: String) -> void:
-	edit_button.text = task_name
+	%EditButton.text = task_name
 
 func _on_delete_button_pressed() -> void:
 	if HTNFileManager.delete_task(edit_button.text):

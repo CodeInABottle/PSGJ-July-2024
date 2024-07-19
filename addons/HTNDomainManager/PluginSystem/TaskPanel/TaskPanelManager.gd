@@ -52,7 +52,7 @@ func _create_task_line(task_name: String) -> void:
 
 func _on_create_button_pressed() -> void:
 	var task_name: String = task_name_line_edit.text
-	if not HTNFileManager.check_if_task_name_exists(task_name): return
+	if HTNFileManager.check_if_task_name_exists(task_name): return
 	if not HTNFileManager.create_task(task_name): return
 
 	_create_task_line(task_name)

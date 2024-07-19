@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="HTNDomain" load_steps=2 format=3 uid="uid://f1pki4hpnj6l"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Resources/HTNDomain.gd" id="1_w4epb"]
+
+[resource]
+script = ExtResource("1_w4epb")
+root_key = &"Sandwich_0"
+task_map = {
+"Sandwich_2": "PickRandomAbility"
+}
+domain_map = {}
+quits = Array[StringName]([])
+splits = {
+"Sandwich_0": Array[StringName]([&"Sandwich_1"])
+}
+methods = {
+"Sandwich_1": {
+"method_data": {
+"AlwaysTrue": true
+},
+"task_chain": Array[StringName]([&"Sandwich_2"])
+}
+}
+effects = {}
+modules = {}

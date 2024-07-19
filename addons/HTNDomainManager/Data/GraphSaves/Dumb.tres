@@ -1,0 +1,41 @@
+[gd_resource type="Resource" script_class="HTNGraphSave" load_steps=2 format=3 uid="uid://dsw2asv44wvcc"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Resources/HTNGraphSave.gd" id="1_4bnhl"]
+
+[resource]
+script = ExtResource("1_4bnhl")
+root_key = &"Sandwich_0"
+connections = Array[Dictionary]([{
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_1",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_1",
+"from_port": 0,
+"to_node": &"Sandwich_2",
+"to_port": 0
+}])
+node_types = {
+"Sandwich_0": "Root",
+"Sandwich_1": "Always True Method",
+"Sandwich_2": "Task"
+}
+node_positions = {
+"Sandwich_0": Vector2(60, 60),
+"Sandwich_1": Vector2(200, 60),
+"Sandwich_2": Vector2(400, 60)
+}
+node_data = {
+"Sandwich_0": {},
+"Sandwich_1": {
+"condition_data": {
+"AlwaysTrue": true
+},
+"nickname": "",
+"priority": -9223372036854775808
+},
+"Sandwich_2": {
+"task": "PickRandomAbility"
+}
+}
