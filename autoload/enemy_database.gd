@@ -44,3 +44,8 @@ func get_ability_recipe(ability_name: String) -> Array[TypeChart.ResonateType]:
 		data.push_back(reagent)
 
 	return data
+
+func get_ability_damage(ability_name: String) -> int:
+	if ability_name not in _abilities: return 0
+
+	return (_abilities[ability_name] as BattlefieldAbility).damage

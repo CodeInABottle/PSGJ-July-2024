@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=14 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/InitiativeTracker.gd" id="2_oep6u"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://battle_systems/States/GameOverState.gd" id="7_hc5bd"]
 [ext_resource type="PackedScene" uid="uid://bw5wgs3tjxkp1" path="res://battle_systems/EntityComponents/PlayerEntity/player_entity.tscn" id="8_4gulr"]
 [ext_resource type="PackedScene" uid="uid://1vrxk6abwdej" path="res://battle_systems/Objects/Table/table.tscn" id="9_ou7kj"]
+[ext_resource type="PackedScene" uid="uid://ddfc3cc4500hi" path="res://battle_systems/Objects/Bell/bell.tscn" id="12_mie04"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_altgx"]
 
@@ -64,3 +65,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_altgx")
+
+[node name="Bell" parent="." instance=ExtResource("12_mie04")]
+position = Vector2(528, 128)

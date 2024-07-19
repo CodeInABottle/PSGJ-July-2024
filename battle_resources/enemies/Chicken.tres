@@ -8,7 +8,7 @@
 script = ExtResource("1_tofy1")
 name = "Chicken"
 speed = 11
-max_health = 200
+max_health = 50
 max_alchemy_points = 100
 ap_regen_rate = 100
 resonate = 12

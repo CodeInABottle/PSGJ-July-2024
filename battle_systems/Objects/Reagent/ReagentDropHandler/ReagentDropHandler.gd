@@ -1,6 +1,8 @@
 class_name BattlefieldReagentDropLocation
 extends Node2D
 
+signal ability_execute_requested(ability_name: String)
+
 class Data:
 	var follow_node: PathFollow2D
 	var sprite: Sprite2D
@@ -19,6 +21,12 @@ var mouse_entered: bool = false
 func _ready() -> void:
 	recipe_page.hide()
 	_equipped_ability_cache = PlayerStats.get_all_equipped_abilities()
+	recipe_page.pressed.connect(
+		func() -> void:
+			var ability_name: String = recipe_page.get_ability_name()
+			clear(false)
+			ability_execute_requested.emit(ability_name)
+	)
 
 func _physics_process(delta: float) -> void:
 	for data: Data in _reagent_data:
@@ -37,11 +45,12 @@ func add(sprite: Texture, reagent: TypeChart.ResonateType) -> void:
 	_create_floating_reagent(sprite, reagent)
 	_validate_recipe()
 
-func clear() -> void:
+func clear(return_ap:bool = true) -> void:
 	for data: Data in _reagent_data:
 		if data.is_queued_for_deletion(): continue
 		data.follow_node.queue_free()
-		PlayerStats.alchemy_points += 1
+		if return_ap:
+			PlayerStats.alchemy_points += 1
 	_reagent_data.clear()
 	recipe_page.hide()
 
