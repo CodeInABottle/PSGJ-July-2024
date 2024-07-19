@@ -5,12 +5,12 @@ extends Node2D
 
 var fader_controller: CanvasLayer
 
-func _ready():
+func _ready() -> void:
 	LevelManager.level_loaded.emit(self)
 	fader_controller = get_node("/root/Main/FaderLayer")
 	fader_controller.fade_in()
 
-func _process(delta):
+func _process(_delta: float) -> void:
 	pass
 
 func start_at(entry_id: int) -> void:

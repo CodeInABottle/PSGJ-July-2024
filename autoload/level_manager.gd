@@ -29,7 +29,7 @@ extends Node
 
 
 ## Emitted by other scripts; self connects to this
-signal level_loaded(Node)
+signal level_loaded(level: Node)
 
 ## Emitted by this script; Others connect to this
 # Used to let individual nodes the state of the game
@@ -63,7 +63,7 @@ var canvas_layer: CanvasLayer
 # Intended to be where to spawn at in the level, if applicable
 var _entry_id: int = -1
 # Used to track path for load_threaded_request
-var _loading_level_path := ""
+var _loading_level_path: String = ""
 # Can be used to access this level and any of its content, if applicable
 var loaded_level: Node = null
 # Can be used to check what is the currently loaded level
@@ -76,11 +76,14 @@ func _ready() -> void:
 	master_node = get_node_or_null("/root/Main")
 	world_anchor = get_node_or_null("/root/Main/World")
 	canvas_layer = get_node_or_null("/root/Main/CanvasLayer")
-	
+
+	# Check if using F5 or F6 to play scene
+	# -- On F6, nope out
+	if master_node == null: return
 	load_world("main_menu")
 
 # Used to check the progress of the threaded load call
-func _process(_delta) -> void:
+func _process(_delta: float) -> void:
 	if loaded_level or _loading_level_path == "": return
 	_async_update(_loading_level_path)
 
@@ -151,11 +154,11 @@ func _async_load(path: String) -> void:
 
 # Called by the _process loop in this script
 func _async_update(path: String) -> void:
-	var status = ResourceLoader.load_threaded_get_status(path, [])
+	var status: ResourceLoader.ThreadLoadStatus = ResourceLoader.load_threaded_get_status(path, [])
 
 	if status == ResourceLoader.THREAD_LOAD_LOADED:	# Finished
-		var packed_resource = ResourceLoader.load_threaded_get(path)
-		var level = packed_resource.instantiate()
+		var packed_resource: PackedScene = ResourceLoader.load_threaded_get(path)
+		var level: Node = packed_resource.instantiate()
 		# FOR WHO EVER IS READING THIS, THIS LINE BELOW STAYS LIKE THIS
 		# YOU SHALL NOT CHANGE IT OR IT'LL BREAK
 		await get_tree().create_timer(0.0).timeout	# Wait a full engine frame

@@ -11,8 +11,8 @@ const COLLISION_OFFSET: Vector2 = Vector2(0.0, -8.0)
 func _ready() -> void:
 	PlayerStats.player = self
 
-func _physics_process(delta: float) -> void:
-	var direction = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
+func _physics_process(_delta: float) -> void:
+	var direction: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if direction:
 		#velocity = velocity.lerp(direction * player_speed, 1.0)
 		velocity = direction * player_speed
@@ -22,7 +22,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	player_sprite.set_global_position(player_sprite.get_global_position().lerp(get_global_position() + COLLISION_OFFSET, 0.1))
 
 func teleport_to(new_position: Vector2) -> void:

@@ -1,9 +1,9 @@
 extends Node
 
-func _ready():
+func _ready() -> void:
 	pass
 
-func _process(delta):
+func _process(_delta: float) -> void:
 	pass
 
 func _on_dialogue_started() -> void:

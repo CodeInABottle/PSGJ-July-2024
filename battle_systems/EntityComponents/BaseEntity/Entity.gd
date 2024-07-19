@@ -43,5 +43,5 @@ func handle_effects() -> void:
 		while not temp_array.is_empty():
 			_current_effects[effect].push_back(temp_array.pop_back())
 
-func _update_health(value: int) -> void:
+func _update_health(_value: int) -> void:
 	pass
