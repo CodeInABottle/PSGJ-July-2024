@@ -6,6 +6,8 @@ extends CharacterBody2D
 @export var player_camera: Camera2D
 @export var player_phantom_camera: PhantomCamera2D
 
+const COLLISION_OFFSET: Vector2 = Vector2(0.0, -8.0)
+
 func _ready() -> void:
 	PlayerStats.player = self
 
@@ -21,7 +23,7 @@ func _physics_process(delta: float) -> void:
 	move_and_slide()
 
 func _process(delta: float) -> void:
-	player_sprite.set_global_position(player_sprite.get_global_position().lerp(get_global_position(), 0.1))
+	player_sprite.set_global_position(player_sprite.get_global_position().lerp(get_global_position() + COLLISION_OFFSET, 0.1))
 
 func teleport_to(new_position: Vector2) -> void:
 	set_global_position(new_position)

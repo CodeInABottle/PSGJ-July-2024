@@ -45,7 +45,9 @@ signal world_enabled
 var _levels: Dictionary = {
 "main_menu": "res://ui/main_menu.tscn",
 "area_0": "res://areas/area_0.tscn",
-"area_1": "res://areas/area_1.tscn"
+"area_1": "res://areas/area_1.tscn",
+"area_0_cellar": "res://areas/area_0_cellar.tscn",
+"area_0_player_house_F1": "res://areas/area_0_player_house_F1.tscn",
 }
 # Set as the first level to be loaded
 # -- Used by `load_entry_point()` only

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://k0q1xi88ww6c"]
+[gd_scene load_steps=14 format=3 uid="uid://k0q1xi88ww6c"]
 
 [ext_resource type="Texture2D" uid="uid://b7gd1o0128eix" path="res://assets/placeholders/tilemap_packed.png" id="1_0cu3s"]
 [ext_resource type="Script" path="res://areas/area_controller.gd" id="1_dqcw1"]
@@ -468,11 +468,20 @@ tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
 sources/0 = SubResource("TileSetAtlasSource_1wo2h")
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_emr72"]
+size = Vector2(158, 132)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_f8ail"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_aff42"]
+size = Vector2(7, 20)
+
 [sub_resource type="CircleShape2D" id="CircleShape2D_lhcgd"]
+radius = 8.0
 
 [node name="Area0" type="Node2D" node_paths=PackedStringArray("start_markers")]
 script = ExtResource("1_dqcw1")
-start_markers = [NodePath("Markers/StartMarker"), NodePath("Markers/Area1Marker")]
+start_markers = [NodePath("Markers/Start"), NodePath("Markers/Area1"), NodePath("Markers/Area0Cellar"), NodePath("Markers/Area0PlayerHouse")]
 metadata/_edit_vertical_guides_ = [101.0]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -482,17 +491,41 @@ layer_0/tile_data = PackedInt32Array(1310717, 720896, 1, 1310718, 720896, 1, 131
 
 [node name="Markers" type="Node" parent="."]
 
-[node name="StartMarker" type="Marker2D" parent="Markers"]
+[node name="Start" type="Marker2D" parent="Markers"]
 position = Vector2(558, 128)
 
-[node name="Area1Marker" type="Marker2D" parent="Markers"]
+[node name="Area1" type="Marker2D" parent="Markers"]
 position = Vector2(224, -46)
+
+[node name="Area0Cellar" type="Marker2D" parent="Markers"]
+position = Vector2(468, 16)
+
+[node name="Area0PlayerHouse" type="Marker2D" parent="Markers"]
+position = Vector2(558, 128)
 
 [node name="TransitionAreas" type="Node" parent="."]
 
 [node name="TransitionArea1" parent="TransitionAreas" instance=ExtResource("8_d8e1q")]
 position = Vector2(232, -131)
 transition_scene_name = "area_1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/TransitionArea1"]
+position = Vector2(-11, 5)
+shape = SubResource("RectangleShape2D_emr72")
+
+[node name="TransitionArea2" parent="TransitionAreas" instance=ExtResource("8_d8e1q")]
+transition_scene_name = "area_0_cellar"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/TransitionArea2"]
+position = Vector2(497, 16)
+shape = SubResource("RectangleShape2D_f8ail")
+
+[node name="TransitionArea3" parent="TransitionAreas" instance=ExtResource("8_d8e1q")]
+transition_scene_name = "area_0_player_house_F1"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/TransitionArea3"]
+position = Vector2(560, 88)
+shape = SubResource("RectangleShape2D_aff42")
 
 [node name="PlayerPhysicsBody" type="CharacterBody2D" parent="." node_paths=PackedStringArray("player_sprite", "player_camera", "player_phantom_camera") groups=["player"]]
 position = Vector2(1462.5, -264)
