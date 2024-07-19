@@ -5,17 +5,18 @@ signal actions_completed
 
 @onready var htn_planner: HTNPlanner = %HTNPlanner
 @onready var sprite_2d: Sprite2D = $Sprite2D
-@onready var enemy_status_indicator: BattlefieldEnemyStatusIndicator = %EnemyStatusIndicator
 
+var _enemy_status_indicator: BattlefieldEnemyStatusIndicator
 var _data: BattlefieldEnemyData
 var _alchemy_points: int
 var _health: int:
 	set(value):
 		_health = clampi(value, 0, _data.max_health)
-		enemy_status_indicator.update_health(_health)
+		_enemy_status_indicator.update_health(_health)
 var _capture_value: int = 100
 
-func load_AI(data: BattlefieldEnemyData) -> void:
+func load_AI(data: BattlefieldEnemyData, enemy_status_indicator: BattlefieldEnemyStatusIndicator) -> void:
+	_enemy_status_indicator = enemy_status_indicator
 	_data = data
 	_health = data.max_health
 	htn_planner.domain_name = data.domain
@@ -24,8 +25,8 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 		func() -> void:
 			actions_completed.emit()
 	)
-	enemy_status_indicator.set_resonate(data.resonate)
-	enemy_status_indicator.set_health_data(data.max_health)
+	_enemy_status_indicator.set_resonate(data.resonate)
+	_enemy_status_indicator.set_health_data(data.max_health)
 
 func regen_ap() -> void:
 	_alchemy_points = clampi(_alchemy_points + _data.ap_regen_rate, 0, _data.max_alchemy_points)
@@ -65,6 +66,23 @@ func activate_ability(ability_idx: int) -> int:
 
 	_alchemy_points -= ability_data.get_ap_usage()
 	return _alchemy_points
+
+func add_effect(effect_data: Dictionary) -> void:
+	super(effect_data)
+	_update_status_indicators()
+
+func handle_effects() -> void:
+	super()
+	_update_status_indicators()
+
+func _update_status_indicators() -> void:
+	var data: Dictionary = {}
+	for effect: TypeChart.Effect in _current_effects:
+		var stacks: int = _current_effects[effect].size()
+		if stacks == 0: continue
+		data[effect] = stacks
+
+	_enemy_status_indicator.update_statuses(data)
 
 func _update_health(value: int) -> void:
 	_health += value

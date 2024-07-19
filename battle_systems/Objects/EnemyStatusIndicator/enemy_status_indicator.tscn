@@ -1,13 +1,24 @@
-[gd_scene load_steps=5 format=3 uid="uid://dob0l3mbcorkh"]
+[gd_scene load_steps=6 format=3 uid="uid://dob0l3mbcorkh"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.gd" id="1_ecu7o"]
 [ext_resource type="PackedScene" uid="uid://c2va6bcydygut" path="res://battle_systems/Objects/ResonateIndicator/resonate_indicator.tscn" id="1_kpuy1"]
+[ext_resource type="PackedScene" uid="uid://dr3twp6fiwfwp" path="res://battle_systems/Objects/EnemyStatusIndicator/StatusSymbol/status_symbol.tscn" id="3_cgvp6"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my1by"]
 bg_color = Color(0.42, 0.1008, 0.13804, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sshjb"]
 bg_color = Color(0.92, 0.2208, 0.302373, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
 
 [node name="EnemyStatusIndicator" type="Control"]
 layout_mode = 3
@@ -21,10 +32,9 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -256.0
-offset_top = 8.0
-offset_right = -16.0
-offset_bottom = 16.0
+offset_left = -240.0
+offset_top = -33.0
+offset_bottom = -25.0
 grow_horizontal = 0
 theme_override_styles/background = SubResource("StyleBoxFlat_my1by")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sshjb")
@@ -35,5 +45,85 @@ fill_mode = 1
 show_percentage = false
 
 [node name="ResonateIndicator" parent="." instance=ExtResource("1_kpuy1")]
+unique_name_in_owner = true
+position = Vector2(0, -5)
+scale = Vector2(0.75, 0.75)
+
+[node name="Effects" type="Control" parent="."]
+anchors_preset = 0
+offset_left = -6.0
+offset_top = -3.0
+offset_right = 34.0
+offset_bottom = 37.0
+
+[node name="EffectPoint" type="Control" parent="Effects"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -63.0
+offset_top = -25.0
+offset_right = -63.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatusSymbol" parent="Effects/EffectPoint" instance=ExtResource("3_cgvp6")]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+
+[node name="EffectPoint2" type="Control" parent="Effects"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -104.0
+offset_top = -25.0
+offset_right = -104.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatusSymbol2" parent="Effects/EffectPoint2" instance=ExtResource("3_cgvp6")]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+
+[node name="EffectPoint3" type="Control" parent="Effects"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -145.0
+offset_top = -25.0
+offset_right = -145.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatusSymbol3" parent="Effects/EffectPoint3" instance=ExtResource("3_cgvp6")]
+unique_name_in_owner = true
+scale = Vector2(0.5, 0.5)
+
+[node name="EffectPoint4" type="Control" parent="Effects"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -184.0
+offset_top = -25.0
+offset_right = -184.0
+offset_bottom = -25.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="StatusSymbol4" parent="Effects/EffectPoint4" instance=ExtResource("3_cgvp6")]
 unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)

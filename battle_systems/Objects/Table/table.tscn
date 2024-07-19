@@ -55,7 +55,7 @@ color = Color(0, 0.638, 0.87, 1)
 [node name="Reagents" type="Node2D" parent="."]
 
 [node name="ReagentDropHandler" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_ppdie")]
-position = Vector2(-314, -55)
+position = Vector2(-314, -27)
 speed = 0.5
 reagent_holder = NodePath("../ReagentHolder")
 

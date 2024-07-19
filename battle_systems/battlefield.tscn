@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=15 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/InitiativeTracker.gd" id="2_oep6u"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bw5wgs3tjxkp1" path="res://battle_systems/EntityComponents/PlayerEntity/player_entity.tscn" id="8_4gulr"]
 [ext_resource type="PackedScene" uid="uid://1vrxk6abwdej" path="res://battle_systems/Objects/Table/table.tscn" id="9_ou7kj"]
 [ext_resource type="PackedScene" uid="uid://ddfc3cc4500hi" path="res://battle_systems/Objects/Bell/bell.tscn" id="12_mie04"]
+[ext_resource type="PackedScene" uid="uid://dob0l3mbcorkh" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.tscn" id="13_7ttxg"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_altgx"]
 
@@ -46,11 +47,11 @@ script = ExtResource("7_hc5bd")
 
 [node name="PlayerEntity" parent="." instance=ExtResource("8_4gulr")]
 unique_name_in_owner = true
-position = Vector2(153, 238)
+position = Vector2(153, 272)
 
 [node name="EntitySpawnLocation" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(368, 181)
+position = Vector2(458, 202)
 
 [node name="Table" parent="." instance=ExtResource("9_ou7kj")]
 position = Vector2(445, 291)
@@ -59,9 +60,9 @@ position = Vector2(445, 291)
 
 [node name="Bell" parent="CanvasLayer" instance=ExtResource("12_mie04")]
 unique_name_in_owner = true
-offset_left = 592.0
+offset_left = 48.0
 offset_top = 64.0
-offset_right = 592.0
+offset_right = 48.0
 offset_bottom = 64.0
 scale = Vector2(0.5, 0.5)
 
@@ -73,3 +74,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_altgx")
+metadata/_edit_lock_ = true
+
+[node name="EnemyStatusIndicator" parent="CanvasLayer" instance=ExtResource("13_7ttxg")]
+unique_name_in_owner = true
+offset_left = 608.0
+offset_top = 35.0
+offset_right = 608.0
+offset_bottom = 35.0
