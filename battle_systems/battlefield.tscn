@@ -58,12 +58,14 @@ unique_name_in_owner = true
 position = Vector2(458, 111)
 
 [node name="Table" parent="." instance=ExtResource("9_ou7kj")]
+visible = false
 position = Vector2(445, 291)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="Bell" parent="CanvasLayer" instance=ExtResource("12_mie04")]
 unique_name_in_owner = true
+visible = false
 offset_left = 48.0
 offset_top = 64.0
 offset_right = 48.0
@@ -82,7 +84,3 @@ metadata/_edit_lock_ = true
 
 [node name="EnemyStatusIndicator" parent="CanvasLayer" instance=ExtResource("13_7ttxg")]
 unique_name_in_owner = true
-offset_left = 608.0
-offset_top = 35.0
-offset_right = 608.0
-offset_bottom = 35.0
