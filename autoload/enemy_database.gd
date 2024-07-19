@@ -45,7 +45,24 @@ func get_ability_recipe(ability_name: String) -> Array[TypeChart.ResonateType]:
 
 	return data
 
-func get_ability_damage(ability_name: String) -> int:
-	if ability_name not in _abilities: return 0
+func get_ability_damage_data(ability_name: String) -> Dictionary:
+	if ability_name not in _abilities: return {}
 
-	return (_abilities[ability_name] as BattlefieldAbility).damage
+	var ability: BattlefieldAbility = _abilities[ability_name]
+	return {
+		"damage": ability.damage,
+		"resonate_type": ability.get_resonate_type(),
+		"capture_rate": ability.capture_efficiency,
+	}
+
+func get_ability_effect_data(ability_name: String) -> Dictionary:
+	if ability_name not in _abilities: return {}
+
+	var ability: BattlefieldAbility = _abilities[ability_name]
+	if ability.effect == TypeChart.Effect.NONE: return {}
+
+	return {
+		"effect": ability.effect,
+		"turns": ability.turns,
+		"amount_per_turn": ability.damage_over_time if ability.damage_over_time > 0 else ability.healing
+	}

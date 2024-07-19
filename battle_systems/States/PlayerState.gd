@@ -5,6 +5,7 @@ extends Node
 @onready var player_entity: BattlefieldPlayerEntity = %PlayerEntity
 
 func enter() -> void:
+	player_entity.handle_effects()
 	PlayerStats.regen_alchemy_points()
 	control_shield.hide()
 

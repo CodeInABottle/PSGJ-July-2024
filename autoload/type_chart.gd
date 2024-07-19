@@ -23,6 +23,7 @@ enum Effect {
 	DAZE = 5,		# Earth
 }
 
+const MAX_EFFECT_STACK: int = 3
 const PRIMARY_REAGENTS: Array[ResonateType]\
 	= [ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
 const COMPOUND_REAGENTS: Array[ResonateType]\

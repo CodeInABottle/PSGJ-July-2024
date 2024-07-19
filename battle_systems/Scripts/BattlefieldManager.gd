@@ -16,10 +16,12 @@ var _enemy: BattlefieldAIEntity = null
 func _ready() -> void:
 	table.ability_execute_requested.connect(
 		func(ability_name: String) -> void:
-			_enemy.take_damage(EnemyDatabase.get_ability_damage(ability_name))
+			_enemy.take_damage(EnemyDatabase.get_ability_damage_data(ability_name))
+			_enemy.add_effect(EnemyDatabase.get_ability_effect_data(ability_name))
 	)
 	bell.pressed.connect(
 		func() -> void:
+			table.reagent_drop_handler.clear()
 			combat_state_machine.switch_state("InitiativeFetch")
 	)
 	# TEMP -- Remove on Integration

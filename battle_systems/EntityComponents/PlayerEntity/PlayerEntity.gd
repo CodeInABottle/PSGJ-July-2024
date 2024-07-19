@@ -5,3 +5,6 @@ extends BattlefieldEntity
 
 func get_speed() -> int:
 	return speed
+
+func _update_health(value: int) -> void:
+	PlayerStats.health += value
