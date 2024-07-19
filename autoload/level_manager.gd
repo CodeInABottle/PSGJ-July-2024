@@ -176,3 +176,8 @@ func _on_level_loaded(level: Node) -> void:
 
 	# Tell listening node, you ok to continue
 	game_unpaused.emit()
+
+func get_save_data() -> Dictionary:
+	return {
+		"area": region_name
+	}

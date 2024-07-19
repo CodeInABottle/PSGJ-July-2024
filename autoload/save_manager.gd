@@ -37,11 +37,15 @@ func generate_scene_from_string(save_string: String) -> void:
 		var save_dictionary: Dictionary = Marshalls.base64_to_variant(save_string)
 		current_save_dictionary = save_dictionary
 		load_pending = true
-	
-	LevelManager.load_world("area_0")
+		LevelManager.load_world(current_save_dictionary["area"])
+	else:
+		LevelManager.load_world("area_0")
 
 func generate_save_string() -> String:
-	var save_dictionary: Dictionary = PlayerStats.get_save_data()
+	var save_dictionary: Dictionary = PlayerStats.get_save_data() # initialize w/ player saves
+	var level_save_dictionary: Dictionary = LevelManager.get_save_data()
+	save_dictionary.merge(level_save_dictionary)
+	
 	var save_string: String = Marshalls.variant_to_base64(save_dictionary)
 	
 	return save_string
