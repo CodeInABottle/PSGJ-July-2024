@@ -14,7 +14,7 @@ func _physics_process(delta):
 		velocity.x = x_direction * SPEED
 	else:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
-		
+
 	var y_direction = Input.get_axis("ui_up", "ui_down")
 	if y_direction:
 		velocity.y = y_direction * SPEED

@@ -28,7 +28,14 @@ const LEVEL_DATA: Array[Dictionary] = [
 ]
 
 # { shadow_name (String) : [ (ability_names (String))... ] }
-var _current_unlocked_shadows: Dictionary = {}
+var _current_unlocked_shadows: Dictionary = {
+	"Chicken": [	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
+		"Peck", "Smoke"
+	]
+}
+var _equipped_shadows: Array[String] = [
+	"Chicken"	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
+]
 
 var level: int = 0:
 	set(value):
@@ -61,6 +68,14 @@ func unlock_shadow(shadow_name: String, abilities: Array[String]) -> void:
 	for ability: String in abilities:
 		if ability in _current_unlocked_shadows[shadow_name]: continue
 		_current_unlocked_shadows[shadow_name].push_back(ability)
+
+func get_all_equipped_abilities() -> PackedStringArray:
+	var data: PackedStringArray = []
+	for shadow_name: String in _equipped_shadows:
+		for ability_name: String in _current_unlocked_shadows[shadow_name]:
+			if ability_name in data: continue
+			data.push_back(ability_name)
+	return data
 
 func load_data(data: Dictionary) -> void:
 	level = data.get("level", 0)
