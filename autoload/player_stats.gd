@@ -5,6 +5,9 @@ signal ap_updated
 
 var player: Player
 
+# If the player did no other actions when turn ends,
+# gain this more AP on next turn.
+const ADDITIONAL_AP_REGEN: int = 1
 const LEVEL_DATA: Array[Dictionary] = [
 	{
 		"AP": 3,
@@ -31,14 +34,14 @@ const LEVEL_DATA: Array[Dictionary] = [
 # { shadow_name (String) : [ (ability_names (String))... ] }
 var _current_unlocked_shadows: Dictionary = {
 	"Tree": [	# TEMP: Hard coding "insertion" for now
-		"Branch"
+		"Branch", "Hydrate"
 	]
 }
 var _equipped_shadows: Array[String] = [
 	"Tree"	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
 ]
 
-var max_health: int = 50:
+var max_health: int = 200:
 	set(value):
 		max_health = value
 
@@ -51,8 +54,11 @@ var health: int:
 		health = clampi(value, 0, max_health)
 		health_updated.emit()
 
+var was_ap_used: bool = false
 var alchemy_points: int:
 	set(value):
+		if value < alchemy_points:
+			was_ap_used = true
 		alchemy_points = clampi(value, 0, LEVEL_DATA[level]["AP"])
 		ap_updated.emit()
 
@@ -63,9 +69,11 @@ func _ready() -> void:
 
 func reset_alchemy_points() -> void:
 	alchemy_points = get_max_alchemy_points()
+	was_ap_used = false
 
 func regen_alchemy_points() -> void:
 	alchemy_points += LEVEL_DATA[level]["Regen"]
+	was_ap_used = false
 
 func get_max_alchemy_points() -> int:
 	return LEVEL_DATA[level]["AP"]

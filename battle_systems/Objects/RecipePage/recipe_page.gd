@@ -5,17 +5,23 @@ signal pressed
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var label: Label = %Label
-@onready var left_texture: TextureRect = %LeftTexture
-@onready var right_texture: TextureRect = %RightTexture
+@onready var reagents: Array[TextureRect] = [
+	%ReagentA, %ReagentB, %ReagentC, %ReagentD
+]
+@onready var resonance: Sprite2D = %Resonance
 
-func set_data(recipe_name: String, left_reagent: Texture, right_reagent: Texture) -> void:
+func set_data(recipe_name: String, resonate_type: TypeChart.ResonateType,
+		reagent_textures: Array[Texture]) -> void:
 	label.text = recipe_name
-	left_texture.texture = left_reagent
-	right_texture.texture = right_reagent
-	if right_reagent == null:
-		right_texture.hide()
-	else:
-		right_texture.show()
+
+	for idx: int in 4:
+		if idx < reagent_textures.size():
+			reagents[idx].texture = reagent_textures[idx]
+			reagents[idx].show()
+		else:
+			reagents[idx].hide()
+
+	resonance.frame = TypeChart.TEXTURE_LOOK_UP_TABLE[resonate_type]
 	animation_player.play("Hover")
 
 func get_ability_name() -> String:

@@ -1,17 +1,17 @@
 [gd_scene load_steps=16 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
-[ext_resource type="Script" path="res://battle_systems/Scripts/InitiativeTracker.gd" id="2_oep6u"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/EntityTracker.gd" id="2_oep6u"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/CombatStateMachine.gd" id="3_com16"]
 [ext_resource type="Script" path="res://battle_systems/States/IdleState.gd" id="4_63esm"]
 [ext_resource type="Script" path="res://battle_systems/States/PlayerState.gd" id="4_q2neg"]
 [ext_resource type="Script" path="res://battle_systems/States/EnemyState.gd" id="5_04e5c"]
-[ext_resource type="Script" path="res://battle_systems/States/InitiativeFetch.gd" id="5_aygw2"]
 [ext_resource type="Script" path="res://battle_systems/States/RewardState.gd" id="6_28yvg"]
 [ext_resource type="Script" path="res://battle_systems/States/GameOverState.gd" id="7_hc5bd"]
 [ext_resource type="PackedScene" uid="uid://bw5wgs3tjxkp1" path="res://battle_systems/EntityComponents/PlayerEntity/player_entity.tscn" id="8_4gulr"]
 [ext_resource type="Script" path="res://battle_systems/States/CaptureState.gd" id="8_ibtg5"]
 [ext_resource type="PackedScene" uid="uid://1vrxk6abwdej" path="res://battle_systems/Objects/Table/table.tscn" id="9_ou7kj"]
+[ext_resource type="PackedScene" uid="uid://cp02k4l0gw3u0" path="res://battle_systems/EntityComponents/BaseAIEntity/ai_entity.tscn" id="11_66ej3"]
 [ext_resource type="PackedScene" uid="uid://ddfc3cc4500hi" path="res://battle_systems/Objects/Bell/bell.tscn" id="12_mie04"]
 [ext_resource type="PackedScene" uid="uid://dob0l3mbcorkh" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.tscn" id="13_7ttxg"]
 
@@ -20,7 +20,7 @@
 [node name="Battlefield" type="Node"]
 script = ExtResource("1_ubwb4")
 
-[node name="InitiativeTracker" type="Node" parent="."]
+[node name="EntityTracker" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_oep6u")
 
@@ -30,9 +30,6 @@ script = ExtResource("3_com16")
 
 [node name="IdleState" type="Node" parent="CombatStateMachine"]
 script = ExtResource("4_63esm")
-
-[node name="InitiativeFetch" type="Node" parent="CombatStateMachine"]
-script = ExtResource("5_aygw2")
 
 [node name="PlayerState" type="Node" parent="CombatStateMachine"]
 script = ExtResource("4_q2neg")
@@ -49,13 +46,17 @@ script = ExtResource("6_28yvg")
 [node name="GameOverState" type="Node" parent="CombatStateMachine"]
 script = ExtResource("7_hc5bd")
 
-[node name="PlayerEntity" parent="." instance=ExtResource("8_4gulr")]
+[node name="PlayerEntity" parent="." node_paths=PackedStringArray("entity_tracker") instance=ExtResource("8_4gulr")]
 unique_name_in_owner = true
 position = Vector2(200, 163)
+entity_tracker = NodePath("../EntityTracker")
 
-[node name="EntitySpawnLocation" type="Marker2D" parent="."]
+[node name="EnemyEntity" parent="." node_paths=PackedStringArray("enemy_status_indicator", "player_entity", "entity_tracker") instance=ExtResource("11_66ej3")]
 unique_name_in_owner = true
 position = Vector2(288, 120)
+enemy_status_indicator = NodePath("../CanvasLayer/EnemyStatusIndicator")
+player_entity = NodePath("../PlayerEntity")
+entity_tracker = NodePath("../EntityTracker")
 
 [node name="Table" parent="." instance=ExtResource("9_ou7kj")]
 
@@ -63,10 +64,10 @@ position = Vector2(288, 120)
 
 [node name="Bell" parent="CanvasLayer" instance=ExtResource("12_mie04")]
 unique_name_in_owner = true
-offset_left = 585.0
-offset_top = 306.0
-offset_right = 585.0
-offset_bottom = 306.0
+offset_left = 602.0
+offset_top = 317.0
+offset_right = 602.0
+offset_bottom = 317.0
 scale = Vector2(0.5, 0.5)
 
 [node name="EnemyStatusIndicator" parent="CanvasLayer" instance=ExtResource("13_7ttxg")]

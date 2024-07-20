@@ -23,9 +23,12 @@ func _ready() -> void:
 	for resource_file: String in resource_files:
 		var data: BattlefieldAbility = load(ABILLITY_DATA_PATH + resource_file)
 		if data == null: continue
-		if data["name"] in _abilities: continue
+		var file_name: String = resource_file.split(".", false)[0]
 
-		_abilities[data["name"]] = data
+		if file_name in _abilities: continue
+
+		data.initialize(file_name)
+		_abilities[file_name] = data
 
 func get_enemy_data(enemy_name: String) -> BattlefieldEnemyData:
 	assert(enemy_name in _enemies, "Enemy name: " + enemy_name + " does not exist/isn't loaded.")
@@ -76,18 +79,17 @@ func get_ability_damage_data(ability_name: String) -> Dictionary:
 	var ability: BattlefieldAbility = _abilities[ability_name]
 	return {
 		"damage": ability.damage,
-		"resonate_type": ability.get_resonate_type(),
+		"resonate_type": ability.resonate_type,
 		"capture_rate": ability.capture_efficiency,
 	}
 
-func get_ability_effect_data(ability_name: String) -> Dictionary:
-	if ability_name not in _abilities: return {}
+func get_ability_mods(ability_name: String) -> Array[BattlefieldAttackModifier]:
+	if ability_name not in _abilities: return []
 
-	var ability: BattlefieldAbility = _abilities[ability_name]
-	if ability.effect == TypeChart.Effect.NONE: return {}
+	return (_abilities[ability_name] as BattlefieldAbility).modifiers
 
-	return {
-		"effect": ability.effect,
-		"turns": ability.turns,
-		"amount_per_turn": ability.damage_over_time if ability.damage_over_time > 0 else ability.healing
-	}
+func get_ability_resonance(ability_name: String) -> TypeChart.ResonateType:
+	if ability_name not in _abilities: return TypeChart.ResonateType.NONE
+
+	return (_abilities[ability_name] as BattlefieldAbility).resonate_type
+

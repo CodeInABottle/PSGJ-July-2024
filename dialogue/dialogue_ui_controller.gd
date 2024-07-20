@@ -33,7 +33,7 @@ const NORMAL_TEXT_SIZE: int = 370
 func _ready() -> void:
 	DialogueManager.player_dialogue_ui = self
 	make_ui_connections()
-	
+
 
 func make_ui_connections() -> void:
 	next_button.pressed.connect(_on_next_button_pressed)
@@ -45,7 +45,7 @@ func show_dialogue(dialogue: Dialogue, content_key: String) -> void:
 	var dialogue_block_index: int = dialogue.content_keys.find(content_key)
 	if not dialogue_block_index == -1:
 		show()
-		
+
 		current_dialogue = dialogue
 		current_dialogue_block_index = dialogue_block_index
 		current_dialogue_block = current_dialogue.contents[current_dialogue_block_index]
@@ -64,24 +64,24 @@ func continue_dialogue() -> void:
 		current_dialogue_line = current_dialogue_block.block_lines[current_dialogue_line_index]
 		current_dialogue_string = current_dialogue_line.line_text
 		display_text()
-		
+
 		if current_dialogue_line is DialogueOption:
 			dialogue_label.set_custom_minimum_size(Vector2i(OPTION_TEXT_SIZE, 0))
 			var options: Array[String] = current_dialogue_line.options
 			var callbacks: Array[String] = current_dialogue_line.callbacks
 			var option_index: int = 0
-			for option in options:
+			for option: String in options:
 				var new_button: Button = Button.new()
 				new_button.text = option
 				button_container.add_child(new_button)
-				
+
 				if callbacks[option_index] != "":
 					if DialogueManager.has_method(callbacks[option_index]):
 						var callback_callable: Callable = Callable(DialogueManager, callbacks[option_index])
 						new_button.pressed.connect(callback_callable)
-				
+
 				option_index += 1
-		
+
 	else:
 		clear_current_dialog()
 
@@ -95,7 +95,7 @@ func advance_dialogue() -> void:
 			letter_index = 99999999999
 			if current_dialogue_line_index + 1 < current_dialogue_block.block_lines.size():
 				next_button.show()
-	
+
 func _on_next_button_pressed() -> void:
 	continue_dialogue()
 
@@ -115,7 +115,7 @@ func clear_current_dialog() -> void:
 	current_dialogue_line = null
 	letter_timer.stop()
 	clear_buttons()
-	
+
 	dialogue_label.text = ""
 	hide_dialog()
 	dialogue_ui_closed.emit()
@@ -133,7 +133,7 @@ func display_text() -> void:
 func display_letter() -> void:
 	if letter_index <= current_dialogue_line.line_text.length() - 1:
 		dialogue_label.text += current_dialogue_line.line_text[letter_index]
-		
+
 		match current_dialogue_line.line_text[letter_index]:
 			"!", "?", ".", ",", ";":
 				letter_timer.start(PUNCTUATION_TIME)
@@ -141,7 +141,7 @@ func display_letter() -> void:
 				letter_timer.start(SPACE_TIME)
 			_:
 				letter_timer.start(LETTER_TIME)
-		
+
 		letter_index += 1
 	elif current_dialogue_line_index + 1 < current_dialogue_block.block_lines.size():
 		next_button.show()
