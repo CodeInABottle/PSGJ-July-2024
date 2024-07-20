@@ -9,9 +9,12 @@ signal captured
 @onready var htn_planner: HTNPlanner = %HTNPlanner
 @onready var hurt_player: AnimationPlayer = %HurtPlayer
 @onready var flash_player: AnimationPlayer = %FlashPlayer
+@onready var sprite_animator: AnimationPlayer = %SpriteAnimator
 
 var _enemy_status_indicator: BattlefieldEnemyStatusIndicator
 var _data: BattlefieldEnemyData
+var _max_alchemy_points: int
+var _alchemy_regen: int
 var _alchemy_points: int
 var _health: int:
 	set(value):
@@ -27,23 +30,24 @@ var _capture_value: int = 100:
 			captured.emit()
 
 func load_AI(data: BattlefieldEnemyData, enemy_status_indicator: BattlefieldEnemyStatusIndicator) -> void:
+	htn_planner.finished.connect( func() -> void: actions_completed.emit() )
 	_enemy_status_indicator = enemy_status_indicator
 	_data = data
 	_health = data.max_health
 	htn_planner.domain_name = data.domain
 	sprite_2d.texture = data.sprite
-	htn_planner.finished.connect(
-		func() -> void:
-			actions_completed.emit()
-	)
+
+	var alchemy_data: Dictionary = EnemyDatabase.get_alchemy_data(_data.name)
+	_max_alchemy_points = alchemy_data["ap"]
+	_alchemy_regen = alchemy_data["regen"]
+	_alchemy_points = _max_alchemy_points
+
 	_enemy_status_indicator.set_resonate(data.resonate)
 	_enemy_status_indicator.set_health_data(data.max_health)
+	sprite_animator.play("Idle")
 
 func regen_ap() -> void:
-	_alchemy_points = clampi(_alchemy_points + _data.ap_regen_rate, 0, _data.max_alchemy_points)
-
-func get_speed() -> int:
-	return _data.speed
+	_alchemy_points = clampi(_alchemy_points + _alchemy_regen, 0, _max_alchemy_points)
 
 func take_damage(damage_data: Dictionary) -> void:
 	_health -= damage_data["damage"]
@@ -105,8 +109,8 @@ func _generate_world_states() -> Dictionary:
 		"health": _health,
 		"max_health": _data.max_health,
 		"ap": _alchemy_points,
-		"max_ap": _data.max_alchemy_points,
-		"ap_regen_rate": _data.ap_regen_rate,
+		"max_ap": _max_alchemy_points,
+		"ap_regen_rate": _alchemy_regen,
 		"ability_count": _data.abilities.size()
 	}
 	var idx: int = 0

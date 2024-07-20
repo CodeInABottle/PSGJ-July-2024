@@ -12,8 +12,8 @@ var current_entity: BattlefieldEntity = null
 
 func initialize_order() -> void:
 	_intiative_order.sort_custom(
-		func(entityA: BattlefieldEntity, entityB: BattlefieldEntity) -> bool:
-			return entityA.get_speed() >= entityB.get_speed()
+		func(entityA: BattlefieldEntity, _entityB: BattlefieldEntity) -> bool:
+			return entityA is BattlefieldPlayerEntity
 	)
 
 func register_entity(entity: BattlefieldEntity) -> void:

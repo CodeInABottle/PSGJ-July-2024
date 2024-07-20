@@ -26,7 +26,7 @@ func _ready() -> void:
 			combat_state_machine.switch_state("InitiativeFetch")
 	)
 	# TEMP -- Remove on Integration
-	setup_battle("Chicken")
+	setup_battle("Tree")
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	PlayerStats.reset_alchemy_points()

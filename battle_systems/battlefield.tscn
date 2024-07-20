@@ -55,7 +55,7 @@ position = Vector2(200, 163)
 
 [node name="EntitySpawnLocation" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(458, 111)
+position = Vector2(288, 120)
 
 [node name="Table" parent="." instance=ExtResource("9_ou7kj")]
 

@@ -7,6 +7,10 @@ extends Control
 	%StatusSymbol, %StatusSymbol2, %StatusSymbol3, %StatusSymbol4
 ]
 
+func _ready() -> void:
+	for status_symbol: StatusSymbol in effect_points:
+		status_symbol.hide()
+
 func set_health_data(max_health: int) -> void:
 	progress_bar.max_value = max_health
 	progress_bar.value = max_health
@@ -30,4 +34,3 @@ func update_statuses(data: Dictionary) -> void:
 				data[effect]
 			)
 			break
-

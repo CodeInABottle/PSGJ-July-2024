@@ -6,9 +6,6 @@ var _current_effects: Dictionary = {}
 func regen_ap() -> void:
 	pass
 
-func get_speed() -> int:
-	return 0
-
 func add_effect(effect_data: Dictionary) -> void:
 	if effect_data.is_empty(): return
 
