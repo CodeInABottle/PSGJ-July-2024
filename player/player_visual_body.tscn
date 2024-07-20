@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://kh822nqv02xs"]
+
+[ext_resource type="Texture2D" uid="uid://8h714of42bsy" path="res://assets/sprites/player/player.png" id="1_k4knx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_vwqrg"]
+radius = 8.0
+
+[node name="PlayerVisualBody" type="Sprite2D"]
+z_index = 2
+position = Vector2(1462.5, -264)
+texture = ExtResource("1_k4knx")
+region_enabled = true
+region_rect = Rect2(95.6728, 5.51305, 31.3503, 58.6688)
+
+[node name="PlayerPickupArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupArea"]
+shape = SubResource("CircleShape2D_vwqrg")
