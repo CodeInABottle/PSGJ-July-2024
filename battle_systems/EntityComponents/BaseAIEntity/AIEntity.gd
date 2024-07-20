@@ -2,7 +2,6 @@ class_name BattlefieldAIEntity
 extends BattlefieldEntity
 
 signal actions_completed
-
 signal captured
 
 @onready var sprite_2d: Sprite2D = %Sprite2D
@@ -12,6 +11,7 @@ signal captured
 @onready var sprite_animator: AnimationPlayer = %SpriteAnimator
 
 var _enemy_status_indicator: BattlefieldEnemyStatusIndicator
+var _player_entity: BattlefieldPlayerEntity
 var _data: BattlefieldEnemyData
 var _max_alchemy_points: int
 var _alchemy_regen: int
@@ -29,9 +29,11 @@ var _capture_value: int = 100:
 		if is_captured():
 			captured.emit()
 
-func load_AI(data: BattlefieldEnemyData, enemy_status_indicator: BattlefieldEnemyStatusIndicator) -> void:
+func load_AI(data: BattlefieldEnemyData, enemy_status_indicator: BattlefieldEnemyStatusIndicator,
+		player_entity: BattlefieldPlayerEntity) -> void:
 	htn_planner.finished.connect( func() -> void: actions_completed.emit() )
 	_enemy_status_indicator = enemy_status_indicator
+	_player_entity = player_entity
 	_data = data
 	_health = data.max_health
 	htn_planner.domain_name = data.domain
@@ -69,36 +71,10 @@ func activate_ability(ability_idx: int) -> int:
 
 	var ability_data: BattlefieldAbility = _data.abilities[ability_idx]
 	if ability_data.damage > 0:
-		PlayerStats.health -= ability_data.damage
+		_player_entity.take_damage(ability_data.damage)
 
-	match ability_data.effect:
-		0:	# None
-			pass
-		1:	# Heal
-			_health = clampi(_health + ability_data.healing, 0, _data.max_health)
-		2, 3, 4, 5:	# Burning, Drowning, Suffication, Daze
-			# Apply Effect to player
-			pass
-
-	_alchemy_points -= ability_data.get_ap_usage()
+	_alchemy_points -= ability_data.ap_cost
 	return _alchemy_points
-
-func add_effect(effect_data: Dictionary) -> void:
-	super(effect_data)
-	_update_status_indicators()
-
-func handle_effects() -> void:
-	super()
-	_update_status_indicators()
-
-func _update_status_indicators() -> void:
-	var data: Dictionary = {}
-	for effect: TypeChart.Effect in _current_effects:
-		var stacks: int = _current_effects[effect].size()
-		if stacks == 0: continue
-		data[effect] = stacks
-
-	_enemy_status_indicator.update_statuses(data)
 
 func _update_health(value: int) -> void:
 	_health += value

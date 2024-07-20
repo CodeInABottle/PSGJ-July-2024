@@ -20,29 +20,11 @@ enum ResonateType {
 	METAL = 0b1111	# All
 }
 
-enum Effect {
-	NONE = 0,
-	HEAL = 1,
-	BURNING = 2,	# Fire
-	DROWNING = 3,	# Water
-	FLOATING = 4,# Air
-	DAZE = 5,		# Earth
-}
-
 const MAX_EFFECT_STACK: int = 3
 const PRIMARY_REAGENTS: Array[ResonateType]\
 	= [ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
 const COMPOUND_REAGENTS: Array[ResonateType]\
 	= [ResonateType.SALT, ResonateType.MERCURY, ResonateType.SULPHUR]
-
-func get_effect_texture(effect: Effect) -> Texture:
-	match effect:
-		Effect.HEAL: return HEALING
-		Effect.BURNING: return BURNING
-		Effect.DROWNING: return DROWNING
-		Effect.FLOATING: return FLOATING
-		Effect.DAZE: return DAZE
-		_:	return null
 
 func is_effective_against(current_types: Array[ResonateType], opponent_type: ResonateType) -> bool:
 	# Only a single element -- Primary reagents only
