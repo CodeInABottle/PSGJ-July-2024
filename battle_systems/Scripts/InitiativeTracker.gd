@@ -12,8 +12,8 @@ var current_entity: BattlefieldEntity = null
 
 func initialize_order() -> void:
 	_intiative_order.sort_custom(
-		func(entityA: BattlefieldEntity, entityB: BattlefieldEntity) -> bool:
-			return entityA.get_speed() >= entityB.get_speed()
+		func(entityA: BattlefieldEntity, _entityB: BattlefieldEntity) -> bool:
+			return entityA is BattlefieldPlayerEntity
 	)
 
 func register_entity(entity: BattlefieldEntity) -> void:
@@ -37,7 +37,7 @@ func setup_next_turn() -> void:
 
 	new_turn_set.emit()
 	current_entity = _intiative_order.pop_front()
-	print(current_entity)
+	#print(current_entity)
 	if current_entity is BattlefieldPlayerEntity:
 		combat_state_machine.switch_state("PlayerState")
 	else:

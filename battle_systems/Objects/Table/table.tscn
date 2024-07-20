@@ -1,8 +1,8 @@
 [gd_scene load_steps=17 format=3 uid="uid://1vrxk6abwdej"]
 
-[ext_resource type="Texture2D" uid="uid://dascvipnt73m0" path="res://assets/placeholders/combat.png" id="1_3rc0r"]
 [ext_resource type="Script" path="res://battle_systems/Objects/Table/TableManager.gd" id="1_y84yb"]
 [ext_resource type="PackedScene" uid="uid://cp1tiqnusfo0i" path="res://battle_systems/Objects/FlaskBar/flask_bar.tscn" id="2_pbss5"]
+[ext_resource type="Texture2D" uid="uid://otxhwoidywlh" path="res://assets/sprites/combat/table.png" id="2_uvurw"]
 [ext_resource type="PackedScene" uid="uid://bjf47pm1dcukq" path="res://battle_systems/Objects/Reagent/reagent.tscn" id="3_p5eso"]
 [ext_resource type="PackedScene" uid="uid://pvgfckq2e3xo" path="res://battle_systems/Objects/Reagent/ReagentDropHandler/reagent_drop_handler.tscn" id="3_ppdie"]
 [ext_resource type="Texture2D" uid="uid://befldj16nif7o" path="res://assets/placeholders/Water.png" id="4_qykl7"]
@@ -25,37 +25,36 @@ size = Vector2(32, 42)
 size = Vector2(30, 49)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_t3j2v"]
-size = Vector2(30, 48)
+size = Vector2(63, 104)
 
 [node name="Table" type="Node2D"]
 script = ExtResource("1_y84yb")
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.5)
-texture = ExtResource("1_3rc0r")
-region_enabled = true
+[node name="TableSprite" type="Sprite2D" parent="."]
+position = Vector2(320, 304)
+texture = ExtResource("2_uvurw")
 region_rect = Rect2(0, 720, 640, 360)
 
 [node name="HPFlaskBar" parent="." instance=ExtResource("2_pbss5")]
 unique_name_in_owner = true
-offset_left = -127.0
-offset_top = -133.0
-offset_right = -53.0
-offset_bottom = -38.0
+offset_left = 56.0
+offset_top = 192.0
+offset_right = 130.0
+offset_bottom = 287.0
 color = Color(0.83, 0, 0.345833, 1)
 
 [node name="APFlaskBar" parent="." instance=ExtResource("2_pbss5")]
 unique_name_in_owner = true
-offset_left = -179.0
-offset_top = -113.0
-offset_right = -105.0
-offset_bottom = -18.0
+offset_left = 16.0
+offset_top = 236.0
+offset_right = 90.0
+offset_bottom = 331.0
 color = Color(0, 0.638, 0.87, 1)
 
 [node name="Reagents" type="Node2D" parent="."]
 
 [node name="ReagentDropHandler" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_ppdie")]
-position = Vector2(-314, -55)
+position = Vector2(176, 192)
 speed = 0.5
 reagent_holder = NodePath("../ReagentHolder")
 
@@ -64,7 +63,7 @@ top_level = true
 drop_location = NodePath("../ReagentDropHandler")
 
 [node name="Water" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_p5eso")]
-position = Vector2(-31, -54)
+position = Vector2(176, 256)
 reagent_holder = NodePath("../ReagentHolder")
 reagent_type = 4
 
@@ -76,7 +75,7 @@ position = Vector2(-3, -2)
 shape = SubResource("RectangleShape2D_qalqy")
 
 [node name="Earth" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_p5eso")]
-position = Vector2(6, -67)
+position = Vector2(136, 280)
 reagent_holder = NodePath("../ReagentHolder")
 reagent_type = 8
 
@@ -88,7 +87,7 @@ position = Vector2(0.5, 6)
 shape = SubResource("RectangleShape2D_bggjd")
 
 [node name="Air" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_p5eso")]
-position = Vector2(52, -48)
+position = Vector2(216, 288)
 reagent_holder = NodePath("../ReagentHolder")
 reagent_type = 2
 
@@ -100,7 +99,7 @@ position = Vector2(-2, 0)
 shape = SubResource("RectangleShape2D_uyn8s")
 
 [node name="Fire" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_p5eso")]
-position = Vector2(97, -61)
+position = Vector2(176, 312)
 reagent_holder = NodePath("../ReagentHolder")
 reagent_type = 1
 
@@ -112,14 +111,16 @@ position = Vector2(-1, -2.5)
 shape = SubResource("RectangleShape2D_k43ms")
 
 [node name="PaperTowel" parent="Reagents" node_paths=PackedStringArray("reagent_holder") instance=ExtResource("3_p5eso")]
-position = Vector2(-99, 37)
+position = Vector2(544, 216)
 reagent_holder = NodePath("../ReagentHolder")
 
 [node name="Sprite2D" parent="Reagents/PaperTowel" index="0"]
+position = Vector2(16, 16)
+scale = Vector2(0.5, 0.5)
 texture = ExtResource("11_ne405")
 
 [node name="CollisionShape2D" parent="Reagents/PaperTowel" index="1"]
-position = Vector2(0, 2)
+position = Vector2(16.5, 20)
 shape = SubResource("RectangleShape2D_t3j2v")
 
 [editable path="Reagents/Water"]

@@ -32,6 +32,31 @@ func get_enemy_data(enemy_name: String) -> BattlefieldEnemyData:
 
 	return _enemies[enemy_name]
 
+func get_alchemy_data(enemy_name: String) -> Dictionary:
+	var enemy_data: BattlefieldEnemyData = get_enemy_data(enemy_name)
+
+	if enemy_data.resonate in TypeChart.PRIMARY_REAGENTS:
+		return {
+			"ap": 3,
+			"regen": 1
+		}
+	elif enemy_data.resonate in TypeChart.COMPOUND_REAGENTS:
+		return {
+			"ap": 4,
+			"regen": 2
+		}
+	elif enemy_data.resonate == TypeChart.ResonateType.CELESTIAL\
+		or enemy_data.resonate == TypeChart.ResonateType.NITER:
+		return {
+			"ap": 5,
+			"regen": 3
+		}
+	else:
+		return {
+			"ap": 7,
+			"regen": 3
+		}
+
 func get_ability_recipe(ability_name: String) -> Array[TypeChart.ResonateType]:
 	if ability_name not in _abilities: return []
 

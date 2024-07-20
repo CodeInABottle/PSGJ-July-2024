@@ -1,0 +1,53 @@
+[gd_scene load_steps=6 format=3 uid="uid://dr3twp6fiwfwp"]
+
+[ext_resource type="Script" path="res://battle_systems/Objects/EnemyStatusIndicator/StatusSymbol/status_symbol.gd" id="1_jls7f"]
+[ext_resource type="Texture2D" uid="uid://dcn44i774oakw" path="res://assets/placeholders/Symbols.png" id="1_xwvnr"]
+[ext_resource type="Texture2D" uid="uid://b88bnr542sysl" path="res://assets/placeholders/status_effects/Floating.png" id="2_barkh"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="3_twdd3"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_iq3te"]
+font = ExtResource("3_twdd3")
+font_size = 31
+outline_size = 10
+outline_color = Color(0, 0, 0, 1)
+
+[node name="StatusSymbol" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_jls7f")
+
+[node name="Background" type="Sprite2D" parent="."]
+self_modulate = Color(0.3621, 0.394145, 0.51, 1)
+texture = ExtResource("1_xwvnr")
+hframes = 4
+vframes = 3
+frame = 11
+metadata/_edit_lock_ = true
+
+[node name="Icon" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -33.0
+offset_top = -31.0
+offset_right = 31.0
+offset_bottom = 33.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_barkh")
+expand_mode = 3
+stretch_mode = 4
+
+[node name="Amount" type="Label" parent="."]
+layout_mode = 0
+offset_left = -36.0
+offset_top = 11.0
+offset_right = -9.0
+offset_bottom = 39.0
+text = "3x"
+label_settings = SubResource("LabelSettings_iq3te")
+
+[connection signal="hidden" from="." to="." method="_on_hidden"]

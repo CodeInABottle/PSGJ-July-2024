@@ -9,6 +9,7 @@ const AI_ENTITY: PackedScene = preload("res://battle_systems/EntityComponents/Ba
 @onready var entity_spawn_location: Marker2D = %EntitySpawnLocation
 @onready var table: BattlefieldTable = $Table
 @onready var bell: Control = %Bell
+@onready var enemy_status_indicator: BattlefieldEnemyStatusIndicator = %EnemyStatusIndicator
 
 var _finished_setup: bool = false
 var _enemy: BattlefieldAIEntity = null
@@ -25,7 +26,7 @@ func _ready() -> void:
 			combat_state_machine.switch_state("InitiativeFetch")
 	)
 	# TEMP -- Remove on Integration
-	setup_battle("Chicken")
+	setup_battle("Tree")
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	PlayerStats.reset_alchemy_points()
@@ -45,7 +46,14 @@ func _physics_process(delta: float) -> void:
 func _generate_AI(enemy_name_encounter: String) -> void:
 	var ai_entity_instance: BattlefieldAIEntity = AI_ENTITY.instantiate()
 	entity_spawn_location.add_child(ai_entity_instance)
-	ai_entity_instance.load_AI(EnemyDatabase.get_enemy_data(enemy_name_encounter))
+	ai_entity_instance.load_AI(
+		EnemyDatabase.get_enemy_data(enemy_name_encounter),
+		enemy_status_indicator
+	)
 	initiative_tracker.register_entity(ai_entity_instance)
 	# Going to need a rework for multiple enemies
 	_enemy = ai_entity_instance
+	_enemy.captured.connect(
+		func() -> void:
+			combat_state_machine.switch_state("CaptureState")
+	)

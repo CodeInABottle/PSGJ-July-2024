@@ -6,9 +6,6 @@ var _current_effects: Dictionary = {}
 func regen_ap() -> void:
 	pass
 
-func get_speed() -> int:
-	return 0
-
 func add_effect(effect_data: Dictionary) -> void:
 	if effect_data.is_empty(): return
 
@@ -18,7 +15,7 @@ func add_effect(effect_data: Dictionary) -> void:
 		_current_effects[effect] = []
 	else:
 		# Don't add more stacks
-		if _current_effects[effect].size >= TypeChart.MAX_EFFECT_STACK: return
+		if _current_effects[effect].size() >= TypeChart.MAX_EFFECT_STACK: return
 
 	_current_effects[effect].push_back({
 		"turns_remaining": effect_data["turns"],
@@ -26,7 +23,7 @@ func add_effect(effect_data: Dictionary) -> void:
 	})
 
 func handle_effects() -> void:
-	for effect: TypeChart.Effect in _current_effects:
+	for effect: TypeChart.Effect in _current_effects.keys():
 		var temp_array: Array[Dictionary] = []
 		while not _current_effects[effect].is_empty():
 			var effect_data: Dictionary = _current_effects[effect].pop_back()
@@ -40,8 +37,11 @@ func handle_effects() -> void:
 			if effect_data["turns_remaining"] > 0:
 				temp_array.push_back(effect_data)
 
-		while not temp_array.is_empty():
-			_current_effects[effect].push_back(temp_array.pop_back())
+		if temp_array.is_empty():
+			_current_effects.erase(effect)
+		else:
+			while not temp_array.is_empty():
+				_current_effects[effect].push_back(temp_array.pop_back())
 
 func _update_health(_value: int) -> void:
 	pass

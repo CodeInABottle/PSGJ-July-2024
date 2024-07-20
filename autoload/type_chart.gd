@@ -1,5 +1,11 @@
 extends Node
 
+const BURNING: Texture = preload("res://assets/placeholders/status_effects/Burning.png")
+const DAZE: Texture = preload("res://assets/placeholders/status_effects/Daze.png")
+const DROWNING: Texture = preload("res://assets/placeholders/status_effects/Drowning.png")
+const FLOATING: Texture = preload("res://assets/placeholders/status_effects/Floating.png")
+const HEALING: Texture = preload("res://assets/placeholders/status_effects/Healing.png")
+
 enum ResonateType {
 	NONE = 0,
 	EARTH = 0b1000,
@@ -19,7 +25,7 @@ enum Effect {
 	HEAL = 1,
 	BURNING = 2,	# Fire
 	DROWNING = 3,	# Water
-	SUFFICATION = 4,# Air
+	FLOATING = 4,# Air
 	DAZE = 5,		# Earth
 }
 
@@ -28,6 +34,15 @@ const PRIMARY_REAGENTS: Array[ResonateType]\
 	= [ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
 const COMPOUND_REAGENTS: Array[ResonateType]\
 	= [ResonateType.SALT, ResonateType.MERCURY, ResonateType.SULPHUR]
+
+func get_effect_texture(effect: Effect) -> Texture:
+	match effect:
+		Effect.HEAL: return HEALING
+		Effect.BURNING: return BURNING
+		Effect.DROWNING: return DROWNING
+		Effect.FLOATING: return FLOATING
+		Effect.DAZE: return DAZE
+		_:	return null
 
 func is_effective_against(current_types: Array[ResonateType], opponent_type: ResonateType) -> bool:
 	# Only a single element -- Primary reagents only
