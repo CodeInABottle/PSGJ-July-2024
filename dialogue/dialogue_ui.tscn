@@ -95,15 +95,16 @@ layout_mode = 2
 text = "<NPC NAME>"
 
 [node name="SpokenWords" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(290, 0)
+custom_minimum_size = Vector2(370, 0)
 layout_mode = 2
 size_flags_vertical = 1
 autowrap_mode = 3
+text_overrun_behavior = 1
 
 [node name="ButtonContainer" type="GridContainer" parent="PanelContainer/MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 4
-columns = 3
+columns = 2
 
 [node name="ContinueButton" type="Button" parent="."]
 layout_mode = 2

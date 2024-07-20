@@ -27,6 +27,9 @@ const PUNCTUATION_TIME: float = 0.2
 
 signal dialogue_ui_closed()
 
+const OPTION_TEXT_SIZE: int = 230
+const NORMAL_TEXT_SIZE: int = 370
+
 func _ready() -> void:
 	DialogueManager.player_dialogue_ui = self
 	make_ui_connections()
@@ -57,11 +60,13 @@ func continue_dialogue() -> void:
 	next_button.hide()
 	current_dialogue_line_index += 1
 	if current_dialogue_line_index <= current_dialogue_block.block_lines.size() - 1:
+		dialogue_label.set_custom_minimum_size(Vector2i(NORMAL_TEXT_SIZE, 0))
 		current_dialogue_line = current_dialogue_block.block_lines[current_dialogue_line_index]
 		current_dialogue_string = current_dialogue_line.line_text
 		display_text()
 		
 		if current_dialogue_line is DialogueOption:
+			dialogue_label.set_custom_minimum_size(Vector2i(OPTION_TEXT_SIZE, 0))
 			var options: Array[String] = current_dialogue_line.options
 			var callbacks: Array[String] = current_dialogue_line.callbacks
 			var option_index: int = 0
@@ -70,9 +75,10 @@ func continue_dialogue() -> void:
 				new_button.text = option
 				button_container.add_child(new_button)
 				
-				if DialogueManager.has_method(callbacks[option_index]):
-					var callback_callable: Callable = Callable(DialogueManager, callbacks[option_index])
-					new_button.pressed.connect(callback_callable)
+				if callbacks[option_index] != "":
+					if DialogueManager.has_method(callbacks[option_index]):
+						var callback_callable: Callable = Callable(DialogueManager, callbacks[option_index])
+						new_button.pressed.connect(callback_callable)
 				
 				option_index += 1
 		

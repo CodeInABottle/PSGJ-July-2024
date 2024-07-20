@@ -16,3 +16,7 @@ func on_dialogue_ui_closed() -> void:
 
 func end_dialogue() -> void:
 	player_dialogue_ui.end_dialogue()
+
+# dialogue option callbacks
+func test_callback() -> void:
+	print("imagine dialogue triggering something")
