@@ -2,6 +2,8 @@ class_name BattlefieldRecipePage
 extends Control
 
 signal pressed
+signal mouse_hovered
+signal mouse_left
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var label: Label = %Label
@@ -9,6 +11,7 @@ signal pressed
 	%ReagentA, %ReagentB, %ReagentC, %ReagentD
 ]
 @onready var resonance: Sprite2D = %Resonance
+@onready var button: Button = $Control/Button
 
 func set_data(recipe_name: String, resonate_type: TypeChart.ResonateType,
 		reagent_textures: Array[Texture]) -> void:
@@ -35,3 +38,9 @@ func _on_button_pressed() -> void:
 
 	pressed.emit()
 	hide()
+
+func _on_button_mouse_entered() -> void:
+	mouse_hovered.emit()
+
+func _on_button_mouse_exited() -> void:
+	mouse_left.emit()

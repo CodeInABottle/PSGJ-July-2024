@@ -36,22 +36,6 @@ position = Vector2(320, 304)
 texture = ExtResource("2_uvurw")
 region_rect = Rect2(0, 720, 640, 360)
 
-[node name="HPFlaskBar" parent="." instance=ExtResource("2_pbss5")]
-unique_name_in_owner = true
-offset_left = 56.0
-offset_top = 192.0
-offset_right = 130.0
-offset_bottom = 287.0
-color = Color(0.83, 0, 0.345833, 1)
-
-[node name="APFlaskBar" parent="." instance=ExtResource("2_pbss5")]
-unique_name_in_owner = true
-offset_left = 16.0
-offset_top = 236.0
-offset_right = 90.0
-offset_bottom = 331.0
-color = Color(0, 0.638, 0.87, 1)
-
 [node name="Book" type="Sprite2D" parent="."]
 position = Vector2(408, 272)
 texture = ExtResource("4_v2q7f")
@@ -127,6 +111,22 @@ reagent_holder = NodePath("../ReagentHolder")
 [node name="ReagentHolder" parent="Reagents" node_paths=PackedStringArray("drop_location") instance=ExtResource("8_qtscy")]
 top_level = true
 drop_location = NodePath("../ReagentDropHandler")
+
+[node name="HPFlaskBar" parent="." instance=ExtResource("2_pbss5")]
+unique_name_in_owner = true
+offset_left = 56.0
+offset_top = 192.0
+offset_right = 130.0
+offset_bottom = 287.0
+color = Color(0.83, 0, 0.345833, 1)
+
+[node name="APFlaskBar" parent="." instance=ExtResource("2_pbss5")]
+unique_name_in_owner = true
+offset_left = 16.0
+offset_top = 236.0
+offset_right = 90.0
+offset_bottom = 331.0
+color = Color(0, 0.638, 0.87, 1)
 
 [editable path="Reagents/Water"]
 [editable path="Reagents/Earth"]
