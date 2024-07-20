@@ -3,20 +3,20 @@ extends CharacterBody2D
 
 @export var player_speed: float = 65.0
 
-@export var player_sprite: Sprite2D
+@export var player_sprite: AnimatedSprite2D
 @export var player_camera: Camera2D
 @export var player_phantom_camera: PhantomCamera2D
 
 var in_interaction: bool = false
 
-var input_direction: Vector2 = Vector2.ZERO
+var input_direction: Vector2
 
 var current_interactable: Interactable
 var player_interact_area: Area2D
 
 const COLLISION_OFFSET: Vector2 = Vector2(0.0, -8.0)
 const PICKUP_OFFSET: float = 24.0
-const VISUAL_BODY_LERP_SCALE: float = 8.0
+const VISUAL_BODY_LERP_SCALE: float = 10.0
 
 func _ready() -> void:
 	PlayerStats.player = self
@@ -46,8 +46,10 @@ func _physics_process(_delta: float) -> void:
 		input_direction = Input.get_vector("left", "right", "forward", "backward")
 		if input_direction:
 			velocity = input_direction * player_speed
+			player_sprite.play()
 		else:
 			velocity = Vector2.ZERO
+			player_sprite.stop()
 	else:
 		velocity = Vector2.ZERO
 
