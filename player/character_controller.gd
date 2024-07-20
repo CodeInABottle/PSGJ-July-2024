@@ -7,8 +7,8 @@ extends CharacterBody2D
 @export var player_camera: Camera2D
 @export var player_phantom_camera: PhantomCamera2D
 
-var is_moving: bool = false
 var in_interaction: bool = false
+
 var input_direction: Vector2 = Vector2.ZERO
 
 var current_interactable: Interactable

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bkmxiq8odj85j"
-path="res://.godot/imported/tree.png-db7fc5227c951429846e1bea60bcd477.ctex"
+uid="uid://dkqveu4j6mms0"
+path="res://.godot/imported/overworld_interior_01.png-102ae553cb57031ea356485a014d97b4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/combat/tree.png"
-dest_files=["res://.godot/imported/tree.png-db7fc5227c951429846e1bea60bcd477.ctex"]
+source_file="res://assets/sprites/tiles/overworld_interior_01.png"
+dest_files=["res://.godot/imported/overworld_interior_01.png-102ae553cb57031ea356485a014d97b4.ctex"]
 
 [params]
 
