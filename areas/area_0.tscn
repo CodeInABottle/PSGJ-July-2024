@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://k0q1xi88ww6c"]
+[gd_scene load_steps=20 format=3 uid="uid://k0q1xi88ww6c"]
 
 [ext_resource type="Texture2D" uid="uid://b7gd1o0128eix" path="res://assets/placeholders/tilemap_packed.png" id="1_0cu3s"]
 [ext_resource type="Script" path="res://areas/area_controller.gd" id="1_dqcw1"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://player/player_visual_body.tscn" id="7_1fqdu"]
 [ext_resource type="PackedScene" uid="uid://dkv0v1k16bwca" path="res://areas/area_camera.tscn" id="7_8k4cu"]
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://areas/transition_area.tscn" id="8_d8e1q"]
+[ext_resource type="Script" path="res://areas/interactable_controller.gd" id="10_npn5j"]
+[ext_resource type="Texture2D" uid="uid://bs46umtlkhyso" path="res://assets/sprites/general/checkpoint.png" id="10_o25xo"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wo2h"]
 texture = ExtResource("1_0cu3s")
@@ -713,6 +715,9 @@ size = Vector2(158, 132)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_aff42"]
 size = Vector2(7, 20)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5ag6"]
+size = Vector2(30, 58)
+
 [node name="Area0" type="Node2D" node_paths=PackedStringArray("start_markers")]
 script = ExtResource("1_dqcw1")
 start_markers = [NodePath("Markers/Start"), NodePath("Markers/Area1"), NodePath("Markers/Area0Cellar"), NodePath("Markers/Area0PlayerHouse")]
@@ -785,3 +790,19 @@ player_phantom_camera = NodePath("../PhantomCamera2D")
 
 [node name="PhantomCamera2D" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("4_o82po")]
 follow_target = NodePath("../PlayerVisualBody")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(183, 519)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+shape = SubResource("RectangleShape2D_e5ag6")
+
+[node name="Interactable" type="Area2D" parent="StaticBody2D" groups=["interactable"]]
+script = ExtResource("10_npn5j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D/Interactable"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_e5ag6")
+
+[node name="Sprite2D" type="Sprite2D" parent="StaticBody2D/Interactable"]
+texture = ExtResource("10_o25xo")

@@ -8,6 +8,8 @@ extends CharacterBody2D
 @export var player_phantom_camera: PhantomCamera2D
 
 var is_moving: bool = false
+var in_interaction: bool = false
+var input_direction: Vector2 = Vector2.ZERO
 
 var player_interact_area: Area2D
 
@@ -22,14 +24,18 @@ func _ready() -> void:
 func init_pickup_area() -> void:
 	player_interact_area =  player_sprite.get_child(0)
 
+func _unhandled_input(event):
+	if event is InputEventKey:
+		if event.is_action_pressed("interact"):
+			if interact():
+				print("interacted with interactable!")
+
 func _physics_process(_delta: float) -> void:
-	var direction: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
-	if direction:
-		velocity = direction * player_speed
-		is_moving = true
+	input_direction = Input.get_vector("left", "right", "forward", "backward")
+	if input_direction and not in_interaction:
+		velocity = input_direction * player_speed
 	else:
 		velocity = Vector2.ZERO
-		is_moving = false
 
 	move_and_slide()
 
@@ -43,13 +49,22 @@ func move_sprite(delta: float) -> void:
 	var updated_position: Vector2 = start_position.lerp(desired_position, delta * VISUAL_BODY_LERP_SCALE)
 	player_sprite.set_global_position(updated_position)
 	
-	if is_moving:
-		var move_direction: Vector2 = (desired_position - start_position).normalized()
-		var interact_area_position: Vector2 = player_sprite.get_global_position() + move_direction * PICKUP_OFFSET
+	if input_direction:
+		var interact_area_position: Vector2 = player_sprite.get_global_position() + input_direction * PICKUP_OFFSET
 		player_interact_area.set_global_position(interact_area_position)
-		player_interact_area.set_global_rotation(move_direction.angle())
+		player_interact_area.set_global_rotation(input_direction.angle())
 
 func teleport_to(new_position: Vector2) -> void:
 	set_global_position(new_position)
 	player_sprite.set_global_position(new_position)
 	player_camera.set_global_position(new_position + Vector2(100.0, 100.0))
+
+func interact() -> bool:
+	if player_interact_area:
+		var overlapping_areas: Array[Area2D] = player_interact_area.get_overlapping_areas()
+		for overlap: Area2D in overlapping_areas:
+			if overlap.is_in_group("interactable"):
+				overlap.on_interacted_with()
+				return true
+	
+	return false
