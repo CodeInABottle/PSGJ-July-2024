@@ -11,6 +11,7 @@ var is_moving: bool = false
 var in_interaction: bool = false
 var input_direction: Vector2 = Vector2.ZERO
 
+var current_interactable: Interactable
 var player_interact_area: Area2D
 
 const COLLISION_OFFSET: Vector2 = Vector2(0.0, -8.0)
@@ -27,13 +28,26 @@ func init_pickup_area() -> void:
 func _unhandled_input(event):
 	if event is InputEventKey:
 		if event.is_action_pressed("interact"):
-			if interact():
-				print("interacted with interactable!")
+			handle_interact_input()
+			get_viewport().set_input_as_handled()
+		if event.is_action_pressed("escape"):
+			if in_interaction:
+				end_interaction()
+		
+
+func handle_interact_input() -> void:
+	if not in_interaction:
+		interact()
+	else:
+		advance_interaction()
 
 func _physics_process(_delta: float) -> void:
-	input_direction = Input.get_vector("left", "right", "forward", "backward")
-	if input_direction and not in_interaction:
-		velocity = input_direction * player_speed
+	if not in_interaction:
+		input_direction = Input.get_vector("left", "right", "forward", "backward")
+		if input_direction:
+			velocity = input_direction * player_speed
+		else:
+			velocity = Vector2.ZERO
 	else:
 		velocity = Vector2.ZERO
 
@@ -59,12 +73,24 @@ func teleport_to(new_position: Vector2) -> void:
 	player_sprite.set_global_position(new_position)
 	player_camera.set_global_position(new_position + Vector2(100.0, 100.0))
 
-func interact() -> bool:
+func interact() -> void:
 	if player_interact_area:
 		var overlapping_areas: Array[Area2D] = player_interact_area.get_overlapping_areas()
 		for overlap: Area2D in overlapping_areas:
 			if overlap.is_in_group("interactable"):
-				overlap.on_interacted_with()
-				return true
-	
-	return false
+				current_interactable = overlap
+				current_interactable.interaction_ended.connect(on_interaction_ended)
+				current_interactable.on_interacted_with()
+				in_interaction = true
+				break
+
+func advance_interaction() -> void:
+	current_interactable.advance_interaction()
+
+func on_interaction_ended(interactable: Interactable) -> void:
+	current_interactable.interaction_ended.disconnect(on_interaction_ended)
+	current_interactable = null
+	in_interaction = false
+
+func end_interaction() -> void:
+	var end_success: bool = current_interactable.quick_close_interaction()
