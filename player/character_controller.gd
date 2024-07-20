@@ -25,11 +25,9 @@ func init_pickup_area() -> void:
 func _physics_process(_delta: float) -> void:
 	var direction: Vector2 = Input.get_vector("ui_left", "ui_right", "ui_up", "ui_down")
 	if direction:
-		#velocity = velocity.lerp(direction * player_speed, 1.0)
 		velocity = direction * player_speed
 		is_moving = true
 	else:
-		#velocity = velocity.lerp(Vector2.ZERO, 1.0)
 		velocity = Vector2.ZERO
 		is_moving = false
 
@@ -49,6 +47,7 @@ func move_sprite(delta: float) -> void:
 		var move_direction: Vector2 = (desired_position - start_position).normalized()
 		var interact_area_position: Vector2 = player_sprite.get_global_position() + move_direction * PICKUP_OFFSET
 		player_interact_area.set_global_position(interact_area_position)
+		player_interact_area.set_global_rotation(move_direction.angle())
 
 func teleport_to(new_position: Vector2) -> void:
 	set_global_position(new_position)
