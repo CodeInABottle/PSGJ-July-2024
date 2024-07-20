@@ -1,7 +1,7 @@
-class_name Checkpoint
-extends InteractableHost
+class_name InteractableHost
+extends StaticBody2D
 
-@export var menu_layer: CanvasLayer
+@export var interactable: Interactable
 
 func _ready():
 	interactable.interaction_started.connect(on_interaction_started)
@@ -9,21 +9,17 @@ func _ready():
 	interactable.interaction_quick_closed.connect(on_interaction_quick_closed)
 
 func on_interaction_started(interactable: Interactable) -> void:
-	print("interacted with checkpoint")
-	menu_layer.show()
+	pass
 
 func on_interaction_advanced(interactable: Interactable) -> void:
-	print("advanced checkpoint interaction")
 	end_interaction()
 	
 func end_interaction() -> void:
-	print("checkpoint interaction ended")
 	interactable.end_interaction()
 	_on_interaction_ended()
 	
 func on_interaction_quick_closed() -> void:
-	print("checkpoint interaction quick-closed")
 	_on_interaction_ended()
 
 func _on_interaction_ended() -> void:
-	menu_layer.hide()
+	pass

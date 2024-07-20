@@ -1,6 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://dyelqemredawb"]
+[gd_scene load_steps=7 format=3 uid="uid://dyelqemredawb"]
 
 [ext_resource type="Script" path="res://ui/fader_layer_controller.gd" id="1_ng1aa"]
+[ext_resource type="PackedScene" uid="uid://b644l6iqorxwf" path="res://dialogue/dialogue_ui.tscn" id="2_l2msi"]
 
 [sub_resource type="Animation" id="Animation_vnk6h"]
 length = 0.001
@@ -77,3 +78,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 color = Color(0, 0, 0, 0)
+
+[node name="DialogueLayer" type="CanvasLayer" parent="."]
+
+[node name="DialogueUI" parent="DialogueLayer" instance=ExtResource("2_l2msi")]
+visible = false
