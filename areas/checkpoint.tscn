@@ -1,4 +1,4 @@
-[gd_scene load_steps=5 format=3 uid="uid://cm5val12sno1d"]
+[gd_scene load_steps=6 format=3 uid="uid://cm5val12sno1d"]
 
 [ext_resource type="Script" path="res://areas/checkpoint_controller.gd" id="1_0n6m0"]
 [ext_resource type="Script" path="res://areas/interactable_controller.gd" id="2_47diw"]
@@ -6,6 +6,14 @@
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e5ag6"]
 size = Vector2(30, 58)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyk05"]
+bg_color = Color(0.556863, 0.596078, 0.713726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.635294, 0.423529, 0.239216, 1)
 
 [node name="Checkpoint" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "interactable")]
 script = ExtResource("1_0n6m0")
@@ -28,35 +36,30 @@ texture = ExtResource("3_u8d0x")
 [node name="MenuLayer" type="CanvasLayer" parent="."]
 visible = false
 
-[node name="CheckpointMenu" type="GridContainer" parent="MenuLayer"]
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -311.0
-offset_top = 24.0
-offset_right = -81.0
-offset_bottom = 144.0
-grow_horizontal = 0
-theme_override_constants/h_separation = 12
-theme_override_constants/v_separation = 12
-columns = 2
+[node name="Panel" type="Panel" parent="MenuLayer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 120.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vyk05")
 
-[node name="Button" type="Button" parent="MenuLayer/CheckpointMenu"]
-layout_mode = 2
-text = "CHECKPOINT
-OPTION 1"
+[node name="CheckpointMenu" type="VBoxContainer" parent="MenuLayer"]
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 11.0
+offset_top = -56.0
+offset_right = 99.0
+offset_bottom = 56.0
+grow_vertical = 2
+theme_override_constants/separation = 12
 
-[node name="Button2" type="Button" parent="MenuLayer/CheckpointMenu"]
+[node name="SlotShadowsButton" type="Button" parent="MenuLayer/CheckpointMenu"]
 layout_mode = 2
-text = "CHECKPOINT
-OPTION 2"
+text = "SLOT 
+SHADOWS"
 
-[node name="Button3" type="Button" parent="MenuLayer/CheckpointMenu"]
+[node name="HearLoreButton" type="Button" parent="MenuLayer/CheckpointMenu"]
 layout_mode = 2
-text = "CHECKPOINT
-OPTION 3"
-
-[node name="Button4" type="Button" parent="MenuLayer/CheckpointMenu"]
-layout_mode = 2
-text = "CHECKPOINT
-OPTION 4"
+text = "HEAR 
+LORE"

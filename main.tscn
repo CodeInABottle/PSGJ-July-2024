@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://dyelqemredawb"]
+[gd_scene load_steps=10 format=3 uid="uid://dyelqemredawb"]
 
 [ext_resource type="Script" path="res://ui/fader_layer_controller.gd" id="1_ng1aa"]
 [ext_resource type="PackedScene" uid="uid://b644l6iqorxwf" path="res://dialogue/dialogue_ui.tscn" id="2_l2msi"]
+[ext_resource type="PackedScene" uid="uid://c4fqfvleyq3nd" path="res://ui/pause_menu.tscn" id="3_xclbu"]
 
 [sub_resource type="Animation" id="Animation_vnk6h"]
 length = 0.001
@@ -50,11 +51,45 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 1)]
 }
 
+[sub_resource type="Animation" id="Animation_6wo0i"]
+resource_name = "fade_to_translucent"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenFader:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.501961)]
+}
+
+[sub_resource type="Animation" id="Animation_4at3w"]
+resource_name = "fade_from_translucent"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenFader:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.501961), Color(0, 0, 0, 0)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gyse4"]
 _data = {
 "RESET": SubResource("Animation_vnk6h"),
+"fade_from_translucent": SubResource("Animation_4at3w"),
 "fade_in": SubResource("Animation_til6i"),
-"fade_out": SubResource("Animation_sugaa")
+"fade_out": SubResource("Animation_sugaa"),
+"fade_to_translucent": SubResource("Animation_6wo0i")
 }
 
 [node name="Main" type="Node"]
@@ -82,4 +117,9 @@ color = Color(0, 0, 0, 0)
 [node name="DialogueLayer" type="CanvasLayer" parent="."]
 
 [node name="DialogueUI" parent="DialogueLayer" instance=ExtResource("2_l2msi")]
+visible = false
+
+[node name="PauseLayer" type="CanvasLayer" parent="."]
+
+[node name="PauseMenu" parent="PauseLayer" instance=ExtResource("3_xclbu")]
 visible = false

@@ -62,6 +62,9 @@ var _checkpoints: Dictionary = {
 # -- entry_id used is 0
 var _entry_point: String = ""
 
+# used by is_paused() utility function
+var _is_paused: bool = false
+
 # Anchors
 var master_node: Node
 var world_anchor: Node
@@ -127,13 +130,16 @@ func load_world(world_name: String, entry_id: int=0) -> bool:
 # -- Hides the current level
 # -- Then, sets the process_mode of the Node to be disabled
 func disable_world_node() -> void:
-	for child: Node in world_anchor.get_children():
-		child.hide()
+	#for child: Node in world_anchor.get_children():
+		#child.hide()
 
 	world_disabled.emit()
+	_is_paused = true
 	# This should be the _process, _physics_process, and the various _input functions
 	world_anchor.process_mode = Node.PROCESS_MODE_DISABLED
 
+func is_paused() -> bool:
+	return _is_paused
 
 # Used to unpause the WorldAnchor Node and its children
 # Intention: Use when unloading a "sub" level like a build's interior or battle scene
@@ -145,6 +151,7 @@ func enable_world_node() -> void:
 		child.show()
 
 	world_enabled.emit()
+	_is_paused = false
 	# This should be the _process, _physics_process, and the various _input functions
 	world_anchor.process_mode = Node.PROCESS_MODE_INHERIT
 

@@ -13,6 +13,7 @@ func on_interaction_started(interactable: Interactable) -> void:
 	print("interacted with checkpoint")
 	menu_layer.show()
 	set_checkpoint()
+	MenuManager.fader_controller.fade_to_translucent()
 
 func on_interaction_advanced(interactable: Interactable) -> void:
 	print("advanced checkpoint interaction")
@@ -29,6 +30,7 @@ func on_interaction_quick_closed() -> void:
 
 func _on_interaction_ended() -> void:
 	menu_layer.hide()
+	MenuManager.fader_controller.fade_from_translucent()
 
 func set_checkpoint() -> void:
 	LevelManager.update_checkpoint(checkpoint_name)
