@@ -26,6 +26,7 @@ func initialize(ability_name: String) -> void:
 	if reagent_d != TypeChart.ResonateType.NONE:
 		ap_cost += 1
 	assert(ap_cost > 0, "Abilities require at least one reagent.")
+	assert(resonate_type != TypeChart.ResonateType.NONE, "Requires a set resonance for the recipe.")
 
 func get_world_states(idx: int) -> Dictionary:
 	return {

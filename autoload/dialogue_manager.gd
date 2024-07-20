@@ -4,7 +4,7 @@ var player_dialogue_ui: DialogueUI
 
 signal dialogue_ended()
 
-func play_dialogue(dialogue: Dialogue, content_key: String):
+func play_dialogue(dialogue: Dialogue, content_key: String) -> void:
 	if player_dialogue_ui:
 		player_dialogue_ui.show_dialogue(dialogue, content_key)
 

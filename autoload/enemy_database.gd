@@ -87,3 +87,9 @@ func get_ability_mods(ability_name: String) -> Array[BattlefieldAttackModifier]:
 	if ability_name not in _abilities: return []
 
 	return (_abilities[ability_name] as BattlefieldAbility).modifiers
+
+func get_ability_resonance(ability_name: String) -> TypeChart.ResonateType:
+	if ability_name not in _abilities: return TypeChart.ResonateType.NONE
+
+	return (_abilities[ability_name] as BattlefieldAbility).resonate_type
+

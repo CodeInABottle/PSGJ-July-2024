@@ -37,10 +37,10 @@ stretch_mode = 4
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
-offset_left = -86.0
-offset_top = -130.0
-offset_right = 86.0
-offset_bottom = 85.0
+offset_left = -41.0
+offset_top = -18.0
+offset_right = 39.0
+offset_bottom = 37.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_oan33")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_o2obr")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_5x55y")

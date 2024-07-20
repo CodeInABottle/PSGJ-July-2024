@@ -25,7 +25,7 @@ func _ready() -> void:
 func init_pickup_area() -> void:
 	player_interact_area =  player_sprite.get_child(0)
 
-func _unhandled_input(event):
+func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.is_action_pressed("interact"):
 			handle_interact_input()
@@ -33,7 +33,7 @@ func _unhandled_input(event):
 		if event.is_action_pressed("escape"):
 			if in_interaction:
 				end_interaction()
-		
+
 
 func handle_interact_input() -> void:
 	if not in_interaction:
@@ -59,10 +59,10 @@ func _process(delta: float) -> void:
 func move_sprite(delta: float) -> void:
 	var start_position: Vector2 = player_sprite.get_global_position()
 	var desired_position: Vector2 = get_global_position() + COLLISION_OFFSET
-	
+
 	var updated_position: Vector2 = start_position.lerp(desired_position, delta * VISUAL_BODY_LERP_SCALE)
 	player_sprite.set_global_position(updated_position)
-	
+
 	if input_direction:
 		var interact_area_position: Vector2 = player_sprite.get_global_position() + input_direction * PICKUP_OFFSET
 		player_interact_area.set_global_position(interact_area_position)

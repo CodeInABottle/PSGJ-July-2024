@@ -20,6 +20,18 @@ enum ResonateType {
 	METAL = 0b1111	# All
 }
 
+const TEXTURE_LOOK_UP_TABLE: Dictionary = {
+	TypeChart.ResonateType.EARTH: 6,
+	TypeChart.ResonateType.WATER: 7,
+	TypeChart.ResonateType.AIR: 4,
+	TypeChart.ResonateType.FIRE: 5,
+	TypeChart.ResonateType.SALT: 3,
+	TypeChart.ResonateType.MERCURY: 9,
+	TypeChart.ResonateType.SULPHUR: 8,
+	TypeChart.ResonateType.CELESTIAL: 2,
+	TypeChart.ResonateType.NITER: 1,
+	TypeChart.ResonateType.METAL: 0,
+}
 const MAX_EFFECT_STACK: int = 3
 const PRIMARY_REAGENTS: Array[ResonateType]\
 	= [ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
