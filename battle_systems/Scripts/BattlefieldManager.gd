@@ -7,6 +7,7 @@ extends Node
 @onready var bell: Control = %Bell
 
 var _finished_setup: bool = false
+var enemy_name: String
 
 # TEMP -- Remove on Integration
 func _ready() -> void:
@@ -25,6 +26,7 @@ func setup_battle(enemy_name_encounter: String) -> void:
 				PlayerStats.alchemy_points += PlayerStats.ADDITIONAL_AP_REGEN
 			entity_tracker.end_turn()
 	)
+	enemy_name = enemy_name_encounter
 	entity_tracker.initialize(enemy_name_encounter)
 
 	entity_tracker.end_turn()

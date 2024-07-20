@@ -141,6 +141,7 @@ offset_top = -10.0
 offset_right = 39.0
 offset_bottom = 29.0
 rotation = 0.0390261
+mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
@@ -167,6 +168,7 @@ stretch_mode = 5
 [node name="ReagentC" type="TextureRect" parent="Control/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("6_vks5w")
 expand_mode = 3
 stretch_mode = 5
@@ -174,6 +176,7 @@ stretch_mode = 5
 [node name="ReagentD" type="TextureRect" parent="Control/MarginContainer/HBoxContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
 texture = ExtResource("7_ssfip")
 expand_mode = 3
 stretch_mode = 5
@@ -190,10 +193,10 @@ vframes = 3
 
 [node name="Button" type="Button" parent="Control"]
 layout_mode = 0
-offset_left = -54.0
-offset_top = -48.0
-offset_right = 51.0
-offset_bottom = 55.0
+offset_left = -51.0
+offset_top = -42.0
+offset_right = 43.0
+offset_bottom = 53.0
 theme_override_styles/normal = SubResource("StyleBoxEmpty_a3gub")
 theme_override_styles/hover = SubResource("StyleBoxEmpty_j3aay")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_fkgxb")
@@ -201,4 +204,6 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_ojh4t")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_7mklh")
 
 [connection signal="hidden" from="." to="." method="_on_hidden"]
+[connection signal="mouse_entered" from="Control/Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Control/Button" to="." method="_on_button_mouse_exited"]
 [connection signal="pressed" from="Control/Button" to="." method="_on_button_pressed"]

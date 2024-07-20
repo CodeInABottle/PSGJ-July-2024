@@ -13,9 +13,12 @@ class Data:
 
 @onready var path_2d: Path2D = %Path2D
 @onready var recipe_controller: BattlefieldRecipeController = %RecipeController
+@onready var text_box_animator: AnimationPlayer = %TextBoxAnimator
+@onready var description_label: Label = %DescriptionLabel
 
 var _reagent_data: Array[Data] = []
 var _equipped_ability_cache: PackedStringArray
+var _description_out: bool = false
 var mouse_entered: bool = false
 
 func _ready() -> void:
@@ -24,6 +27,31 @@ func _ready() -> void:
 		func(ability_name: String) -> void:
 			clear(false)
 			ability_execute_requested.emit(ability_name)
+	)
+	text_box_animator.animation_finished.connect(
+		func(animation_name: String) -> void:
+			if animation_name != "SlideOut": return
+			description_label.text = ""
+	)
+	recipe_controller.mouse_hovered.connect(
+		func(ability_name: String) -> void:
+			if reagent_holder.has_something(): return
+
+			var info: Dictionary = EnemyDatabase.get_ability_info(ability_name)
+			if info.is_empty(): return
+
+			description_label.text = "Damage: " + str(info["damage"])
+			if not info["description"].is_empty():
+				description_label.text += "\nAdditional Effects: " + info["description"]
+			text_box_animator.play("SlideIn")
+			_description_out = true
+	)
+	recipe_controller.mouse_left.connect(
+		func(_ability_name: String) -> void:
+			if not _description_out: return
+
+			text_box_animator.play("SlideOut")
+			_description_out = false
 	)
 
 func _physics_process(delta: float) -> void:

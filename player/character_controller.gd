@@ -68,17 +68,17 @@ func move_sprite(delta: float) -> void:
 	if input_direction:
 		var interact_area_position: Vector2 = player_sprite.get_global_position() + input_direction * PICKUP_OFFSET
 		player_interact_area.set_global_position(interact_area_position)
-		
+
 		var input_angle: float = input_direction.angle()
 		player_interact_area.set_global_rotation(input_angle)
-		
-		var test = rad_to_deg(input_angle)
-		
+
+		var test: float = rad_to_deg(input_angle)
+
 		if abs(rad_to_deg(input_angle)) < 80.0:
 			player_sprite.flip_h = true
 		elif abs(rad_to_deg(input_angle)) > 100.0:
 			player_sprite.flip_h = false
-		
+
 
 func teleport_to(new_position: Vector2) -> void:
 	set_global_position(new_position)
