@@ -9,9 +9,6 @@ func _ready() -> void:
 	play_button.pressed.connect(_on_play_button_pressed)
 	fader_controller = get_node("/root/Main/FaderLayer")
 
-func _process(_delta: float) -> void:
-	pass
-
 func _on_play_button_pressed() -> void:
 	fader_controller.fade_out_complete.connect(on_fade_out_complete)
 	fader_controller.fade_out()
