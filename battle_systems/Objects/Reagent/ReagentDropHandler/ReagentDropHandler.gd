@@ -18,6 +18,7 @@ class Data:
 
 var _reagent_data: Array[Data] = []
 var _equipped_ability_cache: PackedStringArray
+var _description_out: bool = false
 var mouse_entered: bool = false
 
 func _ready() -> void:
@@ -34,6 +35,8 @@ func _ready() -> void:
 	)
 	recipe_controller.mouse_hovered.connect(
 		func(ability_name: String) -> void:
+			if reagent_holder.has_something(): return
+
 			var info: Dictionary = EnemyDatabase.get_ability_info(ability_name)
 			if info.is_empty(): return
 
@@ -41,10 +44,14 @@ func _ready() -> void:
 			if not info["description"].is_empty():
 				description_label.text += "\nAdditional Effects: " + info["description"]
 			text_box_animator.play("SlideIn")
+			_description_out = true
 	)
 	recipe_controller.mouse_left.connect(
 		func(_ability_name: String) -> void:
+			if not _description_out: return
+
 			text_box_animator.play("SlideOut")
+			_description_out = false
 	)
 
 func _physics_process(delta: float) -> void:

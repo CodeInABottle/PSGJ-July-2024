@@ -17,12 +17,12 @@ func on_interaction_started(interactable: Interactable) -> void:
 func on_interaction_advanced(interactable: Interactable) -> void:
 	print("advanced checkpoint interaction")
 	end_interaction()
-	
+
 func end_interaction() -> void:
 	print("checkpoint interaction ended")
 	interactable.end_interaction()
 	_on_interaction_ended()
-	
+
 func on_interaction_quick_closed() -> void:
 	print("checkpoint interaction quick-closed")
 	_on_interaction_ended()
