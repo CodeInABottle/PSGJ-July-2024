@@ -550,7 +550,6 @@ position = Vector2(138, 25)
 
 [node name="TransitionArea1" parent="TransitionAreas" instance=ExtResource("4_cjm02")]
 transition_scene_name = "area_0"
-transition_entry_id = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/TransitionArea1"]
 position = Vector2(146, 81.75)
@@ -562,7 +561,6 @@ shape = SubResource("RectangleShape2D_nt8sg")
 follow_target = NodePath("../PlayerVisualBody")
 
 [node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_sprite", "player_camera", "player_phantom_camera") instance=ExtResource("7_ka3iu")]
-position = Vector2(0, 0)
 player_sprite = NodePath("../PlayerVisualBody")
 player_camera = NodePath("../Camera2D")
 player_phantom_camera = NodePath("../PhantomCamera2D")

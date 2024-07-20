@@ -2,6 +2,7 @@ class_name Checkpoint
 extends InteractableHost
 
 @export var menu_layer: CanvasLayer
+@export var checkpoint_name: String
 
 func _ready():
 	interactable.interaction_started.connect(on_interaction_started)
@@ -11,6 +12,7 @@ func _ready():
 func on_interaction_started(interactable: Interactable) -> void:
 	print("interacted with checkpoint")
 	menu_layer.show()
+	set_checkpoint()
 
 func on_interaction_advanced(interactable: Interactable) -> void:
 	print("advanced checkpoint interaction")
@@ -27,3 +29,6 @@ func on_interaction_quick_closed() -> void:
 
 func _on_interaction_ended() -> void:
 	menu_layer.hide()
+
+func set_checkpoint() -> void:
+	LevelManager.update_checkpoint(checkpoint_name)

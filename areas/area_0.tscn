@@ -744,7 +744,7 @@ content_keys = Array[String](["main"])
 
 [node name="Area0" type="Node2D" node_paths=PackedStringArray("start_markers")]
 script = ExtResource("1_dqcw1")
-start_markers = [NodePath("Markers/Start"), NodePath("Markers/Area1"), NodePath("Markers/Area0Cellar"), NodePath("Markers/Area0PlayerHouse")]
+start_markers = [NodePath("Markers/Start"), NodePath("Markers/Area1"), NodePath("Markers/Area0Cellar"), NodePath("Markers/HomeCheckpoint")]
 metadata/_edit_vertical_guides_ = [101.0]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -767,7 +767,7 @@ layer_4/tile_data = PackedInt32Array(131089, 393218, 4, 131090, 327682, 2, 13108
 [node name="Markers" type="Node" parent="."]
 
 [node name="Start" type="Marker2D" parent="Markers"]
-position = Vector2(558, 128)
+position = Vector2(593, 128)
 
 [node name="Area1" type="Marker2D" parent="Markers"]
 position = Vector2(224, -46)
@@ -775,8 +775,8 @@ position = Vector2(224, -46)
 [node name="Area0Cellar" type="Marker2D" parent="Markers"]
 position = Vector2(468, 16)
 
-[node name="Area0PlayerHouse" type="Marker2D" parent="Markers"]
-position = Vector2(589, 126)
+[node name="HomeCheckpoint" type="Marker2D" parent="Markers"]
+position = Vector2(226, 535)
 
 [node name="TransitionAreas" type="Node" parent="."]
 
@@ -817,6 +817,7 @@ follow_target = NodePath("../PlayerVisualBody")
 
 [node name="Checkpoint" parent="." instance=ExtResource("10_aanm7")]
 position = Vector2(183, 519)
+checkpoint_name = "home"
 
 [node name="Sign" parent="." instance=ExtResource("11_8hdjm")]
 dialogue = SubResource("Resource_uxvu1")

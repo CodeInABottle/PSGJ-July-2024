@@ -17,4 +17,3 @@ func start_at(entry_id: int) -> void:
 	if start_markers.size() > entry_id:
 		PlayerStats.player.teleport_to(start_markers[entry_id].get_global_position())
 		SaveManager.attempt_load()
-
