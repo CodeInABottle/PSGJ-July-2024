@@ -1,7 +1,7 @@
 class_name Player
 extends CharacterBody2D
 
-@export var player_speed: float = 100.0
+@export var player_speed: float = 65.0
 
 @export var player_sprite: Sprite2D
 @export var player_camera: Camera2D

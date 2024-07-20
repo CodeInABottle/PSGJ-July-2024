@@ -1,4 +1,4 @@
-class_name AreaController
+class_name GameArea
 extends Node2D
 
 @export var start_markers: Array[Marker2D]

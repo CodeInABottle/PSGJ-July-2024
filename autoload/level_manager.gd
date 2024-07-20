@@ -68,6 +68,7 @@ var _loading_level_path: String = ""
 var loaded_level: Node = null
 # Can be used to check what is the currently loaded level
 var region_name: String
+var current_modifiers: Array[String] = []
 
 #endregion
 
@@ -184,5 +185,6 @@ func _on_level_loaded(level: Node) -> void:
 
 func get_save_data() -> Dictionary:
 	return {
-		"area": region_name
+		"area": region_name,
+		"modifiers": current_modifiers,
 	}

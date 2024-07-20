@@ -557,15 +557,13 @@ position = Vector2(64, 16.5)
 shape = SubResource("RectangleShape2D_nt8sg")
 
 [node name="Camera2D" parent="." instance=ExtResource("6_kacxc")]
-position = Vector2(1462.5, -264)
 
 [node name="PhantomCamera2D" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("7_ogcms")]
-position = Vector2(1462.5, -264)
 follow_target = NodePath("../PlayerVisualBody")
 
-[node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_sprite", "player_interact_area", "player_camera", "player_phantom_camera") instance=ExtResource("7_7uy4q")]
+[node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_sprite", "player_camera", "player_phantom_camera") instance=ExtResource("7_7uy4q")]
+position = Vector2(0, 0)
 player_sprite = NodePath("../PlayerVisualBody")
-player_interact_area = NodePath("../TransitionAreas/TransitionArea1")
 player_camera = NodePath("../Camera2D")
 player_phantom_camera = NodePath("../PhantomCamera2D")
 
