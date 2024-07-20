@@ -71,7 +71,6 @@ func generate_save_string() -> String:
 
 	return save_string
 
-
 func on_level_loaded(level: Node) -> void:
 	if level is GameArea and current_save_dictionary == {}:
 		current_save_dictionary = SaveManager.get_save_data()

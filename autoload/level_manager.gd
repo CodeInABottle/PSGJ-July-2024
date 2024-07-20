@@ -49,6 +49,14 @@ var _levels: Dictionary = {
 "area_0_cellar": "res://areas/area_0_cellar.tscn",
 "area_0_player_house_F1": "res://areas/area_0_player_house_F1.tscn",
 }
+
+# checkpoints
+# checkpoint_name (String) : [area_name (String), entry_id(int)]
+var _checkpoints: Dictionary = {
+	"start" : ["area_0", 0],
+	"home" : ["area_0", 3],
+}
+
 # Set as the first level to be loaded
 # -- Used by `load_entry_point()` only
 # -- entry_id used is 0
@@ -69,6 +77,7 @@ var loaded_level: Node = null
 # Can be used to check what is the currently loaded level
 var region_name: String
 var current_modifiers: Array[String] = []
+var current_checkpoint: String = "start"
 
 #endregion
 
@@ -187,4 +196,12 @@ func get_save_data() -> Dictionary:
 	return {
 		"area": region_name,
 		"modifiers": current_modifiers,
+		"checkpoint": current_checkpoint
 	}
+
+func respawn() -> void:
+	load_world(_checkpoints[current_checkpoint][0], _checkpoints[current_checkpoint][1])
+
+func update_checkpoint(checkpoint_name: String) -> void:
+	if _checkpoints.keys().has(checkpoint_name):
+		current_checkpoint = checkpoint_name
