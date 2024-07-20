@@ -23,7 +23,7 @@ var _health: int:
 			hurt_player.play("Hurt")
 		_health = clampi(value, 0, _data.max_health)
 		enemy_status_indicator.update_health(_health)
-var _capture_value: int = 100:
+var _capture_value: int:
 	set(value):
 		_capture_value = value
 		print(_capture_value)
@@ -34,6 +34,7 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 	htn_planner.finished.connect( func() -> void: actions_completed.emit() )
 	_data = data
 	_health = data.max_health
+	_capture_value = data.max_health
 	htn_planner.domain_name = data.domain
 	sprite_2d.texture = data.sprite
 

@@ -93,3 +93,11 @@ func get_ability_resonance(ability_name: String) -> TypeChart.ResonateType:
 
 	return (_abilities[ability_name] as BattlefieldAbility).resonate_type
 
+func get_abilities_from_shadow(shadow_name: String) -> Array[String]:
+	if shadow_name not in _enemies: return []
+
+	var abilities: Array[BattlefieldAbility] = (_enemies[shadow_name] as BattlefieldEnemyData).abilities
+	var data: Array[String] = []
+	for ability: BattlefieldAbility in abilities:
+		data.push_back(ability.name)
+	return data

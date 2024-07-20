@@ -78,9 +78,13 @@ func regen_alchemy_points() -> void:
 func get_max_alchemy_points() -> int:
 	return LEVEL_DATA[level]["AP"]
 
-func unlock_shadow(shadow_name: String, abilities: Array[String]) -> void:
+func unlock_shadow(shadow_name: String) -> void:
+	var abilities: Array[String] = EnemyDatabase.get_abilities_from_shadow(shadow_name)
+	if abilities.is_empty(): return
+
 	if shadow_name not in _current_unlocked_shadows:
 		_current_unlocked_shadows[shadow_name] = []
+
 	for ability: String in abilities:
 		if ability in _current_unlocked_shadows[shadow_name]: continue
 		_current_unlocked_shadows[shadow_name].push_back(ability)
