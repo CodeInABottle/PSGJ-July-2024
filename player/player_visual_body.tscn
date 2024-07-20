@@ -7,6 +7,7 @@
 
 [node name="PlayerVisualBody" type="Sprite2D"]
 z_index = 2
+texture_filter = 1
 texture = ExtResource("1_k4knx")
 region_enabled = true
 region_rect = Rect2(95.6728, 5.51305, 31.3503, 58.6688)
@@ -18,4 +19,5 @@ position = Vector2(24, 0)
 shape = SubResource("RectangleShape2D_j7ikv")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerPickupArea"]
+texture_filter = 1
 texture = ExtResource("2_1d1oc")
