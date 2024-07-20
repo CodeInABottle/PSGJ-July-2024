@@ -12,10 +12,10 @@ func _exit_tree() -> void:
 	PlayerStats.health_updated.disconnect(_on_hp_updated)
 
 func _ready() -> void:
-	ap_flask_bar.max_value = PlayerStats.get_max_alchemy_points()
+	ap_flask_bar.set_data(PlayerStats.get_max_alchemy_points(), PlayerStats.get_max_alchemy_points())
 	PlayerStats.ap_updated.connect(_on_ap_updated)
 	_on_ap_updated()
-	hp_flask_bar.max_value = PlayerStats.max_health
+	hp_flask_bar.set_data(PlayerStats.health, PlayerStats.max_health)
 	PlayerStats.health_updated.connect(_on_hp_updated)
 	_on_hp_updated()
 	reagent_drop_handler.ability_execute_requested.connect(
