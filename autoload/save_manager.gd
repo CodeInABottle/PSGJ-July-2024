@@ -31,9 +31,6 @@ func is_save_string_modifier(save_string: String) -> bool:
 	else:
 		return false
 
-func _process(_delta: float) -> void:
-	pass
-
 func load_overworld_database() -> void:
 	pass
 

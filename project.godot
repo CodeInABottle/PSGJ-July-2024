@@ -19,7 +19,6 @@ config/icon="res://icon.svg"
 [autoload]
 
 HTNDatabase="*res://addons/HTNDomainManager/GameLibrary/Scripts/HTNDatabase.gd"
-HTNGlobals="*res://addons/HTNDomainManager/PluginSystem/HTNGlobals.gd"
 TypeChart="*res://autoload/type_chart.gd"
 EnemyDatabase="*res://autoload/enemy_database.gd"
 PlayerStats="*res://autoload/player_stats.gd"
@@ -27,6 +26,7 @@ PhantomCameraManager="*res://addons/phantom_camera/scripts/managers/phantom_came
 LevelManager="*res://autoload/level_manager.gd"
 SaveManager="*res://autoload/save_manager.gd"
 DialogueManager="*res://autoload/dialogue_manager.gd"
+HTNGlobals="*res://addons/HTNDomainManager/PluginSystem/HTNGlobals.gd"
 
 [debug]
 
