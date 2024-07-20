@@ -6,5 +6,6 @@ extends Resource
 @export var turns: int = 0
 
 # Returns true on skip turn
-func execute(_player: BattlefieldPlayerEntity, _enemy: BattlefieldAIEntity) -> bool:
+func execute(_player: BattlefieldPlayerEntity, _enemy: BattlefieldAIEntity,
+		_additional_data: Dictionary) -> bool:
 	return false

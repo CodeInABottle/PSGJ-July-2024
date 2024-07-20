@@ -1,7 +1,7 @@
 class_name BattlefieldEntityTracker
 extends Node
 
-signal damage_taken(is_player: bool)
+signal damage_taken(is_player: bool, data: Dictionary)
 
 @onready var enemy_status_indicator: BattlefieldEnemyStatusIndicator = %EnemyStatusIndicator
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
@@ -14,7 +14,7 @@ var _enemy_signal_effects: Array[BattlefieldAttackModifier] = []
 var _player_effects: Array[BattlefieldAttackModifier] = []
 var _player_signal_effects: Array[BattlefieldAttackModifier] = []
 
-var is_players_turn: bool = true
+var is_players_turn: bool = false	# False -> Player first
 
 func initialize(enemy_name_encounter: String) -> void:
 	damage_taken.connect(_handle_damage_taken_signal)
@@ -103,7 +103,7 @@ func _handle_effects(effects: Array[BattlefieldAttackModifier]) -> bool:
 		var data: BattlefieldAttackModifier = effects.pop_back()
 
 		# Execute effect
-		skip_turn = data.execute(player_entity, enemy_entity)
+		skip_turn = data.execute(player_entity, enemy_entity, {})
 
 		# Reduce effect's turns
 		data.turns -= 1
@@ -116,6 +116,24 @@ func _handle_effects(effects: Array[BattlefieldAttackModifier]) -> bool:
 		effects.push_back(requeue_effects.pop_back())
 
 	return skip_turn
+
+func _handle_signal_effects(effects: Array[BattlefieldAttackModifier], data: Dictionary) -> void:
+	var requeue_effects: Array[BattlefieldAttackModifier] = []
+	while not effects.is_empty():
+		var modifier_data: BattlefieldAttackModifier = effects.pop_back()
+
+		# Execute effect
+		modifier_data.execute(player_entity, enemy_entity, data)
+
+		# Reduce effect's turns
+		modifier_data.turns -= 1
+		print(modifier_data.turns)
+		# Check to requeue
+		if modifier_data.turns > 0:
+			requeue_effects.push_back(modifier_data)
+
+	while not requeue_effects.is_empty():
+		effects.push_back(requeue_effects.pop_back())
 
 func _reduce_signal_effect_turns(effects: Array[BattlefieldAttackModifier]) -> void:
 	var requeue_effects: Array[BattlefieldAttackModifier] = []
@@ -132,8 +150,8 @@ func _reduce_signal_effect_turns(effects: Array[BattlefieldAttackModifier]) -> v
 	while not requeue_effects.is_empty():
 		effects.push_back(requeue_effects.pop_back())
 
-func _handle_damage_taken_signal(was_player: bool) -> void:
+func _handle_damage_taken_signal(was_player: bool, data: Dictionary) -> void:
 	if was_player:
-		_handle_effects(_player_signal_effects)
+		_handle_signal_effects(_player_signal_effects, data)
 	else:
-		_handle_effects(_enemy_signal_effects)
+		_handle_signal_effects(_enemy_signal_effects, data)
