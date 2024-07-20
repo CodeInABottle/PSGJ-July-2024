@@ -1,0 +1,21 @@
+[gd_scene load_steps=4 format=3 uid="uid://kh822nqv02xs"]
+
+[ext_resource type="Texture2D" uid="uid://8h714of42bsy" path="res://assets/sprites/player/player.png" id="1_k4knx"]
+[ext_resource type="Texture2D" uid="uid://cte4mtlosaofi" path="res://assets/sprites/general/direction_arrow.png" id="2_1d1oc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ikv"]
+
+[node name="PlayerVisualBody" type="Sprite2D"]
+z_index = 2
+texture = ExtResource("1_k4knx")
+region_enabled = true
+region_rect = Rect2(95.6728, 5.51305, 31.3503, 58.6688)
+
+[node name="PlayerPickupArea" type="Area2D" parent="."]
+position = Vector2(24, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupArea"]
+shape = SubResource("RectangleShape2D_j7ikv")
+
+[node name="Sprite2D" type="Sprite2D" parent="PlayerPickupArea"]
+texture = ExtResource("2_1d1oc")
