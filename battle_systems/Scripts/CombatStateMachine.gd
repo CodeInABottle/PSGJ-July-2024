@@ -29,6 +29,7 @@ func switch_state(state_name: StringName) -> void:
 	_is_enabled = false
 	_last_state = current_state
 	current_state = state_name
+	print(current_state)
 	_transfer_waiting = true
 	_is_enabled = true
 

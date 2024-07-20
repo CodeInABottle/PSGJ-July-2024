@@ -1,10 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://pvgfckq2e3xo"]
+[gd_scene load_steps=6 format=3 uid="uid://pvgfckq2e3xo"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/Reagent/ReagentDropHandler/ReagentDropHandler.gd" id="1_otk8b"]
 [ext_resource type="PackedScene" uid="uid://dr2ppmkbletq1" path="res://battle_systems/Objects/RecipePage/recipe_page.tscn" id="2_4tglj"]
+[ext_resource type="Script" path="res://battle_systems/Objects/Reagent/ReagentDropHandler/RecipeController.gd" id="2_jna5a"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d5bf0"]
-size = Vector2(248, 236)
+size = Vector2(160, 142)
 
 [sub_resource type="Curve2D" id="Curve2D_d0kyj"]
 _data = {
@@ -19,17 +20,172 @@ script = ExtResource("1_otk8b")
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -47)
 shape = SubResource("RectangleShape2D_d5bf0")
 
 [node name="Path2D" type="Path2D" parent="."]
 unique_name_in_owner = true
 curve = SubResource("Curve2D_d0kyj")
 
-[node name="RecipePage" parent="." instance=ExtResource("2_4tglj")]
+[node name="RecipeController" type="Control" parent="."]
 unique_name_in_owner = true
-offset_top = -144.0
-offset_bottom = -144.0
-scale = Vector2(0.75, 0.75)
+layout_mode = 3
+anchors_preset = 0
+offset_left = -8.0
+offset_top = -40.0
+offset_right = -8.0
+offset_bottom = -40.0
+script = ExtResource("2_jna5a")
+
+[node name="Config1" type="Control" parent="RecipeController"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RecipePage6" parent="RecipeController/Config1" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 248.0
+offset_top = 24.0
+offset_right = 248.0
+offset_bottom = 64.0
+
+[node name="Config2" type="Control" parent="RecipeController"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RecipePage6" parent="RecipeController/Config2" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 192.0
+offset_top = 8.0
+offset_right = 192.0
+offset_bottom = 48.0
+rotation = -0.159458
+
+[node name="RecipePage7" parent="RecipeController/Config2" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 304.0
+offset_top = 11.0
+offset_right = 304.0
+offset_bottom = 51.0
+rotation = 0.127731
+
+[node name="Config3" type="Control" parent="RecipeController"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RecipePage6" parent="RecipeController/Config3" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 144.0
+offset_top = 17.0
+offset_right = 144.0
+offset_bottom = 57.0
+rotation = -0.254757
+
+[node name="RecipePage7" parent="RecipeController/Config3" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 250.0
+offset_top = -15.0
+offset_right = 250.0
+offset_bottom = 25.0
+
+[node name="RecipePage8" parent="RecipeController/Config3" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 356.0
+offset_top = 25.0
+offset_right = 356.0
+offset_bottom = 65.0
+rotation = 0.297367
+
+[node name="Config4" type="Control" parent="RecipeController"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RecipePage6" parent="RecipeController/Config4" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 104.0
+rotation = 0.0768577
+
+[node name="RecipePage7" parent="RecipeController/Config4" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 186.0
+offset_top = -49.0
+offset_right = 186.0
+offset_bottom = -8.99999
+rotation = -0.113426
+
+[node name="RecipePage8" parent="RecipeController/Config4" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 312.0
+offset_top = -48.0
+offset_right = 312.0
+offset_bottom = -7.99999
+rotation = 0.0822459
+
+[node name="RecipePage9" parent="RecipeController/Config4" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 309.0
+offset_top = 65.0
+offset_right = 309.0
+offset_bottom = 105.0
+rotation = -0.099105
+
+[node name="Config5" type="Control" parent="RecipeController"]
+unique_name_in_owner = true
+visible = false
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="RecipePage" parent="RecipeController/Config5" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 192.0
+offset_top = 64.0
+offset_right = 192.0
+offset_bottom = 104.0
+
+[node name="RecipePage2" parent="RecipeController/Config5" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 144.0
+offset_top = -48.0
+offset_right = 144.0
+offset_bottom = -8.0
+rotation = -0.114707
+
+[node name="RecipePage3" parent="RecipeController/Config5" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 250.0
+offset_top = -80.0
+offset_right = 250.0
+offset_bottom = -40.0
+
+[node name="RecipePage4" parent="RecipeController/Config5" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 352.0
+offset_top = -48.0
+offset_right = 352.0
+offset_bottom = -8.0
+rotation = 0.0843437
+
+[node name="RecipePage5" parent="RecipeController/Config5" instance=ExtResource("2_4tglj")]
+layout_mode = 2
+offset_left = 304.0
+offset_top = 64.0
+offset_right = 304.0
+offset_bottom = 104.0
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
 [connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

@@ -1,0 +1,62 @@
+[gd_scene load_steps=5 format=3 uid="uid://cm5val12sno1d"]
+
+[ext_resource type="Script" path="res://areas/checkpoint_controller.gd" id="1_0n6m0"]
+[ext_resource type="Script" path="res://areas/interactable_controller.gd" id="2_47diw"]
+[ext_resource type="Texture2D" uid="uid://bs46umtlkhyso" path="res://assets/sprites/general/checkpoint.png" id="3_u8d0x"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e5ag6"]
+size = Vector2(30, 58)
+
+[node name="Checkpoint" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "interactable")]
+script = ExtResource("1_0n6m0")
+menu_layer = NodePath("MenuLayer")
+interactable = NodePath("Interactable")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_e5ag6")
+
+[node name="Interactable" type="Area2D" parent="." groups=["interactable"]]
+script = ExtResource("2_47diw")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Interactable"]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_e5ag6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Interactable"]
+texture = ExtResource("3_u8d0x")
+
+[node name="MenuLayer" type="CanvasLayer" parent="."]
+visible = false
+
+[node name="CheckpointMenu" type="GridContainer" parent="MenuLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -311.0
+offset_top = 24.0
+offset_right = -81.0
+offset_bottom = 144.0
+grow_horizontal = 0
+theme_override_constants/h_separation = 12
+theme_override_constants/v_separation = 12
+columns = 2
+
+[node name="Button" type="Button" parent="MenuLayer/CheckpointMenu"]
+layout_mode = 2
+text = "CHECKPOINT
+OPTION 1"
+
+[node name="Button2" type="Button" parent="MenuLayer/CheckpointMenu"]
+layout_mode = 2
+text = "CHECKPOINT
+OPTION 2"
+
+[node name="Button3" type="Button" parent="MenuLayer/CheckpointMenu"]
+layout_mode = 2
+text = "CHECKPOINT
+OPTION 3"
+
+[node name="Button4" type="Button" parent="MenuLayer/CheckpointMenu"]
+layout_mode = 2
+text = "CHECKPOINT
+OPTION 4"

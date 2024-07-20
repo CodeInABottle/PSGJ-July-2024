@@ -1,15 +1,112 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp1tiqnusfo0i"]
+[gd_scene load_steps=8 format=3 uid="uid://cp1tiqnusfo0i"]
 
 [ext_resource type="Texture2D" uid="uid://brdc1xfn4y3m0" path="res://assets/placeholders/FlaskEmpty.png" id="1_1yxs6"]
 [ext_resource type="Texture2D" uid="uid://caf5o2578tta2" path="res://assets/placeholders/FlaskLiquid.png" id="2_t4qja"]
 [ext_resource type="Script" path="res://battle_systems/Objects/FlaskBar/FlaskBar.gd" id="3_drsxy"]
 
+[sub_resource type="Animation" id="Animation_utcfv"]
+resource_name = "Sway"
+loop_mode = 1
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25, 0.5, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(14, -33), Vector2(14, -42), Vector2(14, -33), Vector2(14, -24), Vector2(14, -33)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="Animation" id="Animation_jrox7"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(14, -33)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_616b7"]
+_data = {
+"RESET": SubResource("Animation_jrox7"),
+"Sway": SubResource("Animation_utcfv")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3n3un"]
+size = Vector2(61, 85)
+
 [node name="FlaskBar" type="TextureProgressBar"]
-offset_right = 74.0
-offset_bottom = 95.0
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -37.0
+offset_top = -47.5
+offset_right = 37.0
+offset_bottom = 47.5
+grow_horizontal = 2
+grow_vertical = 2
 value = 38.0
 rounded = true
 fill_mode = 3
 texture_over = ExtResource("1_1yxs6")
 texture_progress = ExtResource("2_t4qja")
 script = ExtResource("3_drsxy")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_616b7")
+}
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 14.0
+offset_top = -33.0
+offset_right = 54.0
+offset_bottom = -10.0
+text = "3/3"
+horizontal_alignment = 1
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(35.5, 48)
+shape = SubResource("RectangleShape2D_3n3un")
+
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

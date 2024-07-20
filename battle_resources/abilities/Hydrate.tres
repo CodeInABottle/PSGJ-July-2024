@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://dflhnvbcq18wc"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_p2hv1"]
+[ext_resource type="Resource" uid="uid://b8cy6m8qooscq" path="res://battle_resources/Modifiers/ShieldMod.tres" id="1_p3d0h"]
+
+[resource]
+script = ExtResource("1_p2hv1")
+damage = 40
+capture_efficiency = 1.1
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_p3d0h")])
+resonate_type = 4
+reagent_a = 4
+reagent_b = 4
+reagent_c = 0
+reagent_d = 0

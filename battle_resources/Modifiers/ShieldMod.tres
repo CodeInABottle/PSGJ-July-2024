@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BattlefieldShieldMod" load_steps=2 format=3 uid="uid://b8cy6m8qooscq"]
+
+[ext_resource type="Script" path="res://battle_resources/ModifierScripts/ShieldDamage.gd" id="1_e5wap"]
+
+[resource]
+script = ExtResource("1_e5wap")
+shield_amount = 30
+apply_to_self = true
+is_attacked_triggered = true
+turns = 1

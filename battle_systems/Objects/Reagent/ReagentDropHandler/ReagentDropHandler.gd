@@ -12,18 +12,16 @@ class Data:
 @export var reagent_holder: BattlefieldReagentHolder
 
 @onready var path_2d: Path2D = %Path2D
-@onready var recipe_page: BattlefieldRecipePage = %RecipePage
+@onready var recipe_controller: BattlefieldRecipeController = %RecipeController
 
 var _reagent_data: Array[Data] = []
 var _equipped_ability_cache: PackedStringArray
 var mouse_entered: bool = false
 
 func _ready() -> void:
-	recipe_page.hide()
 	_equipped_ability_cache = PlayerStats.get_all_equipped_abilities()
-	recipe_page.pressed.connect(
-		func() -> void:
-			var ability_name: String = recipe_page.get_ability_name()
+	recipe_controller.pressed.connect(
+		func(ability_name: String) -> void:
 			clear(false)
 			ability_execute_requested.emit(ability_name)
 	)
@@ -52,28 +50,29 @@ func clear(return_ap:bool = true) -> void:
 		if return_ap:
 			PlayerStats.alchemy_points += 1
 	_reagent_data.clear()
-	recipe_page.hide()
+	recipe_controller.hide_pages()
 
 func _validate_recipe() -> void:
 	# Run validation checks
-	var valid_recipies: Array[String] = []
+	var valid_recipies: Array[Dictionary] = []
 	for equipped_ability_name: String in _equipped_ability_cache:
 		var components: Array[TypeChart.ResonateType] = EnemyDatabase.get_ability_recipe(equipped_ability_name)
 		if _is_valid_recipe(components):
-			valid_recipies.push_back(equipped_ability_name)
+			var reagent_textures: Array[Texture] = []
+			for reagent: Data in _reagent_data:
+				reagent_textures.push_back(reagent.sprite.texture)
+
+			valid_recipies.push_back({
+				"name": equipped_ability_name,
+				"type": EnemyDatabase.get_ability_resonance(equipped_ability_name),
+				"textures": reagent_textures
+			})
 
 	if valid_recipies.is_empty():
-		recipe_page.hide()
+		recipe_controller.hide_pages()
 	else:
 		# Passed checks
-		recipe_page.show()
-		var right_recipe: Texture = null
-		if _reagent_data.size() > 1:
-			right_recipe = _reagent_data[1].sprite.texture
-		if valid_recipies.size() > 1:
-			recipe_page.set_data(valid_recipies[0], _reagent_data[0].sprite.texture, right_recipe)
-		else:
-			recipe_page.set_data(valid_recipies[0], _reagent_data[0].sprite.texture, right_recipe)
+		recipe_controller.set_data(valid_recipies)
 
 func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:
 	if components.size() != _reagent_data.size(): return false

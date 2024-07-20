@@ -1,11 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://be3th0xcg1m0k"]
+[gd_scene load_steps=11 format=3 uid="uid://be3th0xcg1m0k"]
 
 [ext_resource type="Script" path="res://areas/area_controller.gd" id="1_o5s85"]
 [ext_resource type="Texture2D" uid="uid://b7gd1o0128eix" path="res://assets/placeholders/tilemap_packed.png" id="1_q7fjw"]
 [ext_resource type="PackedScene" uid="uid://dkv0v1k16bwca" path="res://areas/area_camera.tscn" id="6_8i51j"]
-[ext_resource type="Texture2D" uid="uid://8h714of42bsy" path="res://assets/sprites/player/player.png" id="6_auqsv"]
-[ext_resource type="Script" path="res://player/character_controller.gd" id="7_cqcew"]
+[ext_resource type="PackedScene" uid="uid://bfqw64oerqxlo" path="res://player/player_physics_body.tscn" id="6_cslu1"]
 [ext_resource type="PackedScene" uid="uid://ix7hbnaiolav" path="res://areas/area_phantom_camera.tscn" id="7_cto0r"]
+[ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://player/player_visual_body.tscn" id="7_hwcki"]
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://areas/transition_area.tscn" id="8_fx8f5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wo2h"]
@@ -471,8 +471,6 @@ sources/0 = SubResource("TileSetAtlasSource_1wo2h")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_6owd3"]
 size = Vector2(184, 109)
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_lhcgd"]
-
 [node name="Area1" type="Node2D" node_paths=PackedStringArray("start_markers")]
 script = ExtResource("1_o5s85")
 start_markers = [NodePath("Markers/StartMarker")]
@@ -499,26 +497,14 @@ transition_entry_id = 1
 position = Vector2(-5, -26.5)
 shape = SubResource("RectangleShape2D_6owd3")
 
-[node name="PlayerPhysicsBody" type="CharacterBody2D" parent="." node_paths=PackedStringArray("player_sprite", "player_camera", "player_phantom_camera") groups=["player"]]
-position = Vector2(231.5, -214)
-motion_mode = 1
-script = ExtResource("7_cqcew")
+[node name="Camera2D" parent="." instance=ExtResource("6_8i51j")]
+
+[node name="PhantomCamera2D" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("7_cto0r")]
+follow_target = NodePath("../PlayerVisualBody")
+
+[node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_sprite", "player_camera", "player_phantom_camera") instance=ExtResource("6_cslu1")]
 player_sprite = NodePath("../PlayerVisualBody")
 player_camera = NodePath("../Camera2D")
 player_phantom_camera = NodePath("../PhantomCamera2D")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPhysicsBody"]
-shape = SubResource("CircleShape2D_lhcgd")
-
-[node name="PlayerVisualBody" type="Sprite2D" parent="."]
-position = Vector2(231.5, -214)
-texture = ExtResource("6_auqsv")
-region_enabled = true
-region_rect = Rect2(95.6728, 5.51305, 31.3503, 58.6688)
-
-[node name="Camera2D" parent="." instance=ExtResource("6_8i51j")]
-position = Vector2(231.5, -214)
-
-[node name="PhantomCamera2D" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("7_cto0r")]
-position = Vector2(231.5, -214)
-follow_target = NodePath("../PlayerVisualBody")
+[node name="PlayerVisualBody" parent="." instance=ExtResource("7_hwcki")]
