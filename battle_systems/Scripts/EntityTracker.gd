@@ -1,40 +1,45 @@
 class_name BattlefieldEntityTracker
 extends Node
 
-signal damage_taken
-
-const AI_ENTITY: PackedScene = preload("res://battle_systems/EntityComponents/BaseAIEntity/ai_entity.tscn")
+signal damage_taken(is_player: bool)
 
 @onready var enemy_status_indicator: BattlefieldEnemyStatusIndicator = %EnemyStatusIndicator
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
 @onready var player_entity: BattlefieldPlayerEntity = %PlayerEntity
-@onready var entity_spawn_location: Marker2D = %EntitySpawnLocation
+@onready var enemy_entity: BattlefieldAIEntity = %EnemyEntity
 
 var _enemy_effects: Array[BattlefieldAttackModifier] = []
-var _enemy_signal_conditional_effects: Array[BattlefieldAttackModifier] = []
+var _enemy_signal_effects: Array[BattlefieldAttackModifier] = []
 
 var _player_effects: Array[BattlefieldAttackModifier] = []
-var _player_signal_conditional_effects: Array[BattlefieldAttackModifier] = []
+var _player_signal_effects: Array[BattlefieldAttackModifier] = []
 
 var is_players_turn: bool = true
-var enemy: BattlefieldAIEntity
 
 func initialize(enemy_name_encounter: String) -> void:
-	PlayerStats.reset_alchemy_points()
-	_generate_enemy(enemy_name_encounter)
 	damage_taken.connect(_handle_damage_taken_signal)
+	PlayerStats.reset_alchemy_points()
+	enemy_entity.load_AI(EnemyDatabase.get_enemy_data(enemy_name_encounter))
+	enemy_entity.captured.connect(func() -> void: combat_state_machine.switch_state("CaptureState"))
+	enemy_entity.actions_completed.connect(end_turn)
 
 func end_turn() -> void:
 	# Check if we need to end battle
 	if PlayerStats.health <= 0:
 		combat_state_machine.switch_state("GameOverState")
 		return
-	elif enemy.is_dead():
+	elif enemy_entity.is_dead():
 		combat_state_machine.switch_state("RewardState")
 		return
-	elif enemy.is_captured():
+	elif enemy_entity.is_captured():
 		combat_state_machine.switch_state("CaptureState")
 		return
+
+	# Reduce signal effects
+	if is_players_turn:
+		_reduce_signal_effect_turns(_enemy_signal_effects)
+	else:
+		_reduce_signal_effect_turns(_player_signal_effects)
 
 	# Flip the turn over
 	is_players_turn = not is_players_turn
@@ -45,19 +50,44 @@ func end_turn() -> void:
 	else:
 		combat_state_machine.switch_state("EnemyState")
 
+func add_modification_stacks(modifications: Array[BattlefieldAttackModifier]) -> void:
+	for modification: BattlefieldAttackModifier in modifications:
+		var apply_to_player: bool = true
+		# As enemy_entity apply to self
+		if modification.apply_to_self and not is_players_turn:
+			apply_to_player = false
+		# As player_entity apply to enemy_entity
+		elif not modification.apply_to_self and is_players_turn:
+			apply_to_player = false
+
+		if apply_to_player:
+			if modification.is_attacked_triggered:
+				if modification not in _player_signal_effects:
+					_player_signal_effects.push_back(modification)
+			else:
+				if modification not in _player_effects:
+					_player_effects.push_back(modification)
+		else:
+			if modification.is_attacked_triggered:
+				if modification not in _enemy_signal_effects:
+					_enemy_signal_effects.push_back(modification)
+			else:
+				if modification not in _enemy_effects:
+					_enemy_effects.push_back(modification)
+
 # Returns true on state switch
 func handle_enemy_effects() -> bool:
-	if _handle_effects(_enemy_effects, enemy):
+	if _handle_effects(_enemy_effects):
 		end_turn()
 		return true
-	if enemy.is_dead():
+	if enemy_entity.is_dead():
 		combat_state_machine.switch_state("RewardState")
 		return true
 	return false
 
 # Returns true on state switch
 func handle_player_effects() -> bool:
-	if _handle_effects(_player_effects, player_entity):
+	if _handle_effects(_player_effects):
 		end_turn()
 		return true
 	if PlayerStats.health <= 0:
@@ -66,14 +96,14 @@ func handle_player_effects() -> bool:
 	return false
 
 # Returns true if turn is skipped
-func _handle_effects(effects: Array[BattlefieldAttackModifier], entity: BattlefieldEntity) -> bool:
+func _handle_effects(effects: Array[BattlefieldAttackModifier]) -> bool:
 	var requeue_effects: Array[BattlefieldAttackModifier] = []
 	var skip_turn: bool = false
 	while not effects.is_empty():
 		var data: BattlefieldAttackModifier = effects.pop_back()
 
 		# Execute effect
-		skip_turn = data.execute(player_entity, enemy)
+		skip_turn = data.execute(player_entity, enemy_entity)
 
 		# Reduce effect's turns
 		data.turns -= 1
@@ -87,16 +117,23 @@ func _handle_effects(effects: Array[BattlefieldAttackModifier], entity: Battlefi
 
 	return skip_turn
 
-func _generate_enemy(enemy_name_encounter: String) -> void:
-	enemy = AI_ENTITY.instantiate()
-	entity_spawn_location.add_child(enemy)
-	enemy.load_AI(
-		EnemyDatabase.get_enemy_data(enemy_name_encounter),
-		enemy_status_indicator,
-		player_entity
-	)
-	enemy.captured.connect(func() -> void: combat_state_machine.switch_state("CaptureState"))
-	enemy.actions_completed.connect(end_turn)
+func _reduce_signal_effect_turns(effects: Array[BattlefieldAttackModifier]) -> void:
+	var requeue_effects: Array[BattlefieldAttackModifier] = []
+	while not effects.is_empty():
+		var data: BattlefieldAttackModifier = effects.pop_back()
 
-func _handle_damage_taken_signal() -> void:
-	pass
+		# Reduce effect's turns
+		data.turns -= 1
+
+		# Check to requeue
+		if data.turns > 0:
+			requeue_effects.push_back(data)
+
+	while not requeue_effects.is_empty():
+		effects.push_back(requeue_effects.pop_back())
+
+func _handle_damage_taken_signal(was_player: bool) -> void:
+	if was_player:
+		_handle_effects(_player_signal_effects)
+	else:
+		_handle_effects(_enemy_signal_effects)

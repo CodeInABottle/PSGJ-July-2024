@@ -6,8 +6,8 @@ extends Node
 func enter() -> void:
 	# End battle if died of effects
 	if entity_tracker.handle_enemy_effects(): return
-	entity_tracker.enemy.regen_ap()
-	entity_tracker.enemy.issue_actions()
+	entity_tracker.enemy_entity.regen_ap()
+	entity_tracker.enemy_entity.issue_actions()
 
 func exit() -> void:
 	pass

@@ -82,3 +82,8 @@ func get_ability_damage_data(ability_name: String) -> Dictionary:
 		"resonate_type": ability.resonate_type,
 		"capture_rate": ability.capture_efficiency,
 	}
+
+func get_ability_mods(ability_name: String) -> Array[BattlefieldAttackModifier]:
+	if ability_name not in _abilities: return []
+
+	return (_abilities[ability_name] as BattlefieldAbility).modifiers

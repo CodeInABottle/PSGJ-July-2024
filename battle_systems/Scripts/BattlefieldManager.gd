@@ -11,8 +11,8 @@ var _finished_setup: bool = false
 func _ready() -> void:
 	table.ability_execute_requested.connect(
 		func(ability_name: String) -> void:
-			entity_tracker.enemy.take_damage(EnemyDatabase.get_ability_damage_data(ability_name))
-			# Add AttackModifier
+			entity_tracker.enemy_entity.take_damage(EnemyDatabase.get_ability_damage_data(ability_name))
+			entity_tracker.add_modification_stacks(EnemyDatabase.get_ability_mods(ability_name))
 	)
 	bell.pressed.connect(
 		func() -> void:

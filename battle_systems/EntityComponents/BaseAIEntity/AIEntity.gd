@@ -4,14 +4,15 @@ extends BattlefieldEntity
 signal actions_completed
 signal captured
 
+@export var enemy_status_indicator: BattlefieldEnemyStatusIndicator
+@export var player_entity: BattlefieldPlayerEntity
+
 @onready var sprite_2d: Sprite2D = %Sprite2D
 @onready var htn_planner: HTNPlanner = %HTNPlanner
 @onready var hurt_player: AnimationPlayer = %HurtPlayer
 @onready var flash_player: AnimationPlayer = %FlashPlayer
 @onready var sprite_animator: AnimationPlayer = %SpriteAnimator
 
-var _enemy_status_indicator: BattlefieldEnemyStatusIndicator
-var _player_entity: BattlefieldPlayerEntity
 var _data: BattlefieldEnemyData
 var _max_alchemy_points: int
 var _alchemy_regen: int
@@ -21,7 +22,7 @@ var _health: int:
 		if value < _health:
 			hurt_player.play("Hurt")
 		_health = clampi(value, 0, _data.max_health)
-		_enemy_status_indicator.update_health(_health)
+		enemy_status_indicator.update_health(_health)
 var _capture_value: int = 100:
 	set(value):
 		_capture_value = value
@@ -29,11 +30,8 @@ var _capture_value: int = 100:
 		if is_captured():
 			captured.emit()
 
-func load_AI(data: BattlefieldEnemyData, enemy_status_indicator: BattlefieldEnemyStatusIndicator,
-		player_entity: BattlefieldPlayerEntity) -> void:
+func load_AI(data: BattlefieldEnemyData) -> void:
 	htn_planner.finished.connect( func() -> void: actions_completed.emit() )
-	_enemy_status_indicator = enemy_status_indicator
-	_player_entity = player_entity
 	_data = data
 	_health = data.max_health
 	htn_planner.domain_name = data.domain
@@ -44,8 +42,8 @@ func load_AI(data: BattlefieldEnemyData, enemy_status_indicator: BattlefieldEnem
 	_alchemy_regen = alchemy_data["regen"]
 	_alchemy_points = _max_alchemy_points
 
-	_enemy_status_indicator.set_resonate(data.resonate)
-	_enemy_status_indicator.set_health_data(data.max_health)
+	enemy_status_indicator.set_resonate(data.resonate)
+	enemy_status_indicator.set_health_data(data.max_health)
 	sprite_animator.play("Idle")
 
 func regen_ap() -> void:
@@ -56,6 +54,7 @@ func take_damage(damage_data: Dictionary) -> void:
 	if damage_data["resonate_type"] == _data.resonate:
 		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
 		flash_player.play("Flash")
+	entity_tracker.damage_taken.emit(false)
 
 func is_dead() -> bool:
 	return _health <= 0
@@ -71,7 +70,11 @@ func activate_ability(ability_idx: int) -> int:
 
 	var ability_data: BattlefieldAbility = _data.abilities[ability_idx]
 	if ability_data.damage > 0:
-		_player_entity.take_damage(ability_data.damage)
+		player_entity.take_damage({
+			"damage": ability_data.damage
+		})
+
+	entity_tracker.add_modification_stacks(ability_data.modifiers)
 
 	_alchemy_points -= ability_data.ap_cost
 	return _alchemy_points
