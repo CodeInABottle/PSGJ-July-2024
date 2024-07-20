@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=4 format=3 uid="uid://c2smxke2fh124"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://c2smxke2fh124"]
 
 [ext_resource type="Resource" uid="uid://cch2kw6rwhpyd" path="res://battle_resources/abilities/Branch.tres" id="1_6u7nc"]
+[ext_resource type="Resource" uid="uid://dflhnvbcq18wc" path="res://battle_resources/abilities/Hydrate.tres" id="2_nfgko"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="3_oo8eu"]
 [ext_resource type="Texture2D" uid="uid://f8dccairlq1l" path="res://assets/sprites/combat/tree.png" id="4_4wets"]
 
@@ -10,5 +11,5 @@ name = "Tree"
 max_health = 270
 resonate = 8
 domain = &"Dumb"
-abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_6u7nc")])
+abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_6u7nc"), ExtResource("2_nfgko")])
 sprite = ExtResource("4_4wets")
