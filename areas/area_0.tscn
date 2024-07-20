@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://k0q1xi88ww6c"]
+[gd_scene load_steps=26 format=3 uid="uid://k0q1xi88ww6c"]
 
 [ext_resource type="Texture2D" uid="uid://b7gd1o0128eix" path="res://assets/placeholders/tilemap_packed.png" id="1_0cu3s"]
 [ext_resource type="Script" path="res://areas/area_controller.gd" id="1_dqcw1"]
@@ -10,9 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://dkv0v1k16bwca" path="res://areas/area_camera.tscn" id="7_8k4cu"]
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://areas/transition_area.tscn" id="8_d8e1q"]
 [ext_resource type="PackedScene" uid="uid://cm5val12sno1d" path="res://areas/checkpoint.tscn" id="10_aanm7"]
-[ext_resource type="Script" path="res://areas/interactable_controller.gd" id="10_npn5j"]
-[ext_resource type="Script" path="res://areas/sign_controller.gd" id="11_kwnky"]
-[ext_resource type="Texture2D" uid="uid://xhx7esa1oi7d" path="res://assets/sprites/general/sign.png" id="11_qc7a3"]
+[ext_resource type="PackedScene" uid="uid://cjbgt3ne5vyjk" path="res://areas/sign.tscn" id="11_8hdjm"]
 [ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="12_mucra"]
 [ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="13_6ptfe"]
 [ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="14_1rjnw"]
@@ -724,17 +722,18 @@ size = Vector2(7, 20)
 script = ExtResource("12_mucra")
 line_text = "Hello, I am a sign! 🪧"
 
+[sub_resource type="Resource" id="Resource_k6fae"]
+script = ExtResource("12_mucra")
+line_text = "I hope you like signs :D"
+
 [sub_resource type="Resource" id="Resource_ygfun"]
 script = ExtResource("13_6ptfe")
-block_lines = Array[ExtResource("12_mucra")]([SubResource("Resource_4eaus")])
+block_lines = Array[ExtResource("12_mucra")]([SubResource("Resource_4eaus"), SubResource("Resource_k6fae")])
 
-[sub_resource type="Resource" id="Resource_q5m6k"]
+[sub_resource type="Resource" id="Resource_uxvu1"]
 script = ExtResource("14_1rjnw")
 contents = Array[ExtResource("13_6ptfe")]([SubResource("Resource_ygfun")])
 content_keys = Array[String](["main"])
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_ef2k2"]
-radius = 16.0
 
 [node name="Area0" type="Node2D" node_paths=PackedStringArray("start_markers")]
 script = ExtResource("1_dqcw1")
@@ -812,20 +811,5 @@ follow_target = NodePath("../PlayerVisualBody")
 [node name="Checkpoint" parent="." instance=ExtResource("10_aanm7")]
 position = Vector2(183, 519)
 
-[node name="Sign" type="StaticBody2D" parent="." node_paths=PackedStringArray("interactable")]
-position = Vector2(274, 273)
-script = ExtResource("11_kwnky")
-dialogue = SubResource("Resource_q5m6k")
-interactable = NodePath("Area2D")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign"]
-shape = SubResource("CircleShape2D_ef2k2")
-
-[node name="Sprite2D" type="Sprite2D" parent="Sign"]
-texture = ExtResource("11_qc7a3")
-
-[node name="Area2D" type="Area2D" parent="Sign" groups=["interactable"]]
-script = ExtResource("10_npn5j")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Sign/Area2D"]
-shape = SubResource("CircleShape2D_ef2k2")
+[node name="Sign" parent="." instance=ExtResource("11_8hdjm")]
+dialogue = SubResource("Resource_uxvu1")

@@ -81,13 +81,20 @@ func continue_dialogue() -> void:
 
 func advance_dialogue() -> void:
 	if not current_dialogue == null:
-		continue_dialogue()
-
+		if letter_index > current_dialogue_line.line_text.length() - 1:
+			continue_dialogue()
+		else:
+			letter_timer.stop()
+			dialogue_label.text = current_dialogue_line.line_text
+			letter_index = 99999999999
+			if current_dialogue_line_index + 1 < current_dialogue_block.block_lines.size():
+				next_button.show()
+	
 func _on_next_button_pressed() -> void:
 	continue_dialogue()
 
 func _on_close_button_pressed() -> void:
-	clear_current_dialog()
+	end_dialogue()
 
 func end_dialogue() -> void:
 	if not current_dialogue == null:
