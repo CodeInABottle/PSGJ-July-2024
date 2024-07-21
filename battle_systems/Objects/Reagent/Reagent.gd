@@ -1,3 +1,4 @@
+class_name BattlfieldReagent
 extends Area2D
 
 @export var reagent_drop_location: BattlefieldReagentDropLocation

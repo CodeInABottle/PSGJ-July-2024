@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dga5220ux64n7"
-path="res://.godot/imported/Papertowels.png-9f285035ffefc8094f5a3a49a0664bec.ctex"
+uid="uid://bhnymw4isyxn4"
+path="res://.godot/imported/Cloth.png-f24d72c38507ee2ec07b7c6dd4428dd5.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/Papertowels.png"
-dest_files=["res://.godot/imported/Papertowels.png-9f285035ffefc8094f5a3a49a0664bec.ctex"]
+source_file="res://assets/sprites/combat/Cloth.png"
+dest_files=["res://.godot/imported/Cloth.png-f24d72c38507ee2ec07b7c6dd4428dd5.ctex"]
 
 [params]
 

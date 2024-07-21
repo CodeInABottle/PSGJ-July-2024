@@ -18,6 +18,7 @@ class Data:
 	var reagent: TypeChart.ResonateType
 
 @export var speed: float = 10.0
+@export var reagents: Array[BattlfieldReagent] = []
 
 @onready var path_2d: Path2D = %Path2D
 @onready var recipe_controller: BattlefieldRecipeController = %RecipeController
@@ -42,7 +43,8 @@ func _ready() -> void:
 	)
 	recipe_controller.mouse_hovered.connect(
 		func(ability_name: String) -> void:
-			#if reagent_holder.has_something(): return
+			for reagent: BattlfieldReagent in reagents:
+				if reagent._is_holding: return
 
 			var info: Dictionary = EnemyDatabase.get_ability_info(ability_name)
 			if info.is_empty(): return

@@ -5,7 +5,7 @@ signal ability_execute_requested(ability_name: String)
 
 @onready var hp_flask_bar: FlaskBar = %HPFlaskBar
 @onready var ap_flask_bar: FlaskBar = %APFlaskBar
-@onready var reagent_drop_handler: BattlefieldReagentDropLocation = $Reagents/ReagentDropHandler
+@onready var reagent_drop_handler: BattlefieldReagentDropLocation = %ReagentDropHandler
 
 func _exit_tree() -> void:
 	PlayerStats.ap_updated.disconnect(_on_ap_updated)
