@@ -1,0 +1,65 @@
+[gd_scene load_steps=11 format=3 uid="uid://b5swfwvw6yjli"]
+
+[ext_resource type="PackedScene" uid="uid://bj3u62i2akohx" path="res://battle_systems/Objects/Reagent/animated_reagent.tscn" id="1_mtwc1"]
+[ext_resource type="Texture2D" uid="uid://dv5jbkrqsy2wc" path="res://assets/sprites/combat/Reagents/EarthOrb.png" id="2_bue7p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_84rwk"]
+atlas = ExtResource("2_bue7p")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jturr"]
+atlas = ExtResource("2_bue7p")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0uqyw"]
+atlas = ExtResource("2_bue7p")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4yhfj"]
+atlas = ExtResource("2_bue7p")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ei54l"]
+atlas = ExtResource("2_bue7p")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kxa8m"]
+atlas = ExtResource("2_bue7p")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_81q5x"]
+atlas = ExtResource("2_bue7p")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_55wrl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_84rwk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jturr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0uqyw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4yhfj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ei54l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kxa8m")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_81q5x")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="FireReagent" instance=ExtResource("1_mtwc1")]
+sprite_frames = SubResource("SpriteFrames_55wrl")
+autoplay = "default"

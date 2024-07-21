@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cag848673ilfl"
-path="res://.godot/imported/Earth.png-c3191468ca4da944f4416433e7cae6de.ctex"
+uid="uid://einhwxbjqtad"
+path="res://.godot/imported/EarthOrbStill.png-4bae0c4c75ba11b1194227644a7bf1dd.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/Earth.png"
-dest_files=["res://.godot/imported/Earth.png-c3191468ca4da944f4416433e7cae6de.ctex"]
+source_file="res://assets/sprites/combat/Reagents/EarthOrbStill.png"
+dest_files=["res://.godot/imported/EarthOrbStill.png-4bae0c4c75ba11b1194227644a7bf1dd.ctex"]
 
 [params]
 

@@ -5,6 +5,10 @@ const WATER_REAGENT: PackedScene = preload("res://battle_systems/Objects/Reagent
 const WATER_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WaterOrbStill.png")
 const FIRE_REAGENT: PackedScene = preload("res://battle_systems/Objects/Reagent/AnimatedReagents/fire_reagent.tscn")
 const FIRE_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/FireOrbStill.png")
+const EARTH_REAGENT: PackedScene = preload("res://battle_systems/Objects/Reagent/AnimatedReagents/earth_reagent.tscn")
+const EARTH_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/EarthOrbStill.png")
+const WIND_REAGENT: PackedScene = preload("res://battle_systems/Objects/Reagent/AnimatedReagents/wind_reagent.tscn")
+const WIND_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WindOrbStill.png")
 
 signal ability_execute_requested(ability_name: String)
 
@@ -95,6 +99,10 @@ func _validate_recipe() -> void:
 						reagent_textures.push_back(WATER_ORB_STILL)
 					TypeChart.ResonateType.FIRE:
 						reagent_textures.push_back(FIRE_ORB_STILL)
+					TypeChart.ResonateType.EARTH:
+						reagent_textures.push_back(EARTH_ORB_STILL)
+					TypeChart.ResonateType.AIR:
+						reagent_textures.push_back(WIND_ORB_STILL)
 					_:
 						reagent_textures.push_back(null)
 
@@ -142,6 +150,10 @@ func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
 			animated_reagent = WATER_REAGENT.instantiate()
 		TypeChart.ResonateType.FIRE:
 			animated_reagent = FIRE_REAGENT.instantiate()
+		TypeChart.ResonateType.EARTH:
+			animated_reagent = EARTH_REAGENT.instantiate()
+		TypeChart.ResonateType.AIR:
+			animated_reagent = WIND_REAGENT.instantiate()
 
 	follow_instance.add_child(animated_reagent)
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2f5rsd7fq2yl"
-path="res://.godot/imported/Air.png-2ef6e08df7437a8c83711f8cb0129d7d.ctex"
+uid="uid://cmqoxo0ukp0sg"
+path="res://.godot/imported/WindOrb.png-75d45487c1d4f4951b9091f0bda13ced.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/Air.png"
-dest_files=["res://.godot/imported/Air.png-2ef6e08df7437a8c83711f8cb0129d7d.ctex"]
+source_file="res://assets/sprites/combat/Reagents/WindOrb.png"
+dest_files=["res://.godot/imported/WindOrb.png-75d45487c1d4f4951b9091f0bda13ced.ctex"]
 
 [params]
 
