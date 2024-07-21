@@ -1,12 +1,10 @@
-[gd_scene load_steps=16 format=3 uid="uid://dfufpf2cok0k1"]
+[gd_scene load_steps=15 format=3 uid="uid://dfufpf2cok0k1"]
 
 [ext_resource type="Script" path="res://areas/area_controller.gd" id="1_ns68h"]
 [ext_resource type="Texture2D" uid="uid://b7gd1o0128eix" path="res://assets/placeholders/tilemap_packed.png" id="2_7on8k"]
 [ext_resource type="Texture2D" uid="uid://mej5p3q5u7c4" path="res://assets/placeholders/interior.png" id="3_nswct"]
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://areas/transition_area.tscn" id="4_cjm02"]
 [ext_resource type="Texture2D" uid="uid://dkqveu4j6mms0" path="res://assets/sprites/tiles/overworld_interior_01.png" id="4_m7im2"]
-[ext_resource type="Script" path="res://player/character_controller.gd" id="5_wnvxk"]
-[ext_resource type="Texture2D" uid="uid://8h714of42bsy" path="res://assets/sprites/player/player.png" id="6_erpil"]
 [ext_resource type="PackedScene" uid="uid://dkv0v1k16bwca" path="res://areas/area_camera.tscn" id="7_b3x7l"]
 [ext_resource type="PackedScene" uid="uid://bfqw64oerqxlo" path="res://player/player_physics_body.tscn" id="7_ka3iu"]
 [ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://player/player_visual_body.tscn" id="8_a5htn"]
@@ -625,7 +623,6 @@ shape = SubResource("RectangleShape2D_nt8sg")
 follow_target = NodePath("../PlayerVisualBody")
 
 [node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_sprite", "player_camera", "player_phantom_camera") instance=ExtResource("7_ka3iu")]
-position = Vector2(0, 0)
 player_sprite = NodePath("../PlayerVisualBody")
 player_camera = NodePath("../Camera2D")
 player_phantom_camera = NodePath("../PhantomCamera2D")
