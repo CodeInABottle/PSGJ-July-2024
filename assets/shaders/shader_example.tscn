@@ -1,0 +1,49 @@
+[gd_scene load_steps=9 format=3 uid="uid://bfq2d5qedmavc"]
+
+[ext_resource type="Shader" path="res://assets/shaders/battle_background.gdshader" id="1_1oann"]
+[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_64bil"]
+
+[sub_resource type="Gradient" id="Gradient_ohhdd"]
+interpolation_mode = 1
+offsets = PackedFloat32Array(0, 0.508197)
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_kj7yv"]
+noise_type = 3
+domain_warp_type = 2
+domain_warp_frequency = 0.025
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_tn8q6"]
+color_ramp = SubResource("Gradient_ohhdd")
+noise = SubResource("FastNoiseLite_kj7yv")
+
+[sub_resource type="Gradient" id="Gradient_kfh2c"]
+offsets = PackedFloat32Array(0, 0.297424, 0.629977, 0.831382, 1)
+colors = PackedColorArray(0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 1, 0, 0.94902, 0, 1, 1, 1, 1, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_tfgik"]
+gradient = SubResource("Gradient_kfh2c")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_hfn5d"]
+shader = ExtResource("1_1oann")
+shader_parameter/screen_height = 640.0
+shader_parameter/amplitude = 0.075
+shader_parameter/frequency = 10.0
+shader_parameter/speed = 2.0
+shader_parameter/amplitude_vertical = 0.0
+shader_parameter/frequency_vertical = 0.0
+shader_parameter/speed_vertical = 0.0
+shader_parameter/scroll_direction = Vector2(0, 0)
+shader_parameter/scrolling_speed = 0.08
+shader_parameter/enable_palette_cycling = true
+shader_parameter/palette_speed = 0.1
+shader_parameter/enable_scanlines = true
+shader_parameter/palette = SubResource("GradientTexture1D_tfgik")
+shader_parameter/falloff_texture = SubResource("NoiseTexture2D_tn8q6")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_hfn5d")
+position = Vector2(319.5, 181)
+scale = Vector2(4.99219, 2.8125)
+texture = ExtResource("2_64bil")
