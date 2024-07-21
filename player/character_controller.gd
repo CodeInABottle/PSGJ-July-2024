@@ -33,6 +33,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if event.is_action_pressed("escape"):
 			if in_interaction:
 				end_interaction()
+				get_viewport().set_input_as_handled()
 
 
 func handle_interact_input() -> void:
@@ -68,17 +69,15 @@ func move_sprite(delta: float) -> void:
 	if input_direction:
 		var interact_area_position: Vector2 = player_sprite.get_global_position() + input_direction * PICKUP_OFFSET
 		player_interact_area.set_global_position(interact_area_position)
-
+		
 		var input_angle: float = input_direction.angle()
 		player_interact_area.set_global_rotation(input_angle)
-
-		var test: float = rad_to_deg(input_angle)
-
+		
 		if abs(rad_to_deg(input_angle)) < 80.0:
 			player_sprite.flip_h = true
 		elif abs(rad_to_deg(input_angle)) > 100.0:
 			player_sprite.flip_h = false
-
+		
 
 func teleport_to(new_position: Vector2) -> void:
 	set_global_position(new_position)
@@ -99,10 +98,11 @@ func interact() -> void:
 func advance_interaction() -> void:
 	current_interactable.advance_interaction()
 
-func on_interaction_ended(interactable: Interactable) -> void:
+func on_interaction_ended(_interactable: Interactable) -> void:
 	current_interactable.interaction_ended.disconnect(on_interaction_ended)
 	current_interactable = null
 	in_interaction = false
 
 func end_interaction() -> void:
-	var end_success: bool = current_interactable.quick_close_interaction()
+	var _end_success: bool = current_interactable.quick_close_interaction()
+	
