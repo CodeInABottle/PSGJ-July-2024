@@ -1,7 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://byaose271r1ig"]
+[gd_scene load_steps=5 format=3 uid="uid://byaose271r1ig"]
 
 [ext_resource type="Script" path="res://ui/shadow_book_ui_controller.gd" id="1_rpatk"]
 [ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_so324"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v45nl"]
+size = Vector2(24, 85)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x5ygg"]
 bg_color = Color(0.6, 0.6, 0.6, 0)
@@ -15,19 +18,33 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="ShadowBook" type="PanelContainer" node_paths=PackedStringArray("shadow_texture", "highlight")]
+[node name="ShadowBook" type="Panel" node_paths=PackedStringArray("shadow_texture", "highlight", "collision_area")]
 custom_minimum_size = Vector2(24, 85)
+mouse_filter = 1
 script = ExtResource("1_rpatk")
 shadow_texture = NodePath("TextureRect")
 highlight = NodePath("Highlight")
+collision_area = NodePath("TextureRect/Area2D")
 
 [node name="TextureRect" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(24, 85)
 layout_mode = 2
+offset_right = 24.0
+offset_bottom = 85.0
 texture = ExtResource("2_so324")
 expand_mode = 1
+
+[node name="Area2D" type="Area2D" parent="TextureRect"]
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/Area2D"]
+position = Vector2(12, 42.5)
+shape = SubResource("RectangleShape2D_v45nl")
 
 [node name="Highlight" type="Panel" parent="."]
 visible = false
 layout_mode = 2
+offset_right = 24.0
+offset_bottom = 85.0
+mouse_filter = 1
 theme_override_styles/panel = SubResource("StyleBoxFlat_x5ygg")
