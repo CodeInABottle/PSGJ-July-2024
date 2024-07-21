@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://dwpyic36fkyrt"]
+
+[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://assets/placeholders/npc.svg" id="1_jnotn"]
+[ext_resource type="Texture2D" uid="uid://cte4mtlosaofi" path="res://assets/sprites/general/direction_arrow.png" id="2_wrbci"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tsjyv"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_jnotn")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 6.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ikv"]
+
+[node name="NPCVisualBody" type="AnimatedSprite2D"]
+z_index = 2
+texture_filter = 1
+position = Vector2(-2.84217e-14, -8)
+scale = Vector2(0.256125, 0.256125)
+sprite_frames = SubResource("SpriteFrames_tsjyv")
+animation = &"walk"
+
+[node name="NPCPickupArea" type="Area2D" parent="."]
+position = Vector2(24, 0)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="NPCPickupArea"]
+shape = SubResource("RectangleShape2D_j7ikv")
+
+[node name="Sprite2D" type="Sprite2D" parent="NPCPickupArea"]
+texture_filter = 1
+texture = ExtResource("2_wrbci")
