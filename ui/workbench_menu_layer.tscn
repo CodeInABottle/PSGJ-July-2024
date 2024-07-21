@@ -1,0 +1,180 @@
+[gd_scene load_steps=6 format=3 uid="uid://mom03447osb5"]
+
+[ext_resource type="Texture2D" uid="uid://6yfi8wr4oxve" path="res://assets/placeholders/workbench_concept.png" id="1_c2s0f"]
+[ext_resource type="Script" path="res://ui/workbench_menu_layer_controller.gd" id="1_g1a1d"]
+[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_pwtro"]
+[ext_resource type="PackedScene" uid="uid://byaose271r1ig" path="res://ui/shadow_book.tscn" id="4_tsxvg"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tguft"]
+size = Vector2(45, 43)
+
+[node name="WorkbenchMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("shadow_slots", "details_panel", "shadow_books_container")]
+script = ExtResource("1_g1a1d")
+shadow_slots = [NodePath("ShadowSlots/ShadowSlot1"), NodePath("ShadowSlots/ShadowSlot2"), NodePath("ShadowSlots/ShadowSlot3"), NodePath("ShadowSlots/ShadowSlot4"), NodePath("ShadowSlots/ShadowSlot5")]
+details_panel = NodePath("WorkbenchMenu/DetailsPanel")
+shadow_books_container = NodePath("WorkbenchMenu/ShadowBooks")
+shadow_book_scene = ExtResource("4_tsxvg")
+
+[node name="WorkbenchMenu" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ConceptBG" type="TextureRect" parent="WorkbenchMenu"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_c2s0f")
+expand_mode = 2
+
+[node name="CloseButton" type="Button" parent="WorkbenchMenu"]
+layout_mode = 0
+offset_left = 593.0
+offset_top = 26.0
+offset_right = 611.0
+offset_bottom = 57.0
+text = "X"
+
+[node name="DetailsPanel" type="Panel" parent="WorkbenchMenu"]
+layout_mode = 2
+offset_left = 410.0
+offset_top = 274.0
+offset_right = 635.0
+offset_bottom = 359.0
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="TextureRect" type="TextureRect" parent="WorkbenchMenu/DetailsPanel"]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_top = -25.5
+offset_right = 50.0
+offset_bottom = 24.5
+grow_vertical = 2
+texture = ExtResource("2_pwtro")
+expand_mode = 1
+
+[node name="PanelContainer" type="PanelContainer" parent="WorkbenchMenu/DetailsPanel"]
+layout_mode = 1
+offset_left = 4.0
+offset_right = 43.0
+offset_bottom = 16.0
+
+[node name="Label" type="Label" parent="WorkbenchMenu/DetailsPanel/PanelContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Name"
+horizontal_alignment = 1
+
+[node name="PanelContainer2" type="PanelContainer" parent="WorkbenchMenu/DetailsPanel"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 11.0
+offset_top = -16.0
+offset_right = 37.0
+grow_vertical = 0
+
+[node name="Label3" type="Label" parent="WorkbenchMenu/DetailsPanel/PanelContainer2"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Type"
+horizontal_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="WorkbenchMenu/DetailsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.5
+offset_top = -34.0
+offset_right = -4.5
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="PanelContainer3" type="PanelContainer" parent="WorkbenchMenu/DetailsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label4" type="Label" parent="WorkbenchMenu/DetailsPanel/VBoxContainer/PanelContainer3"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Move 1"
+horizontal_alignment = 1
+
+[node name="PanelContainer4" type="PanelContainer" parent="WorkbenchMenu/DetailsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label5" type="Label" parent="WorkbenchMenu/DetailsPanel/VBoxContainer/PanelContainer4"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Move 2"
+horizontal_alignment = 1
+
+[node name="PanelContainer5" type="PanelContainer" parent="WorkbenchMenu/DetailsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Label6" type="Label" parent="WorkbenchMenu/DetailsPanel/VBoxContainer/PanelContainer5"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Move 3"
+horizontal_alignment = 1
+
+[node name="ShadowBooks" type="HBoxContainer" parent="WorkbenchMenu"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -85.0
+offset_right = 408.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="ShadowSlots" type="Node" parent="."]
+
+[node name="ShadowSlot1" type="Area2D" parent="ShadowSlots"]
+position = Vector2(174, 200)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot1"]
+position = Vector2(29.5, -17)
+shape = SubResource("RectangleShape2D_tguft")
+
+[node name="ShadowSlot2" type="Area2D" parent="ShadowSlots"]
+position = Vector2(111, 197)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot2"]
+position = Vector2(28.5, -12.5)
+shape = SubResource("RectangleShape2D_tguft")
+
+[node name="ShadowSlot3" type="Area2D" parent="ShadowSlots"]
+position = Vector2(169, 103)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot3"]
+position = Vector2(29.5, -17)
+shape = SubResource("RectangleShape2D_tguft")
+
+[node name="ShadowSlot4" type="Area2D" parent="ShadowSlots"]
+position = Vector2(375, 108)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot4"]
+position = Vector2(29.5, -17)
+shape = SubResource("RectangleShape2D_tguft")
+
+[node name="ShadowSlot5" type="Area2D" parent="ShadowSlots"]
+position = Vector2(431, 213)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot5"]
+position = Vector2(29.5, -17)
+shape = SubResource("RectangleShape2D_tguft")

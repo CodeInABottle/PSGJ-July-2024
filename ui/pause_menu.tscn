@@ -1,0 +1,55 @@
+[gd_scene load_steps=3 format=3 uid="uid://c4fqfvleyq3nd"]
+
+[ext_resource type="Script" path="res://ui/pause_menu_controller.gd" id="1_iexfw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01uju"]
+bg_color = Color(0.556863, 0.596078, 0.713726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.635294, 0.423529, 0.239216, 1)
+
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("save_button", "respawn_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_iexfw")
+save_button = NodePath("VBoxContainer/SaveButton")
+respawn_button = NodePath("VBoxContainer/RespawnButton")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 120.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_01uju")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = 15.0
+offset_top = -50.5
+offset_right = 100.0
+offset_bottom = 50.5
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="SaveButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "SAVE"
+
+[node name="RespawnButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "RESPAWN"
+
+[node name="BagButton" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "BAG"

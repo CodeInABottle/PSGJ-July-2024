@@ -3,6 +3,7 @@ extends Resource
 
 @export var damage: int = 0
 @export_range(1.1, 3.0, 0.05) var capture_efficiency: float = 1.1
+@export_multiline var description: String
 @export var modifiers: Array[BattlefieldAttackModifier] = []
 
 @export_category("Reagents")

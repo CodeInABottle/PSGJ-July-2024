@@ -1,0 +1,51 @@
+[gd_scene load_steps=9 format=3 uid="uid://drs0uh4tm1sp0"]
+
+[ext_resource type="PackedScene" uid="uid://bj3u62i2akohx" path="res://battle_systems/Objects/Reagent/animated_reagent.tscn" id="1_d4sdb"]
+[ext_resource type="Texture2D" uid="uid://cmqoxo0ukp0sg" path="res://assets/sprites/combat/Reagents/WindOrb.png" id="2_83xxj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8cn6r"]
+atlas = ExtResource("2_83xxj")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cdtf"]
+atlas = ExtResource("2_83xxj")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lmyv3"]
+atlas = ExtResource("2_83xxj")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4xy3h"]
+atlas = ExtResource("2_83xxj")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wenur"]
+atlas = ExtResource("2_83xxj")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ab86n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8cn6r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cdtf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lmyv3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4xy3h")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wenur")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="WindReagent" instance=ExtResource("1_d4sdb")]
+sprite_frames = SubResource("SpriteFrames_ab86n")
+autoplay = "default"

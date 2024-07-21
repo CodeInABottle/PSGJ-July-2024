@@ -1,0 +1,70 @@
+[gd_scene load_steps=12 format=3 uid="uid://ddfc3cc4500hi"]
+
+[ext_resource type="Script" path="res://battle_systems/Objects/Candles/candles.gd" id="1_q30p7"]
+[ext_resource type="Texture2D" uid="uid://dpl0p6h15rlb2" path="res://assets/sprites/combat/Candles.png" id="2_02ldm"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kovgd"]
+atlas = ExtResource("2_02ldm")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2a38e"]
+atlas = ExtResource("2_02ldm")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jb445"]
+atlas = ExtResource("2_02ldm")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mo1bw"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kovgd")
+}],
+"loop": true,
+"name": &"BurntOut",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2a38e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jb445")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_oan33"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_o2obr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_5x55y"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xwg13"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_juddu"]
+
+[node name="Candles" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_q30p7")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mo1bw")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = -25.0
+offset_top = -7.0
+offset_right = 18.0
+offset_bottom = 49.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_oan33")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_o2obr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_5x55y")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_xwg13")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_juddu")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

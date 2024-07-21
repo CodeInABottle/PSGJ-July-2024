@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://bj3u62i2akohx"]
+
+[node name="AnimatedReagent" type="AnimatedSprite2D"]
+scale = Vector2(0.25, 0.25)
