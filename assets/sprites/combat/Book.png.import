@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b8voipn14pfks"
-path="res://.godot/imported/book.png-3a8b71f613d099b1107e9d09c0f22d9a.ctex"
+uid="uid://dvwuwkl11s4dm"
+path="res://.godot/imported/Book.png-edc5562ac6a645602ce99358b0bc973c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/book.png"
-dest_files=["res://.godot/imported/book.png-3a8b71f613d099b1107e9d09c0f22d9a.ctex"]
+source_file="res://assets/sprites/combat/Book.png"
+dest_files=["res://.godot/imported/Book.png-edc5562ac6a645602ce99358b0bc973c.ctex"]
 
 [params]
 

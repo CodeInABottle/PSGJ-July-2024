@@ -1,12 +1,13 @@
-[gd_scene load_steps=19 format=3 uid="uid://1vrxk6abwdej"]
+[gd_scene load_steps=20 format=3 uid="uid://1vrxk6abwdej"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/Table/TableManager.gd" id="1_y84yb"]
 [ext_resource type="PackedScene" uid="uid://cp1tiqnusfo0i" path="res://battle_systems/Objects/FlaskBar/flask_bar.tscn" id="2_pbss5"]
 [ext_resource type="Texture2D" uid="uid://otxhwoidywlh" path="res://assets/sprites/combat/table.png" id="2_uvurw"]
 [ext_resource type="PackedScene" uid="uid://bjf47pm1dcukq" path="res://battle_systems/Objects/Reagent/reagent.tscn" id="3_p5eso"]
 [ext_resource type="PackedScene" uid="uid://pvgfckq2e3xo" path="res://battle_systems/Objects/Reagent/ReagentDropHandler/reagent_drop_handler.tscn" id="3_ppdie"]
+[ext_resource type="Texture2D" uid="uid://dvwuwkl11s4dm" path="res://assets/sprites/combat/Book.png" id="3_sfy3u"]
+[ext_resource type="Texture2D" uid="uid://46kylkay521e" path="res://assets/sprites/combat/BookCloth.png" id="3_ujfhp"]
 [ext_resource type="Texture2D" uid="uid://bhnymw4isyxn4" path="res://assets/sprites/combat/Cloth.png" id="4_l2mye"]
-[ext_resource type="Texture2D" uid="uid://b8voipn14pfks" path="res://assets/placeholders/book.png" id="4_v2q7f"]
 [ext_resource type="PackedScene" uid="uid://cgc7fej0c5400" path="res://battle_systems/Objects/Reagent/AnimatedReagents/water_reagent.tscn" id="5_haq7t"]
 [ext_resource type="Texture2D" uid="uid://oc0uvfudcq8b" path="res://assets/sprites/combat/Pillow.png" id="5_he0xl"]
 [ext_resource type="PackedScene" uid="uid://n18skymi2j51" path="res://battle_systems/Objects/Reagent/AnimatedReagents/fire_reagent.tscn" id="7_grexn"]
@@ -37,9 +38,14 @@ position = Vector2(320, 304)
 texture = ExtResource("2_uvurw")
 region_rect = Rect2(0, 720, 640, 360)
 
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(411, 304)
+texture = ExtResource("3_ujfhp")
+
 [node name="Book" type="Sprite2D" parent="."]
-position = Vector2(408, 272)
-texture = ExtResource("4_v2q7f")
+position = Vector2(388, 288)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("3_sfy3u")
 
 [node name="Cloth" type="Sprite2D" parent="."]
 position = Vector2(65, 304)
@@ -114,7 +120,7 @@ reagent_type = 2
 shape = SubResource("CircleShape2D_4ilx2")
 
 [node name="PaperTowel" parent="Pillow" node_paths=PackedStringArray("reagent_drop_location") instance=ExtResource("3_p5eso")]
-position = Vector2(387, -37)
+position = Vector2(369, -37)
 reagent_drop_location = NodePath("../../ReagentDropHandler")
 
 [node name="Sprite2D" type="Sprite2D" parent="Pillow/PaperTowel"]
