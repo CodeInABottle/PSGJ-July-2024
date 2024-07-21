@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bu3xumeouurpd"
-path="res://.godot/imported/bell.png-87f742d8f752f03ca9f444e31034890b.ctex"
+uid="uid://dpl0p6h15rlb2"
+path="res://.godot/imported/Candles.png-6cb31a556ddb1e9ea28700070d691ab9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/bell.png"
-dest_files=["res://.godot/imported/bell.png-87f742d8f752f03ca9f444e31034890b.ctex"]
+source_file="res://assets/sprites/combat/Candles.png"
+dest_files=["res://.godot/imported/Candles.png-6cb31a556ddb1e9ea28700070d691ab9.ctex"]
 
 [params]
 
