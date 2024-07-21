@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c2va6bcydygut"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/ResonateIndicator/resonate_indicator.gd" id="1_xrh17"]
-[ext_resource type="Texture2D" uid="uid://dcn44i774oakw" path="res://assets/placeholders/Symbols.png" id="2_1m7ly"]
+[ext_resource type="Texture2D" uid="uid://dcn44i774oakw" path="res://assets/sprites/combat/UI/Symbols.png" id="2_1m7ly"]
 
 [node name="ResonateIndicator" type="Node2D"]
 script = ExtResource("1_xrh17")

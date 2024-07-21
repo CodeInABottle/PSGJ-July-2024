@@ -1,0 +1,72 @@
+[gd_scene load_steps=12 format=3 uid="uid://n18skymi2j51"]
+
+[ext_resource type="PackedScene" uid="uid://bj3u62i2akohx" path="res://battle_systems/Objects/Reagent/animated_reagent.tscn" id="1_dpadk"]
+[ext_resource type="Texture2D" uid="uid://cqi5egd74jy0d" path="res://assets/sprites/combat/Reagents/FireOrb.png" id="2_mxe5x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_f0f6l"]
+atlas = ExtResource("2_mxe5x")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_drw4c"]
+atlas = ExtResource("2_mxe5x")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sl0el"]
+atlas = ExtResource("2_mxe5x")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_frtyl"]
+atlas = ExtResource("2_mxe5x")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wv6l1"]
+atlas = ExtResource("2_mxe5x")
+region = Rect2(512, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_54e1g"]
+atlas = ExtResource("2_mxe5x")
+region = Rect2(640, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_giagy"]
+atlas = ExtResource("2_mxe5x")
+region = Rect2(768, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hdf62"]
+atlas = ExtResource("2_mxe5x")
+region = Rect2(896, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1e7e8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_f0f6l")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_drw4c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sl0el")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_frtyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wv6l1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_54e1g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_giagy")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hdf62")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="AnimatedReagent" instance=ExtResource("1_dpadk")]
+sprite_frames = SubResource("SpriteFrames_1e7e8")
+autoplay = "default"

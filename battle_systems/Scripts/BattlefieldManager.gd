@@ -4,7 +4,7 @@ extends Node
 @onready var entity_tracker: BattlefieldEntityTracker = %EntityTracker
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
 @onready var table: BattlefieldTable = $Table
-@onready var bell: Control = %Bell
+@onready var candles: Control = %Candles
 
 var _finished_setup: bool = false
 var enemy_name: String
@@ -19,7 +19,7 @@ func setup_battle(enemy_name_encounter: String) -> void:
 			entity_tracker.enemy_entity.take_damage(EnemyDatabase.get_ability_damage_data(ability_name))
 			entity_tracker.add_modification_stacks(EnemyDatabase.get_ability_mods(ability_name))
 	)
-	bell.pressed.connect(
+	candles.pressed.connect(
 		func() -> void:
 			table.reagent_drop_handler.clear()
 			if not PlayerStats.was_ap_used:
