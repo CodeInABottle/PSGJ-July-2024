@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://dfufpf2cok0k1"]
+[gd_scene load_steps=17 format=3 uid="uid://dfufpf2cok0k1"]
 
 [ext_resource type="Script" path="res://areas/area_controller.gd" id="1_ns68h"]
 [ext_resource type="Texture2D" uid="uid://b7gd1o0128eix" path="res://assets/placeholders/tilemap_packed.png" id="2_7on8k"]
@@ -6,9 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://areas/transition_area.tscn" id="4_cjm02"]
 [ext_resource type="Texture2D" uid="uid://dkqveu4j6mms0" path="res://assets/sprites/tiles/overworld_interior_01.png" id="4_m7im2"]
 [ext_resource type="PackedScene" uid="uid://dkv0v1k16bwca" path="res://areas/area_camera.tscn" id="7_b3x7l"]
-[ext_resource type="PackedScene" uid="uid://bfqw64oerqxlo" path="res://player/player_physics_body.tscn" id="7_ka3iu"]
+[ext_resource type="PackedScene" path="res://player/player_physics_body.tscn" id="7_ka3iu"]
 [ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://player/player_visual_body.tscn" id="8_a5htn"]
 [ext_resource type="PackedScene" uid="uid://ix7hbnaiolav" path="res://areas/area_phantom_camera.tscn" id="8_arq6a"]
+[ext_resource type="PackedScene" uid="uid://dwda8kwtxmfgp" path="res://npc/npc_mom_physics_body.tscn" id="10_g3lmq"]
+[ext_resource type="PackedScene" uid="uid://dwpyic36fkyrt" path="res://npc/npc_mom_visual_body.tscn" id="11_kawk0"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wo2h"]
 texture = ExtResource("2_7on8k")
@@ -588,9 +590,8 @@ sources/2 = SubResource("TileSetAtlasSource_xnngi")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt8sg"]
 size = Vector2(35, 28.5)
 
-[node name="Area0PlayerHouseF1" type="Node2D" node_paths=PackedStringArray("start_markers")]
+[node name="Area0PlayerHouseF1" type="Node2D"]
 script = ExtResource("1_ns68h")
-start_markers = [NodePath("Markers/StartMarker")]
 metadata/_edit_vertical_guides_ = [101.0]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -627,3 +628,9 @@ player_camera = NodePath("../Camera2D")
 player_phantom_camera = NodePath("../PhantomCamera2D")
 
 [node name="PlayerVisualBody" parent="." instance=ExtResource("8_a5htn")]
+
+[node name="NPCPhysicsBody" parent="." instance=ExtResource("10_g3lmq")]
+position = Vector2(208.392, -39.608)
+
+[node name="NPCVisualBody" parent="." instance=ExtResource("11_kawk0")]
+position = Vector2(208.392, -39.608)

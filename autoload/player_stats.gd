@@ -3,7 +3,7 @@ extends Node
 signal health_updated
 signal ap_updated
 
-var player: Player
+var player
 
 # If the player did no other actions when turn ends,
 # gain this more AP on next turn.

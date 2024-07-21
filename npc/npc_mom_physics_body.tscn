@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://dwda8kwtxmfgp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_lhcgd"]
+radius = 8.0
+
+[node name="NPCPhysicsBody" type="CharacterBody2D" groups=["player"]]
+y_sort_enabled = true
+motion_mode = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_lhcgd")
