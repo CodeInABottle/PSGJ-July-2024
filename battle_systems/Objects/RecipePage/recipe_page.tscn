@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://cag848673ilfl" path="res://assets/placeholders/Earth.png" id="3_fpd6c"]
 [ext_resource type="Texture2D" uid="uid://byl4fstefwbek" path="res://assets/sprites/combat/Reagents/WaterOrbStill.png" id="5_hltew"]
 [ext_resource type="Texture2D" uid="uid://b2f5rsd7fq2yl" path="res://assets/placeholders/Air.png" id="6_vks5w"]
-[ext_resource type="Texture2D" uid="uid://cgfo3chfee2bk" path="res://assets/placeholders/Fire.png" id="7_ssfip"]
+[ext_resource type="Texture2D" uid="uid://dbfeeyycjg0md" path="res://assets/sprites/combat/Reagents/FireOrbStill.png" id="7_es8c5"]
 [ext_resource type="Texture2D" uid="uid://dcn44i774oakw" path="res://assets/sprites/combat/UI/Symbols.png" id="8_jfbfc"]
 
 [sub_resource type="Animation" id="Animation_8bswi"]
@@ -136,9 +136,9 @@ autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 0
-offset_left = -49.0
-offset_top = -10.0
-offset_right = 39.0
+offset_left = -52.0
+offset_top = -1.0
+offset_right = 38.0
 offset_bottom = 29.0
 rotation = 0.0390261
 mouse_filter = 2
@@ -146,7 +146,7 @@ mouse_filter = 2
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
 layout_mode = 2
 mouse_filter = 2
-theme_override_constants/separation = -24
+theme_override_constants/separation = -12
 alignment = 1
 
 [node name="ReagentA" type="TextureRect" parent="Control/MarginContainer/HBoxContainer"]
@@ -177,7 +177,7 @@ stretch_mode = 5
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("7_ssfip")
+texture = ExtResource("7_es8c5")
 expand_mode = 3
 stretch_mode = 5
 

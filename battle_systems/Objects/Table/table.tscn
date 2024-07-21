@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://1vrxk6abwdej"]
+[gd_scene load_steps=11 format=3 uid="uid://1vrxk6abwdej"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/Table/TableManager.gd" id="1_y84yb"]
 [ext_resource type="PackedScene" uid="uid://cp1tiqnusfo0i" path="res://battle_systems/Objects/FlaskBar/flask_bar.tscn" id="2_pbss5"]
@@ -7,8 +7,12 @@
 [ext_resource type="PackedScene" uid="uid://pvgfckq2e3xo" path="res://battle_systems/Objects/Reagent/ReagentDropHandler/reagent_drop_handler.tscn" id="3_ppdie"]
 [ext_resource type="Texture2D" uid="uid://b8voipn14pfks" path="res://assets/placeholders/book.png" id="4_v2q7f"]
 [ext_resource type="PackedScene" uid="uid://cgc7fej0c5400" path="res://battle_systems/Objects/Reagent/AnimatedReagents/water_reagent.tscn" id="5_haq7t"]
+[ext_resource type="PackedScene" uid="uid://n18skymi2j51" path="res://battle_systems/Objects/Reagent/AnimatedReagents/fire_reagent.tscn" id="7_grexn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aypqo"]
+radius = 16.0312
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cugga"]
 radius = 16.0312
 
 [node name="Table" type="Node2D"]
@@ -38,6 +42,16 @@ shape = SubResource("CircleShape2D_aypqo")
 [node name="ReagentDropHandler" parent="Reagents" instance=ExtResource("3_ppdie")]
 position = Vector2(176, 192)
 speed = 0.5
+
+[node name="Fire" parent="Reagents" node_paths=PackedStringArray("reagent_drop_location") instance=ExtResource("3_p5eso")]
+position = Vector2(138, 286)
+reagent_drop_location = NodePath("../ReagentDropHandler")
+reagent_type = 1
+
+[node name="AnimatedReagent" parent="Reagents/Fire" instance=ExtResource("7_grexn")]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Reagents/Fire"]
+shape = SubResource("CircleShape2D_cugga")
 
 [node name="HPFlaskBar" parent="." instance=ExtResource("2_pbss5")]
 unique_name_in_owner = true

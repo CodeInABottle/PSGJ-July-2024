@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cgfo3chfee2bk"
-path="res://.godot/imported/Fire.png-63fb64290d29b2704f68a2ab2f8ac61f.ctex"
+uid="uid://dbfeeyycjg0md"
+path="res://.godot/imported/FireOrbStill.png-65dc29d06930e4c58913b60eabca1dea.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/Fire.png"
-dest_files=["res://.godot/imported/Fire.png-63fb64290d29b2704f68a2ab2f8ac61f.ctex"]
+source_file="res://assets/sprites/combat/Reagents/FireOrbStill.png"
+dest_files=["res://.godot/imported/FireOrbStill.png-65dc29d06930e4c58913b60eabca1dea.ctex"]
 
 [params]
 

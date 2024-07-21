@@ -1,8 +1,10 @@
 class_name BattlefieldReagentDropLocation
 extends Node2D
 
-const WATER_REAGENT = preload("res://battle_systems/Objects/Reagent/AnimatedReagents/water_reagent.tscn")
-const WATER_ORB_STILL = preload("res://assets/sprites/combat/Reagents/WaterOrbStill.png")
+const WATER_REAGENT: PackedScene = preload("res://battle_systems/Objects/Reagent/AnimatedReagents/water_reagent.tscn")
+const WATER_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WaterOrbStill.png")
+const FIRE_REAGENT: PackedScene = preload("res://battle_systems/Objects/Reagent/AnimatedReagents/fire_reagent.tscn")
+const FIRE_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/FireOrbStill.png")
 
 signal ability_execute_requested(ability_name: String)
 
@@ -88,7 +90,13 @@ func _validate_recipe() -> void:
 		if _is_valid_recipe(components):
 			var reagent_textures: Array[Texture] = []
 			for reagent: Data in _reagent_data:
-				reagent_textures.push_back(WATER_ORB_STILL)
+				match reagent.reagent:
+					TypeChart.ResonateType.WATER:
+						reagent_textures.push_back(WATER_ORB_STILL)
+					TypeChart.ResonateType.FIRE:
+						reagent_textures.push_back(FIRE_ORB_STILL)
+					_:
+						reagent_textures.push_back(null)
 
 			valid_recipies.push_back({
 				"name": equipped_ability_name,
@@ -132,6 +140,8 @@ func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
 	match reagent:
 		TypeChart.ResonateType.WATER:
 			animated_reagent = WATER_REAGENT.instantiate()
+		TypeChart.ResonateType.FIRE:
+			animated_reagent = FIRE_REAGENT.instantiate()
 
 	follow_instance.add_child(animated_reagent)
 

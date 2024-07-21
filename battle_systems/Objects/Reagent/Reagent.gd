@@ -12,9 +12,11 @@ func _ready() -> void:
 	_original_position = global_position
 
 func _unhandled_input(event: InputEvent) -> void:
+	if not _hold_trigger: return
+
 	if event is InputEventMouseButton:
 		var mouse_event: InputEventMouseButton = event
-		if _hold_trigger and mouse_event.is_pressed() and mouse_event.button_index == MOUSE_BUTTON_LEFT:
+		if mouse_event.is_pressed() and mouse_event.button_index == MOUSE_BUTTON_LEFT:
 			_is_holding = true
 		elif mouse_event.is_released() and mouse_event.button_index == MOUSE_BUTTON_LEFT:
 			if _at_drop_zone:
