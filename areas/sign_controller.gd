@@ -3,12 +3,12 @@ extends InteractableHost
 
 @export var dialogue: Dialogue
 
-func on_interaction_started(interactable: Interactable) -> void:
+func on_interaction_started(_interactable: Interactable) -> void:
 	print("interacted with sign")
 	DialogueManager.play_dialogue(dialogue, "main")
 	DialogueManager.dialogue_ended.connect(end_interaction)
 
-func on_interaction_advanced(interactable: Interactable) -> void:
+func on_interaction_advanced(_interactable: Interactable) -> void:
 	DialogueManager.advance_dialogue()
 	
 func end_interaction() -> void:

@@ -4,18 +4,18 @@ extends InteractableHost
 @export var menu_layer: CanvasLayer
 @export var checkpoint_name: String
 
-func _ready():
+func _ready() -> void:
 	interactable.interaction_started.connect(on_interaction_started)
 	interactable.interaction_advanced.connect(on_interaction_advanced)
 	interactable.interaction_quick_closed.connect(on_interaction_quick_closed)
 
-func on_interaction_started(interactable: Interactable) -> void:
+func on_interaction_started(_interactable: Interactable) -> void:
 	print("interacted with checkpoint")
 	menu_layer.show()
 	set_checkpoint()
 	MenuManager.fader_controller.fade_to_translucent()
 
-func on_interaction_advanced(interactable: Interactable) -> void:
+func on_interaction_advanced(_interactable: Interactable) -> void:
 	print("advanced checkpoint interaction")
 	end_interaction()
 

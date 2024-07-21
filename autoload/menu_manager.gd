@@ -4,7 +4,7 @@ var pause_menu: Control
 var fader_controller: CanvasLayer
 
 func _ready() -> void:
-	fader_controller = get_node("/root/Main/FaderLayer")
+	fader_controller = get_node_or_null("/root/Main/FaderLayer")
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
