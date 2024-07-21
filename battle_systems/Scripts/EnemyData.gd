@@ -2,6 +2,8 @@ class_name BattlefieldEnemyData
 extends Resource
 
 @export var name: String
+@export_group("Description")
+@export_multiline var description: String
 
 @export_category("Stats")
 @export var max_health: int

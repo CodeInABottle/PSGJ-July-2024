@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://caf5o2578tta2"
-path="res://.godot/imported/FlaskLiquid.png-dbd3a721319fa1ef696c09918599e58c.ctex"
+uid="uid://bxhivcmam1ibx"
+path="res://.godot/imported/WaterOrb.png-fd2cd73f032dec4d1ff0366f9b977e11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/FlaskLiquid.png"
-dest_files=["res://.godot/imported/FlaskLiquid.png-dbd3a721319fa1ef696c09918599e58c.ctex"]
+source_file="res://assets/sprites/combat/Reagents/WaterOrb.png"
+dest_files=["res://.godot/imported/WaterOrb.png-fd2cd73f032dec4d1ff0366f9b977e11.ctex"]
 
 [params]
 

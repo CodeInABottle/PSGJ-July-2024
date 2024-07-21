@@ -4,10 +4,10 @@
 [ext_resource type="Texture2D" uid="uid://c1qeksica432t" path="res://assets/placeholders/Scroll.png" id="1_urax8"]
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="2_y4een"]
 [ext_resource type="Texture2D" uid="uid://cag848673ilfl" path="res://assets/placeholders/Earth.png" id="3_fpd6c"]
-[ext_resource type="Texture2D" uid="uid://dcn44i774oakw" path="res://assets/placeholders/Symbols.png" id="5_65f3p"]
-[ext_resource type="Texture2D" uid="uid://befldj16nif7o" path="res://assets/placeholders/Water.png" id="5_d35lv"]
+[ext_resource type="Texture2D" uid="uid://byl4fstefwbek" path="res://assets/sprites/combat/Reagents/WaterOrbStill.png" id="5_hltew"]
 [ext_resource type="Texture2D" uid="uid://b2f5rsd7fq2yl" path="res://assets/placeholders/Air.png" id="6_vks5w"]
 [ext_resource type="Texture2D" uid="uid://cgfo3chfee2bk" path="res://assets/placeholders/Fire.png" id="7_ssfip"]
+[ext_resource type="Texture2D" uid="uid://dcn44i774oakw" path="res://assets/sprites/combat/UI/Symbols.png" id="8_jfbfc"]
 
 [sub_resource type="Animation" id="Animation_8bswi"]
 resource_name = "Hover"
@@ -161,7 +161,7 @@ stretch_mode = 5
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
-texture = ExtResource("5_d35lv")
+texture = ExtResource("5_hltew")
 expand_mode = 3
 stretch_mode = 5
 
@@ -187,7 +187,7 @@ self_modulate = Color(0.694118, 0.0392157, 0.0784314, 1)
 position = Vector2(-8, 40)
 rotation = -0.0460381
 scale = Vector2(0.46875, 0.46875)
-texture = ExtResource("5_65f3p")
+texture = ExtResource("8_jfbfc")
 hframes = 4
 vframes = 3
 

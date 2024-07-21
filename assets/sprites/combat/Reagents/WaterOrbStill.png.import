@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://befldj16nif7o"
-path="res://.godot/imported/Water.png-9a1a7922ab953b90edb3913e57ccd296.ctex"
+uid="uid://byl4fstefwbek"
+path="res://.godot/imported/WaterOrbStill.png-4632e21b07c28eae1568866130cc9d16.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/Water.png"
-dest_files=["res://.godot/imported/Water.png-9a1a7922ab953b90edb3913e57ccd296.ctex"]
+source_file="res://assets/sprites/combat/Reagents/WaterOrbStill.png"
+dest_files=["res://.godot/imported/WaterOrbStill.png-4632e21b07c28eae1568866130cc9d16.ctex"]
 
 [params]
 

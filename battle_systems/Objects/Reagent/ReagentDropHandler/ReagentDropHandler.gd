@@ -1,15 +1,17 @@
 class_name BattlefieldReagentDropLocation
 extends Node2D
 
+const WATER_REAGENT = preload("res://battle_systems/Objects/Reagent/AnimatedReagents/water_reagent.tscn")
+const WATER_ORB_STILL = preload("res://assets/sprites/combat/Reagents/WaterOrbStill.png")
+
 signal ability_execute_requested(ability_name: String)
 
 class Data:
 	var follow_node: PathFollow2D
-	var sprite: Sprite2D
+	var animated_sprite: AnimatedSprite2D
 	var reagent: TypeChart.ResonateType
 
 @export var speed: float = 10.0
-@export var reagent_holder: BattlefieldReagentHolder
 
 @onready var path_2d: Path2D = %Path2D
 @onready var recipe_controller: BattlefieldRecipeController = %RecipeController
@@ -19,7 +21,6 @@ class Data:
 var _reagent_data: Array[Data] = []
 var _equipped_ability_cache: PackedStringArray
 var _description_out: bool = false
-var mouse_entered: bool = false
 
 func _ready() -> void:
 	_equipped_ability_cache = PlayerStats.get_all_equipped_abilities()
@@ -35,7 +36,7 @@ func _ready() -> void:
 	)
 	recipe_controller.mouse_hovered.connect(
 		func(ability_name: String) -> void:
-			if reagent_holder.has_something(): return
+			#if reagent_holder.has_something(): return
 
 			var info: Dictionary = EnemyDatabase.get_ability_info(ability_name)
 			if info.is_empty(): return
@@ -57,18 +58,17 @@ func _ready() -> void:
 func _physics_process(delta: float) -> void:
 	for data: Data in _reagent_data:
 		data.follow_node.progress_ratio += delta * speed
-		data.sprite.global_rotation_degrees = 0
+		data.animated_sprite.global_rotation_degrees = 0
 		if data.follow_node.progress_ratio > 0.5:
-			data.sprite.z_index = -1
+			data.animated_sprite.z_index = -1
 		else:
-			data.sprite.z_index = 1
+			data.animated_sprite.z_index = 1
 
-func add(sprite: Texture, reagent: TypeChart.ResonateType) -> void:
+func add(reagent: TypeChart.ResonateType) -> void:
 	if reagent == TypeChart.ResonateType.NONE:
 		clear()
 		return
-
-	_create_floating_reagent(sprite, reagent)
+	_create_floating_reagent(reagent)
 	_validate_recipe()
 
 func clear(return_ap:bool = true) -> void:
@@ -88,7 +88,7 @@ func _validate_recipe() -> void:
 		if _is_valid_recipe(components):
 			var reagent_textures: Array[Texture] = []
 			for reagent: Data in _reagent_data:
-				reagent_textures.push_back(reagent.sprite.texture)
+				reagent_textures.push_back(WATER_ORB_STILL)
 
 			valid_recipies.push_back({
 				"name": equipped_ability_name,
@@ -117,7 +117,7 @@ func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:
 
 	return true
 
-func _create_floating_reagent(sprite: Texture, reagent: TypeChart.ResonateType) -> void:
+func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
 	# Create pathfollow2D
 	var follow_instance: PathFollow2D = PathFollow2D.new()
 	path_2d.add_child(follow_instance)
@@ -127,23 +127,17 @@ func _create_floating_reagent(sprite: Texture, reagent: TypeChart.ResonateType) 
 			offset -= 1.0
 		follow_instance.progress_ratio = offset
 
-	# Create Sprite
-	var sprite_instance: Sprite2D = Sprite2D.new()
-	follow_instance.add_child(sprite_instance)
-	sprite_instance.scale = Vector2(0.25, 0.25)
-	sprite_instance.texture = sprite
-
 	# Set Data
+	var animated_reagent: AnimatedSprite2D
+	match reagent:
+		TypeChart.ResonateType.WATER:
+			animated_reagent = WATER_REAGENT.instantiate()
+
+	follow_instance.add_child(animated_reagent)
+
 	var data: Data = Data.new()
 	data.follow_node = follow_instance
-	data.sprite = sprite_instance
+	data.animated_sprite = animated_reagent
 	data.reagent = reagent
 	_reagent_data.push_back(data)
 	PlayerStats.alchemy_points -= 1
-
-func _on_area_2d_mouse_entered() -> void:
-	if reagent_holder.has_something():
-		mouse_entered = true
-
-func _on_area_2d_mouse_exited() -> void:
-	mouse_entered = false

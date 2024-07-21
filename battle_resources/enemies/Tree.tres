@@ -8,6 +8,7 @@
 [resource]
 script = ExtResource("3_oo8eu")
 name = "Tree"
+description = ""
 max_health = 270
 resonate = 8
 domain = &"Dumb"

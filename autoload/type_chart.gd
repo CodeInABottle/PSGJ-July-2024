@@ -1,11 +1,5 @@
 extends Node
 
-const BURNING: Texture = preload("res://assets/placeholders/status_effects/Burning.png")
-const DAZE: Texture = preload("res://assets/placeholders/status_effects/Daze.png")
-const DROWNING: Texture = preload("res://assets/placeholders/status_effects/Drowning.png")
-const FLOATING: Texture = preload("res://assets/placeholders/status_effects/Floating.png")
-const HEALING: Texture = preload("res://assets/placeholders/status_effects/Healing.png")
-
 enum ResonateType {
 	NONE = 0,
 	EARTH = 0b1000,

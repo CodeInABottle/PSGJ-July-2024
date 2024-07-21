@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://brdc1xfn4y3m0"
-path="res://.godot/imported/FlaskEmpty.png-5dc4cca99a368343c0bb4502e005df4e.ctex"
+uid="uid://dcn44i774oakw"
+path="res://.godot/imported/Symbols.png-c7e17cfbb3b6e330ac4c6122db48181d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/FlaskEmpty.png"
-dest_files=["res://.godot/imported/FlaskEmpty.png-5dc4cca99a368343c0bb4502e005df4e.ctex"]
+source_file="res://assets/sprites/combat/UI/Symbols.png"
+dest_files=["res://.godot/imported/Symbols.png-c7e17cfbb3b6e330ac4c6122db48181d.ctex"]
 
 [params]
 
