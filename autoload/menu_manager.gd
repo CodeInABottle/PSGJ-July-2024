@@ -21,5 +21,5 @@ func toggle_pause() -> void:
 			LevelManager.disable_world_node()
 			pause_menu.show()
 			fader_controller.fade_to_translucent()
-			
-	
+
+

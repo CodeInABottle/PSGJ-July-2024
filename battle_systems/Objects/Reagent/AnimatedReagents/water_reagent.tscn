@@ -1,0 +1,44 @@
+[gd_scene load_steps=8 format=3 uid="uid://cgc7fej0c5400"]
+
+[ext_resource type="PackedScene" uid="uid://bj3u62i2akohx" path="res://battle_systems/Objects/Reagent/animated_reagent.tscn" id="1_ubja6"]
+[ext_resource type="Texture2D" uid="uid://bxhivcmam1ibx" path="res://assets/sprites/combat/Reagents/WaterOrb.png" id="2_nx178"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_evk8s"]
+atlas = ExtResource("2_nx178")
+region = Rect2(0, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a2oh6"]
+atlas = ExtResource("2_nx178")
+region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3s8wj"]
+atlas = ExtResource("2_nx178")
+region = Rect2(256, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rciwt"]
+atlas = ExtResource("2_nx178")
+region = Rect2(384, 0, 128, 128)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hd6ve"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_evk8s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a2oh6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3s8wj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rciwt")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="WaterReagent" instance=ExtResource("1_ubja6")]
+sprite_frames = SubResource("SpriteFrames_hd6ve")
+autoplay = "default"

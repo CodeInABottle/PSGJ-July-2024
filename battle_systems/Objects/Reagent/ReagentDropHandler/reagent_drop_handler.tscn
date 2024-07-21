@@ -87,6 +87,8 @@ y_sort_enabled = true
 script = ExtResource("1_otk8b")
 
 [node name="Area2D" type="Area2D" parent="."]
+collision_mask = 0
+monitoring = false
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 position = Vector2(0, -47)
@@ -289,6 +291,3 @@ root_node = NodePath("../MarginContainer/PanelContainer/MarginContainer")
 libraries = {
 "": SubResource("AnimationLibrary_gex8u")
 }
-
-[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
-[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]

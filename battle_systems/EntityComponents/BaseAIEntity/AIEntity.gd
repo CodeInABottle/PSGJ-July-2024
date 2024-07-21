@@ -26,7 +26,6 @@ var _health: int:
 var _capture_value: int:
 	set(value):
 		_capture_value = value
-		print(_capture_value)
 		if is_captured():
 			captured.emit()
 
