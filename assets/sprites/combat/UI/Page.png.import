@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1qeksica432t"
-path="res://.godot/imported/Scroll.png-7705bf80270bc4822ab82d79131d7faf.ctex"
+uid="uid://diqxdfopg6kw8"
+path="res://.godot/imported/Page.png-9e7c3d811e6e7ffbf4af92b7b37073db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/Scroll.png"
-dest_files=["res://.godot/imported/Scroll.png-7705bf80270bc4822ab82d79131d7faf.ctex"]
+source_file="res://assets/sprites/combat/UI/Page.png"
+dest_files=["res://.godot/imported/Page.png-9e7c3d811e6e7ffbf4af92b7b37073db.ctex"]
 
 [params]
 

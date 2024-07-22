@@ -52,7 +52,7 @@ func _ready() -> void:
 
 			description_label.text = "Damage: " + str(info["damage"])
 			if not info["description"].is_empty():
-				description_label.text += "\nAdditional Effects: " + info["description"]
+				description_label.text += "\nAdditional Effects:\n" + info["description"]
 			text_box_animator.play("SlideIn")
 			_description_out = true
 	)

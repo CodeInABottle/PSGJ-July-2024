@@ -1,7 +1,7 @@
 [gd_scene load_steps=18 format=3 uid="uid://dr2ppmkbletq1"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/RecipePage/recipe_page.gd" id="1_lq6ce"]
-[ext_resource type="Texture2D" uid="uid://c1qeksica432t" path="res://assets/placeholders/Scroll.png" id="1_urax8"]
+[ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="2_1o7hx"]
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="2_y4een"]
 [ext_resource type="Texture2D" uid="uid://einhwxbjqtad" path="res://assets/sprites/combat/Reagents/EarthOrbStill.png" id="4_v2jai"]
 [ext_resource type="Texture2D" uid="uid://byl4fstefwbek" path="res://assets/sprites/combat/Reagents/WaterOrbStill.png" id="5_hltew"]
@@ -85,7 +85,7 @@ metadata/_edit_lock_ = true
 metadata/_edit_group_ = true
 
 [node name="Background" type="TextureRect" parent="Control"]
-self_modulate = Color(0.1365, 0, 0.21, 1)
+self_modulate = Color(0.270588, 0.156863, 0.235294, 1)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -99,7 +99,7 @@ offset_bottom = 50.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_urax8")
+texture = ExtResource("2_1o7hx")
 expand_mode = 3
 stretch_mode = 4
 
@@ -117,7 +117,7 @@ offset_bottom = 44.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-texture = ExtResource("1_urax8")
+texture = ExtResource("2_1o7hx")
 expand_mode = 3
 stretch_mode = 4
 
@@ -136,11 +136,10 @@ autowrap_mode = 3
 
 [node name="MarginContainer" type="MarginContainer" parent="Control"]
 layout_mode = 0
-offset_left = -52.0
-offset_top = -1.0
+offset_left = -48.0
 offset_right = 38.0
-offset_bottom = 29.0
-rotation = 0.0390261
+offset_bottom = 30.0
+rotation = -0.0161532
 mouse_filter = 2
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Control/MarginContainer"]
@@ -184,9 +183,9 @@ stretch_mode = 5
 [node name="Resonance" type="Sprite2D" parent="Control"]
 unique_name_in_owner = true
 self_modulate = Color(0.694118, 0.0392157, 0.0784314, 1)
-position = Vector2(-8, 40)
-rotation = -0.0460381
-scale = Vector2(0.46875, 0.46875)
+position = Vector2(-32, 43)
+rotation = -0.121694
+scale = Vector2(0.321588, 0.321588)
 texture = ExtResource("8_jfbfc")
 hframes = 4
 vframes = 3

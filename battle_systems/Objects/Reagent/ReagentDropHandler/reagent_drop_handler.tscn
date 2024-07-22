@@ -15,10 +15,10 @@ _data = {
 point_count = 5
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_512p2"]
-bg_color = Color(0.909804, 0.756863, 0.439216, 1)
+bg_color = Color(0.933333, 0.764706, 0.603922, 1)
 border_width_left = 5
 border_width_bottom = 5
-border_color = Color(0, 0, 0, 1)
+border_color = Color(0.25098, 0.121569, 0.141176, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_0ulbn"]
 font = ExtResource("4_wnumi")
@@ -281,7 +281,8 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "Damage: XXX
-Effect: Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
+Effect:
+Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. "
 label_settings = SubResource("LabelSettings_0ulbn")
 autowrap_mode = 3
 
