@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BattlefieldCounterMod" load_steps=2 format=3 uid="uid://58w6ml1ypdxc"]
+
+[ext_resource type="Script" path="res://battle_resources/ModifierScripts/Counter.gd" id="1_w03pv"]
+
+[resource]
+script = ExtResource("1_w03pv")
+counter_damage = 70
+apply_to_self = true
+is_attacked_triggered = true
+immediate = false
+turns = 1

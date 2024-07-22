@@ -23,6 +23,9 @@ var _health: int:
 			hurt_player.play("Hurt")
 			enemy_status_indicator.update_health(_health-value)
 		_health = clampi(value, 0, _data.max_health)
+		if _health <= 0:
+			entity_tracker.end_turn()
+
 var _capture_value: int:
 	set(value):
 		_capture_value = value
@@ -50,6 +53,9 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 func regen_ap() -> void:
 	_alchemy_points = clampi(_alchemy_points + _alchemy_regen, 0, _max_alchemy_points)
 
+func heal(health: int) -> void:
+	_health += health
+
 func take_damage(damage_data: Dictionary) -> void:
 	if damage_data["damage"] == 0: return
 	print("enemy taken damage: ", damage_data["damage"])
@@ -58,8 +64,6 @@ func take_damage(damage_data: Dictionary) -> void:
 	if damage_data["resonate_type"] == _data.resonate:
 		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
 		flash_player.play("Flash")
-	if _health <= 0:
-		entity_tracker.end_turn()
 
 func has_ap() -> bool:
 	return _alchemy_points > 0
@@ -81,15 +85,12 @@ func activate_ability(ability_idx: int) -> int:
 		player_entity.take_damage({
 			"damage": ability_data.damage
 		})
-	print(ability_data.name, " | ", ability_data.damage)
+	print("Enemy used ", ability_data.name, " to do ", ability_data.damage)
 
 	entity_tracker.add_modification_stacks(ability_data)
 
 	_alchemy_points -= ability_data.ap_cost
 	return _alchemy_points
-
-func _update_health(value: int) -> void:
-	_health += value
 
 func _generate_world_states() -> Dictionary:
 	var data: Dictionary = {

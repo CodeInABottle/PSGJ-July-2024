@@ -30,18 +30,18 @@ func _ready() -> void:
 
 func set_data(data: Array[Dictionary]) -> void:
 	if data.is_empty() or data.size() > 5: return
+	hide_pages()
 
+	_current_config = data.size() - 1
 	var idx: int = 0
-	for recipe_page: BattlefieldRecipePage in configurations[data.size()-1].get_children():
+	for recipe_page: BattlefieldRecipePage in configurations[_current_config].get_children():
 		recipe_page.set_data(
 			data[idx]["name"],
 			data[idx]["type"] as TypeChart.ResonateType,
 			data[idx]["textures"]
 		)
 		idx += 1
-	_current_config = data.size() - 1
-	for child: BattlefieldRecipePage in configurations[_current_config].get_children():
-		child.show()
+		recipe_page.show()
 	configurations[_current_config].show()
 
 func hide_pages() -> void:

@@ -147,7 +147,6 @@ rotation = 0.127731
 
 [node name="Config3" type="Control" parent="RecipeController"]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -216,6 +215,7 @@ rotation = -0.099105
 
 [node name="Config5" type="Control" parent="RecipeController"]
 unique_name_in_owner = true
+visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0

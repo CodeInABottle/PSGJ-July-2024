@@ -41,12 +41,16 @@ var _current_unlocked_shadows: Dictionary = {
 	],
 	"Niter Tiger": [
 		"Worldless Roar", "Pounce", "Silver Spire"
+	],
+	"Fighting Fish": [
+		"Purify", "Retaliate"
 	]
 }
 var _equipped_shadows: Array[String] = [
 	"Living Tree",	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
 	"Mailbox",
-	"Niter Tiger"
+	"Niter Tiger",
+	"Fighting Fish"
 ]
 
 var max_health: int = 200:

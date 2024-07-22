@@ -7,7 +7,7 @@ extends Node
 func enter() -> void:
 	# End battle if died of effects
 	if entity_tracker.handle_enemy_effects():
-		print("skipping")
+		print("skipping enemy turn")
 		return
 	entity_tracker.enemy_entity.regen_ap()
 	entity_tracker.enemy_entity.issue_actions()

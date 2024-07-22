@@ -155,7 +155,6 @@ func _handle_signal_effects(effects: Array[ModData], data: Dictionary) -> void:
 
 		# Reduce effect's turns
 		modifier_data.turns -= 1
-		print(modifier_data.turns)
 		# Check to requeue
 		if modifier_data.turns > 0:
 			requeue_effects.push_back(modifier_data)
