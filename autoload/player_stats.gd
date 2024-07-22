@@ -89,6 +89,12 @@ func unlock_shadow(shadow_name: String) -> void:
 		if ability in _current_unlocked_shadows[shadow_name]: continue
 		_current_unlocked_shadows[shadow_name].push_back(ability)
 
+func get_all_unlocked_shadows() -> PackedStringArray:
+	var data: PackedStringArray = []
+	for shadow_name in _current_unlocked_shadows:
+		data.push_back(shadow_name)
+	return data
+
 func get_all_equipped_abilities() -> PackedStringArray:
 	var data: PackedStringArray = []
 	for shadow_name: String in _equipped_shadows:

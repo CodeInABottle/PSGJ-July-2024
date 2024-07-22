@@ -98,7 +98,10 @@ func get_ability_info(ability_name: String) -> Dictionary:
 
 	return  {
 		"damage": _abilities[ability_name].damage,
-		"description": _abilities[ability_name].description
+		"description": _abilities[ability_name].description,
+		"resonate": _abilities[ability_name].resonate_type,
+		"efficiency": _abilities[ability_name].capture_efficiency,
+		"cost": get_ability_recipe(ability_name)
 	}
 
 func get_abilities_from_shadow(shadow_name: String) -> Array[String]:
