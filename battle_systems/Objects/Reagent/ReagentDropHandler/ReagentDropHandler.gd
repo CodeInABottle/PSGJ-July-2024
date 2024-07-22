@@ -45,7 +45,7 @@ func _ready() -> void:
 	recipe_controller.mouse_hovered.connect(
 		func(ability_name: String) -> void:
 			for reagent: BattlfieldReagent in reagents:
-				if reagent._is_holding: return
+				if reagent.is_holding(): return
 
 			var info: Dictionary = EnemyDatabase.get_ability_info(ability_name)
 			if info.is_empty(): return

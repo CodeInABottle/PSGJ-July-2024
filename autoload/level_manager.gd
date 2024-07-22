@@ -136,7 +136,7 @@ func load_world(world_name: String, entry_id: int=0) -> bool:
 	_async_load(region, world_anchor)
 	return true
 
-func load_menu(menu_name: String, args: Array = []) -> void:
+func load_menu(menu_name: String, _args: Array = []) -> void:
 	match menu_name:
 		"workbench":
 			disable_world_node()
