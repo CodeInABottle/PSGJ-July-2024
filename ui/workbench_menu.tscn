@@ -10,7 +10,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_tguft"]
 size = Vector2(45, 43)
 
-[node name="WorkbenchMenu" type="Control" node_paths=PackedStringArray("shadow_slots", "creature_details_panel", "move_details_panel", "shadow_books_container", "slotted_moves_container")]
+[node name="WorkbenchMenu" type="Control" node_paths=PackedStringArray("shadow_slots", "creature_details_panel", "move_details_panel", "shadow_books_container", "slotted_moves_container", "close_button")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -24,6 +24,7 @@ move_details_panel = NodePath("MoveDetailsPanel")
 shadow_books_container = NodePath("ShadowBooks")
 shadow_book_scene = ExtResource("2_cgu6r")
 slotted_moves_container = NodePath("SlottedMovesContainer")
+close_button = NodePath("CloseButton")
 
 [node name="ConceptBG" type="TextureRect" parent="."]
 layout_mode = 1
@@ -134,3 +135,12 @@ input_pickable = false
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot5"]
 position = Vector2(26, -17)
 shape = SubResource("RectangleShape2D_tguft")
+
+[node name="ConfirmButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 254.0
+offset_right = 202.0
+offset_bottom = 276.0
+theme_override_font_sizes/font_size = 10
+text = "CONFIRM"

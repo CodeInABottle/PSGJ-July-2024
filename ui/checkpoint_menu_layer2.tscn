@@ -1,0 +1,115 @@
+[gd_scene load_steps=5 format=3 uid="uid://bws60pday3bya"]
+
+[ext_resource type="Script" path="res://ui/checkpoint_menu_layer_controller2.gd" id="1_qhipo"]
+[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_1gqck"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyk05"]
+bg_color = Color(0.556863, 0.596078, 0.713726, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.635294, 0.423529, 0.239216, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7ssy"]
+bg_color = Color(0.329412, 0.364706, 0.470588, 1)
+border_width_left = 4
+border_width_top = 4
+border_width_right = 4
+border_width_bottom = 4
+border_color = Color(0.286275, 0.176471, 0.0823529, 1)
+
+[node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("slot_shadows_button", "hear_lore_button", "menu_close_button", "lore_panel", "lore_list")]
+script = ExtResource("1_qhipo")
+slot_shadows_button = NodePath("OptionsPanel/Options/SlotShadowsButton")
+hear_lore_button = NodePath("OptionsPanel/Options/HearLoreButton")
+menu_close_button = NodePath("OptionsPanel/Options/MenuCloseButton")
+lore_panel = NodePath("OptionsPanel/LorePanel")
+lore_list = NodePath("OptionsPanel/LorePanel/ScrollContainer/LoreList")
+
+[node name="OptionsPanel" type="Panel" parent="."]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 120.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_vyk05")
+
+[node name="Options" type="VBoxContainer" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -44.0
+offset_top = -60.0
+offset_right = 44.0
+offset_bottom = 60.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 12
+
+[node name="SlotShadowsButton" type="Button" parent="OptionsPanel/Options"]
+layout_mode = 2
+text = "SLOT 
+SHADOWS"
+
+[node name="HearLoreButton" type="Button" parent="OptionsPanel/Options"]
+layout_mode = 2
+text = "HEAR 
+LORE"
+
+[node name="MenuCloseButton" type="Button" parent="OptionsPanel/Options"]
+layout_mode = 2
+text = "CLOSE"
+
+[node name="LorePanel" type="Panel" parent="OptionsPanel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_right = 336.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7ssy")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="OptionsPanel/LorePanel"]
+layout_mode = 2
+offset_left = 4.0
+offset_top = 4.0
+offset_right = 212.0
+offset_bottom = 356.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LoreList" type="ItemList" parent="OptionsPanel/LorePanel/ScrollContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+auto_height = true
+item_count = 13
+fixed_icon_size = Vector2i(32, 32)
+item_0/text = "1"
+item_0/icon = ExtResource("2_1gqck")
+item_1/text = "2"
+item_1/icon = ExtResource("2_1gqck")
+item_2/text = "3"
+item_2/icon = ExtResource("2_1gqck")
+item_3/text = "4"
+item_3/icon = ExtResource("2_1gqck")
+item_4/text = "5"
+item_4/icon = ExtResource("2_1gqck")
+item_5/text = "6"
+item_5/icon = ExtResource("2_1gqck")
+item_6/text = "7"
+item_6/icon = ExtResource("2_1gqck")
+item_7/text = "8"
+item_7/icon = ExtResource("2_1gqck")
+item_8/text = "9"
+item_8/icon = ExtResource("2_1gqck")
+item_9/text = "10"
+item_9/icon = ExtResource("2_1gqck")
+item_10/text = "11"
+item_10/icon = ExtResource("2_1gqck")
+item_11/text = "12"
+item_11/icon = ExtResource("2_1gqck")
+item_12/text = "13"
+item_12/icon = ExtResource("2_1gqck")
