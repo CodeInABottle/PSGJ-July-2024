@@ -35,6 +35,11 @@ func get_enemy_data(enemy_name: String) -> BattlefieldEnemyData:
 
 	return _enemies[enemy_name]
 
+func get_ability_data(ability_name: String) -> BattlefieldAbility:
+	if ability_name not in _abilities: return null
+
+	return _abilities[ability_name]
+
 func get_alchemy_data(enemy_name: String) -> Dictionary:
 	var enemy_data: BattlefieldEnemyData = get_enemy_data(enemy_name)
 
@@ -82,11 +87,6 @@ func get_ability_damage_data(ability_name: String) -> Dictionary:
 		"resonate_type": ability.resonate_type,
 		"capture_rate": ability.capture_efficiency,
 	}
-
-func get_ability_mods(ability_name: String) -> Array[BattlefieldAttackModifier]:
-	if ability_name not in _abilities: return []
-
-	return (_abilities[ability_name] as BattlefieldAbility).modifiers
 
 func get_ability_resonance(ability_name: String) -> TypeChart.ResonateType:
 	if ability_name not in _abilities: return TypeChart.ResonateType.NONE

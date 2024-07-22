@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BattlefieldNextTurnDamageModifier" load_steps=2 format=3 uid="uid://bhpjbj0eamqst"]
+
+[ext_resource type="Script" path="res://battle_resources/ModifierScripts/DamageNextTurn.gd" id="1_6i7ov"]
+
+[resource]
+script = ExtResource("1_6i7ov")
+damage = 20
+apply_to_self = false
+is_attacked_triggered = false
+turns = 1

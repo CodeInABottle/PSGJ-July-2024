@@ -76,7 +76,7 @@ func activate_ability(ability_idx: int) -> int:
 		})
 	print(ability_data.name, " | ", ability_data.damage)
 
-	entity_tracker.add_modification_stacks(ability_data.modifiers)
+	entity_tracker.add_modification_stacks(ability_data)
 
 	_alchemy_points -= ability_data.ap_cost
 	return _alchemy_points

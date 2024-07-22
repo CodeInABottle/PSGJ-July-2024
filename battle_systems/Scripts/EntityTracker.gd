@@ -3,16 +3,32 @@ extends Node
 
 signal damage_taken(is_player: bool, data: Dictionary)
 
+class ModData:
+	var mod: BattlefieldAttackModifier
+	var resonate: TypeChart.ResonateType
+	var efficiency_capture_rate: float
+
+	func _init(ability: BattlefieldAbility, modifier: BattlefieldAttackModifier) -> void:
+		mod = modifier
+		resonate = ability.resonate_type
+		efficiency_capture_rate = ability.capture_efficiency
+
+	func get_data() -> Dictionary:
+		return {
+			"resonate_type": resonate,
+			"efficiency_capture_rate": efficiency_capture_rate
+		}
+
 @onready var enemy_status_indicator: BattlefieldEnemyStatusIndicator = %EnemyStatusIndicator
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
 @onready var player_entity: BattlefieldPlayerEntity = %PlayerEntity
 @onready var enemy_entity: BattlefieldAIEntity = %EnemyEntity
 
-var _enemy_effects: Array[BattlefieldAttackModifier] = []
-var _enemy_signal_effects: Array[BattlefieldAttackModifier] = []
+var _enemy_effects: Array[ModData] = []
+var _enemy_signal_effects: Array[ModData] = []
 
-var _player_effects: Array[BattlefieldAttackModifier] = []
-var _player_signal_effects: Array[BattlefieldAttackModifier] = []
+var _player_effects: Array[ModData] = []
+var _player_signal_effects: Array[ModData] = []
 
 var is_players_turn: bool = false	# False -> Player first
 
@@ -50,8 +66,8 @@ func end_turn() -> void:
 	else:
 		combat_state_machine.switch_state("EnemyState")
 
-func add_modification_stacks(modifications: Array[BattlefieldAttackModifier]) -> void:
-	for modification: BattlefieldAttackModifier in modifications:
+func add_modification_stacks(ability: BattlefieldAbility) -> void:
+	for modification: BattlefieldAttackModifier in ability.modifiers:
 		var apply_to_player: bool = true
 		# As enemy_entity apply to self
 		if modification.apply_to_self and not is_players_turn:
@@ -60,20 +76,22 @@ func add_modification_stacks(modifications: Array[BattlefieldAttackModifier]) ->
 		elif not modification.apply_to_self and is_players_turn:
 			apply_to_player = false
 
+		var mod_data: ModData = ModData.new(ability, modification)
+
 		if apply_to_player:
 			if modification.is_attacked_triggered:
-				if modification not in _player_signal_effects:
-					_player_signal_effects.push_back(modification)
+				if mod_data not in _player_signal_effects:
+					_player_signal_effects.push_back(mod_data)
 			else:
-				if modification not in _player_effects:
-					_player_effects.push_back(modification)
+				if mod_data not in _player_effects:
+					_player_effects.push_back(mod_data)
 		else:
 			if modification.is_attacked_triggered:
-				if modification not in _enemy_signal_effects:
-					_enemy_signal_effects.push_back(modification)
+				if mod_data not in _enemy_signal_effects:
+					_enemy_signal_effects.push_back(mod_data)
 			else:
-				if modification not in _enemy_effects:
-					_enemy_effects.push_back(modification)
+				if mod_data not in _enemy_effects:
+					_enemy_effects.push_back(mod_data)
 
 # Returns true on state switch
 func handle_enemy_effects() -> bool:
@@ -96,14 +114,18 @@ func handle_player_effects() -> bool:
 	return false
 
 # Returns true if turn is skipped
-func _handle_effects(effects: Array[BattlefieldAttackModifier]) -> bool:
-	var requeue_effects: Array[BattlefieldAttackModifier] = []
+func _handle_effects(effects: Array[ModData]) -> bool:
+	var requeue_effects: Array[ModData] = []
 	var skip_turn: bool = false
 	while not effects.is_empty():
-		var data: BattlefieldAttackModifier = effects.pop_back()
+		var data: ModData = effects.pop_back()
 
 		# Execute effect
-		skip_turn = data.execute(player_entity, enemy_entity, {})
+		var execute_data: Dictionary = {
+			"is_players_turn": is_players_turn
+		}
+		execute_data.merge(data.get_data())
+		skip_turn = data.execute(player_entity, enemy_entity, execute_data)
 
 		# Reduce effect's turns
 		data.turns -= 1
@@ -117,13 +139,18 @@ func _handle_effects(effects: Array[BattlefieldAttackModifier]) -> bool:
 
 	return skip_turn
 
-func _handle_signal_effects(effects: Array[BattlefieldAttackModifier], data: Dictionary) -> void:
-	var requeue_effects: Array[BattlefieldAttackModifier] = []
+func _handle_signal_effects(effects: Array[ModData], data: Dictionary) -> void:
+	var requeue_effects: Array[ModData] = []
 	while not effects.is_empty():
-		var modifier_data: BattlefieldAttackModifier = effects.pop_back()
+		var modifier_data: ModData = effects.pop_back()
 
 		# Execute effect
-		modifier_data.execute(player_entity, enemy_entity, data)
+		var execute_data: Dictionary = {
+			"is_players_turn": is_players_turn
+		}
+		execute_data.merge(data, true)
+		execute_data.merge(modifier_data.get_data())
+		modifier_data.execute(player_entity, enemy_entity, execute_data)
 
 		# Reduce effect's turns
 		modifier_data.turns -= 1
@@ -135,10 +162,10 @@ func _handle_signal_effects(effects: Array[BattlefieldAttackModifier], data: Dic
 	while not requeue_effects.is_empty():
 		effects.push_back(requeue_effects.pop_back())
 
-func _reduce_signal_effect_turns(effects: Array[BattlefieldAttackModifier]) -> void:
-	var requeue_effects: Array[BattlefieldAttackModifier] = []
+func _reduce_signal_effect_turns(effects: Array[ModData]) -> void:
+	var requeue_effects: Array[ModData] = []
 	while not effects.is_empty():
-		var data: BattlefieldAttackModifier = effects.pop_back()
+		var data: ModData = effects.pop_back()
 
 		# Reduce effect's turns
 		data.turns -= 1
@@ -149,6 +176,9 @@ func _reduce_signal_effect_turns(effects: Array[BattlefieldAttackModifier]) -> v
 
 	while not requeue_effects.is_empty():
 		effects.push_back(requeue_effects.pop_back())
+
+func _get_execute_data() -> void:
+	pass
 
 func _handle_damage_taken_signal(was_player: bool, data: Dictionary) -> void:
 	if was_player:

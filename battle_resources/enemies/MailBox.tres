@@ -1,6 +1,9 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=2 format=3 uid="uid://cppb84hivhuqs"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://cppb84hivhuqs"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_j0imo"]
+[ext_resource type="Resource" uid="uid://dd1eqwsw6fqw7" path="res://battle_resources/abilities/Whirlwind.tres" id="1_pd6yr"]
+[ext_resource type="PackedScene" uid="uid://tx3mfleqica2" path="res://battle_systems/EntityComponents/CombatAnimations/mailbox_animation.tscn" id="1_spddq"]
+[ext_resource type="Resource" uid="uid://bqkku7qqux053" path="res://battle_resources/abilities/Delivery.tres" id="2_y2lll"]
 
 [resource]
 script = ExtResource("1_j0imo")
@@ -9,4 +12,5 @@ description = ""
 max_health = 320
 resonate = 2
 domain = &"Dumb"
-abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([])
+abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_pd6yr"), ExtResource("2_y2lll")])
+combat_animation = ExtResource("1_spddq")
