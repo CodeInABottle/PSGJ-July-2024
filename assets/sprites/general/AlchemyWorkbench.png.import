@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c32ok3i7wrxtu"
-path="res://.godot/imported/overworld_cat.png-db72c2279069834052f6edbb46acc408.ctex"
+uid="uid://c7rwacc0r1c4s"
+path="res://.godot/imported/AlchemyWorkbench.png-53da37a92e05f0e72c147101274f5ff8.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mobs/overworld_cat.png"
-dest_files=["res://.godot/imported/overworld_cat.png-db72c2279069834052f6edbb46acc408.ctex"]
+source_file="res://assets/sprites/general/AlchemyWorkbench.png"
+dest_files=["res://.godot/imported/AlchemyWorkbench.png-53da37a92e05f0e72c147101274f5ff8.ctex"]
 
 [params]
 
