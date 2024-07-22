@@ -11,7 +11,7 @@ var enemy_name: String
 
 # TEMP -- Remove on Integration
 func _ready() -> void:
-	setup_battle("Tree")
+	setup_battle("Living Tree")
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	table.ability_execute_requested.connect(

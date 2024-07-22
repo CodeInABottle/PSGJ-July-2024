@@ -15,4 +15,4 @@ extends Resource
 
 @export_category("Misc")
 @export var icon: CompressedTexture2D
-@export var idle_animation: PackedScene
+@export var combat_animation: PackedScene

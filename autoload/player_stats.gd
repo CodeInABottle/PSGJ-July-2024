@@ -33,12 +33,12 @@ const LEVEL_DATA: Array[Dictionary] = [
 
 # { shadow_name (String) : [ (ability_names (String))... ] }
 var _current_unlocked_shadows: Dictionary = {
-	"Tree": [	# TEMP: Hard coding "insertion" for now
+	"Living Tree": [	# TEMP: Hard coding "insertion" for now
 		"Branch", "Hydrate"
 	]
 }
 var _equipped_shadows: Array[String] = [
-	"Tree"	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
+	"Living Tree"	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
 ]
 
 var max_health: int = 200:
@@ -91,7 +91,7 @@ func unlock_shadow(shadow_name: String) -> void:
 
 func get_all_unlocked_shadows() -> PackedStringArray:
 	var data: PackedStringArray = []
-	for shadow_name in _current_unlocked_shadows:
+	for shadow_name: String in _current_unlocked_shadows:
 		data.push_back(shadow_name)
 	return data
 

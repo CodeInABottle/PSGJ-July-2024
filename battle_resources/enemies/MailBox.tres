@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=2 format=3 uid="uid://cppb84hivhuqs"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_j0imo"]
+
+[resource]
+script = ExtResource("1_j0imo")
+name = "Mailbox"
+description = ""
+max_health = 320
+resonate = 2
+domain = &"Dumb"
+abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([])
