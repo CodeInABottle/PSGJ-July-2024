@@ -7,13 +7,13 @@ signal captured
 @export var enemy_status_indicator: BattlefieldEnemyStatusIndicator
 @export var player_entity: BattlefieldPlayerEntity
 
-@onready var sprite_2d: Sprite2D = %Sprite2D
 @onready var htn_planner: HTNPlanner = %HTNPlanner
 @onready var hurt_player: AnimationPlayer = %HurtPlayer
 @onready var flash_player: AnimationPlayer = %FlashPlayer
-@onready var sprite_animator: AnimationPlayer = %SpriteAnimator
+@onready var animation_holder: Marker2D = %AnimationHolder
 
 var _data: BattlefieldEnemyData
+var _animation_sprite: AnimatedSprite2D
 var _max_alchemy_points: int
 var _alchemy_regen: int
 var _alchemy_points: int
@@ -35,7 +35,8 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 	_health = data.max_health
 	_capture_value = data.max_health
 	htn_planner.domain_name = data.domain
-	sprite_2d.texture = data.sprite
+	_animation_sprite = _data.combat_animation.instantiate()
+	animation_holder.add_child(_animation_sprite)
 
 	var alchemy_data: Dictionary = EnemyDatabase.get_alchemy_data(_data.name)
 	_max_alchemy_points = alchemy_data["ap"]
@@ -44,17 +45,24 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 
 	enemy_status_indicator.set_resonate(data.resonate)
 	enemy_status_indicator.set_health_data(data.max_health)
-	sprite_animator.play("Idle")
+	_animation_sprite.play("Idle")
 
 func regen_ap() -> void:
 	_alchemy_points = clampi(_alchemy_points + _alchemy_regen, 0, _max_alchemy_points)
 
 func take_damage(damage_data: Dictionary) -> void:
+	if damage_data["damage"] == 0: return
+	print("enemy taken damage: ", damage_data["damage"])
 	entity_tracker.damage_taken.emit(false, damage_data)
 	_health -= damage_data["damage"]
 	if damage_data["resonate_type"] == _data.resonate:
 		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
 		flash_player.play("Flash")
+	if _health <= 0:
+		entity_tracker.end_turn()
+
+func has_ap() -> bool:
+	return _alchemy_points > 0
 
 func is_dead() -> bool:
 	return _health <= 0
@@ -75,7 +83,7 @@ func activate_ability(ability_idx: int) -> int:
 		})
 	print(ability_data.name, " | ", ability_data.damage)
 
-	entity_tracker.add_modification_stacks(ability_data.modifiers)
+	entity_tracker.add_modification_stacks(ability_data)
 
 	_alchemy_points -= ability_data.ap_cost
 	return _alchemy_points

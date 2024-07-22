@@ -17,6 +17,7 @@ func enter() -> void:
 func exit() -> void:
 	candles.blow()
 	control_shield.show()
+	player_entity.reset_costs()
 
 func update(_delta: float) -> void:
 	pass

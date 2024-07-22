@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="BattlefieldNextTurnDamageModifier" load_steps=2 format=3 uid="uid://d3dhhd3uac60d"]
+
+[ext_resource type="Script" path="res://battle_resources/ModifierScripts/DamageOverTime.gd" id="1_eyo75"]
+
+[resource]
+script = ExtResource("1_eyo75")
+damage = 45
+apply_to_self = false
+is_attacked_triggered = false
+turns = 2

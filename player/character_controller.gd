@@ -89,6 +89,7 @@ func interact() -> void:
 		var overlapping_areas: Array[Area2D] = player_interact_area.get_overlapping_areas()
 		for overlap: Area2D in overlapping_areas:
 			if overlap.is_in_group("interactable"):
+				player_sprite.stop()
 				current_interactable = overlap
 				current_interactable.interaction_ended.connect(on_interaction_ended)
 				current_interactable.on_interacted_with()

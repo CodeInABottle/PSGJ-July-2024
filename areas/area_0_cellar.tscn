@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dxoa1omvxtnxg"]
+[gd_scene load_steps=14 format=3 uid="uid://dxoa1omvxtnxg"]
 
 [ext_resource type="Script" path="res://areas/area_controller.gd" id="1_21p1r"]
 [ext_resource type="Texture2D" uid="uid://b7gd1o0128eix" path="res://assets/placeholders/tilemap_packed.png" id="2_dm1ri"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://bfqw64oerqxlo" path="res://player/player_physics_body.tscn" id="7_7uy4q"]
 [ext_resource type="PackedScene" uid="uid://ix7hbnaiolav" path="res://areas/area_phantom_camera.tscn" id="7_ogcms"]
 [ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://player/player_visual_body.tscn" id="8_6ggmq"]
+[ext_resource type="PackedScene" uid="uid://dbdse8704j148" path="res://areas/setup_timer.tscn" id="9_g7duv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wo2h"]
 texture = ExtResource("2_dm1ri")
@@ -531,9 +532,10 @@ sources/1 = SubResource("TileSetAtlasSource_pp51h")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt8sg"]
 size = Vector2(62, 97)
 
-[node name="Area0Cellar" type="Node2D" node_paths=PackedStringArray("start_markers")]
+[node name="Area0Cellar" type="Node2D" node_paths=PackedStringArray("start_markers", "setup_timer")]
 script = ExtResource("1_21p1r")
 start_markers = [NodePath("Markers/StartMarker")]
+setup_timer = NodePath("SetupTimer")
 metadata/_edit_vertical_guides_ = [101.0]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -562,9 +564,10 @@ shape = SubResource("RectangleShape2D_nt8sg")
 follow_target = NodePath("../PlayerVisualBody")
 
 [node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_sprite", "player_camera", "player_phantom_camera") instance=ExtResource("7_7uy4q")]
-position = Vector2(0, 0)
 player_sprite = NodePath("../PlayerVisualBody")
 player_camera = NodePath("../Camera2D")
 player_phantom_camera = NodePath("../PhantomCamera2D")
 
 [node name="PlayerVisualBody" parent="." instance=ExtResource("8_6ggmq")]
+
+[node name="SetupTimer" parent="." instance=ExtResource("9_g7duv")]

@@ -14,4 +14,5 @@ extends Resource
 @export var abilities: Array[BattlefieldAbility]
 
 @export_category("Misc")
-@export var sprite: CompressedTexture2D
+@export var icon: CompressedTexture2D
+@export var combat_animation: PackedScene

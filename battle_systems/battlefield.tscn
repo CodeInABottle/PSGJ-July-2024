@@ -58,7 +58,8 @@ enemy_status_indicator = NodePath("../CanvasLayer/EnemyStatusIndicator")
 player_entity = NodePath("../PlayerEntity")
 entity_tracker = NodePath("../EntityTracker")
 
-[node name="Table" parent="." instance=ExtResource("9_ou7kj")]
+[node name="Table" parent="." node_paths=PackedStringArray("player_entity") instance=ExtResource("9_ou7kj")]
+player_entity = NodePath("../PlayerEntity")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

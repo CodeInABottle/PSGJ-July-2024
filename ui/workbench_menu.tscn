@@ -1,0 +1,150 @@
+[gd_scene load_steps=8 format=3 uid="uid://b3jitrn2a5kek"]
+
+[ext_resource type="Script" path="res://ui/workbench_menu_controller.gd" id="1_r45yu"]
+[ext_resource type="PackedScene" uid="uid://byaose271r1ig" path="res://ui/shadow_book.tscn" id="2_cgu6r"]
+[ext_resource type="Texture2D" uid="uid://bwmywlphj244f" path="res://assets/placeholders/workbench_concept4.png" id="3_rvifr"]
+[ext_resource type="PackedScene" uid="uid://c3wke3s6gk0mo" path="res://ui/shadow_details_panel.tscn" id="4_b1u5h"]
+[ext_resource type="PackedScene" uid="uid://u100efg2u1g6" path="res://ui/move_details_panel.tscn" id="5_1xbq0"]
+[ext_resource type="PackedScene" uid="uid://dtx7vn1bwo1x" path="res://ui/slotted_moves_container.tscn" id="5_4t0kl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_tguft"]
+size = Vector2(45, 43)
+
+[node name="WorkbenchMenu" type="Control" node_paths=PackedStringArray("shadow_slots", "creature_details_panel", "move_details_panel", "shadow_books_container", "slotted_moves_container", "close_button")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r45yu")
+shadow_slots = [null, null, null, null, null]
+creature_details_panel = NodePath("CreatureDetailsPanel")
+move_details_panel = NodePath("MoveDetailsPanel")
+shadow_books_container = NodePath("ShadowBooks")
+shadow_book_scene = ExtResource("2_cgu6r")
+slotted_moves_container = NodePath("SlottedMovesContainer")
+close_button = NodePath("CloseButton")
+
+[node name="ConceptBG" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_rvifr")
+expand_mode = 2
+
+[node name="CloseButton" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -640.0
+offset_top = 337.0
+offset_right = -618.0
+offset_bottom = 359.0
+grow_horizontal = 0
+theme_override_font_sizes/font_size = 10
+text = "X"
+
+[node name="CreatureDetailsPanel" parent="." instance=ExtResource("4_b1u5h")]
+visible = false
+layout_mode = 0
+offset_left = 460.0
+offset_top = 13.0
+offset_right = 633.0
+offset_bottom = 97.0
+grow_vertical = 1
+
+[node name="MoveDetailsPanel" parent="." instance=ExtResource("5_1xbq0")]
+visible = false
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -183.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 102.0
+grow_horizontal = 0
+
+[node name="ShadowBooks" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 8.0
+offset_top = -347.0
+offset_right = 451.0
+offset_bottom = -260.0
+grow_vertical = 0
+theme_override_constants/separation = 0
+
+[node name="SlottedMovesContainer" parent="." node_paths=PackedStringArray("workbench_menu") instance=ExtResource("5_4t0kl")]
+visible = false
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -183.0
+offset_top = -254.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 0
+grow_vertical = 0
+workbench_menu = NodePath("..")
+
+[node name="ShadowSlots" type="Node" parent="."]
+
+[node name="ShadowSlot1" type="Area2D" parent="ShadowSlots" groups=["shadow_slot"]]
+position = Vector2(42, 241)
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot1"]
+position = Vector2(33, -18)
+shape = SubResource("RectangleShape2D_tguft")
+
+[node name="ShadowSlot2" type="Area2D" parent="ShadowSlots" groups=["shadow_slot"]]
+position = Vector2(146, 170)
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot2"]
+position = Vector2(28.5, -12.5)
+shape = SubResource("RectangleShape2D_tguft")
+
+[node name="ShadowSlot3" type="Area2D" parent="ShadowSlots" groups=["shadow_slot"]]
+position = Vector2(269, 285)
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot3"]
+position = Vector2(27, -14)
+shape = SubResource("RectangleShape2D_tguft")
+
+[node name="ShadowSlot4" type="Area2D" parent="ShadowSlots" groups=["shadow_slot"]]
+position = Vector2(349, 156)
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot4"]
+position = Vector2(31, -18)
+shape = SubResource("RectangleShape2D_tguft")
+
+[node name="ShadowSlot5" type="Area2D" parent="ShadowSlots" groups=["shadow_slot"]]
+position = Vector2(357, 324)
+input_pickable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot5"]
+position = Vector2(26, -17)
+shape = SubResource("RectangleShape2D_tguft")
+
+[node name="ConfirmButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 147.0
+offset_top = 254.0
+offset_right = 202.0
+offset_bottom = 276.0
+theme_override_font_sizes/font_size = 10
+text = "CONFIRM"
