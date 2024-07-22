@@ -60,9 +60,9 @@ func generate_scene_from_string(save_string: String) -> void:
 func get_save_data() -> Dictionary:
 	var save_dictionary: Dictionary = PlayerStats.get_save_data() # initialize w/ player saves
 	var level_save_dictionary: Dictionary = LevelManager.get_save_data()
-	
+
 	save_dictionary.merge(level_save_dictionary)
-	
+
 	return save_dictionary
 
 func generate_save_string() -> String:
