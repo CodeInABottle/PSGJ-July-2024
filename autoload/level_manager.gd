@@ -192,10 +192,10 @@ func _unload_level() -> void:
 # Starts the async loading
 func _async_load(path: String, anchor: Node) -> void:
 	current_anchor = anchor
-	
+
 	if loaded_level and current_anchor == world_anchor: return
-	
-	
+
+
 	_loading_level_path = path
 	ResourceLoader.load_threaded_request(path)
 

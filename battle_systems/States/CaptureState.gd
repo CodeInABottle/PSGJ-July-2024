@@ -4,7 +4,7 @@ extends Node
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
 
 func enter() -> void:
-	PlayerStats.unlock_shadow(battlefield.enemy_name)
+	battlefield.captured_shadow()
 	combat_state_machine.switch_state("RewardState")
 
 func exit() -> void:
