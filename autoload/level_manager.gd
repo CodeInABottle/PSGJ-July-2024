@@ -91,8 +91,6 @@ var current_anchor: Node
 #endregion
 
 func _ready() -> void:
-	level_loaded.connect(_on_level_loaded)
-	menu_loaded.connect(on_menu_loaded)
 	master_node = get_node_or_null("/root/Main")
 	world_anchor = get_node_or_null("/root/Main/World")
 	canvas_layer = get_node_or_null("/root/Main/CanvasLayer")
@@ -101,6 +99,10 @@ func _ready() -> void:
 	# Check if using F5 or F6 to play scene
 	# -- On F6, nope out
 	if master_node == null: return
+
+	level_loaded.connect(_on_level_loaded)
+	menu_loaded.connect(on_menu_loaded)
+
 	load_world("main_menu")
 
 # Used to check the progress of the threaded load call

@@ -24,11 +24,12 @@ func _ready() -> void:
 		var data: BattlefieldAbility = load(ABILLITY_DATA_PATH + resource_file)
 		if data == null: continue
 		var file_name: String = resource_file.split(".", false)[0]
+		var ability_name: String = _pascal_string_split(file_name)
 
-		if file_name in _abilities: continue
+		if ability_name in _abilities: continue
 
-		data.initialize(file_name)
-		_abilities[file_name] = data
+		data.initialize(ability_name)
+		_abilities[ability_name] = data
 
 func get_enemy_data(enemy_name: String) -> BattlefieldEnemyData:
 	assert(enemy_name in _enemies, "Enemy name: " + enemy_name + " does not exist/isn't loaded.")
@@ -118,3 +119,12 @@ func get_abilities_from_shadow(shadow_name: String) -> Array[String]:
 	for ability: BattlefieldAbility in abilities:
 		data.push_back(ability.name)
 	return data
+
+func _pascal_string_split(string: String) -> String:
+	var snake_case: String = string.to_snake_case()
+	var words: Array[String] = []
+	words.assign(snake_case.split("_", false))
+	return " ".join(words.map(
+		func(word: String) -> String:
+			return word.capitalize()
+	))
