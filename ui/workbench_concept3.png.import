@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b2t1ujbeb6pnk"
-path="res://.godot/imported/outside.png-799495db66706d0223afeaf90d113f98.ctex"
+uid="uid://d3gjdv8lqdwqy"
+path="res://.godot/imported/workbench_concept3.png-c84851f6530433a8152284e795213ca4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/tiles/outside.png"
-dest_files=["res://.godot/imported/outside.png-799495db66706d0223afeaf90d113f98.ctex"]
+source_file="res://ui/workbench_concept3.png"
+dest_files=["res://.godot/imported/workbench_concept3.png-c84851f6530433a8152284e795213ca4.ctex"]
 
 [params]
 
