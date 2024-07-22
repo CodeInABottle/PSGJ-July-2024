@@ -1,7 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://byaose271r1ig"]
+[gd_scene load_steps=6 format=3 uid="uid://byaose271r1ig"]
 
 [ext_resource type="Script" path="res://ui/shadow_book_ui_controller.gd" id="1_rpatk"]
-[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_so324"]
+[ext_resource type="Texture2D" uid="uid://0kx43aonryus" path="res://assets/placeholders/Testtube.png" id="2_frea2"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_q0qf0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v45nl"]
 size = Vector2(24, 85)
@@ -18,30 +20,38 @@ corner_radius_top_right = 3
 corner_radius_bottom_right = 3
 corner_radius_bottom_left = 3
 
-[node name="ShadowBook" type="Panel" node_paths=PackedStringArray("shadow_texture", "highlight", "collision_area")]
+[node name="ShadowBook" type="Panel" node_paths=PackedStringArray("shadow_texture", "highlight", "collision_area", "contents_control")]
 custom_minimum_size = Vector2(24, 85)
 mouse_filter = 1
+theme_override_styles/panel = SubResource("StyleBoxEmpty_q0qf0")
 script = ExtResource("1_rpatk")
-shadow_texture = NodePath("TextureRect")
-highlight = NodePath("Highlight")
-collision_area = NodePath("TextureRect/Area2D")
+shadow_texture = NodePath("ContentsControl/TextureRect")
+highlight = NodePath("ContentsControl/Highlight")
+collision_area = NodePath("ContentsControl/TextureRect/Area2D")
+contents_control = NodePath("ContentsControl")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="ContentsControl" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 24.0
+offset_bottom = 85.0
+mouse_filter = 1
+
+[node name="TextureRect" type="TextureRect" parent="ContentsControl"]
 custom_minimum_size = Vector2(24, 85)
 layout_mode = 2
 offset_right = 24.0
 offset_bottom = 85.0
-texture = ExtResource("2_so324")
+texture = ExtResource("2_frea2")
 expand_mode = 1
 
-[node name="Area2D" type="Area2D" parent="TextureRect"]
+[node name="Area2D" type="Area2D" parent="ContentsControl/TextureRect"]
 input_pickable = false
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TextureRect/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ContentsControl/TextureRect/Area2D"]
 position = Vector2(12, 42.5)
 shape = SubResource("RectangleShape2D_v45nl")
 
-[node name="Highlight" type="Panel" parent="."]
+[node name="Highlight" type="Panel" parent="ContentsControl"]
 visible = false
 layout_mode = 2
 offset_right = 24.0
