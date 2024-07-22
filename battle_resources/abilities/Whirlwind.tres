@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://dd1eqwsw6fqw7"]
 
-[ext_resource type="Resource" uid="uid://bhpjbj0eamqst" path="res://battle_resources/Modifiers/20_1_turn_NTDMod.tres" id="1_s44ec"]
+[ext_resource type="Resource" uid="uid://bhpjbj0eamqst" path="res://battle_resources/Modifiers/20_1_turn_DoTMod.tres" id="1_s44ec"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_yq38l"]
 
 [resource]

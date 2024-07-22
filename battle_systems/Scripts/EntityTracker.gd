@@ -5,13 +5,15 @@ signal damage_taken(is_player: bool, data: Dictionary)
 
 class ModData:
 	var mod: BattlefieldAttackModifier
+	var turns: int = 0
 	var resonate: TypeChart.ResonateType
 	var efficiency_capture_rate: float
 
 	func _init(ability: BattlefieldAbility, modifier: BattlefieldAttackModifier) -> void:
 		mod = modifier
-		resonate = ability.resonate_type
-		efficiency_capture_rate = ability.capture_efficiency
+		turns = modifier.turns
+		resonate = ability["resonate_type"]
+		efficiency_capture_rate = ability["capture_efficiency"]
 
 	func get_data() -> Dictionary:
 		return {
@@ -67,26 +69,26 @@ func end_turn() -> void:
 		combat_state_machine.switch_state("EnemyState")
 
 func add_modification_stacks(ability: BattlefieldAbility) -> void:
-	for modification: BattlefieldAttackModifier in ability.modifiers:
+	for modification: BattlefieldAttackModifier in ability["modifiers"]:
 		var apply_to_player: bool = true
 		# As enemy_entity apply to self
-		if modification.apply_to_self and not is_players_turn:
+		if modification["apply_to_self"] and not is_players_turn:
 			apply_to_player = false
 		# As player_entity apply to enemy_entity
-		elif not modification.apply_to_self and is_players_turn:
+		elif not modification["apply_to_self"] and is_players_turn:
 			apply_to_player = false
 
 		var mod_data: ModData = ModData.new(ability, modification)
 
 		if apply_to_player:
-			if modification.is_attacked_triggered:
+			if modification["is_attacked_triggered"]:
 				if mod_data not in _player_signal_effects:
 					_player_signal_effects.push_back(mod_data)
 			else:
 				if mod_data not in _player_effects:
 					_player_effects.push_back(mod_data)
 		else:
-			if modification.is_attacked_triggered:
+			if modification["is_attacked_triggered"]:
 				if mod_data not in _enemy_signal_effects:
 					_enemy_signal_effects.push_back(mod_data)
 			else:
@@ -125,7 +127,7 @@ func _handle_effects(effects: Array[ModData]) -> bool:
 			"is_players_turn": is_players_turn
 		}
 		execute_data.merge(data.get_data())
-		skip_turn = data.execute(player_entity, enemy_entity, execute_data)
+		skip_turn = data.mod.execute(player_entity, enemy_entity, execute_data)
 
 		# Reduce effect's turns
 		data.turns -= 1
@@ -150,7 +152,7 @@ func _handle_signal_effects(effects: Array[ModData], data: Dictionary) -> void:
 		}
 		execute_data.merge(data, true)
 		execute_data.merge(modifier_data.get_data())
-		modifier_data.execute(player_entity, enemy_entity, execute_data)
+		modifier_data.mod.execute(player_entity, enemy_entity, execute_data)
 
 		# Reduce effect's turns
 		modifier_data.turns -= 1

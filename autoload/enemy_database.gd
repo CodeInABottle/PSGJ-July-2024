@@ -36,7 +36,7 @@ func get_enemy_data(enemy_name: String) -> BattlefieldEnemyData:
 	return _enemies[enemy_name]
 
 func get_ability_data(ability_name: String) -> BattlefieldAbility:
-	if ability_name not in _abilities: return null
+	assert(ability_name in _abilities, "Ability name: " + ability_name + " does not exist/isn't loaded.")
 
 	return _abilities[ability_name]
 

@@ -35,10 +35,14 @@ const LEVEL_DATA: Array[Dictionary] = [
 var _current_unlocked_shadows: Dictionary = {
 	"Living Tree": [	# TEMP: Hard coding "insertion" for now
 		"Branch", "Hydrate"
+	],
+	"Mailbox": [
+		"Whirlwind", "Delivery"
 	]
 }
 var _equipped_shadows: Array[String] = [
-	"Living Tree"	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
+	"Living Tree",	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
+	"Mailbox"
 ]
 
 var max_health: int = 200:

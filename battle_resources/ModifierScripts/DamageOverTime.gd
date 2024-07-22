@@ -21,10 +21,11 @@ func execute(player: BattlefieldPlayerEntity, enemy: BattlefieldAIEntity,
 		"capture_rate": additional_data["efficiency_capture_rate"],
 	}
 
+	# This is flipped to apply DoT
 	if apply_to_player:
-		player.take_damage(damage_data)
-	else:
 		enemy.take_damage(damage_data)
+	else:
+		player.take_damage(damage_data)
 
 	return false
 
