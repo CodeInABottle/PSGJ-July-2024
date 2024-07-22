@@ -4,7 +4,6 @@ extends Node
 
 func enter() -> void:
 	battlefield.won_battle()
-	battlefield.battle_finished.emit(true)
 
 func exit() -> void:
 	pass

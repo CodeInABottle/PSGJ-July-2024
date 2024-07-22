@@ -103,8 +103,8 @@ func on_close_button_pressed() -> void:
 	MenuManager.fader_controller.fade_out()
 
 func on_fade_out_complete() -> void:
-	LevelManager.unload_menu()
 	MenuManager.fader_controller.fade_out_complete.disconnect(on_fade_out_complete)
+	LevelManager.unload_menu()
 
 
 

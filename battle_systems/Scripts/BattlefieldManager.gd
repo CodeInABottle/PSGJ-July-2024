@@ -18,6 +18,8 @@ var battle_state: Dictionary = {
 
 # TEMP -- Remove on Integration
 func _ready() -> void:
+	LevelManager.menu_loaded.emit(self)
+	battle_finished.connect(on_battle_finished)
 	setup_battle("Living Tree")
 	#setup_battle("Mailbox")
 	#setup_battle("Niter Tiger")
@@ -63,3 +65,11 @@ func lost_battle() -> void:
 	battle_state["won_battle"] = false
 	print("Battle finished: ", battle_state)
 	battle_finished.emit(battle_state)
+
+func on_battle_finished(final_state: Dictionary) -> void:
+	MenuManager.fader_controller.fade_out_complete.connect(on_fade_out_complete)
+	MenuManager.fader_controller.fade_out()
+
+func on_fade_out_complete() -> void:
+	MenuManager.fader_controller.fade_out_complete.disconnect(on_fade_out_complete)
+	LevelManager.unload_menu()
