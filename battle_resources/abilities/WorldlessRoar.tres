@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://45w0iwb2s5kb"]
+
+[ext_resource type="Resource" uid="uid://c7r7fprj4esee" path="res://battle_resources/Modifiers/EarthAPUpMod.tres" id="1_igdf8"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_x10o3"]
+
+[resource]
+script = ExtResource("1_x10o3")
+damage = 60
+capture_efficiency = 1.1
+description = "Abilities with Earth components cost 1 additional AP for the next 2 turns."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_igdf8")])
+resonate_type = 1
+reagent_a = 1
+reagent_b = 1
+reagent_c = 0
+reagent_d = 0

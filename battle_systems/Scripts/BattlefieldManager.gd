@@ -11,13 +11,15 @@ var enemy_name: String
 
 # TEMP -- Remove on Integration
 func _ready() -> void:
-	setup_battle("Living Tree")
+	#setup_battle("Living Tree")
+	#setup_battle("Mailbox")
+	setup_battle("Niter Tiger")
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	table.ability_execute_requested.connect(
 		func(ability_name: String) -> void:
 			entity_tracker.enemy_entity.take_damage(EnemyDatabase.get_ability_damage_data(ability_name))
-			entity_tracker.add_modification_stacks(EnemyDatabase.get_ability_mods(ability_name))
+			entity_tracker.add_modification_stacks(EnemyDatabase.get_ability_data(ability_name))
 	)
 	candles.pressed.connect(
 		func() -> void:

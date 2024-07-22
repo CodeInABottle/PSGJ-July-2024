@@ -28,6 +28,7 @@ class Data:
 var _reagent_data: Array[Data] = []
 var _equipped_ability_cache: PackedStringArray
 var _description_out: bool = false
+var player_entity: BattlefieldPlayerEntity
 
 func _ready() -> void:
 	_equipped_ability_cache = PlayerStats.get_all_equipped_abilities()
@@ -82,9 +83,9 @@ func add(reagent: TypeChart.ResonateType) -> void:
 func clear(return_ap:bool = true) -> void:
 	for data: Data in _reagent_data:
 		if data.is_queued_for_deletion(): continue
-		data.follow_node.queue_free()
 		if return_ap:
-			PlayerStats.alchemy_points += 1
+			PlayerStats.alchemy_points += player_entity.get_cost(data.reagent)
+		data.follow_node.queue_free()
 	_reagent_data.clear()
 	recipe_controller.hide_pages()
 
@@ -136,6 +137,12 @@ func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:
 	return true
 
 func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
+	var ap_cost: int = player_entity.get_cost(reagent)
+	if PlayerStats.alchemy_points >= ap_cost:
+		PlayerStats.alchemy_points -= ap_cost
+	else:
+		return
+
 	# Create pathfollow2D
 	var follow_instance: PathFollow2D = PathFollow2D.new()
 	path_2d.add_child(follow_instance)
@@ -164,4 +171,3 @@ func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
 	data.animated_sprite = animated_reagent
 	data.reagent = reagent
 	_reagent_data.push_back(data)
-	PlayerStats.alchemy_points -= 1
