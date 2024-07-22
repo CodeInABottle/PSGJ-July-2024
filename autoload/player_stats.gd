@@ -40,7 +40,7 @@ var _current_unlocked_shadows: Dictionary = {
 		"Whirlwind", "Delivery"
 	],
 	"Niter Tiger": [
-		"WorldlessRoar", "Pounce", "SilverSpire"
+		"Worldless Roar", "Pounce", "Silver Spire"
 	]
 }
 var _equipped_shadows: Array[String] = [
