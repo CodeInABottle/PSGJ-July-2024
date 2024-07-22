@@ -1,22 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://dob0l3mbcorkh"]
+[gd_scene load_steps=7 format=3 uid="uid://dob0l3mbcorkh"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.gd" id="1_ecu7o"]
 [ext_resource type="PackedScene" uid="uid://c2va6bcydygut" path="res://battle_systems/Objects/ResonateIndicator/resonate_indicator.tscn" id="1_kpuy1"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_my1by"]
-bg_color = Color(0.42, 0.1008, 0.13804, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
-anti_aliasing = false
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0kao"]
+bg_color = Color(0.270588, 0.156863, 0.235294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_a7lkl"]
+bg_color = Color(0.67451, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vgi0n"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sshjb"]
-bg_color = Color(0.92, 0.2208, 0.302373, 1)
-corner_radius_top_left = 5
-corner_radius_top_right = 5
-corner_radius_bottom_right = 5
-corner_radius_bottom_left = 5
+bg_color = Color(0.85098, 0.341176, 0.388235, 1)
 anti_aliasing = false
 
 [node name="EnemyStatusIndicator" type="Control"]
@@ -25,7 +21,26 @@ anchors_preset = 0
 mouse_filter = 2
 script = ExtResource("1_ecu7o")
 
-[node name="ProgressBar" type="ProgressBar" parent="."]
+[node name="HPTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+one_shot = true
+
+[node name="Secondary" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 632.0
+offset_top = 2.0
+offset_right = 637.0
+offset_bottom = 184.0
+theme_override_styles/background = SubResource("StyleBoxFlat_p0kao")
+theme_override_styles/fill = SubResource("StyleBoxFlat_a7lkl")
+step = 1.0
+value = 75.0
+rounded = true
+fill_mode = 2
+show_percentage = false
+
+[node name="Primary" type="ProgressBar" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
 anchors_preset = 1
@@ -34,9 +49,9 @@ anchor_right = 1.0
 offset_left = 632.0
 offset_top = 2.0
 offset_right = 637.0
-offset_bottom = 186.0
+offset_bottom = 184.0
 grow_horizontal = 0
-theme_override_styles/background = SubResource("StyleBoxFlat_my1by")
+theme_override_styles/background = SubResource("StyleBoxEmpty_vgi0n")
 theme_override_styles/fill = SubResource("StyleBoxFlat_sshjb")
 step = 1.0
 value = 44.0
@@ -48,3 +63,5 @@ show_percentage = false
 unique_name_in_owner = true
 position = Vector2(605, 27)
 scale = Vector2(0.75, 0.75)
+
+[connection signal="timeout" from="HPTimer" to="." method="_on_hp_timer_timeout"]

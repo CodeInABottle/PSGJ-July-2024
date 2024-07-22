@@ -21,8 +21,8 @@ var _health: int:
 	set(value):
 		if value < _health:
 			hurt_player.play("Hurt")
+			enemy_status_indicator.update_health(_health-value)
 		_health = clampi(value, 0, _data.max_health)
-		enemy_status_indicator.update_health(_health)
 var _capture_value: int:
 	set(value):
 		_capture_value = value
