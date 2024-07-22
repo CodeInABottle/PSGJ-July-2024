@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=2 format=3 uid="uid://b4prswpggurdw"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_1q26j"]
+
+[resource]
+script = ExtResource("1_1q26j")
+name = "Earth Worm"
+description = ""
+max_health = 150
+resonate = 8
+domain = &"Dumb"
+abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([])
