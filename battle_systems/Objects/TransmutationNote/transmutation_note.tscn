@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://b035efluh7a4k"]
+
+[ext_resource type="Texture2D" uid="uid://bdknluokdawne" path="res://assets/sprites/combat/UI/TransmutationNote.png" id="1_bxxj5"]
+[ext_resource type="Script" path="res://battle_systems/Objects/TransmutationNote/transmutation_note.gd" id="1_x1tgs"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_abr06"]
+radius = 47.2719
+
+[node name="TransmutationNote" type="Area2D"]
+monitoring = false
+script = ExtResource("1_x1tgs")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("1_bxxj5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.036217, -6.61166)
+scale = Vector2(1, 1)
+shape = SubResource("CircleShape2D_abr06")
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
