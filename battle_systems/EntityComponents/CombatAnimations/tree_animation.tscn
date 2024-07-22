@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://4ot7j8uxc8vg"]
+
+[ext_resource type="PackedScene" uid="uid://c8eqvyy7cmo0f" path="res://battle_systems/EntityComponents/combat_animation.tscn" id="1_co2ee"]
+[ext_resource type="Texture2D" uid="uid://bkmxiq8odj85j" path="res://assets/sprites/mobs/combat_tree.png" id="2_mk3eo"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sl26i"]
+atlas = ExtResource("2_mk3eo")
+region = Rect2(0, 0, 576, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_km443"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sl26i")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="TreeAnimation" instance=ExtResource("1_co2ee")]
+sprite_frames = SubResource("SpriteFrames_km443")
+animation = &"Idle"
