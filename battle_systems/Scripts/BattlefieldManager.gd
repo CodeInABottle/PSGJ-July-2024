@@ -1,6 +1,8 @@
 class_name BattlefieldManager
 extends Node
 
+signal battle_finished(battle_data: Dictionary)
+
 @onready var entity_tracker: BattlefieldEntityTracker = %EntityTracker
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
 @onready var table: BattlefieldTable = $Table
@@ -8,12 +10,17 @@ extends Node
 
 var _finished_setup: bool = false
 var enemy_name: String
+var battle_state: Dictionary = {
+	"captured": false,
+	"shadow_name": "",
+	"won_battle": false
+}
 
 # TEMP -- Remove on Integration
 func _ready() -> void:
-	#setup_battle("Living Tree")
+	setup_battle("Living Tree")
 	#setup_battle("Mailbox")
-	setup_battle("Niter Tiger")
+	#setup_battle("Niter Tiger")
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	table.ability_execute_requested.connect(
@@ -29,6 +36,7 @@ func setup_battle(enemy_name_encounter: String) -> void:
 			entity_tracker.end_turn()
 	)
 	enemy_name = enemy_name_encounter
+	battle_state["shadow_name"] = enemy_name_encounter
 	entity_tracker.initialize(enemy_name_encounter)
 
 	entity_tracker.end_turn()
@@ -39,3 +47,19 @@ func _physics_process(delta: float) -> void:
 	if not _finished_setup: return
 
 	combat_state_machine.update(delta)
+
+func captured_shadow() -> void:
+	battle_state["captured"] = true
+
+func won_battle() -> void:
+	if battle_state["captured"]:
+		PlayerStats.unlock_shadow(enemy_name)
+	battle_state["won_battle"] = true
+	print("Battle finished: ", battle_state)
+	battle_finished.emit(battle_state)
+
+func lost_battle() -> void:
+	battle_state["captured"] = false
+	battle_state["won_battle"] = false
+	print("Battle finished: ", battle_state)
+	battle_finished.emit(battle_state)

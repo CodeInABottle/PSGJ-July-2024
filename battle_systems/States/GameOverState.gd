@@ -1,7 +1,9 @@
 extends Node
 
+@onready var battlefield: BattlefieldManager = $"../.."
+
 func enter() -> void:
-	print("GameOver")
+	battlefield.lost_battle()
 
 func exit() -> void:
 	pass

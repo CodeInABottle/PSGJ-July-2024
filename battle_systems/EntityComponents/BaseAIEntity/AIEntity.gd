@@ -58,6 +58,8 @@ func take_damage(damage_data: Dictionary) -> void:
 	if damage_data["resonate_type"] == _data.resonate:
 		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
 		flash_player.play("Flash")
+	if _health <= 0:
+		entity_tracker.end_turn()
 
 func has_ap() -> bool:
 	return _alchemy_points > 0
