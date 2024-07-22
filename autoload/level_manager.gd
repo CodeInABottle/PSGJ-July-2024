@@ -30,6 +30,8 @@ extends Node
 
 ## Emitted by other scripts; self connects to this
 signal level_loaded(level: Node)
+signal menu_unloaded()
+signal menu_loaded()
 
 ## Emitted by this script; Others connect to this
 # Used to let individual nodes the state of the game
@@ -68,6 +70,7 @@ var _is_paused: bool = false
 # Anchors
 var master_node: Node
 var world_anchor: Node
+var workbench_anchor: Node
 var canvas_layer: CanvasLayer
 
 ## Tracking Data
@@ -77,18 +80,23 @@ var _entry_id: int = -1
 var _loading_level_path: String = ""
 # Can be used to access this level and any of its content, if applicable
 var loaded_level: Node = null
+var loaded_menu: Node = null
+
 # Can be used to check what is the currently loaded level
 var region_name: String
 var current_modifiers: Array[String] = []
 var current_checkpoint: String = "start"
+var current_anchor: Node
 
 #endregion
 
 func _ready() -> void:
 	level_loaded.connect(_on_level_loaded)
+	menu_loaded.connect(on_menu_loaded)
 	master_node = get_node_or_null("/root/Main")
 	world_anchor = get_node_or_null("/root/Main/World")
 	canvas_layer = get_node_or_null("/root/Main/CanvasLayer")
+	workbench_anchor = get_node_or_null("/root/Main/Workbench")
 
 	# Check if using F5 or F6 to play scene
 	# -- On F6, nope out
@@ -97,7 +105,9 @@ func _ready() -> void:
 
 # Used to check the progress of the threaded load call
 func _process(_delta: float) -> void:
-	if loaded_level or _loading_level_path == "": return
+	if (loaded_level or _loading_level_path == "") and current_anchor == world_anchor: return
+	elif (loaded_menu or _loading_level_path == "") and current_anchor == workbench_anchor: return
+	elif current_anchor == null : return
 	_async_update(_loading_level_path)
 
 # Used to load the first level only
@@ -121,8 +131,23 @@ func load_world(world_name: String, entry_id: int=0) -> bool:
 	region_name = world_name
 
 	# Begin loading
-	_async_load(region)
+	_async_load(region, world_anchor)
 	return true
+
+func load_menu(menu_name: String, args: Array = []) -> void:
+	match menu_name:
+		"workbench":
+			disable_world_node()
+			_async_load("res://ui/workbench_menu.tscn", workbench_anchor)
+		"battle":
+			pass
+
+func unload_menu() -> void:
+	if loaded_menu: loaded_menu.queue_free()
+	loaded_menu = null
+	enable_world_node()
+	menu_unloaded.emit()
+	current_anchor = null
 
 # Used to pause the WorldAnchor Node and its children
 # Intention: Use when loading a "sub" level like a build's interior or battle scene
@@ -160,12 +185,16 @@ func _unload_level() -> void:
 	if loaded_level: loaded_level.queue_free()
 	loaded_level = null
 	_loading_level_path = ""
+	current_anchor = null
 	region_name = ""
 
 # Starts the async loading
-func _async_load(path: String) -> void:
-	if loaded_level: return
-
+func _async_load(path: String, anchor: Node) -> void:
+	current_anchor = anchor
+	
+	if loaded_level and current_anchor == world_anchor: return
+	
+	
 	_loading_level_path = path
 	ResourceLoader.load_threaded_request(path)
 
@@ -179,8 +208,12 @@ func _async_update(path: String) -> void:
 		# FOR WHO EVER IS READING THIS, THIS LINE BELOW STAYS LIKE THIS
 		# YOU SHALL NOT CHANGE IT OR IT'LL BREAK
 		await get_tree().create_timer(0.0).timeout	# Wait a full engine frame
-		world_anchor.add_child(level)
-		loaded_level = level
+		current_anchor.add_child(level)
+		if current_anchor == world_anchor:
+			loaded_level = level
+		elif current_anchor == workbench_anchor:
+			loaded_menu = level
+
 	elif status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:	# Used to grab loading progress
 		pass
 	elif status == ResourceLoader.THREAD_LOAD_FAILED:
@@ -198,6 +231,11 @@ func _on_level_loaded(level: Node) -> void:
 
 	# Tell listening node, you ok to continue
 	game_unpaused.emit()
+
+func on_menu_loaded(menu: Node) -> void:
+	loaded_menu = menu
+	loaded_level.hide()
+	MenuManager.fader_controller.fade_in()
 
 func get_save_data() -> Dictionary:
 	return {

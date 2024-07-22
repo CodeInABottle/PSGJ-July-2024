@@ -7,6 +7,7 @@ extends Control
 @export var shadow_books_container: HBoxContainer
 @export var shadow_book_scene: PackedScene
 @export var slotted_moves_container: SlottedMovesContainer
+@export var close_button: Button
 
 var shadow_book_map: Dictionary = {}
 var current_selected_index: int = -1
@@ -18,8 +19,10 @@ const MAX_BOOKS: int = 17
 signal click_released()
 
 func _ready() -> void:
+	LevelManager.menu_loaded.emit(self)
 	gui_input.connect(on_gui_input)
 	slotted_moves_container.move_selected.connect(on_move_selected)
+	close_button.pressed.connect(on_close_button_pressed)
 	
 	create_shadow_books()
 	initialize_shadow_books.call_deferred()
@@ -95,9 +98,13 @@ func on_move_selected(move_name: String) -> void:
 	move_details_panel.update_details(move_name)
 	move_details_panel.show()
 
+func on_close_button_pressed() -> void:
+	MenuManager.fader_controller.fade_out_complete.connect(on_fade_out_complete)
+	MenuManager.fader_controller.fade_out()
 
-
-
+func on_fade_out_complete() -> void:
+	LevelManager.unload_menu()
+	MenuManager.fader_controller.fade_out_complete.disconnect(on_fade_out_complete)
 
 
 

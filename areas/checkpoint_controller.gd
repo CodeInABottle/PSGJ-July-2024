@@ -1,6 +1,8 @@
 class_name Checkpoint
 extends InteractableHost
 
+signal checkpoint_interaction_ended()
+
 @export var menu_layer: CanvasLayer
 @export var checkpoint_name: String
 
@@ -31,6 +33,7 @@ func on_interaction_quick_closed() -> void:
 func _on_interaction_ended() -> void:
 	menu_layer.hide()
 	MenuManager.fader_controller.fade_from_translucent()
+	checkpoint_interaction_ended.emit()
 
 func set_checkpoint() -> void:
 	LevelManager.update_checkpoint(checkpoint_name)

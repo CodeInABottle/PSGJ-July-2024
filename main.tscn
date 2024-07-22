@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://dyelqemredawb"]
+[gd_scene load_steps=12 format=3 uid="uid://dyelqemredawb"]
 
 [ext_resource type="Script" path="res://ui/fader_layer_controller.gd" id="1_ng1aa"]
 [ext_resource type="PackedScene" uid="uid://b644l6iqorxwf" path="res://dialogue/dialogue_ui.tscn" id="2_l2msi"]
@@ -83,18 +83,54 @@ tracks/0/keys = {
 "values": [Color(0, 0, 0, 0), Color(0, 0, 0, 0.501961)]
 }
 
+[sub_resource type="Animation" id="Animation_68ky2"]
+resource_name = "translucent_to_black"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenFader:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 0.501961), Color(0, 0, 0, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_cb0y4"]
+resource_name = "black_to_translucent"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ScreenFader:color")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(0, 0, 0, 1), Color(0, 0, 0, 0.501961)]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_gyse4"]
 _data = {
 "RESET": SubResource("Animation_vnk6h"),
+"black_to_translucent": SubResource("Animation_cb0y4"),
 "fade_from_translucent": SubResource("Animation_4at3w"),
 "fade_in": SubResource("Animation_til6i"),
 "fade_out": SubResource("Animation_sugaa"),
-"fade_to_translucent": SubResource("Animation_6wo0i")
+"fade_to_translucent": SubResource("Animation_6wo0i"),
+"translucent_to_black": SubResource("Animation_68ky2")
 }
 
 [node name="Main" type="Node"]
 
 [node name="World" type="Node" parent="."]
+
+[node name="Workbench" type="CanvasLayer" parent="."]
 
 [node name="FaderLayer" type="CanvasLayer" parent="." node_paths=PackedStringArray("fader_player")]
 script = ExtResource("1_ng1aa")
