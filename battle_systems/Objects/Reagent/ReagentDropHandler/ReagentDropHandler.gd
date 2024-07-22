@@ -45,14 +45,14 @@ func _ready() -> void:
 	recipe_controller.mouse_hovered.connect(
 		func(ability_name: String) -> void:
 			for reagent: BattlfieldReagent in reagents:
-				if reagent._is_holding: return
+				if reagent.is_holding(): return
 
 			var info: Dictionary = EnemyDatabase.get_ability_info(ability_name)
 			if info.is_empty(): return
 
 			description_label.text = "Damage: " + str(info["damage"])
 			if not info["description"].is_empty():
-				description_label.text += "\nAdditional Effects: " + info["description"]
+				description_label.text += "\nAdditional Effects:\n" + info["description"]
 			text_box_animator.play("SlideIn")
 			_description_out = true
 	)

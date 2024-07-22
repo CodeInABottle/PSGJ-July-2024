@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c1qeksica432t"
-path="res://.godot/imported/Scroll.png-7705bf80270bc4822ab82d79131d7faf.ctex"
+uid="uid://ctbj4dcrlobke"
+path="res://.godot/imported/combat_fish.png-9d98aa08619bf3505382ef9cea65bb42.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/Scroll.png"
-dest_files=["res://.godot/imported/Scroll.png-7705bf80270bc4822ab82d79131d7faf.ctex"]
+source_file="res://assets/sprites/mobs/combat_fish.png"
+dest_files=["res://.godot/imported/combat_fish.png-9d98aa08619bf3505382ef9cea65bb42.ctex"]
 
 [params]
 

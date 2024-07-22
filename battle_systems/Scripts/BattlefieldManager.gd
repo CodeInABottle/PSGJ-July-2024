@@ -20,9 +20,10 @@ var battle_state: Dictionary = {
 func _ready() -> void:
 	LevelManager.menu_loaded.emit(self)
 	battle_finished.connect(_on_battle_finished)
-	setup_battle("Living Tree")
+	#setup_battle("Living Tree")
 	#setup_battle("Mailbox")
 	#setup_battle("Niter Tiger")
+	setup_battle("Fighting Fish")
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	table.ability_execute_requested.connect(
@@ -67,6 +68,8 @@ func lost_battle() -> void:
 	battle_finished.emit(battle_state)
 
 func _on_battle_finished(_final_state: Dictionary) -> void:
+	if MenuManager.fader_controller.fade_out_complete == null: return
+
 	MenuManager.fader_controller.fade_out_complete.connect(_on_fade_out_complete)
 	MenuManager.fader_controller.fade_out()
 

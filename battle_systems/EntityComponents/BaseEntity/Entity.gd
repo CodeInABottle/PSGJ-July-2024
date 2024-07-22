@@ -58,8 +58,8 @@ func reset_costs() -> void:
 func regen_ap() -> void:
 	pass
 
-func take_damage(_damage_data: Dictionary) -> void:
+func heal(_healing: int) -> void:
 	pass
 
-func _update_health(_value: int) -> void:
+func take_damage(_damage_data: Dictionary) -> void:
 	pass

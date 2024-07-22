@@ -23,7 +23,7 @@ func _ready() -> void:
 	gui_input.connect(on_gui_input)
 	slotted_moves_container.move_selected.connect(on_move_selected)
 	close_button.pressed.connect(on_close_button_pressed)
-	
+
 	create_shadow_books()
 	initialize_shadow_books.call_deferred()
 
@@ -35,7 +35,7 @@ func on_gui_input(event: InputEvent) -> void:
 
 func create_shadow_books() -> void:
 	unlocked_shadows = PlayerStats.get_all_unlocked_shadows()
-	
+
 	for index: int in range(unlocked_shadows.size()):
 		var new_shadow_book: ShadowBookUI = shadow_book_scene.instantiate()
 		shadow_books_container.add_child(new_shadow_book)

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bwmywlphj244f"
-path="res://.godot/imported/workbench_concept4.png-b4c3aaa22ea24d0274d927f07c830732.ctex"
+uid="uid://diqxdfopg6kw8"
+path="res://.godot/imported/Page.png-9e7c3d811e6e7ffbf4af92b7b37073db.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/workbench_concept4.png"
-dest_files=["res://.godot/imported/workbench_concept4.png-b4c3aaa22ea24d0274d927f07c830732.ctex"]
+source_file="res://assets/sprites/combat/UI/Page.png"
+dest_files=["res://.godot/imported/Page.png-9e7c3d811e6e7ffbf4af92b7b37073db.ctex"]
 
 [params]
 

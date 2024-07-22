@@ -25,7 +25,7 @@ func set_data(recipe_name: String, resonate_type: TypeChart.ResonateType,
 			reagents[idx].hide()
 
 	resonance.frame = TypeChart.TEXTURE_LOOK_UP_TABLE[resonate_type]
-	animation_player.play("Hover")
+	animation_player.play("Wiggle")
 
 func get_ability_name() -> String:
 	return label.text

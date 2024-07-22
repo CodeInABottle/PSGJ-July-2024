@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://cv1lpk7t02cdf"]
+
+[ext_resource type="PackedScene" uid="uid://c8eqvyy7cmo0f" path="res://battle_systems/EntityComponents/combat_animation.tscn" id="1_87tj1"]
+[ext_resource type="Texture2D" uid="uid://ctbj4dcrlobke" path="res://assets/sprites/mobs/combat_fish.png" id="2_w1q0j"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x85iy"]
+atlas = ExtResource("2_w1q0j")
+region = Rect2(0, 0, 576, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_csyh2"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x85iy")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="FishAnimation" instance=ExtResource("1_87tj1")]
+sprite_frames = SubResource("SpriteFrames_csyh2")
+animation = &"Idle"
