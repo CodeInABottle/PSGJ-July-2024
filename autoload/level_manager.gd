@@ -70,7 +70,7 @@ var _is_paused: bool = false
 # Anchors
 var master_node: Node
 var world_anchor: Node
-var workbench_anchor: Node
+var menu_anchor: Node
 var canvas_layer: CanvasLayer
 
 ## Tracking Data
@@ -96,7 +96,7 @@ func _ready() -> void:
 	master_node = get_node_or_null("/root/Main")
 	world_anchor = get_node_or_null("/root/Main/World")
 	canvas_layer = get_node_or_null("/root/Main/CanvasLayer")
-	workbench_anchor = get_node_or_null("/root/Main/Workbench")
+	menu_anchor = get_node_or_null("/root/Main/Menu")
 
 	# Check if using F5 or F6 to play scene
 	# -- On F6, nope out
@@ -106,7 +106,7 @@ func _ready() -> void:
 # Used to check the progress of the threaded load call
 func _process(_delta: float) -> void:
 	if (loaded_level or _loading_level_path == "") and current_anchor == world_anchor: return
-	elif (loaded_menu or _loading_level_path == "") and current_anchor == workbench_anchor: return
+	elif (loaded_menu or _loading_level_path == "") and current_anchor == menu_anchor: return
 	elif current_anchor == null : return
 	_async_update(_loading_level_path)
 
@@ -138,9 +138,10 @@ func load_menu(menu_name: String, args: Array = []) -> void:
 	match menu_name:
 		"workbench":
 			disable_world_node()
-			_async_load("res://ui/workbench_menu.tscn", workbench_anchor)
+			_async_load("res://ui/workbench_menu.tscn", menu_anchor)
 		"battle":
-			pass
+			disable_world_node()
+			_async_load("res://battle_systems/battlefield.tscn", menu_anchor)
 
 func unload_menu() -> void:
 	if loaded_menu: loaded_menu.queue_free()
@@ -211,7 +212,7 @@ func _async_update(path: String) -> void:
 		current_anchor.add_child(level)
 		if current_anchor == world_anchor:
 			loaded_level = level
-		elif current_anchor == workbench_anchor:
+		elif current_anchor == menu_anchor:
 			loaded_menu = level
 
 	elif status == ResourceLoader.THREAD_LOAD_IN_PROGRESS:	# Used to grab loading progress

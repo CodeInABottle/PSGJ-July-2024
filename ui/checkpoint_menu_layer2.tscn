@@ -19,13 +19,14 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.286275, 0.176471, 0.0823529, 1)
 
-[node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("slot_shadows_button", "hear_lore_button", "menu_close_button", "lore_panel", "lore_list")]
+[node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("slot_shadows_button", "hear_lore_button", "menu_close_button", "lore_panel", "lore_list", "battle_button")]
 script = ExtResource("1_qhipo")
 slot_shadows_button = NodePath("OptionsPanel/Options/SlotShadowsButton")
 hear_lore_button = NodePath("OptionsPanel/Options/HearLoreButton")
 menu_close_button = NodePath("OptionsPanel/Options/MenuCloseButton")
 lore_panel = NodePath("OptionsPanel/LorePanel")
 lore_list = NodePath("OptionsPanel/LorePanel/ScrollContainer/LoreList")
+battle_button = NodePath("OptionsPanel/Options/BattleButton")
 
 [node name="OptionsPanel" type="Panel" parent="."]
 anchors_preset = 9
@@ -58,6 +59,10 @@ SHADOWS"
 layout_mode = 2
 text = "HEAR 
 LORE"
+
+[node name="BattleButton" type="Button" parent="OptionsPanel/Options"]
+layout_mode = 2
+text = "BATTLE"
 
 [node name="MenuCloseButton" type="Button" parent="OptionsPanel/Options"]
 layout_mode = 2

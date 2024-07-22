@@ -7,13 +7,16 @@ extends CanvasLayer
 @export var lore_panel: Panel
 @export var lore_list: ItemList
 @export var checkpoint: Checkpoint
+@export var battle_button: Button
 
+var pending_load: String = ""
 
 func _ready() -> void:
 	slot_shadows_button.pressed.connect(on_slot_shadows_pressed)
 	hear_lore_button.pressed.connect(on_hear_lore_pressed)
 	visibility_changed.connect(on_visibility_changed)
 	checkpoint.checkpoint_interaction_ended.connect(on_interaction_ended)
+	battle_button.pressed.connect(on_battle_pressed)
 	
 	menu_close_button.pressed.connect(on_menu_close_pressed)
 	
@@ -26,11 +29,18 @@ func on_menu_close_pressed() -> void:
 func on_slot_shadows_pressed() -> void:
 	hide_all_parts()
 	hide()
-	
+	pending_load = "workbench"
 	LevelManager.menu_unloaded.connect(on_menu_unloaded)
 	MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)
 	MenuManager.fader_controller.translucent_to_black()
-	
+
+func on_battle_pressed() -> void:
+	hide_all_parts()
+	hide()
+	pending_load = "battle"
+	LevelManager.menu_unloaded.connect(on_menu_unloaded)
+	MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)
+	MenuManager.fader_controller.translucent_to_black()
 
 func on_hear_lore_pressed() -> void:
 	hide_all_parts()
@@ -45,7 +55,10 @@ func hide_all_parts() -> void:
 	lore_list.deselect_all()
 
 func on_translucent_to_black_complete() -> void:
-	LevelManager.load_menu("workbench")
+	if pending_load == "workbench":
+		LevelManager.load_menu("workbench")
+	elif pending_load == "battle":
+		LevelManager.load_menu("battle")
 	
 func on_black_to_translucent_complete() -> void:
 	show()
@@ -63,5 +76,7 @@ func on_menu_unloaded() -> void:
 	
 	MenuManager.fader_controller.black_to_translucent_complete.connect(on_black_to_translucent_complete)
 	MenuManager.fader_controller.black_to_translucent()
+	
+	pending_load = ""
 	
 	
