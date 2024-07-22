@@ -2,6 +2,7 @@ extends Node
 
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
 @onready var entity_tracker: BattlefieldEntityTracker = %EntityTracker
+@onready var enemy_entity: BattlefieldAIEntity = %EnemyEntity
 
 func enter() -> void:
 	# End battle if died of effects
@@ -12,7 +13,7 @@ func enter() -> void:
 	entity_tracker.enemy_entity.issue_actions()
 
 func exit() -> void:
-	pass
+	enemy_entity.reset_costs()
 
 func update(_delta: float) -> void:
 	pass

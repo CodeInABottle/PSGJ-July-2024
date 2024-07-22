@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://btm85fkrskl8a"]
+
+[ext_resource type="PackedScene" uid="uid://c8eqvyy7cmo0f" path="res://battle_systems/EntityComponents/combat_animation.tscn" id="1_mv0sa"]
+[ext_resource type="Texture2D" uid="uid://bhykns6ij1wgt" path="res://assets/sprites/mobs/combat_cat.png" id="2_7622l"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0dih"]
+atlas = ExtResource("2_7622l")
+region = Rect2(0, 0, 576, 240)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ke0ut"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0dih")
+}],
+"loop": true,
+"name": &"Idle",
+"speed": 5.0
+}]
+
+[node name="CatAnimation" instance=ExtResource("1_mv0sa")]
+sprite_frames = SubResource("SpriteFrames_ke0ut")
+animation = &"Idle"

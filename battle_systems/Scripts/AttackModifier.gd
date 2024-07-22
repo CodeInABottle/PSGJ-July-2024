@@ -3,6 +3,7 @@ extends Resource
 
 @export var apply_to_self: bool = false
 @export var is_attacked_triggered: bool = false
+@export var immediate: bool = false
 @export var turns: int = 0
 
 # Returns true on skip turn

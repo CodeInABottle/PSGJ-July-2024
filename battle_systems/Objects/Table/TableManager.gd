@@ -3,6 +3,8 @@ extends Node2D
 
 signal ability_execute_requested(ability_name: String)
 
+@export var player_entity: BattlefieldPlayerEntity
+
 @onready var hp_flask_bar: FlaskBar = %HPFlaskBar
 @onready var ap_flask_bar: FlaskBar = %APFlaskBar
 @onready var reagent_drop_handler: BattlefieldReagentDropLocation = %ReagentDropHandler
@@ -22,6 +24,7 @@ func _ready() -> void:
 		func(ability_name: String) -> void:
 			ability_execute_requested.emit(ability_name)
 	)
+	reagent_drop_handler.player_entity = player_entity
 
 func _on_ap_updated() -> void:
 	ap_flask_bar.update_value(PlayerStats.alchemy_points)
