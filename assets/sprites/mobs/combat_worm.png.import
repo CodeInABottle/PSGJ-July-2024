@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c32ok3i7wrxtu"
-path="res://.godot/imported/overworld_cat.png-db72c2279069834052f6edbb46acc408.ctex"
+uid="uid://dmuqq3slqsorv"
+path="res://.godot/imported/combat_worm.png-89055462f4bfddefca2d9716c00e27c0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mobs/overworld_cat.png"
-dest_files=["res://.godot/imported/overworld_cat.png-db72c2279069834052f6edbb46acc408.ctex"]
+source_file="res://assets/sprites/mobs/combat_worm.png"
+dest_files=["res://.godot/imported/combat_worm.png-89055462f4bfddefca2d9716c00e27c0.ctex"]
 
 [params]
 

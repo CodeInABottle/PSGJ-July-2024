@@ -35,7 +35,8 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 	_health = data.max_health
 	_capture_value = data.max_health
 	htn_planner.domain_name = data.domain
-	sprite_2d.texture = data.sprite
+	# TODO: Replace with new system
+	#sprite_2d.texture = data.sprite
 
 	var alchemy_data: Dictionary = EnemyDatabase.get_alchemy_data(_data.name)
 	_max_alchemy_points = alchemy_data["ap"]

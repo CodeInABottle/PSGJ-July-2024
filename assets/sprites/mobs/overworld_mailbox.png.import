@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c32ok3i7wrxtu"
-path="res://.godot/imported/overworld_cat.png-db72c2279069834052f6edbb46acc408.ctex"
+uid="uid://p6ho2500x4wi"
+path="res://.godot/imported/overworld_mailbox.png-3ec1fb8e695f5d750e1d347230b60c18.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mobs/overworld_cat.png"
-dest_files=["res://.godot/imported/overworld_cat.png-db72c2279069834052f6edbb46acc408.ctex"]
+source_file="res://assets/sprites/mobs/overworld_mailbox.png"
+dest_files=["res://.godot/imported/overworld_mailbox.png-3ec1fb8e695f5d750e1d347230b60c18.ctex"]
 
 [params]
 
