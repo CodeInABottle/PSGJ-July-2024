@@ -60,11 +60,15 @@ grow_vertical = 1
 
 [node name="MoveDetailsPanel" parent="." instance=ExtResource("5_1xbq0")]
 visible = false
-layout_mode = 0
-offset_left = 455.0
-offset_top = 10.0
-offset_right = 638.0
-offset_bottom = 74.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -183.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 102.0
+grow_horizontal = 0
 
 [node name="ShadowBooks" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -86,9 +90,9 @@ anchor_left = 1.0
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -181.0
-offset_top = -255.0
-offset_right = -8.0
+offset_left = -183.0
+offset_top = -254.0
+offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 0
 grow_vertical = 0
