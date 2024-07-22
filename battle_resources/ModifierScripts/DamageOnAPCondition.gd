@@ -1,9 +1,9 @@
-class_name BattlefieldNextTurnDamageModifier
+class_name BattlefieldDamageOnAPCondMod
 extends BattlefieldAttackModifier
 
 @export var damage: int = 0
+@export var has_ap: bool = true
 
-# Returns true on skip turn
 func execute(player: BattlefieldPlayerEntity, enemy: BattlefieldAIEntity,
 		additional_data: Dictionary) -> bool:
 	var apply_to_player: bool = BattlefieldEntityTracker.do_apply_to_player(
@@ -16,11 +16,12 @@ func execute(player: BattlefieldPlayerEntity, enemy: BattlefieldAIEntity,
 		"capture_rate": additional_data["efficiency_capture_rate"],
 	}
 
-	# This is flipped to apply DoT
+	# This is flipped to apply immediate damage on opponent
 	if apply_to_player:
-		enemy.take_damage(damage_data)
+		if has_ap == (PlayerStats.alchemy_points > 0):
+			player.take_damage(damage_data)
 	else:
-		player.take_damage(damage_data)
+		if has_ap == enemy.has_ap():
+			enemy.take_damage(damage_data)
 
 	return false
-

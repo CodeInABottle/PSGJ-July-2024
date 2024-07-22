@@ -75,6 +75,12 @@ func get_ability_recipe(ability_name: String) -> Array[TypeChart.ResonateType]:
 	reagent = (_abilities[ability_name] as BattlefieldAbility).reagent_b
 	if reagent != TypeChart.ResonateType.NONE:
 		data.push_back(reagent)
+	reagent = (_abilities[ability_name] as BattlefieldAbility).reagent_c
+	if reagent != TypeChart.ResonateType.NONE:
+		data.push_back(reagent)
+	reagent = (_abilities[ability_name] as BattlefieldAbility).reagent_d
+	if reagent != TypeChart.ResonateType.NONE:
+		data.push_back(reagent)
 
 	return data
 

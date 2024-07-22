@@ -38,18 +38,22 @@ var _current_unlocked_shadows: Dictionary = {
 	],
 	"Mailbox": [
 		"Whirlwind", "Delivery"
+	],
+	"Niter Tiger": [
+		"WorldlessRoar", "Pounce", "SilverSpire"
 	]
 }
 var _equipped_shadows: Array[String] = [
 	"Living Tree",	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
-	"Mailbox"
+	"Mailbox",
+	"Niter Tiger"
 ]
 
 var max_health: int = 200:
 	set(value):
 		max_health = value
 
-var level: int = 0:
+var level: int = 2:	# Temp: should be 0
 	set(value):
 		level = clampi(value, 0, 4)
 
@@ -68,7 +72,7 @@ var alchemy_points: int:
 
 func _ready() -> void:
 	health = max_health
-	level = 0
+	#level = 0
 	alchemy_points = get_max_alchemy_points()
 
 func reset_alchemy_points() -> void:
@@ -108,7 +112,7 @@ func get_all_equipped_abilities() -> PackedStringArray:
 	return data
 
 func load_data(data: Dictionary) -> void:
-	level = data.get("level", 0)
+	#level = data.get("level", 0)
 	health = data.get("health", health)
 	max_health = data.get("max_health", max_health)
 	player.teleport_to(data.get("position", player.get_global_position()))

@@ -51,11 +51,16 @@ func regen_ap() -> void:
 	_alchemy_points = clampi(_alchemy_points + _alchemy_regen, 0, _max_alchemy_points)
 
 func take_damage(damage_data: Dictionary) -> void:
+	if damage_data["damage"] == 0: return
+	print("enemy taken damage: ", damage_data["damage"])
 	entity_tracker.damage_taken.emit(false, damage_data)
 	_health -= damage_data["damage"]
 	if damage_data["resonate_type"] == _data.resonate:
 		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
 		flash_player.play("Flash")
+
+func has_ap() -> bool:
+	return _alchemy_points > 0
 
 func is_dead() -> bool:
 	return _health <= 0

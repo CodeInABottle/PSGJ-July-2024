@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BattlefieldDamageOnAPCondMod" load_steps=2 format=3 uid="uid://d3dqkftia6ksy"]
+
+[ext_resource type="Script" path="res://battle_resources/ModifierScripts/DamageOnAPCondition.gd" id="1_3rkom"]
+
+[resource]
+script = ExtResource("1_3rkom")
+damage = 40
+has_ap = true
+apply_to_self = false
+is_attacked_triggered = false
+immediate = true
+turns = 1

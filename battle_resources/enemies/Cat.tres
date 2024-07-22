@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=6 format=3 uid="uid://coyjvuah4xrk2"]
+
+[ext_resource type="Resource" uid="uid://45w0iwb2s5kb" path="res://battle_resources/abilities/WorldlessRoar.tres" id="1_2l20h"]
+[ext_resource type="PackedScene" uid="uid://btm85fkrskl8a" path="res://battle_systems/EntityComponents/CombatAnimations/cat_animation.tscn" id="1_b0c50"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_fdqer"]
+[ext_resource type="Resource" uid="uid://o8qhfxt5q7da" path="res://battle_resources/abilities/Pounce.tres" id="2_ygnaa"]
+[ext_resource type="Resource" uid="uid://0vnynh3rllw3" path="res://battle_resources/abilities/SilverSpire.tres" id="3_tyr4w"]
+
+[resource]
+script = ExtResource("1_fdqer")
+name = "Niter Tiger"
+description = ""
+max_health = 600
+resonate = 7
+domain = &"Dumb"
+abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_2l20h"), ExtResource("2_ygnaa"), ExtResource("3_tyr4w")])
+combat_animation = ExtResource("1_b0c50")

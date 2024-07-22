@@ -14,6 +14,8 @@ enum ResonateType {
 	METAL = 0b1111	# All
 }
 
+enum CostType { REDUCE, INCREASE, SET }
+
 const TEXTURE_LOOK_UP_TABLE: Dictionary = {
 	TypeChart.ResonateType.EARTH: 6,
 	TypeChart.ResonateType.WATER: 7,
