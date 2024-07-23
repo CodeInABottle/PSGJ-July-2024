@@ -6,6 +6,7 @@ signal pickup_interaction_ended()
 @export var menu_layer: PickupLayer
 @export var item_name: String
 @export var item_sprite: Sprite2D
+@export var quantity: int
 
 func _ready() -> void:
 	interactable.interaction_started.connect(on_interaction_started)
@@ -33,10 +34,12 @@ func on_interaction_advanced(_interactable: Interactable) -> void:
 func end_interaction() -> void:
 	print("pickup interaction ended")
 	interactable.end_interaction()
+	PlayerStats.add_item(item_name, quantity)
 	_on_interaction_ended()
 
 func on_interaction_quick_closed() -> void:
 	print("pickup interaction quick-closed")
+	PlayerStats.add_item(item_name, quantity)
 	_on_interaction_ended()
 
 func _on_interaction_ended() -> void:
