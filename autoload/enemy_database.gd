@@ -2,6 +2,10 @@ extends Node
 
 const ENEMY_DATA_PATH: String = "res://battle_resources/enemies/"
 const ABILLITY_DATA_PATH: String = "res://battle_resources/abilities/"
+const EARTH_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/EarthOrbStill.png")
+const FIRE_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/FireOrbStill.png")
+const WATER_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WaterOrbStill.png")
+const WIND_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WindOrbStill.png")
 
 # { enemy_name (String) : enemy_data (BattlefieldEnemyData) }
 var _enemies: Dictionary = {}
@@ -104,12 +108,28 @@ func get_ability_info(ability_name: String) -> Dictionary:
 	if ability_name not in _abilities: return {}
 
 	return  {
-		"damage": _abilities[ability_name].damage,
-		"description": _abilities[ability_name].description,
-		"resonate": _abilities[ability_name].resonate_type,
-		"efficiency": _abilities[ability_name].capture_efficiency,
+		"damage": _abilities[ability_name]["damage"],
+		"description": _abilities[ability_name]["description"],
+		"resonate": _abilities[ability_name]["resonate_type"],
+		"efficiency": _abilities[ability_name]["capture_efficiency"],
 		"cost": get_ability_recipe(ability_name)
 	}
+
+func get_ability_recipe_textures(ability_name: String) -> Array[Texture]:
+	if ability_name not in _abilities: return []
+	var component_data: Array[TypeChart.ResonateType] = get_ability_recipe(ability_name)
+	var data: Array[Texture] = []
+	for component: TypeChart.ResonateType in component_data:
+		match component:
+			TypeChart.ResonateType.AIR:
+				data.push_back(WIND_ORB_STILL)
+			TypeChart.ResonateType.EARTH:
+				data.push_back(EARTH_ORB_STILL)
+			TypeChart.ResonateType.FIRE:
+				data.push_back(FIRE_ORB_STILL)
+			TypeChart.ResonateType.WATER:
+				data.push_back(WATER_ORB_STILL)
+	return data
 
 func get_abilities_from_shadow(shadow_name: String) -> Array[String]:
 	if shadow_name not in _enemies: return []

@@ -44,8 +44,7 @@ func _ready() -> void:
 	)
 	recipe_controller.mouse_hovered.connect(
 		func(ability_name: String) -> void:
-			for reagent: BattlfieldReagent in reagents:
-				if reagent.is_holding(): return
+			if is_holding_something(): return
 
 			var info: Dictionary = EnemyDatabase.get_ability_info(ability_name)
 			if info.is_empty(): return
@@ -88,6 +87,11 @@ func clear(return_ap:bool = true) -> void:
 		data.follow_node.queue_free()
 	_reagent_data.clear()
 	recipe_controller.hide_pages()
+
+func is_holding_something() -> bool:
+	for reagent: BattlfieldReagent in reagents:
+		if reagent.is_holding(): return true
+	return false
 
 func _validate_recipe() -> void:
 	# Run validation checks

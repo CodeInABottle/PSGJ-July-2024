@@ -5,6 +5,8 @@ signal pressed
 signal mouse_hovered
 signal mouse_left
 
+@export var wiggle_on_set: bool = true
+
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var label: Label = %Label
 @onready var reagents: Array[TextureRect] = [
@@ -25,7 +27,14 @@ func set_data(recipe_name: String, resonate_type: TypeChart.ResonateType,
 			reagents[idx].hide()
 
 	resonance.frame = TypeChart.TEXTURE_LOOK_UP_TABLE[resonate_type]
+	if wiggle_on_set:
+		animation_player.play("Wiggle")
+
+func wiggle() -> void:
 	animation_player.play("Wiggle")
+
+func stop_wiggling() -> void:
+	animation_player.stop()
 
 func get_ability_name() -> String:
 	return label.text

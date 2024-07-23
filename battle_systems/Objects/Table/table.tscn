@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://1vrxk6abwdej"]
+[gd_scene load_steps=28 format=3 uid="uid://1vrxk6abwdej"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/Table/TableManager.gd" id="1_y84yb"]
 [ext_resource type="PackedScene" uid="uid://cp1tiqnusfo0i" path="res://battle_systems/Objects/FlaskBar/flask_bar.tscn" id="2_pbss5"]
@@ -12,8 +12,21 @@
 [ext_resource type="Texture2D" uid="uid://oc0uvfudcq8b" path="res://assets/sprites/combat/Pillow.png" id="5_he0xl"]
 [ext_resource type="PackedScene" uid="uid://n18skymi2j51" path="res://battle_systems/Objects/Reagent/AnimatedReagents/fire_reagent.tscn" id="7_grexn"]
 [ext_resource type="PackedScene" uid="uid://b5swfwvw6yjli" path="res://battle_systems/Objects/Reagent/AnimatedReagents/earth_reagent.tscn" id="7_n5o13"]
+[ext_resource type="PackedScene" uid="uid://b035efluh7a4k" path="res://battle_systems/Objects/TransmutationNote/transmutation_note.tscn" id="8_0qp11"]
 [ext_resource type="PackedScene" uid="uid://drs0uh4tm1sp0" path="res://battle_systems/Objects/Reagent/AnimatedReagents/wind_reagent.tscn" id="8_fm7ma"]
 [ext_resource type="Texture2D" uid="uid://ba5j2cean1qxd" path="res://assets/sprites/combat/PaperTowelRoll.png" id="12_0nh0g"]
+[ext_resource type="Texture2D" uid="uid://bxdlrhqm655er" path="res://assets/sprites/combat/UI/TransmutationPage.png" id="16_1b4qc"]
+[ext_resource type="PackedScene" uid="uid://cymv6tc63tjr" path="res://battle_systems/Objects/RecipePageDisplay/recipe_page_display.tscn" id="17_f21l0"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1f1k6"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ku0i7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eh17p"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8jqwv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sui5u"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_aypqo"]
 radius = 16.0312
@@ -47,6 +60,17 @@ position = Vector2(388, 288)
 scale = Vector2(1.5, 1.5)
 texture = ExtResource("3_sfy3u")
 
+[node name="BookButton" type="Button" parent="Book"]
+offset_left = -49.0
+offset_top = -32.0
+offset_right = 52.0
+offset_bottom = 27.0
+theme_override_styles/normal = SubResource("StyleBoxEmpty_1f1k6")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_ku0i7")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_eh17p")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_8jqwv")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_sui5u")
+
 [node name="Cloth" type="Sprite2D" parent="."]
 position = Vector2(65, 304)
 texture = ExtResource("4_l2mye")
@@ -74,6 +98,12 @@ unique_name_in_owner = true
 position = Vector2(176, 192)
 speed = 0.5
 reagents = [NodePath("../Pillow/Water"), NodePath("../Pillow/Fire"), NodePath("../Pillow/Earth"), NodePath("../Pillow/Air"), NodePath("../Pillow/PaperTowel")]
+
+[node name="TransmutationNote" parent="." node_paths=PackedStringArray("drop_location", "transmutation_page") instance=ExtResource("8_0qp11")]
+position = Vector2(272, 298)
+scale = Vector2(0.5, 0.5)
+drop_location = NodePath("../ReagentDropHandler")
+transmutation_page = NodePath("../CanvasLayer/TransmutationPage")
 
 [node name="Pillow" type="Sprite2D" parent="."]
 position = Vector2(184, 273)
@@ -129,3 +159,42 @@ texture = ExtResource("12_0nh0g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pillow/PaperTowel"]
 position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_hidn5")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="TransmutationPage" type="TextureRect" parent="CanvasLayer"]
+visible = false
+self_modulate = Color(0.270588, 0.156863, 0.235294, 1)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -128.0
+offset_top = -169.0
+offset_right = 128.0
+offset_bottom = 87.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_1b4qc")
+
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/TransmutationPage"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -120.0
+offset_top = -136.0
+offset_right = 136.0
+offset_bottom = 120.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("16_1b4qc")
+
+[node name="RecipePageDisplay" parent="CanvasLayer" instance=ExtResource("17_f21l0")]
+unique_name_in_owner = true
+visible = false
+
+[connection signal="pressed" from="Book/BookButton" to="." method="_on_book_button_pressed"]
