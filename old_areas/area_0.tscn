@@ -943,6 +943,7 @@ content_keys = Array[String](["main"])
 script = ExtResource("1_dqcw1")
 
 [node name="TileMap" type="TileMap" parent="."]
+z_index = -1
 y_sort_enabled = true
 tile_set = SubResource("TileSet_gm11w")
 format = 2

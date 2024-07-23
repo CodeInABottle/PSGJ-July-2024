@@ -42,6 +42,7 @@ layer_4/z_index = 2
 layer_4/tile_data = PackedInt32Array()
 
 [node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_sprite", "player_camera", "player_phantom_camera") instance=ExtResource("2_358nu")]
+collision_mask = 2
 player_sprite = NodePath("../PlayerVisualBody")
 player_camera = NodePath("../Camera2D")
 player_phantom_camera = NodePath("../PhantomCamera2D")

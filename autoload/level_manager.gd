@@ -59,7 +59,7 @@ var _levels: Dictionary = {
 # checkpoints
 # checkpoint_name (String) : [area_name (String), entry_id(int)]
 var _checkpoints: Dictionary = {
-	"start" : ["Newbert Town", 0],
+	"start" : ["area_0", 0],
 	"home" : ["area_0", 3],
 }
 
@@ -67,6 +67,7 @@ var _checkpoints: Dictionary = {
 # -- Used by `load_entry_point()` only
 # -- entry_id used is 0
 var _entry_point: String = "Newbert Town"
+#var _entry_point: String = "area_0"
 
 # used by is_paused() utility function
 var _is_paused: bool = false
