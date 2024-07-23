@@ -8,6 +8,7 @@ signal ability_execute_requested(ability_name: String)
 @onready var hp_flask_bar: FlaskBar = %HPFlaskBar
 @onready var ap_flask_bar: FlaskBar = %APFlaskBar
 @onready var reagent_drop_handler: BattlefieldReagentDropLocation = %ReagentDropHandler
+@onready var recipe_page_display: RecipePageDisplay = %RecipePageDisplay
 
 func _exit_tree() -> void:
 	PlayerStats.ap_updated.disconnect(_on_ap_updated)
@@ -31,3 +32,6 @@ func _on_ap_updated() -> void:
 
 func _on_hp_updated() -> void:
 	hp_flask_bar.update_value(PlayerStats.health)
+
+func _on_book_button_pressed() -> void:
+	recipe_page_display.open()
