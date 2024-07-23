@@ -1025,4 +1025,4 @@ dialogue = SubResource("Resource_uxvu1")
 
 [node name="SetupTimer" parent="." instance=ExtResource("16_7wqli")]
 
-[node name="RigidBody2D" parent="." instance=ExtResource("18_vekbr")]
+[node name="Pebble" parent="." instance=ExtResource("18_vekbr")]

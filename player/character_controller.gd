@@ -6,6 +6,7 @@ extends CharacterBody2D
 @export var player_sprite: AnimatedSprite2D
 @export var player_camera: Camera2D
 @export var player_phantom_camera: PhantomCamera2D
+@export var sprint_scale: float = 2.0
 
 var in_interaction: bool = false
 
@@ -46,7 +47,7 @@ func _physics_process(_delta: float) -> void:
 	if not in_interaction:
 		input_direction = Input.get_vector("left", "right", "forward", "backward")
 		if input_direction:
-			velocity = input_direction * player_speed
+			velocity = input_direction * player_speed + input_direction * player_speed * (sprint_scale - 1) * float(Input.is_action_pressed("sprint"))
 			player_sprite.play()
 		else:
 			velocity = Vector2.ZERO
