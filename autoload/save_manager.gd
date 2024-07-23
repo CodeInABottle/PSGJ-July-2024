@@ -48,14 +48,14 @@ func generate_scene_from_string(save_string: String) -> void:
 	elif is_save_string_modifier(save_string):
 		pass
 	elif save_string == "":
-		LevelManager.load_world("area_0")
+		LevelManager.load_entry_point()
 	elif Marshalls.base64_to_variant(save_string) is Dictionary:
 		var save_dictionary: Dictionary = Marshalls.base64_to_variant(save_string)
 		current_save_dictionary = save_dictionary
 		load_pending = true
 		LevelManager.load_world(current_save_dictionary["area"])
 	else:
-		LevelManager.load_world("area_0")
+		LevelManager.load_entry_point()
 
 func get_save_data() -> Dictionary:
 	var save_dictionary: Dictionary = PlayerStats.get_save_data() # initialize w/ player saves

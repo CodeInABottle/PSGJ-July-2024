@@ -1,5 +1,5 @@
 class_name GameArea
-extends Node2D
+extends Node
 
 @onready var warp_points: Node = %WarpPoints
 @onready var setup_timer: Timer = %SetupTimer

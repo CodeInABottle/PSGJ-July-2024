@@ -46,6 +46,10 @@ signal world_enabled
 # ie. { "level_name": "path to scene" }
 var _levels: Dictionary = {
 "main_menu": "res://ui/main_menu.tscn",
+"Newbert Town": "res://regions/Region1_CentraDivide/area_0_newbert_town.tscn",
+
+
+# OLD -- Deprecated
 "area_0": "res://old_areas/area_0.tscn",
 "area_1": "res://old_areas/area_1.tscn",
 "area_0_cellar": "res://old_areas/area_0_cellar.tscn",
@@ -55,14 +59,14 @@ var _levels: Dictionary = {
 # checkpoints
 # checkpoint_name (String) : [area_name (String), entry_id(int)]
 var _checkpoints: Dictionary = {
-	"start" : ["area_0", 0],
+	"start" : ["Newbert Town", 0],
 	"home" : ["area_0", 3],
 }
 
 # Set as the first level to be loaded
 # -- Used by `load_entry_point()` only
 # -- entry_id used is 0
-var _entry_point: String = "main_menu"
+var _entry_point: String = "Newbert Town"
 
 # used by is_paused() utility function
 var _is_paused: bool = false
@@ -103,9 +107,7 @@ func _ready() -> void:
 	level_loaded.connect(_on_level_loaded)
 	menu_loaded.connect(on_menu_loaded)
 
-	# Replaced as intended
-	load_entry_point()
-	#load_world("main_menu")
+	load_world("main_menu")
 
 # Used to check the progress of the threaded load call
 func _process(_delta: float) -> void:

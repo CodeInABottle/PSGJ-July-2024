@@ -37,6 +37,7 @@ layer_3/y_sort_enabled = true
 layer_3/z_index = 1
 layer_3/tile_data = PackedInt32Array()
 layer_4/name = "Shadows"
+layer_4/modulate = Color(0.313726, 0.313726, 0.313726, 0.67451)
 layer_4/z_index = 2
 layer_4/tile_data = PackedInt32Array()
 
