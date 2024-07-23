@@ -62,6 +62,7 @@ folder_colors={
 "res://battle_resources/": "purple",
 "res://battle_systems/": "blue",
 "res://player/": "blue",
+"res://regions/": "orange",
 "res://ui/": "pink"
 }
 
