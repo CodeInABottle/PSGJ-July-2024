@@ -943,7 +943,6 @@ content_keys = Array[String](["main"])
 script = ExtResource("1_dqcw1")
 start_markers = [NodePath("Markers/Start"), NodePath("Markers/Area1"), NodePath("Markers/Area0Cellar"), NodePath("Markers/HomeCheckpoint")]
 setup_timer = NodePath("SetupTimer")
-metadata/_edit_vertical_guides_ = [101.0]
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = SubResource("TileSet_gm11w")
