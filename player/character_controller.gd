@@ -47,8 +47,12 @@ func _physics_process(_delta: float) -> void:
 	if not in_interaction:
 		input_direction = Input.get_vector("left", "right", "forward", "backward")
 		if input_direction:
-			velocity = input_direction * player_speed + input_direction * player_speed * (sprint_scale - 1) * float(Input.is_action_pressed("sprint"))
-			player_sprite.play()
+			if Input.is_action_pressed("sprint"):
+				velocity = input_direction * player_speed * sprint_scale
+				player_sprite.play("walk", sprint_scale)
+			else:
+				velocity = input_direction * player_speed
+				player_sprite.play("walk", 1.0)
 		else:
 			velocity = Vector2.ZERO
 			player_sprite.stop()

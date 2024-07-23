@@ -53,6 +53,9 @@ var _equipped_shadows: Array[String] = [
 	"Fighting Fish"
 ]
 
+# item_name: String : quantity: int
+var invetory_items: Dictionary = {}
+
 var max_health: int = 200:
 	set(value):
 		max_health = value
@@ -114,6 +117,28 @@ func get_all_equipped_abilities() -> PackedStringArray:
 			if ability_name in data: continue
 			data.push_back(ability_name)
 	return data
+
+func add_item(item_name: String, quantity: int = 1) -> void:
+	if has_item(item_name):
+		invetory_items[item_name] = invetory_items[item_name] + 1
+	else:
+		invetory_items[item_name] = 1
+
+func remove_item(item_name: String, quantity: int = 1) -> bool:
+	if has_item(item_name):
+		if invetory_items[item_name] >= quantity:
+			invetory_items[item_name] = invetory_items[item_name] - quantity
+			return true
+		else:
+			return false
+	else:
+		return false
+
+func get_inventory_items() -> Dictionary:
+	return invetory_items
+
+func has_item(item_name: String) -> bool:
+	return invetory_items.keys().has(item_name)
 
 func load_data(data: Dictionary) -> void:
 	#level = data.get("level", 0)
