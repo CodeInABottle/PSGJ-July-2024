@@ -7,7 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dkv0v1k16bwca" path="res://regions/RegionBase/Cameras/area_camera.tscn" id="4_llmu3"]
 [ext_resource type="PackedScene" uid="uid://ix7hbnaiolav" path="res://regions/RegionBase/Cameras/area_phantom_camera.tscn" id="5_a6bnf"]
 
-[node name="BaseArea" type="Node"]
+[node name="BaseArea" type="Node2D"]
 script = ExtResource("1_m5i3c")
 
 [node name="WarpPoints" type="Node" parent="."]
@@ -41,9 +41,9 @@ layer_4/modulate = Color(0.313726, 0.313726, 0.313726, 0.67451)
 layer_4/z_index = 2
 layer_4/tile_data = PackedInt32Array()
 
-[node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_sprite", "player_camera", "player_phantom_camera") instance=ExtResource("2_358nu")]
+[node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_visual_body", "player_camera", "player_phantom_camera") instance=ExtResource("2_358nu")]
 collision_mask = 2
-player_sprite = NodePath("../PlayerVisualBody")
+player_visual_body = NodePath("../PlayerVisualBody")
 player_camera = NodePath("../Camera2D")
 player_phantom_camera = NodePath("../PhantomCamera2D")
 

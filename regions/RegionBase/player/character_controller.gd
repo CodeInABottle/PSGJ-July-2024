@@ -3,10 +3,12 @@ extends CharacterBody2D
 
 @export var player_speed: float = 65.0
 
-@export var player_sprite: AnimatedSprite2D
+@export var player_visual_body: Node2D
 @export var player_camera: Camera2D
 @export var player_phantom_camera: PhantomCamera2D
 @export var sprint_scale: float = 2.0
+
+var player_sprite: AnimatedSprite2D
 
 var in_interaction: bool = false
 
@@ -21,10 +23,11 @@ const VISUAL_BODY_LERP_SCALE: float = 10.0
 
 func _ready() -> void:
 	PlayerStats.player = self
+	player_sprite = player_visual_body.get_child(0)
 	init_pickup_area.call_deferred()
 
 func init_pickup_area() -> void:
-	player_interact_area =  player_sprite.get_child(0)
+	player_interact_area =  player_visual_body.get_child(1)
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -65,14 +68,14 @@ func _process(delta: float) -> void:
 	move_sprite(delta)
 
 func move_sprite(delta: float) -> void:
-	var start_position: Vector2 = player_sprite.get_global_position()
+	var start_position: Vector2 = player_visual_body.get_global_position()
 	var desired_position: Vector2 = get_global_position() + COLLISION_OFFSET
 
 	var updated_position: Vector2 = start_position.lerp(desired_position, delta * VISUAL_BODY_LERP_SCALE)
-	player_sprite.set_global_position(updated_position)
+	player_visual_body.set_global_position(updated_position)
 
 	if input_direction:
-		var interact_area_position: Vector2 = player_sprite.get_global_position() + input_direction * PICKUP_OFFSET
+		var interact_area_position: Vector2 = player_visual_body.get_global_position() + input_direction * PICKUP_OFFSET
 		player_interact_area.set_global_position(interact_area_position)
 
 		var input_angle: float = input_direction.angle()
@@ -86,7 +89,7 @@ func move_sprite(delta: float) -> void:
 
 func teleport_to(new_position: Vector2) -> void:
 	set_global_position(new_position)
-	player_sprite.set_global_position(new_position)
+	player_visual_body.set_global_position(new_position)
 	player_camera.set_global_position(new_position + Vector2(100.0, 100.0))
 
 func interact() -> void:
