@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://k704gfmp5077"]
 
-[ext_resource type="TileSet" uid="uid://bqfc86kpg6r7b" path="res://regions/global_tile_set.tres" id="1_r8vqy"]
+[ext_resource type="TileSet" uid="uid://bqfc86kpg6r7b" path="res://assets/sprites/tiles/global_tile_set.tres" id="1_r8vqy"]
 
 [node name="Area0_Newbert_Town" type="TileMap"]
 y_sort_enabled = true

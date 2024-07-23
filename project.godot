@@ -56,13 +56,17 @@ enabled=PackedStringArray("res://addons/HTNDomainManager/plugin.cfg", "res://add
 
 folder_colors={
 "res://addons/": "purple",
-"res://areas/": "orange",
 "res://assets/": "red",
 "res://autoload/": "teal",
 "res://battle_resources/": "purple",
 "res://battle_systems/": "blue",
-"res://player/": "blue",
+"res://dialogue/": "blue",
+"res://game_manager/": "blue",
+"res://inventory/": "blue",
+"res://old_areas/": "orange",
 "res://regions/": "orange",
+"res://regions/RegionBase/Cameras/": "blue",
+"res://regions/RegionBase/player/": "blue",
 "res://ui/": "pink"
 }
 

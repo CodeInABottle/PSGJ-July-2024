@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfqw64oerqxlo"]
 
-[ext_resource type="Script" path="res://player/character_controller.gd" id="1_hau7n"]
+[ext_resource type="Script" path="res://regions/RegionBase/player/character_controller.gd" id="1_hau7n"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lhcgd"]
 radius = 8.0
