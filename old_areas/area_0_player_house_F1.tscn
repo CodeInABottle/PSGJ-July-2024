@@ -1,15 +1,15 @@
 [gd_scene load_steps=16 format=3 uid="uid://dfufpf2cok0k1"]
 
-[ext_resource type="Script" path="res://areas/area_controller.gd" id="1_ns68h"]
+[ext_resource type="Script" path="res://regions/RegionBase/area_controller.gd" id="1_ns68h"]
 [ext_resource type="Texture2D" uid="uid://b7gd1o0128eix" path="res://assets/placeholders/tilemap_packed.png" id="2_7on8k"]
 [ext_resource type="Texture2D" uid="uid://mej5p3q5u7c4" path="res://assets/placeholders/interior.png" id="3_nswct"]
-[ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://areas/transition_area.tscn" id="4_cjm02"]
+[ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://old_areas/transition_area.tscn" id="4_cjm02"]
 [ext_resource type="Texture2D" uid="uid://dkqveu4j6mms0" path="res://assets/sprites/tiles/overworld_interior_01.png" id="4_m7im2"]
-[ext_resource type="PackedScene" uid="uid://dkv0v1k16bwca" path="res://areas/area_camera.tscn" id="7_b3x7l"]
-[ext_resource type="PackedScene" uid="uid://bfqw64oerqxlo" path="res://player/player_physics_body.tscn" id="7_ka3iu"]
-[ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://player/player_visual_body.tscn" id="8_a5htn"]
-[ext_resource type="PackedScene" uid="uid://ix7hbnaiolav" path="res://areas/area_phantom_camera.tscn" id="8_arq6a"]
-[ext_resource type="PackedScene" uid="uid://dbdse8704j148" path="res://areas/setup_timer.tscn" id="10_5rqta"]
+[ext_resource type="PackedScene" uid="uid://dkv0v1k16bwca" path="res://regions/RegionBase/Cameras/area_camera.tscn" id="7_b3x7l"]
+[ext_resource type="PackedScene" uid="uid://bfqw64oerqxlo" path="res://regions/RegionBase/player/player_physics_body.tscn" id="7_ka3iu"]
+[ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://regions/RegionBase/player/player_visual_body.tscn" id="8_a5htn"]
+[ext_resource type="PackedScene" uid="uid://ix7hbnaiolav" path="res://regions/RegionBase/Cameras/area_phantom_camera.tscn" id="8_arq6a"]
+[ext_resource type="PackedScene" uid="uid://dbdse8704j148" path="res://old_areas/setup_timer.tscn" id="10_5rqta"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wo2h"]
 texture = ExtResource("2_7on8k")
@@ -589,10 +589,8 @@ sources/2 = SubResource("TileSetAtlasSource_xnngi")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_nt8sg"]
 size = Vector2(35, 28.5)
 
-[node name="Area0PlayerHouseF1" type="Node2D" node_paths=PackedStringArray("start_markers", "setup_timer")]
+[node name="Area0PlayerHouseF1" type="Node2D"]
 script = ExtResource("1_ns68h")
-start_markers = [NodePath("Markers/StartMarker")]
-setup_timer = NodePath("SetupTimer")
 metadata/_edit_vertical_guides_ = [101.0]
 
 [node name="TileMap" type="TileMap" parent="."]
@@ -604,9 +602,10 @@ layer_1/tile_data = PackedInt32Array(-196607, 2, 0, -131071, 2, 0, -65535, 2, 0,
 layer_2/name = "walls"
 layer_2/tile_data = PackedInt32Array(-196607, 65538, 0, -196606, 131074, 0, -196605, 131074, 0, -196604, 196610, 0, -196603, 196610, 2, -196602, 262146, 2, -196601, 2, 2, -131071, 65538, 2, -65535, 65538, 2, 1, 65538, 2, 65537, 65538, 2, -131065, 131074, 2, -65529, 131074, 2, 7, 131074, 2, 65543, 131074, 2, 131073, 65538, 2, 131079, 131074, 2, 196609, 196610, 2, 196615, 262146, 2, 262146, 131074, 0, 262147, 131074, 0, 262149, 131074, 0, 262150, 131074, 0, 196610, 262146, 0, 196611, 262146, 0, 196613, 262146, 0, 196614, 262146, 0)
 
-[node name="Markers" type="Node" parent="."]
+[node name="WarpPoints" type="Node" parent="."]
+unique_name_in_owner = true
 
-[node name="StartMarker" type="Marker2D" parent="Markers"]
+[node name="StartMarker" type="Marker2D" parent="WarpPoints"]
 position = Vector2(138, 25)
 
 [node name="TransitionAreas" type="Node" parent="."]
@@ -631,3 +630,4 @@ player_phantom_camera = NodePath("../PhantomCamera2D")
 [node name="PlayerVisualBody" parent="." instance=ExtResource("8_a5htn")]
 
 [node name="SetupTimer" parent="." instance=ExtResource("10_5rqta")]
+unique_name_in_owner = true

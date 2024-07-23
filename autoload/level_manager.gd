@@ -46,10 +46,14 @@ signal world_enabled
 # ie. { "level_name": "path to scene" }
 var _levels: Dictionary = {
 "main_menu": "res://ui/main_menu.tscn",
-"area_0": "res://areas/area_0.tscn",
-"area_1": "res://areas/area_1.tscn",
-"area_0_cellar": "res://areas/area_0_cellar.tscn",
-"area_0_player_house_F1": "res://areas/area_0_player_house_F1.tscn",
+"Newbert Town": "res://regions/Region1_CentraDivide/area_0_newbert_town.tscn",
+
+
+# OLD -- Deprecated
+"area_0": "res://old_areas/area_0.tscn",
+"area_1": "res://old_areas/area_1.tscn",
+"area_0_cellar": "res://old_areas/area_0_cellar.tscn",
+"area_0_player_house_F1": "res://old_areas/area_0_player_house_F1.tscn",
 }
 
 # checkpoints
@@ -62,7 +66,8 @@ var _checkpoints: Dictionary = {
 # Set as the first level to be loaded
 # -- Used by `load_entry_point()` only
 # -- entry_id used is 0
-var _entry_point: String = ""
+var _entry_point: String = "Newbert Town"
+#var _entry_point: String = "area_0"
 
 # used by is_paused() utility function
 var _is_paused: bool = false

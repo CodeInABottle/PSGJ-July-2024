@@ -48,11 +48,16 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ikv"]
 
-[node name="PlayerVisualBody" type="AnimatedSprite2D"]
-z_index = 2
+[node name="Node2D" type="Node2D"]
+z_index = 1
+y_sort_enabled = true
+
+[node name="PlayerVisualBody" type="AnimatedSprite2D" parent="."]
 texture_filter = 1
+position = Vector2(0, 10)
 sprite_frames = SubResource("SpriteFrames_tsjyv")
 animation = &"walk"
+offset = Vector2(0, -20)
 
 [node name="PlayerPickupArea" type="Area2D" parent="."]
 position = Vector2(24, 0)

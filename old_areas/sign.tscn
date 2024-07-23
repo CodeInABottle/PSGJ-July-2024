@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cjbgt3ne5vyjk"]
 
-[ext_resource type="Script" path="res://areas/sign_controller.gd" id="1_o35ik"]
+[ext_resource type="Script" path="res://old_areas/sign_controller.gd" id="1_o35ik"]
 [ext_resource type="Texture2D" uid="uid://xhx7esa1oi7d" path="res://assets/sprites/general/sign.png" id="5_wquak"]
-[ext_resource type="Script" path="res://areas/interactable_controller.gd" id="6_kht7g"]
+[ext_resource type="Script" path="res://old_areas/interactable_controller.gd" id="6_kht7g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ef2k2"]
 radius = 16.0
