@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://k0q1xi88ww6c"]
+[gd_scene load_steps=32 format=3 uid="uid://k0q1xi88ww6c"]
 
 [ext_resource type="Texture2D" uid="uid://b7gd1o0128eix" path="res://assets/placeholders/tilemap_packed.png" id="1_0cu3s"]
 [ext_resource type="Script" path="res://areas/area_controller.gd" id="1_dqcw1"]
@@ -17,6 +17,7 @@
 [ext_resource type="Script" path="res://dialogue/DialogueOption.gd" id="13_8pstv"]
 [ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="14_1rjnw"]
 [ext_resource type="PackedScene" uid="uid://dbdse8704j148" path="res://areas/setup_timer.tscn" id="16_7wqli"]
+[ext_resource type="PackedScene" uid="uid://cmgjwfs2ucnt7" path="res://inventory/pickup_item.tscn" id="18_vekbr"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wo2h"]
 texture = ExtResource("1_0cu3s")
@@ -1023,3 +1024,5 @@ checkpoint_name = "home"
 dialogue = SubResource("Resource_uxvu1")
 
 [node name="SetupTimer" parent="." instance=ExtResource("16_7wqli")]
+
+[node name="RigidBody2D" parent="." instance=ExtResource("18_vekbr")]

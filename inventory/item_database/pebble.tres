@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="InventoryItem" load_steps=3 format=3 uid="uid://djdmorjgfxlni"]
+
+[ext_resource type="Script" path="res://inventory/inventory_item.gd" id="1_m87c4"]
+[ext_resource type="Texture2D" uid="uid://det0o5olnp1ya" path="res://assets/placeholders/pebble.png" id="1_u553c"]
+
+[resource]
+script = ExtResource("1_m87c4")
+item_name = "pebble"
+item_description = "its just a pebble"
+item_icon = ExtResource("1_u553c")
