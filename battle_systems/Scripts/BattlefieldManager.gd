@@ -23,7 +23,7 @@ func _ready() -> void:
 	#setup_battle("Living Tree")
 	#setup_battle("Mailbox")
 	#setup_battle("Niter Tiger")
-	setup_battle("Fighting Fish")
+	#setup_battle("Fighting Fish")
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	table.ability_execute_requested.connect(

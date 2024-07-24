@@ -94,6 +94,9 @@ var current_modifiers: Array[String] = []
 var current_checkpoint: String = "start"
 var current_anchor: Node
 
+var pending_load: String = ""
+var pending_battle: String = ""
+
 #endregion
 
 func _ready() -> void:
@@ -245,6 +248,11 @@ func on_menu_loaded(menu: Node) -> void:
 	loaded_menu = menu
 	loaded_level.hide()
 	MenuManager.fader_controller.fade_in()
+	
+	if menu is BattlefieldManager and pending_battle != "":
+		menu.setup_battle(pending_battle)
+		pending_battle = ""
+		pending_load = ""
 
 func get_save_data() -> Dictionary:
 	return {
@@ -260,3 +268,23 @@ func respawn() -> void:
 func update_checkpoint(checkpoint_name: String) -> void:
 	if _checkpoints.keys().has(checkpoint_name):
 		current_checkpoint = checkpoint_name
+
+func on_fade_out_complete() -> void:
+	MenuManager.fader_controller.fade_out_complete.disconnect(on_fade_out_complete)
+	if pending_load == "battle":
+		load_menu("battle")
+
+func on_translucent_to_black_complete() -> void:
+	MenuManager.fader_controller.translucent_to_black_complete.disconnect(on_translucent_to_black_complete)
+	if pending_load == "battle":
+		load_menu("battle")
+
+func trigger_battle(enemy_name: String, start_translucent: bool = false) -> void:
+	pending_load = "battle"
+	pending_battle = enemy_name
+	if start_translucent:
+		MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)
+		MenuManager.fader_controller.translucent_to_black()
+	else:
+		MenuManager.fader_controller.fade_out_complete.connect(on_fade_out_complete)
+		MenuManager.fader_controller.fade_out()
