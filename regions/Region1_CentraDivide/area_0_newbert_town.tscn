@@ -43,37 +43,15 @@ collision_mask = 0
 polygon = PackedVector2Array(480, 80, 592, 80, 624, 48, 680, 48, 688, 88, 1040, 88, 1088, 32, 1464, 32, 1464, 0, 480, 0)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TileMap/StaticBody2D" index="1"]
-polygon = PackedVector2Array(320, 1088, 320, 1312, 224, 1312, 224, 1248, 64, 1248, 64, 1216, 224, 1216, 224, 1184, 288, 1184, 288, 1088, 280, 1088, 280, 1176, 216, 1176, 216, 1208, 16, 1208, 16, 1040, 112, 1008, 144, 976, 152, 704, 16, 672, 16, 584, 0, 576, 0, 546.655, 16, 536, 16, 352, -55, 352, -53, 1264, 176, 1264, 176, 1256, 216, 1256, 216, 1320, 328, 1320, 328, 1088)
+polygon = PackedVector2Array(320, 1088, 320, 1312, 224, 1312, 224, 1248, 64, 1248, 64, 1216, 224, 1216, 224, 1184, 288, 1184, 288, 1088, 280, 1088, 280, 1176, 216, 1176, 16, 1176, 16, 1040, 112, 1008, 144, 976, 152, 704, 16, 672, 16, 584, 0, 576, 0, 546.655, 16, 536, 16, 352, -55, 352, -53, 1264, 176, 1264, 176, 1256, 216, 1256, 216, 1320, 328, 1320, 328, 1216, 368, 1216, 368, 1184, 864, 1184, 864, 1064, 896, 1064, 896, 968, 1032, 968, 1032, 928, 1128, 928, 1128, 896, 1216, 896, 1216, 578.057, 1216, 568, 1208, 568, 1208, 888, 1120, 888, 1120, 920, 1024, 920, 1024, 960, 888, 960, 888, 1056, 856, 1056, 856, 1176, 328, 1176, 328, 1088)
 
-[node name="WaterAreas" type="Node" parent="." index="8"]
-
-[node name="Shallow" type="Area2D" parent="WaterAreas" index="0"]
-collision_layer = 8
-collision_mask = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WaterAreas/Shallow" index="0"]
-polygon = PackedVector2Array(1320, 32, 1384, 32, 1384, 360, 1288, 360, 1288, 592, 1224, 592, 1224, 904, 1136, 904, 1136, 944, 1040, 944, 1032, 976, 904, 976, 904, 1072, 864, 1072, 864, 1192, 376, 1192, 376, 1224, 320, 1224, 320, 1128, 808, 1128, 808, 1000, 840, 1000, 848, 904, 960, 904, 976, 872, 1064, 872, 1072, 840, 1160, 840, 1160, 520, 1232, 520, 1232, 296, 1320, 296)
-
-[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="WaterAreas/Shallow" index="1"]
-polygon = PackedVector2Array(16, 1128, 280, 1128, 280, 1176, 216, 1176, 216, 1208, 16, 1208)
-
-[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="WaterAreas/Shallow" index="2"]
-polygon = PackedVector2Array(1040, 712, 1064, 712, 1064, 688, 1080, 680, 1104, 680, 1112, 696, 1112, 752, 1104, 760, 1048, 760, 1032, 744)
-
-[node name="Swim" type="Area2D" parent="WaterAreas" index="1"]
-collision_layer = 16
-collision_mask = 0
-
-[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="WaterAreas/Swim" index="0"]
-polygon = PackedVector2Array(1384, 32, 1464, 32, 1464, 424, 1368, 432, 1368, 656, 1304, 656, 1304, 976, 1208, 976, 1200, 1008, 1112, 1008, 1104, 1040, 984, 1040, 976, 1136, 952, 1144, 944, 1264, 376, 1264, 368, 1360, 176, 1360, 176, 1256, 200, 1256, 216, 1272, 216, 1320, 328, 1320, 328, 1224, 376, 1224, 376, 1192, 864, 1192, 864, 1072, 904, 1072, 904, 976, 1032, 976, 1040, 944, 1136, 944, 1136, 904, 1224, 904, 1224, 592, 1288, 592, 1288, 360, 1384, 360)
-
-[node name="Checkpoint" parent="." index="9" instance=ExtResource("2_dyflh")]
+[node name="Checkpoint" parent="." index="8" instance=ExtResource("2_dyflh")]
 position = Vector2(157, 1)
 checkpoint_name = "cat_bridge"
 
-[node name="Checkpoint2" parent="." index="10" instance=ExtResource("2_dyflh")]
+[node name="Checkpoint2" parent="." index="9" instance=ExtResource("2_dyflh")]
 position = Vector2(530, 640)
 
-[node name="Sign" parent="." index="11" instance=ExtResource("3_ys51d")]
+[node name="Sign" parent="." index="10" instance=ExtResource("3_ys51d")]
 position = Vector2(383, 514)
 dialogue = ExtResource("4_5sarm")
