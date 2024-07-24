@@ -51,7 +51,7 @@ func on_click_released() -> void:
 	if is_clicked:
 		if collision_area.has_overlapping_areas():
 			var no_slots: bool = true
-			for area in collision_area.get_overlapping_areas():
+			for area: Area2D in collision_area.get_overlapping_areas():
 				if area.is_in_group("shadow_slot"):
 					go_to_slot(area)
 					no_slots = false

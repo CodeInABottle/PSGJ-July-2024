@@ -255,6 +255,7 @@ func get_save_data() -> Dictionary:
 
 func respawn() -> void:
 	load_world(_checkpoints[current_checkpoint][0], _checkpoints[current_checkpoint][1])
+	PlayerStats.refill_health()
 
 func update_checkpoint(checkpoint_name: String) -> void:
 	if _checkpoints.keys().has(checkpoint_name):

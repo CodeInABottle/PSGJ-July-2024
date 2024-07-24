@@ -78,9 +78,12 @@ var alchemy_points: int:
 		ap_updated.emit()
 
 func _ready() -> void:
-	health = max_health
+	refill_health()
 	#level = 0
 	alchemy_points = get_max_alchemy_points()
+
+func refill_health() -> void:
+	health = max_health
 
 func reset_alchemy_points() -> void:
 	alchemy_points = get_max_alchemy_points()

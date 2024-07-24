@@ -65,7 +65,7 @@ func on_book_clicked(book: ShadowBookUI) -> void:
 	print("book #", current_selected_index)
 	book.highlight.show()
 
-func on_book_released(book: ShadowBookUI) -> void:
+func on_book_released(_book: ShadowBookUI) -> void:
 	pass
 
 func on_mouse_entered_book(book:ShadowBookUI) -> void:
@@ -75,7 +75,7 @@ func on_mouse_entered_book(book:ShadowBookUI) -> void:
 	slotted_moves_container.clear_selection()
 	creature_details_panel.show()
 
-func on_mouse_exited_book(book:ShadowBookUI) -> void:
+func on_mouse_exited_book(_book:ShadowBookUI) -> void:
 	creature_details_panel.hide()
 
 func on_book_slotted(book:ShadowBookUI) -> void:

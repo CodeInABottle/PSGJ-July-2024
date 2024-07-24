@@ -22,7 +22,6 @@ func refresh_slotted_moves() -> void:
 func add_shadow_moves(shadow_name: String) -> void:
 	var enemy_data: BattlefieldEnemyData = EnemyDatabase.get_enemy_data(shadow_name)
 	if enemy_data:
-		var ability_index: int = 0
 		for ability: BattlefieldAbility in enemy_data.abilities:
 			move_list.add_item(ability.name)
 		
