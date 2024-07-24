@@ -4,6 +4,7 @@ extends Node2D
 signal ability_execute_requested(ability_name: String)
 
 @export var player_entity: BattlefieldPlayerEntity
+@export var control_shield: Panel
 
 @onready var hp_flask_bar: FlaskBar = %HPFlaskBar
 @onready var ap_flask_bar: FlaskBar = %APFlaskBar
@@ -17,6 +18,7 @@ func _exit_tree() -> void:
 	PlayerStats.health_updated.disconnect(_on_hp_updated)
 
 func _ready() -> void:
+	reagent_drop_handler.control_shield = control_shield
 	reagent_drop_handler.show()
 	ap_flask_bar.set_data(PlayerStats.get_max_alchemy_points(), PlayerStats.get_max_alchemy_points(), "AP")
 	PlayerStats.ap_updated.connect(_on_ap_updated)

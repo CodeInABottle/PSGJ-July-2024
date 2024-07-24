@@ -27,6 +27,7 @@ func _ready() -> void:
 func setup_battle(enemy_name_encounter: String) -> void:
 	table.ability_execute_requested.connect(
 		func(ability_name: String) -> void:
+			print("Player used: ", ability_name)
 			entity_tracker.enemy_entity.take_damage(EnemyDatabase.get_ability_damage_data(ability_name))
 			entity_tracker.add_modification_stacks(EnemyDatabase.get_ability_data(ability_name))
 	)

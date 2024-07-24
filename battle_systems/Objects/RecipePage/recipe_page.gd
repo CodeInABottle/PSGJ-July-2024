@@ -45,8 +45,8 @@ func _on_hidden() -> void:
 func _on_button_pressed() -> void:
 	if not visible: return
 
-	pressed.emit()
 	hide()
+	pressed.emit()
 
 func _on_button_mouse_entered() -> void:
 	mouse_hovered.emit()
