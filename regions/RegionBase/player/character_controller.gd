@@ -8,7 +8,6 @@ extends CharacterBody2D
 @export var player_phantom_camera: PhantomCamera2D
 @export var sprint_scale: float = 2.0
 
-var player_sprite: AnimatedSprite2D
 
 var in_interaction: bool = false
 
@@ -23,11 +22,10 @@ const VISUAL_BODY_LERP_SCALE: float = 10.0
 
 func _ready() -> void:
 	PlayerStats.player = self
-	player_sprite = player_visual_body.get_child(0)
 	init_pickup_area.call_deferred()
 
 func init_pickup_area() -> void:
-	player_interact_area =  player_visual_body.get_child(1)
+	player_interact_area =  player_visual_body.player_pickup_area
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
@@ -52,13 +50,13 @@ func _physics_process(_delta: float) -> void:
 		if input_direction:
 			if Input.is_action_pressed("sprint"):
 				velocity = input_direction * player_speed * sprint_scale
-				player_sprite.play("walk", sprint_scale)
+				player_visual_body.player_sprite.play("walk", sprint_scale)
 			else:
 				velocity = input_direction * player_speed
-				player_sprite.play("walk", 1.0)
+				player_visual_body.player_sprite.play("walk", 1.0)
 		else:
 			velocity = Vector2.ZERO
-			player_sprite.stop()
+			player_visual_body.player_sprite.stop()
 	else:
 		velocity = Vector2.ZERO
 
@@ -76,15 +74,15 @@ func move_sprite(delta: float) -> void:
 
 	if input_direction:
 		var interact_area_position: Vector2 = player_visual_body.get_global_position() + input_direction * PICKUP_OFFSET
-		player_interact_area.set_global_position(interact_area_position)
+		player_interact_area.set_global_position(interact_area_position + player_visual_body.player_sprite.offset)
 
 		var input_angle: float = input_direction.angle()
 		player_interact_area.set_global_rotation(input_angle)
 
 		if abs(rad_to_deg(input_angle)) < 80.0:
-			player_sprite.flip_h = true
+			player_visual_body.player_sprite.flip_h = true
 		elif abs(rad_to_deg(input_angle)) > 100.0:
-			player_sprite.flip_h = false
+			player_visual_body.player_sprite.flip_h = false
 
 
 func teleport_to(new_position: Vector2) -> void:
@@ -97,7 +95,7 @@ func interact() -> void:
 		var overlapping_areas: Array[Area2D] = player_interact_area.get_overlapping_areas()
 		for overlap: Area2D in overlapping_areas:
 			if overlap.is_in_group("interactable"):
-				player_sprite.stop()
+				player_visual_body.player_sprite.stop()
 				current_interactable = overlap
 				current_interactable.interaction_ended.connect(on_interaction_ended)
 				current_interactable.on_interacted_with()

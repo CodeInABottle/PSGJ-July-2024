@@ -30,16 +30,13 @@ format = 2
 layer_0/name = "Ground"
 layer_1/name = "Mountain Walls"
 layer_1/tile_data = PackedInt32Array()
-layer_2/name = "Buildings"
+layer_2/name = "Objects"
+layer_2/y_sort_enabled = true
+layer_2/z_index = 1
 layer_2/tile_data = PackedInt32Array()
-layer_3/name = "Objects"
-layer_3/y_sort_enabled = true
-layer_3/z_index = 1
+layer_3/name = "Shadows"
+layer_3/modulate = Color(0.313726, 0.313726, 0.313726, 0.67451)
 layer_3/tile_data = PackedInt32Array()
-layer_4/name = "Shadows"
-layer_4/modulate = Color(0.313726, 0.313726, 0.313726, 0.67451)
-layer_4/z_index = 2
-layer_4/tile_data = PackedInt32Array()
 
 [node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_visual_body", "player_camera", "player_phantom_camera") instance=ExtResource("2_358nu")]
 collision_mask = 2
