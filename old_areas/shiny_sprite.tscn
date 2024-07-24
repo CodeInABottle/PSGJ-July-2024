@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://cjtpxoe1v1aaq"]
+
+[ext_resource type="Texture2D" uid="uid://cte4mtlosaofi" path="res://assets/sprites/general/direction_arrow.png" id="1_rybnc"]
+
+[sub_resource type="Animation" id="Animation_jdm1g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShinySprite:offset")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_kw8gm"]
+resource_name = "bounce"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ShinySprite:offset")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-7, 0), Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efjgv"]
+_data = {
+"RESET": SubResource("Animation_jdm1g"),
+"bounce": SubResource("Animation_kw8gm")
+}
+
+[node name="ShinySprite" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -28)
+rotation = 1.5708
+texture = ExtResource("1_rybnc")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_efjgv")
+}

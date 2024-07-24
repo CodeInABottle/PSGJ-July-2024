@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bl3865o4a34u0"]
 
-[ext_resource type="Script" path="res://old_areas/intro_layer_controller.gd" id="1_2j724"]
+[ext_resource type="Script" path="res://ui/intro_layer_controller.gd" id="1_fukdh"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p62vh"]
 bg_color = Color(0.556863, 0.596078, 0.713726, 0.784314)
@@ -15,7 +15,7 @@ corner_radius_bottom_right = 40
 corner_radius_bottom_left = 40
 
 [node name="IntroLayer" type="CanvasLayer"]
-script = ExtResource("1_2j724")
+script = ExtResource("1_fukdh")
 
 [node name="NameContainer" type="PanelContainer" parent="."]
 unique_name_in_owner = true

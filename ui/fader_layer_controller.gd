@@ -5,7 +5,7 @@ extends CanvasLayer
 signal fade_out_complete()
 signal fade_in_complete()
 signal fade_to_translucent_complete()
-signal fade_from_translucent_compelte()
+signal fade_from_translucent_complete()
 signal translucent_to_black_complete()
 signal black_to_translucent_complete()
 
@@ -21,7 +21,7 @@ func _on_animaiton_finished(animation_name: String) -> void:
 		"fade_to_translucent":
 			fade_to_translucent_complete.emit()
 		"fade_from_translucent":
-			fade_from_translucent_compelte.emit()
+			fade_from_translucent_complete.emit()
 		"translucent_to_black":
 			translucent_to_black_complete.emit()
 		"black_to_translucent":

@@ -18,7 +18,7 @@
 [ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="14_1rjnw"]
 [ext_resource type="PackedScene" uid="uid://dbdse8704j148" path="res://old_areas/setup_timer.tscn" id="16_7wqli"]
 [ext_resource type="PackedScene" uid="uid://cmgjwfs2ucnt7" path="res://inventory/pickup_item.tscn" id="18_vekbr"]
-[ext_resource type="PackedScene" uid="uid://bl3865o4a34u0" path="res://old_areas/intro_layer.tscn" id="19_b1phh"]
+[ext_resource type="PackedScene" uid="uid://bl3865o4a34u0" path="res://ui/intro_layer.tscn" id="19_b1phh"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wo2h"]
 texture = ExtResource("1_0cu3s")

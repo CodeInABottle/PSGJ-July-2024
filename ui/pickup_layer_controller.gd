@@ -8,12 +8,16 @@ extends CanvasLayer
 @export var icon_rect: TextureRect
 @export var pickup_menu: PanelContainer
 
+@onready var hide_timer: Timer = %HideTimer
+
+
 signal continue_pressed()
 signal interact_pressed()
 
 func _ready() -> void:
 	continue_button.pressed.connect(on_continue_pressed)
 	interact_button.pressed.connect(on_interact_pressed)
+	hide_timer.timeout.connect(on_hide_timer_timeout)
 
 func on_continue_pressed() -> void:
 	continue_pressed.emit()
@@ -35,3 +39,18 @@ func hide_menu() -> void:
 func show_menu() -> void:
 	var menu_tween: Tween = pickup_menu.create_tween()
 	menu_tween.tween_property(pickup_menu, "modulate", Color(1,1,1,1), 0.5)
+
+func reveal() -> void:
+	show()
+	show_menu()
+
+func disappear() -> void:
+	hide_menu()
+	hide_timer.start()
+
+func on_hide_timer_timeout() -> void:
+	hide()
+
+
+
+
