@@ -5,8 +5,7 @@ signal battle_finished(battle_data: Dictionary)
 
 @onready var entity_tracker: BattlefieldEntityTracker = %EntityTracker
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
-@onready var table: BattlefieldTable = $Table
-@onready var candles: Control = %Candles
+@onready var table: BattlefieldTable = %Table
 
 var _finished_setup: bool = false
 var enemy_name: String
@@ -31,12 +30,17 @@ func setup_battle(enemy_name_encounter: String) -> void:
 			entity_tracker.enemy_entity.take_damage(EnemyDatabase.get_ability_damage_data(ability_name))
 			entity_tracker.add_modification_stacks(EnemyDatabase.get_ability_data(ability_name))
 	)
-	candles.pressed.connect(
+	table.candles.pressed.connect(
 		func() -> void:
 			table.reagent_drop_handler.clear()
 			if not PlayerStats.was_ap_used:
 				PlayerStats.alchemy_points += PlayerStats.ADDITIONAL_AP_REGEN
 			entity_tracker.end_turn()
+	)
+	entity_tracker.damage_taken.connect(
+		func(is_player: bool, data: Dictionary) -> void:
+			if is_player and data["damage"] > 0:
+				table.shake()
 	)
 	enemy_name = enemy_name_encounter
 	battle_state["shadow_name"] = enemy_name_encounter
