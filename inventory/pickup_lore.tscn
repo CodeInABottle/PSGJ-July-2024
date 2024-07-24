@@ -1,0 +1,38 @@
+[gd_scene load_steps=6 format=3 uid="uid://7g63ugqd7du3"]
+
+[ext_resource type="Script" path="res://inventory/pickup_lore_controller.gd" id="1_g8mjm"]
+[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_pi61h"]
+[ext_resource type="Script" path="res://old_areas/interactable_controller.gd" id="3_nbbub"]
+[ext_resource type="PackedScene" uid="uid://bh1xhng4qi57g" path="res://ui/pickup_layer.tscn" id="4_ugjrt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_5i53s"]
+
+[node name="PickupLore" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "item_sprite", "interactable")]
+position = Vector2(223, 80)
+collision_layer = 2
+script = ExtResource("1_g8mjm")
+menu_layer = NodePath("PickupLayer")
+item_sprite = NodePath("Sprite2D")
+quantity = 1
+interactable = NodePath("Area2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_5i53s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.25, 0.25)
+texture = ExtResource("2_pi61h")
+
+[node name="Area2D" type="Area2D" parent="." groups=["interactable"]]
+script = ExtResource("3_nbbub")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_5i53s")
+
+[node name="PickupLayer" parent="." instance=ExtResource("4_ugjrt")]
+visible = false
+
+[node name="DialogueTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true

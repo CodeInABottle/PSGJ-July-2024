@@ -6,6 +6,7 @@ extends CanvasLayer
 @export var name_label: Label
 @export var description_label: Label
 @export var icon_rect: TextureRect
+@export var pickup_menu: PanelContainer
 
 signal continue_pressed()
 signal interact_pressed()
@@ -26,3 +27,11 @@ func update_info(item_name: String) -> void:
 		name_label.text = item.item_name
 		description_label.text = item.item_description
 		icon_rect.texture = item.item_icon
+
+func hide_menu() -> void:
+	var menu_tween: Tween = pickup_menu.create_tween()
+	menu_tween.tween_property(pickup_menu, "modulate", Color(1,1,1,0), 0.5)
+	
+func show_menu() -> void:
+	var menu_tween: Tween = pickup_menu.create_tween()
+	menu_tween.tween_property(pickup_menu, "modulate", Color(1,1,1,1), 0.5)

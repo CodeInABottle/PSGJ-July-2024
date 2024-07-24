@@ -14,6 +14,7 @@ func _ready() -> void:
 	interactable.interaction_quick_closed.connect(on_interaction_quick_closed)
 	menu_layer.continue_pressed.connect(on_continue_pressed)
 	menu_layer.interact_pressed.connect(on_interact_pressed)
+	menu_layer.interact_button.text = "READ"
 	update_sprite()
 
 func update_sprite() -> void:
@@ -22,7 +23,6 @@ func update_sprite() -> void:
 
 func on_interaction_started(_interactable: Interactable) -> void:
 	print("interacted with pickup item")
-	add_to_inventory()
 	menu_layer.update_info(item_name)
 	menu_layer.show()
 	MenuManager.fader_controller.fade_to_translucent()
@@ -47,9 +47,6 @@ func _on_interaction_ended() -> void:
 	MenuManager.fader_controller.fade_from_translucent()
 	pickup_interaction_ended.emit()
 	queue_free()
-
-func add_to_inventory() -> void:
-	print(InventoryDatabase.get_item(item_name).item_description)
 
 func on_continue_pressed() -> void:
 	end_interaction()
