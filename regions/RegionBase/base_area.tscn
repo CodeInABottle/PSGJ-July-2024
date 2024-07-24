@@ -52,3 +52,4 @@ player_phantom_camera = NodePath("../PhantomCamera2D")
 
 [node name="PhantomCamera2D" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("5_a6bnf")]
 follow_target = NodePath("../PlayerVisualBody")
+draw_limits = true

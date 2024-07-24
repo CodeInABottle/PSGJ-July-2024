@@ -1018,6 +1018,7 @@ position = Vector2(592, 124)
 [node name="PhantomCamera2D" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("4_o82po")]
 position = Vector2(592, 124)
 follow_target = NodePath("../PlayerVisualBody")
+draw_limits = true
 
 [node name="Checkpoint" parent="." instance=ExtResource("10_aanm7")]
 position = Vector2(183, 519)
