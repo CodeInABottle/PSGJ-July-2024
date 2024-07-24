@@ -39,8 +39,7 @@ func on_battle_pressed() -> void:
 	hide()
 	pending_load = "battle"
 	LevelManager.menu_unloaded.connect(on_menu_unloaded)
-	MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)
-	MenuManager.fader_controller.translucent_to_black()
+	LevelManager.trigger_battle("Mailbox", true)
 
 func on_hear_lore_pressed() -> void:
 	hide_all_parts()
@@ -57,8 +56,6 @@ func hide_all_parts() -> void:
 func on_translucent_to_black_complete() -> void:
 	if pending_load == "workbench":
 		LevelManager.load_menu("workbench")
-	elif pending_load == "battle":
-		LevelManager.load_menu("battle")
 	
 func on_black_to_translucent_complete() -> void:
 	show()
