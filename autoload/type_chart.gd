@@ -34,40 +34,20 @@ const PRIMARY_REAGENTS: Array[ResonateType]\
 const COMPOUND_REAGENTS: Array[ResonateType]\
 	= [ResonateType.SALT, ResonateType.MERCURY, ResonateType.SULPHUR]
 
-func is_effective_against(current_types: Array[ResonateType], opponent_type: ResonateType) -> bool:
-	# Only a single element -- Primary reagents only
-	if current_types.size() == 1:
-		assert(
-			current_types[0] in PRIMARY_REAGENTS,
-			"Every Ability either uses up to 2 reagents that consist of primary reagents."
-		)
-		# check effectiveness horizontally
-		if _parse_ability_tier(opponent_type) == 1:
-			if current_types[0] == opponent_type:
-				return true
-		# Need more than one reagent to combat the heigher tiers
-		return false
-
-	# Combine all bits
-	var flags: int = 0
-	for type: ResonateType in current_types:
-		flags |= type
-
-	# Compare each bit to see if it matches
-	for i: int in 4:
-		var opponent_bit: int = opponent_type & (1 << i)
-		var flags_bit: int = flags & (1 << i)
-		if opponent_bit != flags_bit:
-			# Current has that bit set, but opponent doesn't - thats fine
-			if flags_bit > opponent_bit:
-				continue
-			# Mismatching bits - Opponent's bit set, but current isn't
-			return false
-
-	return true
-
-func _parse_ability_tier(reagent: ResonateType) -> int:
-	if reagent in PRIMARY_REAGENTS: return 1
-	if reagent in COMPOUND_REAGENTS: return 2
-	if reagent == ResonateType.CELESTIAL or reagent == ResonateType.NITER: return 3
-	return 4
+func get_resonance_breakdown(resonance: ResonateType) -> Array[ResonateType]:
+	match resonance:
+		ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE:
+			return [resonance]
+		ResonateType.SALT:
+			return [ResonateType.EARTH, ResonateType.WATER]
+		ResonateType.MERCURY:
+			return [ResonateType.WATER, ResonateType.AIR]
+		ResonateType.SULPHUR:
+			return [ResonateType.AIR, ResonateType.FIRE]
+		ResonateType.CELESTIAL:
+			return [ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR]
+		ResonateType.NITER:
+			return [ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
+		ResonateType.METAL:
+			return PRIMARY_REAGENTS
+		_: return []

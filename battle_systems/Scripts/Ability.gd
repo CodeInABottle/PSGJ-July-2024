@@ -29,6 +29,18 @@ func initialize(ability_name: String) -> void:
 	assert(ap_cost > 0, "Abilities require at least one reagent.")
 	assert(resonate_type != TypeChart.ResonateType.NONE, "Requires a set resonance for the recipe.")
 
+func get_components() -> Array[TypeChart.ResonateType]:
+	var components: Array[TypeChart.ResonateType] = []
+	if reagent_a != TypeChart.ResonateType.NONE:
+		components.push_back(reagent_a)
+	if reagent_b != TypeChart.ResonateType.NONE:
+		components.push_back(reagent_b)
+	if reagent_c != TypeChart.ResonateType.NONE:
+		components.push_back(reagent_c)
+	if reagent_d != TypeChart.ResonateType.NONE:
+		components.push_back(reagent_d)
+	return components
+
 func get_world_states(idx: int) -> Dictionary:
 	return {
 		"ap_required_"+str(idx): ap_cost,
