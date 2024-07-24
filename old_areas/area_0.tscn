@@ -1003,8 +1003,9 @@ transition_scene_name = "area_0_player_house_F1"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/TransitionArea3"]
 shape = SubResource("RectangleShape2D_aff42")
 
-[node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_camera", "player_phantom_camera") instance=ExtResource("6_5hjnn")]
+[node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_visual_body", "player_camera", "player_phantom_camera") instance=ExtResource("6_5hjnn")]
 position = Vector2(593, 125)
+player_visual_body = NodePath("../PlayerVisualBody")
 player_camera = NodePath("../Camera2D")
 player_phantom_camera = NodePath("../PhantomCamera2D")
 
@@ -1029,3 +1030,5 @@ dialogue = SubResource("Resource_uxvu1")
 unique_name_in_owner = true
 
 [node name="Pebble" parent="." instance=ExtResource("18_vekbr")]
+
+[node name="IntroLayer" type="CanvasLayer" parent="."]
