@@ -16,6 +16,8 @@ func _on_intro_timer_timeout() -> void:
 	name_tween.tween_property(name_container, "modulate", Color(1,1,1,0), fade_duration)
 
 func trigger() -> void:
+	name_label.text = LevelManager.region_name
+	
 	var name_tween: Tween = name_container.create_tween()
-	name_tween.tween_property(name_container, "modulate", Color(1,1,1,0), fade_duration)
+	name_tween.tween_property(name_container, "modulate", Color(1,1,1,1), fade_duration)
 	intro_timer.start(stay_duration)
