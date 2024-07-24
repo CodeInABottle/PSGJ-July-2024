@@ -248,7 +248,7 @@ func on_menu_loaded(menu: Node) -> void:
 	loaded_menu = menu
 	loaded_level.hide()
 	MenuManager.fader_controller.fade_in()
-	
+
 	if menu is BattlefieldManager and pending_battle != "":
 		menu.setup_battle(pending_battle)
 		pending_battle = ""

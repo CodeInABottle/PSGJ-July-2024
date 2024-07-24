@@ -1,6 +1,9 @@
 class_name BattlefieldAIEntity
 extends BattlefieldEntity
 
+const MAX_RESIDUE_TURNS: int = 2
+const MAX_RESIDUE_STACKS: int = 3
+
 signal actions_completed
 signal captured
 
@@ -12,6 +15,13 @@ signal captured
 @onready var flash_player: AnimationPlayer = %FlashPlayer
 @onready var animation_holder: Marker2D = %AnimationHolder
 
+# { (ResonateType) : [(turns_remaining (int) )...] }
+var _residues: Dictionary = {
+	TypeChart.ResonateType.EARTH: [0],
+	TypeChart.ResonateType.WATER: [0],
+	TypeChart.ResonateType.AIR: [0],
+	TypeChart.ResonateType.FIRE: [0],
+}
 var _data: BattlefieldEnemyData
 var _animation_sprite: AnimatedSprite2D
 var _max_alchemy_points: int
@@ -59,11 +69,27 @@ func heal(health: int) -> void:
 func take_damage(damage_data: Dictionary) -> void:
 	if damage_data["damage"] == 0: return
 	print("enemy taken damage: ", damage_data["damage"])
+
 	entity_tracker.damage_taken.emit(false, damage_data)
 	_health -= damage_data["damage"]
-	if damage_data["resonate_type"] == _data.resonate:
+
+	var components: Array[TypeChart.ResonateType]\
+		= TypeChart.get_resonance_breakdown(damage_data["resonate_type"])
+	for component: TypeChart.ResonateType in components:
+		if component not in _residues: continue
+		if _residues[component].size() >= MAX_RESIDUE_STACKS:
+			for turn_entry_idx: int in _residues[component].size():
+				if _residues[component][turn_entry_idx] < MAX_RESIDUE_TURNS:
+					_residues[component][turn_entry_idx] = 2
+					continue
+
+		_residues[component].push_back(MAX_RESIDUE_TURNS)
+
+	if _activate_resonance():
 		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
 		flash_player.play("Flash")
+
+	_update_residue_indicators()
 
 func has_ap() -> bool:
 	return _alchemy_points > 0
@@ -91,6 +117,49 @@ func activate_ability(ability_idx: int) -> int:
 
 	_alchemy_points -= ability_data.ap_cost
 	return _alchemy_points
+
+func reduce_residues() -> void:
+	for type: TypeChart.ResonateType in _residues.keys():
+		if _residues[type].is_empty(): continue
+
+		var turns: Array = []
+		while not _residues[type].is_empty():
+			var turns_remaining: int = _residues[type].pop_back()
+
+			turns_remaining -= 1
+
+			if turns_remaining > 0:
+				turns.push_back(turns_remaining)
+
+		while not turns.is_empty():
+			_residues[type].push_back(turns.pop_back())
+	_update_residue_indicators()
+
+func _activate_resonance() -> bool:
+	var breakdown: Array[TypeChart.ResonateType] = TypeChart.get_resonance_breakdown(_data.resonate)
+	if breakdown.is_empty(): return false
+
+	var resonance_break: bool = true
+	var residue_copy: Dictionary = _residues.duplicate(true)
+	for component: TypeChart.ResonateType in breakdown:
+		if residue_copy[component].size() <= 0:
+			resonance_break = false
+			break
+		residue_copy[component].pop_back()
+
+	if resonance_break:
+		for component: TypeChart.ResonateType in breakdown:
+			_residues[component].clear()
+
+	return resonance_break
+
+func _update_residue_indicators() -> void:
+	for component: TypeChart.ResonateType in _residues:
+		var amount: int = _residues[component].size()
+		var blink: bool = false
+		if amount == 1:
+			blink = _residues[component][0] <= 1
+		enemy_status_indicator.set_residue(component, amount, blink)
 
 func _generate_world_states() -> Dictionary:
 	var data: Dictionary = {

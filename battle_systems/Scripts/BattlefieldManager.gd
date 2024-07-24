@@ -5,8 +5,7 @@ signal battle_finished(battle_data: Dictionary)
 
 @onready var entity_tracker: BattlefieldEntityTracker = %EntityTracker
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
-@onready var table: BattlefieldTable = $Table
-@onready var candles: Control = %Candles
+@onready var table: BattlefieldTable = %Table
 
 var _finished_setup: bool = false
 var enemy_name: String
@@ -20,7 +19,7 @@ var battle_state: Dictionary = {
 func _ready() -> void:
 	LevelManager.menu_loaded.emit(self)
 	battle_finished.connect(_on_battle_finished)
-	#setup_battle("Living Tree")
+	setup_battle("Living Tree")
 	#setup_battle("Mailbox")
 	#setup_battle("Niter Tiger")
 	#setup_battle("Fighting Fish")
@@ -31,12 +30,17 @@ func setup_battle(enemy_name_encounter: String) -> void:
 			entity_tracker.enemy_entity.take_damage(EnemyDatabase.get_ability_damage_data(ability_name))
 			entity_tracker.add_modification_stacks(EnemyDatabase.get_ability_data(ability_name))
 	)
-	candles.pressed.connect(
+	table.candles.pressed.connect(
 		func() -> void:
 			table.reagent_drop_handler.clear()
 			if not PlayerStats.was_ap_used:
 				PlayerStats.alchemy_points += PlayerStats.ADDITIONAL_AP_REGEN
 			entity_tracker.end_turn()
+	)
+	entity_tracker.damage_taken.connect(
+		func(is_player: bool, data: Dictionary) -> void:
+			if is_player and data["damage"] > 0:
+				table.shake()
 	)
 	enemy_name = enemy_name_encounter
 	battle_state["shadow_name"] = enemy_name_encounter
@@ -68,6 +72,7 @@ func lost_battle() -> void:
 	battle_finished.emit(battle_state)
 
 func _on_battle_finished(_final_state: Dictionary) -> void:
+	if MenuManager.fader_controller == null: return
 	if MenuManager.fader_controller.fade_out_complete == null: return
 
 	MenuManager.fader_controller.fade_out_complete.connect(_on_fade_out_complete)

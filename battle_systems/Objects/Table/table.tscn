@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://1vrxk6abwdej"]
+[gd_scene load_steps=32 format=3 uid="uid://1vrxk6abwdej"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/Table/TableManager.gd" id="1_y84yb"]
 [ext_resource type="PackedScene" uid="uid://cp1tiqnusfo0i" path="res://battle_systems/Objects/FlaskBar/flask_bar.tscn" id="2_pbss5"]
@@ -16,6 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://drs0uh4tm1sp0" path="res://battle_systems/Objects/Reagent/AnimatedReagents/wind_reagent.tscn" id="8_fm7ma"]
 [ext_resource type="Texture2D" uid="uid://ba5j2cean1qxd" path="res://assets/sprites/combat/PaperTowelRoll.png" id="12_0nh0g"]
 [ext_resource type="Texture2D" uid="uid://bxdlrhqm655er" path="res://assets/sprites/combat/UI/TransmutationPage.png" id="16_1b4qc"]
+[ext_resource type="PackedScene" uid="uid://ddfc3cc4500hi" path="res://battle_systems/Objects/Candles/candles.tscn" id="16_6e3dm"]
 [ext_resource type="PackedScene" uid="uid://cymv6tc63tjr" path="res://battle_systems/Objects/RecipePageDisplay/recipe_page_display.tscn" id="17_f21l0"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1f1k6"]
@@ -43,6 +44,428 @@ radius = 16.0312
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_hidn5"]
 size = Vector2(55, 110)
 
+[sub_resource type="Animation" id="Animation_hn2ix"]
+resource_name = "Shake"
+length = 0.5
+step = 0.025
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TableSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0349066, 0.0, 0.0349066, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cloths:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-14, -2), Vector2(0, 0), Vector2(15, -29), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cloths:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0349066, 0.0, 0.0349066, 0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Book:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(388, 288), Vector2(385, 262), Vector2(388, 288), Vector2(403, 274), Vector2(388, 288)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Book:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0349066, 0.0, -0.0349066, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TransmutationNote:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(272, 298), Vector2(270, 282), Vector2(272, 298), Vector2(274, 285), Vector2(272, 298)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TransmutationNote:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.191986, 0.0, 0.0872665, 0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HPFlaskBar:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(83, 241), Vector2(90, 237), Vector2(83, 241), Vector2(81, 232), Vector2(83, 241)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HPFlaskBar:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0872665, 0.0, -0.0872665, 0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("APFlaskBar:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(51, 283), Vector2(50, 277), Vector2(51, 283), Vector2(58, 264), Vector2(51, 283)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("APFlaskBar:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.0349066, 0.0, 0.0872665, 0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("PaperTowel:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(553, 236), Vector2(553, 227), Vector2(553, 236), Vector2(553, 230), Vector2(553, 236)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("PaperTowel:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0523599, 0.0, -0.0698132, 0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Pillow:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(184, 273), Vector2(184, 271), Vector2(184, 273), Vector2(184, 267), Vector2(184, 273)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Pillow:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, 0.0192019, 0.0, -0.0032423, 0.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Candles:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(578, 278), Vector2(577, 266), Vector2(578, 278), Vector2(581, 275), Vector2(578, 278)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Candles:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0, 0.125, 0.25, 0.375, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [0.0, -0.07456, 0.0, 0.127434, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_r0nbw"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("TableSprite:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Cloths:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Cloths:rotation")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Book:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(388, 288)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Book:rotation")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("TransmutationNote:position")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(272, 298)]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("TransmutationNote:rotation")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("HPFlaskBar:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(83, 241)]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("HPFlaskBar:rotation")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("APFlaskBar:position")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(51, 283)]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("APFlaskBar:rotation")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("PaperTowel:position")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(553, 236)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("PaperTowel:rotation")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("Pillow:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(184, 273)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Pillow:rotation")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Candles:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(578, 278)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Candles:rotation")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_n7ypo"]
+_data = {
+"RESET": SubResource("Animation_r0nbw"),
+"Shake": SubResource("Animation_hn2ix")
+}
+
 [node name="Table" type="Node2D"]
 script = ExtResource("1_y84yb")
 
@@ -51,9 +474,15 @@ position = Vector2(320, 304)
 texture = ExtResource("2_uvurw")
 region_rect = Rect2(0, 720, 640, 360)
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Cloths" type="Node2D" parent="."]
+
+[node name="BoolCloth" type="Sprite2D" parent="Cloths"]
 position = Vector2(411, 304)
 texture = ExtResource("3_ujfhp")
+
+[node name="PotionCloth" type="Sprite2D" parent="Cloths"]
+position = Vector2(65, 304)
+texture = ExtResource("4_l2mye")
 
 [node name="Book" type="Sprite2D" parent="."]
 position = Vector2(388, 288)
@@ -70,10 +499,6 @@ theme_override_styles/hover = SubResource("StyleBoxEmpty_ku0i7")
 theme_override_styles/pressed = SubResource("StyleBoxEmpty_eh17p")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_8jqwv")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_sui5u")
-
-[node name="Cloth" type="Sprite2D" parent="."]
-position = Vector2(65, 304)
-texture = ExtResource("4_l2mye")
 
 [node name="HPFlaskBar" parent="." instance=ExtResource("2_pbss5")]
 unique_name_in_owner = true
@@ -95,9 +520,10 @@ color = Color(0.6, 0.898039, 0.313726, 1)
 
 [node name="ReagentDropHandler" parent="." node_paths=PackedStringArray("reagents") instance=ExtResource("3_ppdie")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(176, 192)
 speed = 0.5
-reagents = [NodePath("../Pillow/Water"), NodePath("../Pillow/Fire"), NodePath("../Pillow/Earth"), NodePath("../Pillow/Air"), NodePath("../Pillow/PaperTowel")]
+reagents = [NodePath("../Pillow/Water"), NodePath("../Pillow/Fire"), NodePath("../Pillow/Earth"), NodePath("../Pillow/Air"), NodePath("../PaperTowel")]
 
 [node name="TransmutationNote" parent="." node_paths=PackedStringArray("drop_location", "transmutation_page") instance=ExtResource("8_0qp11")]
 position = Vector2(272, 298)
@@ -149,16 +575,23 @@ reagent_type = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Pillow/Air"]
 shape = SubResource("CircleShape2D_4ilx2")
 
-[node name="PaperTowel" parent="Pillow" node_paths=PackedStringArray("reagent_drop_location") instance=ExtResource("3_p5eso")]
-position = Vector2(369, -37)
-reagent_drop_location = NodePath("../../ReagentDropHandler")
+[node name="PaperTowel" parent="." node_paths=PackedStringArray("reagent_drop_location") instance=ExtResource("3_p5eso")]
+position = Vector2(553, 236)
+reagent_drop_location = NodePath("../ReagentDropHandler")
 
-[node name="Sprite2D" type="Sprite2D" parent="Pillow/PaperTowel"]
+[node name="Sprite2D" type="Sprite2D" parent="PaperTowel"]
 texture = ExtResource("12_0nh0g")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Pillow/PaperTowel"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PaperTowel"]
 position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_hidn5")
+
+[node name="Candles" parent="." instance=ExtResource("16_6e3dm")]
+unique_name_in_owner = true
+offset_left = 578.0
+offset_top = 278.0
+offset_right = 578.0
+offset_bottom = 278.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -196,5 +629,11 @@ texture = ExtResource("16_1b4qc")
 [node name="RecipePageDisplay" parent="CanvasLayer" instance=ExtResource("17_f21l0")]
 unique_name_in_owner = true
 visible = false
+
+[node name="TableShaker" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_n7ypo")
+}
 
 [connection signal="pressed" from="Book/BookButton" to="." method="_on_book_button_pressed"]
