@@ -13,13 +13,14 @@ border_color = Color(0.635294, 0.423529, 0.239216, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l7re7"]
 
-[node name="PickupLayer" type="CanvasLayer" node_paths=PackedStringArray("continue_button", "interact_button", "name_label", "description_label", "icon_rect")]
+[node name="PickupLayer" type="CanvasLayer" node_paths=PackedStringArray("continue_button", "interact_button", "name_label", "description_label", "icon_rect", "pickup_menu")]
 script = ExtResource("1_8878h")
 continue_button = NodePath("PanelContainer/VBoxContainer/ContinueButton")
 interact_button = NodePath("PanelContainer/VBoxContainer/InteractButton")
 name_label = NodePath("PanelContainer/VBoxContainer/HBoxContainer/NameLabel")
 description_label = NodePath("PanelContainer/VBoxContainer/DescriptionLabel")
 icon_rect = NodePath("PanelContainer/VBoxContainer/HBoxContainer/Icon")
+pickup_menu = NodePath("PanelContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
 anchors_preset = 8
