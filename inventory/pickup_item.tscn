@@ -1,26 +1,22 @@
-[gd_scene load_steps=8 format=3 uid="uid://cmgjwfs2ucnt7"]
+[gd_scene load_steps=7 format=3 uid="uid://cmgjwfs2ucnt7"]
 
 [ext_resource type="Script" path="res://inventory/pickup_item_controller.gd" id="1_sf50m"]
 [ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_vwff7"]
 [ext_resource type="Script" path="res://old_areas/interactable_controller.gd" id="3_wgvhn"]
 [ext_resource type="PackedScene" uid="uid://bh1xhng4qi57g" path="res://ui/pickup_layer.tscn" id="4_p7mwg"]
-[ext_resource type="PackedScene" uid="uid://cjtpxoe1v1aaq" path="res://old_areas/shiny_sprite.tscn" id="5_psa8h"]
+[ext_resource type="PackedScene" uid="uid://dfx4boutf3fkk" path="res://inventory/shiny.tscn" id="5_aluf5"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5i53s"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_7ryfh"]
-radius = 150.0
-
-[node name="PickupItem" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "item_sprite", "pickup_area", "shiny_area", "shiny_sprite", "interactable")]
+[node name="PickupItem" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "item_sprite", "shiny", "pickup_area", "interactable")]
 collision_layer = 2
 script = ExtResource("1_sf50m")
 menu_layer = NodePath("PickupLayer")
 item_name = "pebble"
 item_sprite = NodePath("Sprite2D")
 quantity = 1
+shiny = NodePath("Shiny")
 pickup_area = NodePath("PickupArea")
-shiny_area = NodePath("ShinyArea")
-shiny_sprite = NodePath("ShinySprite")
 interactable = NodePath("PickupArea")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -39,15 +35,4 @@ shape = SubResource("CircleShape2D_5i53s")
 [node name="PickupLayer" parent="." instance=ExtResource("4_p7mwg")]
 visible = false
 
-[node name="ShinyArea" type="Area2D" parent="."]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="ShinyArea"]
-shape = SubResource("CircleShape2D_7ryfh")
-
-[node name="ShinySprite" parent="." instance=ExtResource("5_psa8h")]
-visible = false
-
-[node name="FadeTimer" type="Timer" parent="ShinySprite"]
-unique_name_in_owner = true
-wait_time = 0.5
-one_shot = true
+[node name="Shiny" parent="." instance=ExtResource("5_aluf5")]

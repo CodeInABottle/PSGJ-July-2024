@@ -6,7 +6,7 @@ extends PickupItem
 var in_dialogue: bool = false
 
 func on_interaction_started(_interactable: Interactable) -> void:
-	stop_shiny()
+	shiny.stop_shiny()
 	menu_layer.update_info(item_name)
 	menu_layer.reveal()
 	menu_layer.interact_button.show()

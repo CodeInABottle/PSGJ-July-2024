@@ -1,0 +1,75 @@
+[gd_scene load_steps=7 format=3 uid="uid://dfx4boutf3fkk"]
+
+[ext_resource type="Texture2D" uid="uid://cte4mtlosaofi" path="res://assets/sprites/general/direction_arrow.png" id="1_4eipc"]
+[ext_resource type="Script" path="res://inventory/shiny_controller.gd" id="2_6s60x"]
+
+[sub_resource type="Animation" id="Animation_jdm1g"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shiny:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, -28)]
+}
+
+[sub_resource type="Animation" id="Animation_kw8gm"]
+resource_name = "bounce"
+length = 2.0
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Shiny:position")
+tracks/0/interp = 2
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1, 2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, -28), Vector2(0, -36), Vector2(0, -28)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_efjgv"]
+_data = {
+"RESET": SubResource("Animation_jdm1g"),
+"bounce": SubResource("Animation_kw8gm")
+}
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_7ryfh"]
+radius = 150.0
+
+[node name="Shiny" type="Sprite2D" node_paths=PackedStringArray("pickup_area", "shiny_area", "shiny_sprite", "shiny_player", "fade_timer")]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -28)
+rotation = 1.5708
+texture = ExtResource("1_4eipc")
+script = ExtResource("2_6s60x")
+pickup_area = NodePath("ShinyArea")
+shiny_area = NodePath("ShinyArea")
+shiny_sprite = NodePath(".")
+shiny_player = NodePath("AnimationPlayer")
+fade_timer = NodePath("FadeTimer")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+root_node = NodePath("../..")
+libraries = {
+"": SubResource("AnimationLibrary_efjgv")
+}
+
+[node name="FadeTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[node name="ShinyArea" type="Area2D" parent="."]
+position = Vector2(28, -0.00010136)
+rotation = -1.5708
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShinyArea"]
+shape = SubResource("CircleShape2D_7ryfh")
