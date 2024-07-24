@@ -99,6 +99,6 @@ dialogue = ExtResource("4_5sarm")
 [node name="Pebble1" parent="." index="12" instance=ExtResource("6_fug8w")]
 position = Vector2(831, 356)
 
-[node name="PickupLore" parent="." index="13" instance=ExtResource("7_qddya")]
+[node name="Lore1" parent="." index="13" instance=ExtResource("7_qddya")]
 position = Vector2(648, 720)
 item_name = "Lore Book 1"

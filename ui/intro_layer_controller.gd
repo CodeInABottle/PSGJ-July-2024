@@ -6,7 +6,7 @@ extends CanvasLayer
 @onready var name_container: PanelContainer = %NameContainer
 
 @export var fade_duration: float = 1.0
-@export var stay_duration: float = 3.0
+@export var total_duration: float = 3.0
 
 func _ready() -> void:
 	intro_timer.timeout.connect(_on_intro_timer_timeout)
@@ -20,4 +20,4 @@ func trigger() -> void:
 	
 	var name_tween: Tween = name_container.create_tween()
 	name_tween.tween_property(name_container, "modulate", Color(1,1,1,1), fade_duration)
-	intro_timer.start(stay_duration)
+	intro_timer.start(total_duration)

@@ -6,9 +6,9 @@ extends PickupItem
 var in_dialogue: bool = false
 
 func on_interaction_started(_interactable: Interactable) -> void:
-	print("interacted with pickup item")
+	shiny.stop_shiny()
 	menu_layer.update_info(item_name)
-	menu_layer.show()
+	menu_layer.reveal()
 	menu_layer.interact_button.show()
 	MenuManager.fader_controller.fade_to_translucent()
 
@@ -32,12 +32,14 @@ func on_interaction_quick_closed() -> void:
 	_on_interaction_ended()
 
 func _on_interaction_ended() -> void:
-	menu_layer.hide()
+	menu_layer.disappear()
 	if in_dialogue:
 		DialogueManager.end_dialogue()
+	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
 	pickup_interaction_ended.emit()
-	queue_free()
+	pickup_area.hide()
+	item_sprite.hide()
 
 func on_dialogue_ended() -> void:
 	DialogueManager.dialogue_ended.disconnect(on_dialogue_ended)
@@ -48,3 +50,8 @@ func on_dialogue_timer_timeout() -> void:
 	dialogue_timer.timeout.disconnect(on_dialogue_timer_timeout)
 	var item: InventoryItem = InventoryDatabase.get_item(item_name)
 	DialogueManager.play_dialogue(item.dialogue, "main")
+
+func on_fade_from_translucent_complete() -> void:
+	MenuManager.fader_controller.fade_from_translucent_complete.disconnect(on_fade_from_translucent_complete)
+	queue_free.call_deferred()
+	

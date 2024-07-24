@@ -76,3 +76,5 @@ func _on_battle_finished(_final_state: Dictionary) -> void:
 func _on_fade_out_complete() -> void:
 	MenuManager.fader_controller.fade_out_complete.disconnect(_on_fade_out_complete)
 	LevelManager.unload_menu()
+	if not battle_state["won_battle"]:
+		LevelManager.respawn()

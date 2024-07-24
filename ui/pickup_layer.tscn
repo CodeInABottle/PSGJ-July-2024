@@ -23,6 +23,7 @@ icon_rect = NodePath("PanelContainer/VBoxContainer/HBoxContainer/Icon")
 pickup_menu = NodePath("PanelContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
+modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -91,3 +92,8 @@ text = "OPTIONAL INTERACT"
 [node name="ContinueButton" type="Button" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "CONTINUE"
+
+[node name="HideTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.6
+one_shot = true
