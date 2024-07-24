@@ -37,6 +37,8 @@ layer_2/tile_data = PackedInt32Array()
 layer_3/name = "Shadows"
 layer_3/modulate = Color(0.313726, 0.313726, 0.313726, 0.67451)
 layer_3/tile_data = PackedInt32Array()
+layer_4/name = "Bridges"
+layer_4/tile_data = PackedInt32Array()
 
 [node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_visual_body", "player_camera", "player_phantom_camera") instance=ExtResource("2_358nu")]
 collision_mask = 2
@@ -50,3 +52,4 @@ player_phantom_camera = NodePath("../PhantomCamera2D")
 
 [node name="PhantomCamera2D" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("5_a6bnf")]
 follow_target = NodePath("../PlayerVisualBody")
+draw_limits = true
