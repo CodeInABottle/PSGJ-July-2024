@@ -1,0 +1,4 @@
+[gd_scene format=3 uid="uid://cs7pv7wwol4n1"]
+
+[node name="IntroTimer" type="Timer"]
+wait_time = 3.0

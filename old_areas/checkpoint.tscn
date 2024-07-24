@@ -9,6 +9,7 @@
 size = Vector2(30, 58)
 
 [node name="Checkpoint" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "interactable")]
+collision_layer = 2
 script = ExtResource("1_0n6m0")
 menu_layer = NodePath("CheckpointMenuLayer")
 interactable = NodePath("Interactable")

@@ -9,6 +9,7 @@
 
 [node name="PickupItem" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "item_sprite", "interactable")]
 position = Vector2(223, 80)
+collision_layer = 2
 script = ExtResource("1_sf50m")
 menu_layer = NodePath("PickupLayer")
 item_name = "pebble"
