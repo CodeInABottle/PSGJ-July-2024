@@ -16,7 +16,7 @@ var input_direction: Vector2
 var current_interactable: Interactable
 var player_interact_area: Area2D
 
-const COLLISION_OFFSET: Vector2 = Vector2(0.0, -8.0)
+const COLLISION_OFFSET: Vector2 = Vector2(0.0, 0.0)
 const PICKUP_OFFSET: float = 24.0
 const VISUAL_BODY_LERP_SCALE: float = 10.0
 

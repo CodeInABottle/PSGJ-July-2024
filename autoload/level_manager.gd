@@ -59,8 +59,9 @@ var _levels: Dictionary = {
 # checkpoints
 # checkpoint_name (String) : [area_name (String), entry_id(int)]
 var _checkpoints: Dictionary = {
-	"start" : ["area_0", 0],
-	"home" : ["area_0", 3],
+	"start" : ["Newbert Town", 0],
+	"home" : ["Newbert Town", 2],
+	"cat_bridge" : ["Newbert Town", 1]
 }
 
 # Set as the first level to be loaded
