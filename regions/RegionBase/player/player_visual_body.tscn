@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://kh822nqv02xs"]
+[gd_scene load_steps=11 format=3 uid="uid://kh822nqv02xs"]
 
 [ext_resource type="Texture2D" uid="uid://8h714of42bsy" path="res://assets/sprites/player/player.png" id="1_k4knx"]
 [ext_resource type="Script" path="res://regions/RegionBase/player/player_visual_controller.gd" id="1_mr7a6"]
@@ -49,149 +49,14 @@ animations = [{
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ikv"]
 
-[sub_resource type="Animation" id="Animation_125s5"]
-resource_name = "Wade"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ClippingRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-69, -101), Vector2(-69, -101)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ClippingRect:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(128, 101), Vector2(128, 84)]
-}
-
-[sub_resource type="Animation" id="Animation_gb5jc"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ClippingRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(-69, -101)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ClippingRect:size")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 0,
-"values": [Vector2(128, 101)]
-}
-
-[sub_resource type="Animation" id="Animation_70p6v"]
-resource_name = "Swim"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ClippingRect:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(128, 81), Vector2(128, 69)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ClippingRect:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-69, -101), Vector2(-69, -101)]
-}
-
-[sub_resource type="Animation" id="Animation_1sqp7"]
-resource_name = "SwimToWade"
-length = 0.25
-step = 0.05
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ClippingRect:size")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(128, 69), Vector2(128, 84)]
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ClippingRect:position")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.25),
-"transitions": PackedFloat32Array(1, 1),
-"update": 0,
-"values": [Vector2(-69, -101), Vector2(-69, -101)]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_pbivb"]
-_data = {
-"RESET": SubResource("Animation_gb5jc"),
-"Swim": SubResource("Animation_70p6v"),
-"SwimToWade": SubResource("Animation_1sqp7"),
-"Wade": SubResource("Animation_125s5")
-}
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_apq5b"]
-size = Vector2(14, 13)
-
 [node name="PlayerVisualBody" type="Node2D"]
 z_index = 1
 y_sort_enabled = true
 script = ExtResource("1_mr7a6")
 
-[node name="ClippingRect" type="ColorRect" parent="."]
-clip_children = 1
-offset_left = -69.0
-offset_top = -101.0
-offset_right = 59.0
-scale = Vector2(0.203125, 0.40625)
-pivot_offset = Vector2(68.9231, 100.923)
-
-[node name="PlayerSprite" type="AnimatedSprite2D" parent="ClippingRect"]
+[node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
-position = Vector2(69.3018, 101.112)
-scale = Vector2(4.92308, 2.46154)
 sprite_frames = SubResource("SpriteFrames_tsjyv")
 animation = &"walk"
 frame = 4
@@ -208,26 +73,3 @@ shape = SubResource("RectangleShape2D_j7ikv")
 [node name="Sprite2D" type="Sprite2D" parent="PlayerPickupArea"]
 texture_filter = 1
 texture = ExtResource("2_1d1oc")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-unique_name_in_owner = true
-libraries = {
-"": SubResource("AnimationLibrary_pbivb")
-}
-
-[node name="WaterDetector" type="Area2D" parent="."]
-collision_layer = 4
-collision_mask = 24
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="WaterDetector"]
-position = Vector2(0, 1.5)
-shape = SubResource("RectangleShape2D_apq5b")
-
-[node name="Timer" type="Timer" parent="WaterDetector"]
-unique_name_in_owner = true
-wait_time = 0.05
-one_shot = true
-
-[connection signal="area_entered" from="WaterDetector" to="." method="_on_water_detector_area_entered"]
-[connection signal="area_exited" from="WaterDetector" to="." method="_on_water_detector_area_exited"]
-[connection signal="timeout" from="WaterDetector/Timer" to="." method="_on_timer_timeout"]
