@@ -1,9 +1,8 @@
-[gd_scene load_steps=13 format=3 uid="uid://dob0l3mbcorkh"]
+[gd_scene load_steps=11 format=3 uid="uid://dob0l3mbcorkh"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.gd" id="1_ecu7o"]
 [ext_resource type="PackedScene" uid="uid://c2va6bcydygut" path="res://battle_systems/Objects/ResonateIndicator/resonate_indicator.tscn" id="1_kpuy1"]
-[ext_resource type="Texture2D" uid="uid://einhwxbjqtad" path="res://assets/sprites/combat/Reagents/EarthOrbStill.png" id="3_2jea1"]
-[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="4_dw87f"]
+[ext_resource type="PackedScene" uid="uid://bsa0djc5k7pg8" path="res://battle_systems/Objects/EnemyStatusIndicator/Residue/residue.tscn" id="3_2lmv5"]
 [ext_resource type="Texture2D" uid="uid://byl4fstefwbek" path="res://assets/sprites/combat/Reagents/WaterOrbStill.png" id="5_xt41r"]
 [ext_resource type="Texture2D" uid="uid://8qecgxdriegr" path="res://assets/sprites/combat/Reagents/WindOrbStill.png" id="6_kimrx"]
 [ext_resource type="Texture2D" uid="uid://dbfeeyycjg0md" path="res://assets/sprites/combat/Reagents/FireOrbStill.png" id="7_s8nqa"]
@@ -19,11 +18,6 @@ bg_color = Color(0.67451, 0.196078, 0.196078, 1)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sshjb"]
 bg_color = Color(0.85098, 0.341176, 0.388235, 1)
 anti_aliasing = false
-
-[sub_resource type="LabelSettings" id="LabelSettings_okxw7"]
-font = ExtResource("4_dw87f")
-outline_size = 5
-outline_color = Color(0, 0, 0, 1)
 
 [node name="EnemyStatusIndicator" type="Control"]
 layout_mode = 3
@@ -90,100 +84,25 @@ offset_right = -8.0
 offset_bottom = 184.0
 grow_horizontal = 0
 
-[node name="EarthIcon" type="TextureRect" parent="VBoxContainer"]
+[node name="EarthResidue" parent="VBoxContainer" instance=ExtResource("3_2lmv5")]
 unique_name_in_owner = true
 layout_mode = 2
-texture = ExtResource("3_2jea1")
-expand_mode = 5
-stretch_mode = 5
 
-[node name="EarthLabel" type="Label" parent="VBoxContainer/EarthIcon"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -14.0
-offset_top = -14.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "3x"
-label_settings = SubResource("LabelSettings_okxw7")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="WaterIcon" type="TextureRect" parent="VBoxContainer"]
+[node name="WaterResidue" parent="VBoxContainer" instance=ExtResource("3_2lmv5")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("5_xt41r")
-expand_mode = 5
-stretch_mode = 5
 
-[node name="WaterLabel" type="Label" parent="VBoxContainer/WaterIcon"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -14.0
-offset_top = -14.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "3x"
-label_settings = SubResource("LabelSettings_okxw7")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="AirIcon" type="TextureRect" parent="VBoxContainer"]
+[node name="AirResidue" parent="VBoxContainer" instance=ExtResource("3_2lmv5")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("6_kimrx")
-expand_mode = 5
-stretch_mode = 5
 
-[node name="AirLabel" type="Label" parent="VBoxContainer/AirIcon"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -14.0
-offset_top = -14.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "3x"
-label_settings = SubResource("LabelSettings_okxw7")
-horizontal_alignment = 2
-vertical_alignment = 2
-
-[node name="FireIcon" type="TextureRect" parent="VBoxContainer"]
+[node name="FireResidue" parent="VBoxContainer" instance=ExtResource("3_2lmv5")]
 unique_name_in_owner = true
 layout_mode = 2
 texture = ExtResource("7_s8nqa")
-expand_mode = 5
-stretch_mode = 5
 
-[node name="FireLabel" type="Label" parent="VBoxContainer/FireIcon"]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -14.0
-offset_top = -14.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "3x"
-label_settings = SubResource("LabelSettings_okxw7")
-horizontal_alignment = 2
-vertical_alignment = 2
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [connection signal="timeout" from="HPTimer" to="." method="_on_hp_timer_timeout"]

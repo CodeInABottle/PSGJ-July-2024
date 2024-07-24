@@ -89,8 +89,7 @@ func take_damage(damage_data: Dictionary) -> void:
 		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
 		flash_player.play("Flash")
 
-	for component: TypeChart.ResonateType in _residues:
-		enemy_status_indicator.set_residue(component, _residues[component].size())
+	_update_residue_indicators()
 
 func has_ap() -> bool:
 	return _alchemy_points > 0
@@ -134,9 +133,7 @@ func reduce_residues() -> void:
 
 		while not turns.is_empty():
 			_residues[type].push_back(turns.pop_back())
-
-	for component: TypeChart.ResonateType in _residues:
-		enemy_status_indicator.set_residue(component, _residues[component].size())
+	_update_residue_indicators()
 
 func _activate_resonance() -> bool:
 	var breakdown: Array[TypeChart.ResonateType] = TypeChart.get_resonance_breakdown(_data.resonate)
@@ -155,6 +152,14 @@ func _activate_resonance() -> bool:
 			_residues[component].clear()
 
 	return resonance_break
+
+func _update_residue_indicators() -> void:
+	for component: TypeChart.ResonateType in _residues:
+		var amount: int = _residues[component].size()
+		var blink: bool = false
+		if amount == 1:
+			blink = _residues[component][0] <= 1
+		enemy_status_indicator.set_residue(component, amount, blink)
 
 func _generate_world_states() -> Dictionary:
 	var data: Dictionary = {
