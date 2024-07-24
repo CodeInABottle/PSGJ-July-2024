@@ -29,7 +29,7 @@ func start_at(entry_id: int) -> void:
 func _on_setup_timeout() -> void:
 	MenuManager.fader_controller.fade_in_complete.connect(on_fade_in_complete)
 	MenuManager.fader_controller.fade_in()
-	
+
 func on_fade_in_complete() -> void:
 	MenuManager.fader_controller.fade_in_complete.disconnect(on_fade_in_complete)
 	intro_layer.trigger()
