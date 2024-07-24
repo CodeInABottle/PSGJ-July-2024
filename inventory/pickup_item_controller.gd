@@ -50,7 +50,7 @@ func _on_interaction_ended() -> void:
 	MenuManager.fader_controller.fade_from_translucent()
 	pickup_interaction_ended.emit()
 	item_sprite.hide()
-	
+
 func on_continue_pressed() -> void:
 	end_interaction()
 

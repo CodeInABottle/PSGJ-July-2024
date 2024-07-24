@@ -47,7 +47,7 @@ signal world_enabled
 var _levels: Dictionary = {
 "main_menu": "res://ui/main_menu.tscn",
 "Newbert Town": "res://regions/Region1_CentraDivide/area_0_newbert_town.tscn",
-
+"Remembrance": "res://regions/Region1_CentraDivide/area_1_remembrance.tscn",
 
 # OLD -- Deprecated
 "area_0": "res://old_areas/area_0.tscn",
