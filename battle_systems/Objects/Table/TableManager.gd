@@ -22,10 +22,8 @@ func _ready() -> void:
 	reagent_drop_handler.show()
 	ap_flask_bar.set_data(PlayerStats.get_max_alchemy_points(), PlayerStats.get_max_alchemy_points(), "AP")
 	PlayerStats.ap_updated.connect(_on_ap_updated)
-	_on_ap_updated()
 	hp_flask_bar.set_data(PlayerStats.health, PlayerStats.max_health, "Health")
 	PlayerStats.health_updated.connect(_on_hp_updated)
-	_on_hp_updated()
 	reagent_drop_handler.ability_execute_requested.connect(
 		func(ability_name: String) -> void:
 			ability_execute_requested.emit(ability_name)
