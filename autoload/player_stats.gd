@@ -119,14 +119,14 @@ func get_all_equipped_abilities() -> PackedStringArray:
 	return data
 
 func add_item(item_name: String, quantity: int = 1) -> void:
-	if has_item(item_name):
-		invetory_items[item_name] = invetory_items[item_name] + 1
+	if invetory_items.keys().has(item_name):
+		invetory_items[item_name] = invetory_items[item_name] + quantity
 	else:
-		invetory_items[item_name] = 1
+		invetory_items[item_name] = quantity
 
 func remove_item(item_name: String, quantity: int = 1) -> bool:
-	if has_item(item_name):
-		if invetory_items[item_name] >= quantity:
+	if invetory_items.keys().has(item_name):
+		if has_item(item_name, quantity):
 			invetory_items[item_name] = invetory_items[item_name] - quantity
 			return true
 		else:
@@ -137,8 +137,13 @@ func remove_item(item_name: String, quantity: int = 1) -> bool:
 func get_inventory_items() -> Dictionary:
 	return invetory_items
 
-func has_item(item_name: String) -> bool:
-	return invetory_items.keys().has(item_name)
+func has_item(item_name: String, quantity: int = 1) -> bool:
+	if invetory_items.keys().has(item_name):
+		if invetory_items[item_name] >= quantity:
+			return true
+		else:
+			return true
+	return false
 
 func load_data(data: Dictionary) -> void:
 	#level = data.get("level", 0)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d4hid5fnkoiqy"]
+[gd_scene load_steps=8 format=3 uid="uid://d4hid5fnkoiqy"]
 
 [ext_resource type="Script" path="res://regions/RegionBase/area_controller.gd" id="1_m5i3c"]
 [ext_resource type="PackedScene" uid="uid://bfqw64oerqxlo" path="res://regions/RegionBase/player/player_physics_body.tscn" id="2_358nu"]
@@ -6,6 +6,7 @@
 [ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://regions/RegionBase/player/player_visual_body.tscn" id="3_bn01o"]
 [ext_resource type="PackedScene" uid="uid://dkv0v1k16bwca" path="res://regions/RegionBase/Cameras/area_camera.tscn" id="4_llmu3"]
 [ext_resource type="PackedScene" uid="uid://ix7hbnaiolav" path="res://regions/RegionBase/Cameras/area_phantom_camera.tscn" id="5_a6bnf"]
+[ext_resource type="PackedScene" uid="uid://bl3865o4a34u0" path="res://old_areas/intro_layer.tscn" id="7_sq3o1"]
 
 [node name="BaseArea" type="Node2D"]
 script = ExtResource("1_m5i3c")
@@ -53,3 +54,6 @@ player_phantom_camera = NodePath("../PhantomCamera2D")
 [node name="PhantomCamera2D" parent="." node_paths=PackedStringArray("follow_target") instance=ExtResource("5_a6bnf")]
 follow_target = NodePath("../PlayerVisualBody")
 draw_limits = true
+
+[node name="IntroLayer" parent="." instance=ExtResource("7_sq3o1")]
+unique_name_in_owner = true

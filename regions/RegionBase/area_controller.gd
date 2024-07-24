@@ -3,6 +3,7 @@ extends Node2D
 
 @onready var warp_points: Node = %WarpPoints
 @onready var setup_timer: Timer = %SetupTimer
+@onready var intro_layer: IntroLayer = %IntroLayer
 
 var fader_controller: CanvasLayer
 var _warp_points: Array[Marker2D] = []
@@ -26,4 +27,9 @@ func start_at(entry_id: int) -> void:
 	SaveManager.attempt_load()
 
 func _on_setup_timeout() -> void:
+	MenuManager.fader_controller.fade_in_complete.connect(on_fade_in_complete)
 	MenuManager.fader_controller.fade_in()
+	
+func on_fade_in_complete() -> void:
+	MenuManager.fader_controller.fade_in_complete.disconnect(on_fade_in_complete)
+	intro_layer.trigger()
