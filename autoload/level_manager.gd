@@ -306,3 +306,7 @@ func load_save(save_data: Dictionary) -> void:
 	current_modifiers = save_data.get("modifiers", [])
 	area_pickup_status = save_data.get("area_pickup_status")
 	load_world(save_data["area"])
+
+# to be use to reset enemy battles if any on checkpoint rest
+func reset_world() -> void:
+	pass
