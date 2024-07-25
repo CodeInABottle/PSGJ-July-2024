@@ -24,6 +24,7 @@ shape = SubResource("CircleShape2D_5i53s")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_pi61h")
+region_rect = Rect2(0, 0, 384, 32)
 
 [node name="PickupArea" type="Area2D" parent="." groups=["interactable"]]
 script = ExtResource("3_nbbub")

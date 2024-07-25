@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df1mspsbxnt06"
-path="res://.godot/imported/combat_beetle.png-e9113e8353b9031271f5fa5005d03c95.ctex"
+uid="uid://by8fjfvenwwl0"
+path="res://.godot/imported/books10.png-503c661dbb55b7e6dbfb145e336c5264.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/mobs/combat_beetle.png"
-dest_files=["res://.godot/imported/combat_beetle.png-e9113e8353b9031271f5fa5005d03c95.ctex"]
+source_file="res://assets/sprites/general/books10.png"
+dest_files=["res://.godot/imported/books10.png-503c661dbb55b7e6dbfb145e336c5264.ctex"]
 
 [params]
 

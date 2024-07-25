@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bws60pday3bya"]
+[gd_scene load_steps=6 format=3 uid="uid://bws60pday3bya"]
 
 [ext_resource type="Script" path="res://ui/checkpoint_menu_layer_controller2.gd" id="1_qhipo"]
-[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_1gqck"]
+[ext_resource type="Script" path="res://ui/lore_panel_controller.gd" id="2_y8nyu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyk05"]
 bg_color = Color(0.556863, 0.596078, 0.713726, 1)
@@ -19,13 +19,15 @@ border_width_right = 4
 border_width_bottom = 4
 border_color = Color(0.286275, 0.176471, 0.0823529, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpwrt"]
+
 [node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("slot_shadows_button", "hear_lore_button", "menu_close_button", "lore_panel", "lore_list", "battle_button")]
 script = ExtResource("1_qhipo")
 slot_shadows_button = NodePath("OptionsPanel/Options/SlotShadowsButton")
 hear_lore_button = NodePath("OptionsPanel/Options/HearLoreButton")
 menu_close_button = NodePath("OptionsPanel/Options/MenuCloseButton")
 lore_panel = NodePath("OptionsPanel/LorePanel")
-lore_list = NodePath("OptionsPanel/LorePanel/ScrollContainer/LoreList")
+lore_list = NodePath("OptionsPanel/LorePanel/VBoxContainer/ScrollContainer/LoreList")
 battle_button = NodePath("OptionsPanel/Options/BattleButton")
 
 [node name="OptionsPanel" type="Panel" parent="."]
@@ -68,7 +70,7 @@ text = "BATTLE"
 layout_mode = 2
 text = "CLOSE"
 
-[node name="LorePanel" type="Panel" parent="OptionsPanel"]
+[node name="LorePanel" type="PanelContainer" parent="OptionsPanel" node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel")]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -76,45 +78,76 @@ offset_left = 120.0
 offset_right = 336.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_t7ssy")
+script = ExtResource("2_y8nyu")
+lore_list = NodePath("VBoxContainer/ScrollContainer/LoreList")
+lore_name = NodePath("../LoreDetailsPanel/VBoxContainer/TitleLabel")
+lore_text = NodePath("../LoreDetailsPanel/VBoxContainer/TextContainer/ScrollContainer/Text")
+lore_details_panel = NodePath("../LoreDetailsPanel")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="OptionsPanel/LorePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel/LorePanel"]
 layout_mode = 2
-offset_left = 4.0
-offset_top = 4.0
-offset_right = 212.0
-offset_bottom = 356.0
-grow_horizontal = 2
-grow_vertical = 2
 
-[node name="LoreList" type="ItemList" parent="OptionsPanel/LorePanel/ScrollContainer"]
+[node name="HSeparator" type="HSeparator" parent="OptionsPanel/LorePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
+
+[node name="TitleLabel" type="Label" parent="OptionsPanel/LorePanel/VBoxContainer"]
+layout_mode = 2
+text = "LORE"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="OptionsPanel/LorePanel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
+
+[node name="ScrollContainer" type="ScrollContainer" parent="OptionsPanel/LorePanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="LoreList" type="ItemList" parent="OptionsPanel/LorePanel/VBoxContainer/ScrollContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 auto_height = true
-item_count = 13
 fixed_icon_size = Vector2i(32, 32)
-item_0/text = "1"
-item_0/icon = ExtResource("2_1gqck")
-item_1/text = "2"
-item_1/icon = ExtResource("2_1gqck")
-item_2/text = "3"
-item_2/icon = ExtResource("2_1gqck")
-item_3/text = "4"
-item_3/icon = ExtResource("2_1gqck")
-item_4/text = "5"
-item_4/icon = ExtResource("2_1gqck")
-item_5/text = "6"
-item_5/icon = ExtResource("2_1gqck")
-item_6/text = "7"
-item_6/icon = ExtResource("2_1gqck")
-item_7/text = "8"
-item_7/icon = ExtResource("2_1gqck")
-item_8/text = "9"
-item_8/icon = ExtResource("2_1gqck")
-item_9/text = "10"
-item_9/icon = ExtResource("2_1gqck")
-item_10/text = "11"
-item_10/icon = ExtResource("2_1gqck")
-item_11/text = "12"
-item_11/icon = ExtResource("2_1gqck")
-item_12/text = "13"
-item_12/icon = ExtResource("2_1gqck")
+
+[node name="LoreDetailsPanel" type="PanelContainer" parent="OptionsPanel"]
+layout_mode = 2
+offset_left = 336.0
+offset_right = 552.0
+offset_bottom = 360.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t7ssy")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel/LoreDetailsPanel"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
+
+[node name="TitleLabel" type="Label" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+layout_mode = 2
+text = "NAME"
+horizontal_alignment = 1
+
+[node name="HSeparator2" type="HSeparator" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
+
+[node name="TextContainer" type="PanelContainer" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer/TextContainer"]
+layout_mode = 2
+
+[node name="Text" type="Label" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer/TextContainer/ScrollContainer"]
+custom_minimum_size = Vector2(208, 309)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
