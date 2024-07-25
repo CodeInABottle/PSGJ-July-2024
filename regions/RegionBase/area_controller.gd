@@ -4,7 +4,7 @@ extends Node2D
 @onready var warp_points: Node = %WarpPoints
 @onready var setup_timer: Timer = %SetupTimer
 @onready var intro_layer: IntroLayer = %IntroLayer
-@onready var pickups: Node = %Pickups
+@onready var pickups: Node2D = %Pickups
 
 var fader_controller: CanvasLayer
 var _warp_points: Array[Marker2D] = []

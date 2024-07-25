@@ -1004,7 +1004,7 @@ transition_scene_name = "area_0_player_house_F1"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/TransitionArea3"]
 shape = SubResource("RectangleShape2D_aff42")
 
-[node name="Pickups" type="Node" parent="."]
+[node name="Pickups" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_visual_body", "player_camera", "player_phantom_camera") instance=ExtResource("6_5hjnn")]

@@ -12,7 +12,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			toggle_pause()
 
 func toggle_pause() -> void:
-	if pause_menu:
+	if pause_menu and LevelManager.is_in_world():
 		if LevelManager.is_paused():
 			LevelManager.enable_world_node()
 			pause_menu.hide_all()

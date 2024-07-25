@@ -48,6 +48,9 @@ transition_scene_name = "area_0"
 position = Vector2(-1, -2)
 shape = SubResource("RectangleShape2D_m24oa")
 
+[node name="Pickups" parent="." index="2"]
+position = Vector2(32, 25)
+
 [node name="Pebble1" parent="Pickups" index="0" instance=ExtResource("6_fug8w")]
 position = Vector2(831, 356)
 
