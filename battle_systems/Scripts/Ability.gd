@@ -6,6 +6,11 @@ extends Resource
 @export_multiline var description: String
 @export var modifiers: Array[BattlefieldAttackModifier] = []
 
+@export var moving_attack: bool = false
+@export var attack_movement_speed: float = 0.5
+@export var attack_life_time: float = 0.5
+@export var attack: PackedScene
+
 @export_category("Reagents")
 @export var resonate_type: TypeChart.ResonateType = TypeChart.ResonateType.NONE
 @export var reagent_a: TypeChart.ResonateType = TypeChart.ResonateType.NONE

@@ -64,7 +64,6 @@ folder_colors={
 "res://game_manager/": "blue",
 "res://inventory/": "blue",
 "res://old_areas/": "orange",
-"res://particles/": "blue",
 "res://regions/": "orange",
 "res://regions/RegionBase/Cameras/": "blue",
 "res://regions/RegionBase/player/": "blue",

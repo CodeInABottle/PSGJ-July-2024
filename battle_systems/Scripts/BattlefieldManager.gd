@@ -26,13 +26,7 @@ func _ready() -> void:
 	#setup_battle("Fighting Fish")
 
 func setup_battle(enemy_name_encounter: String) -> void:
-	table.ability_execute_requested.connect(
-		func(ability_name: String) -> void:
-			print("Player used: ", ability_name)
-			var damage_data: Dictionary = EnemyDatabase.get_ability_damage_data(ability_name)
-			entity_tracker.enemy_entity.take_damage(damage_data)
-			entity_tracker.add_modification_stacks(EnemyDatabase.get_ability_data(ability_name))
-	)
+	table.ability_execute_requested.connect(entity_tracker.player_entity.attack)
 	table.candles.pressed.connect(
 		func() -> void:
 			table.reagent_drop_handler.clear()

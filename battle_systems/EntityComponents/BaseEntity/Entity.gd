@@ -2,6 +2,7 @@ class_name BattlefieldEntity
 extends Node2D
 
 @export var entity_tracker: BattlefieldEntityTracker
+@onready var attack_node: Marker2D = %AttackNode
 
 var _was_cost_changed: bool = false
 var _costs: Dictionary = {
@@ -58,8 +59,14 @@ func reset_costs() -> void:
 func regen_ap() -> void:
 	pass
 
-func heal(_healing: int) -> void:
+@warning_ignore("unused_parameter")
+func heal(healing: int) -> void:
 	pass
 
-func take_damage(_damage_data: Dictionary) -> void:
+@warning_ignore("unused_parameter")
+func take_damage(damage_data: Dictionary) -> void:
+	pass
+
+@warning_ignore("unused_parameter")
+func attack(ability_name: String) -> void:
 	pass

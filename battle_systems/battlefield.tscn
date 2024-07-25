@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=17 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EntityTracker.gd" id="2_oep6u"]
@@ -14,6 +14,7 @@
 [ext_resource type="PackedScene" uid="uid://cg2nofxbexpme" path="res://assets/shaders/combat_background.tscn" id="10_ot5yf"]
 [ext_resource type="PackedScene" uid="uid://cp02k4l0gw3u0" path="res://battle_systems/EntityComponents/BaseAIEntity/ai_entity.tscn" id="11_66ej3"]
 [ext_resource type="PackedScene" uid="uid://dob0l3mbcorkh" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.tscn" id="13_7ttxg"]
+[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="14_jcqrt"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_altgx"]
 
@@ -49,22 +50,28 @@ script = ExtResource("7_hc5bd")
 [node name="CombatBackground" parent="." instance=ExtResource("10_ot5yf")]
 offset_right = 640.0
 
-[node name="PlayerEntity" parent="." node_paths=PackedStringArray("entity_tracker") instance=ExtResource("8_4gulr")]
+[node name="PlayerEntity" parent="." node_paths=PackedStringArray("attack_position", "entity_tracker") instance=ExtResource("8_4gulr")]
 unique_name_in_owner = true
 position = Vector2(200, 163)
+attack_position = NodePath("../PlayerAttackPosition")
 entity_tracker = NodePath("../EntityTracker")
 
-[node name="EnemyEntity" parent="." node_paths=PackedStringArray("enemy_status_indicator", "player_entity", "entity_tracker") instance=ExtResource("11_66ej3")]
+[node name="EnemyEntity" parent="." node_paths=PackedStringArray("enemy_status_indicator", "player_entity", "enemy_position", "entity_tracker") instance=ExtResource("11_66ej3")]
 unique_name_in_owner = true
 position = Vector2(288, 120)
 enemy_status_indicator = NodePath("../CanvasLayer/EnemyStatusIndicator")
 player_entity = NodePath("../PlayerEntity")
+enemy_position = NodePath("../PlayerAttackPosition")
 entity_tracker = NodePath("../EntityTracker")
 
 [node name="Table" parent="." node_paths=PackedStringArray("entity_tracker", "control_shield") instance=ExtResource("9_ou7kj")]
 unique_name_in_owner = true
 entity_tracker = NodePath("../EntityTracker")
 control_shield = NodePath("../CanvasLayer/ControlShield")
+
+[node name="PlayerAttackPosition" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(176, 135)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -80,3 +87,8 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_altgx")
 metadata/_edit_lock_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(445, 40)
+scale = Vector2(0.285, 0.285)
+texture = ExtResource("14_jcqrt")

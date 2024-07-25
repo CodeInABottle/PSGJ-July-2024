@@ -15,3 +15,4 @@ domain = &"Dumb"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_ttj33"), ExtResource("2_i34pp")])
 combat_animation = ExtResource("1_n2jek")
 special_frame_idx = 4
+attack_position = Vector2(0, 0)

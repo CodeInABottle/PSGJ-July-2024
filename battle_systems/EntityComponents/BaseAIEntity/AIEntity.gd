@@ -2,10 +2,12 @@ class_name BattlefieldAIEntity
 extends BattlefieldEntity
 
 signal actions_completed
+signal ability_finished
 signal captured
 
 @export var enemy_status_indicator: BattlefieldEnemyStatusIndicator
 @export var player_entity: BattlefieldPlayerEntity
+@export var enemy_position: Marker2D
 
 @onready var htn_planner: HTNPlanner = %HTNPlanner
 @onready var hurt_player: AnimationPlayer = %HurtPlayer
@@ -13,6 +15,7 @@ signal captured
 @onready var animation_holder: Marker2D = %AnimationHolder
 
 var _data: BattlefieldEnemyData
+var _tween: Tween
 var _max_alchemy_points: int
 var _alchemy_regen: int
 var _alchemy_points: int
@@ -86,23 +89,59 @@ func is_dead() -> bool:
 func is_captured() -> bool:
 	return _capture_value <= 0
 
+func get_attack_position() -> Vector2:
+	return _data.attack_position
+
 func issue_actions() -> void:
 	htn_planner.handle_planning(self, _generate_world_states())
 
-func activate_ability(ability_idx: int) -> int:
-	if ability_idx < 0 or ability_idx > _data.abilities.size(): return 0
+func activate_ability(ability_idx: int) -> void:
+	if ability_idx < 0 or ability_idx > _data.abilities.size(): return
 
 	var ability_data: BattlefieldAbility = _data.abilities[ability_idx]
-	if ability_data.damage > 0:
-		player_entity.take_damage({
-			"damage": ability_data.damage
-		})
-	print("Enemy used ", ability_data.name, " to do ", ability_data.damage)
-
-	entity_tracker.add_modification_stacks(ability_data)
+	var attack_packed_scene: PackedScene = ability_data["attack"]
 
 	_alchemy_points -= ability_data.ap_cost
-	return _alchemy_points
+
+	if attack_packed_scene == null:
+		if _tween:
+			_tween.kill()
+		_tween = create_tween()
+		_tween.tween_callback(
+			func() -> void:
+				_internal_attack_logic(ability_data)
+		)
+	else:
+		var attack_instance: Node2D = ability_data["attack"].instantiate()
+		add_child(attack_instance)
+		if ability_data["moving_attack"]:
+			attack_instance.global_position = _data.attack_position
+			if _tween:
+				_tween.kill()
+			_tween = create_tween()
+			_tween.tween_property(
+				attack_instance, "global_position",
+				enemy_position.global_position,
+				ability_data["attack_movement_speed"]
+			)
+			_tween.tween_callback(
+				func() -> void:
+					attack_instance.queue_free()
+					_internal_attack_logic(ability_data)
+			)
+		else:
+			attack_instance.global_position = enemy_position.global_position
+			await get_tree().create_timer(ability_data["attack_life_time"]).timeout
+			attack_instance.queue_free()
+			_internal_attack_logic(ability_data)
+
+func _internal_attack_logic(ability_data: BattlefieldAbility) -> void:
+	if ability_data["damage"] > 0:
+		player_entity.take_damage({ "damage": ability_data["damage"] })
+	print("Enemy used ", ability_data["name"], " to do ", ability_data["damage"])
+
+	entity_tracker.add_modification_stacks(ability_data)
+	ability_finished.emit()
 
 func _generate_world_states() -> Dictionary:
 	var data: Dictionary = {
