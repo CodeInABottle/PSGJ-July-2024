@@ -507,7 +507,7 @@ offset_top = 241.0
 offset_right = 83.0
 offset_bottom = 241.0
 scale = Vector2(0.75, 0.75)
-color = Color(0.67451, 0.196078, 0.196078, 1)
+color = Color(0.85098, 0.341176, 0.388235, 1)
 
 [node name="APFlaskBar" parent="." instance=ExtResource("2_pbss5")]
 unique_name_in_owner = true
@@ -518,18 +518,11 @@ offset_bottom = 283.0
 scale = Vector2(0.75, 0.75)
 color = Color(0.6, 0.898039, 0.313726, 1)
 
-[node name="ReagentDropHandler" parent="." node_paths=PackedStringArray("reagents") instance=ExtResource("3_ppdie")]
-unique_name_in_owner = true
-visible = false
-position = Vector2(176, 192)
-speed = 0.5
-reagents = [NodePath("../Pillow/Water"), NodePath("../Pillow/Fire"), NodePath("../Pillow/Earth"), NodePath("../Pillow/Air"), NodePath("../PaperTowel")]
-
 [node name="TransmutationNote" parent="." node_paths=PackedStringArray("drop_location", "transmutation_page") instance=ExtResource("8_0qp11")]
 position = Vector2(272, 298)
 scale = Vector2(0.5, 0.5)
 drop_location = NodePath("../ReagentDropHandler")
-transmutation_page = NodePath("../CanvasLayer/TransmutationPage")
+transmutation_page = NodePath("../CanvasLayer/TransmutationPanel")
 
 [node name="Pillow" type="Sprite2D" parent="."]
 position = Vector2(184, 273)
@@ -586,6 +579,12 @@ texture = ExtResource("12_0nh0g")
 position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_hidn5")
 
+[node name="ReagentDropHandler" parent="." node_paths=PackedStringArray("reagents") instance=ExtResource("3_ppdie")]
+unique_name_in_owner = true
+position = Vector2(176, 192)
+speed = 0.5
+reagents = [NodePath("../Pillow/Water"), NodePath("../Pillow/Fire"), NodePath("../Pillow/Earth"), NodePath("../Pillow/Air"), NodePath("../PaperTowel")]
+
 [node name="Candles" parent="." instance=ExtResource("16_6e3dm")]
 unique_name_in_owner = true
 offset_left = 578.0
@@ -595,9 +594,18 @@ offset_bottom = 278.0
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="TransmutationPage" type="TextureRect" parent="CanvasLayer"]
+[node name="TransmutationPanel" type="Panel" parent="CanvasLayer"]
 visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TransmutationPage" type="TextureRect" parent="CanvasLayer/TransmutationPanel"]
 self_modulate = Color(0.270588, 0.156863, 0.235294, 1)
+layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -611,7 +619,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("16_1b4qc")
 
-[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/TransmutationPage"]
+[node name="TextureRect2" type="TextureRect" parent="CanvasLayer/TransmutationPanel/TransmutationPage"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

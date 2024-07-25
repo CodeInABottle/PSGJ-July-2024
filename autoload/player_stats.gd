@@ -74,6 +74,7 @@ var alchemy_points: int:
 	set(value):
 		if value < alchemy_points:
 			was_ap_used = true
+
 		alchemy_points = clampi(value, 0, LEVEL_DATA[level]["AP"])
 		ap_updated.emit()
 

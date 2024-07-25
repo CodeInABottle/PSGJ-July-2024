@@ -14,6 +14,7 @@ func execute(player: BattlefieldPlayerEntity, enemy: BattlefieldAIEntity,
 		"damage": damage,
 		"resonate_type": additional_data["resonate_type"],
 		"capture_rate": additional_data["efficiency_capture_rate"],
+		"components": additional_data["components"]
 	}
 
 	# This is flipped to apply DoT

@@ -18,7 +18,7 @@ func set_data(value: int, max_value: int, prefix: String) -> void:
 	_prefix = prefix
 	flask_progress_bar.max_value = max_value
 	flask_progress_bar.value = value
-	label.text = _prefix + "\n" + str(value) + "/" + str(flask_progress_bar.max_value)
+	label.text = _prefix + "\n" + str(value) + "/" + str(max_value)
 
 func update_value(current: int) -> void:
 	flask_progress_bar.value = current
