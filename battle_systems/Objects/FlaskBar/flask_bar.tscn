@@ -17,7 +17,7 @@ tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-35, -80)]
+"values": [Vector2(-35, -97)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -90,7 +90,7 @@ grow_horizontal = 2
 grow_vertical = 2
 pivot_offset = Vector2(64, 64)
 mouse_filter = 2
-value = 100.0
+value = 40.0
 fill_mode = 3
 texture_over = ExtResource("1_2tlho")
 texture_progress = ExtResource("2_ja7dx")
@@ -106,9 +106,10 @@ libraries = {
 [node name="CenterContainer" type="CenterContainer" parent="."]
 layout_mode = 0
 offset_left = -35.0
-offset_top = -80.0
+offset_top = -97.0
 offset_right = 35.0
-offset_bottom = -35.0
+offset_bottom = -52.0
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="CenterContainer"]
 unique_name_in_owner = true
@@ -125,6 +126,7 @@ vertical_alignment = 1
 [node name="Area2D" type="Area2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Area2D"]
+visible = false
 polygon = PackedVector2Array(-8, -53, -13, -2, -34, 23, -35, 41, -27, 50, -12, 56, 12, 56, 27, 50, 35, 41, 34, 24, 13, -3, 8, -53)
 
 [connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]

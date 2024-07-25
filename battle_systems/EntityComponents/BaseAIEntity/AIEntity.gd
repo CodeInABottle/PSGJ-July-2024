@@ -67,14 +67,24 @@ func heal(health: int) -> void:
 	_health += health
 
 func take_damage(damage_data: Dictionary) -> void:
+	# Spend the residue slots
+	var usage: Array[TypeChart.ResonateType] = []
+	usage.assign(damage_data.get("usage", []))
+	if not usage.is_empty():
+		print("Before: ", _residues)
+		for type: TypeChart.ResonateType in usage:
+			_removed_lowest_turn_residue(type)
+		print("After: ", _residues)
+		_update_residue_indicators()
+
+	# Skip is its an ability that does no damage
 	if damage_data["damage"] == 0: return
 	print("enemy taken damage: ", damage_data["damage"])
 
 	entity_tracker.damage_taken.emit(false, damage_data)
 	_health -= damage_data["damage"]
 
-	var components: Array[TypeChart.ResonateType]\
-		= TypeChart.get_resonance_breakdown(damage_data["resonate_type"])
+	var components: Array[TypeChart.ResonateType] = damage_data["components"]
 	for component: TypeChart.ResonateType in components:
 		if component not in _residues: continue
 		if _residues[component].size() >= MAX_RESIDUE_STACKS:
@@ -134,6 +144,30 @@ func reduce_residues() -> void:
 		while not turns.is_empty():
 			_residues[type].push_back(turns.pop_back())
 	_update_residue_indicators()
+
+func get_residues() -> Array[TypeChart.ResonateType]:
+	var components: Array[TypeChart.ResonateType] = []
+
+	for type: TypeChart.ResonateType in _residues.keys():
+		for __: int in _residues[type].size():
+			components.push_back(type)
+
+	return components
+
+func _removed_lowest_turn_residue(residue: TypeChart.ResonateType) -> void:
+	var stack: Array[TypeChart.ResonateType] = []
+	var smallest: int = MAX_RESIDUE_TURNS + 1
+	var temp: int = 0
+	while not _residues[residue].is_empty():
+		var turn: int = _residues[residue].pop_back()
+		if turn < smallest:
+			if temp > 0:
+				stack.push_back(temp)
+			temp = turn
+		else:
+			stack.push_back(turn)
+	while not stack.is_empty():
+		_residues[residue].push_back(stack.pop_back())
 
 func _activate_resonance() -> bool:
 	var breakdown: Array[TypeChart.ResonateType] = TypeChart.get_resonance_breakdown(_data.resonate)

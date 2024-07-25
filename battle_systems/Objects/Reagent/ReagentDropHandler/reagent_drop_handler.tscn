@@ -98,6 +98,14 @@ shape = SubResource("RectangleShape2D_d5bf0")
 unique_name_in_owner = true
 curve = SubResource("Curve2D_d0kyj")
 
+[node name="CombinePoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -57)
+
+[node name="ApexPoint" type="Marker2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(0, -164)
+
 [node name="RecipeController" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 3
