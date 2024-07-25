@@ -1,7 +1,7 @@
 class_name PickupItem
 extends InteractableHost
 
-signal pickup_interaction_ended()
+signal pickup_interaction_ended(index: int)
 
 @export var menu_layer: PickupLayer
 @export var item_name: String
@@ -48,7 +48,7 @@ func _on_interaction_ended() -> void:
 	menu_layer.disappear()
 	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
-	pickup_interaction_ended.emit()
+	pickup_interaction_ended.emit(get_index())
 	item_sprite.hide()
 
 func on_continue_pressed() -> void:
@@ -59,4 +59,4 @@ func on_interact_pressed() -> void:
 
 func on_fade_from_translucent_complete() -> void:
 	MenuManager.fader_controller.fade_from_translucent_complete.disconnect(on_fade_from_translucent_complete)
-	queue_free.call_deferred()
+	hide.call_deferred()

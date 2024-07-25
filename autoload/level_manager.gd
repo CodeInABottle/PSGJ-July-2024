@@ -90,12 +90,15 @@ var loaded_menu: Node = null
 
 # Can be used to check what is the currently loaded level
 var region_name: String
-var current_modifiers: Array[String] = []
+var current_modifiers: Array = []
 var current_checkpoint: String = "start"
 var current_anchor: Node
 
 var pending_load: String = ""
 var pending_battle: String = ""
+
+# area name: String : pickup indices: Array[int]
+var area_pickup_status: Dictionary = {}
 
 #endregion
 
@@ -112,7 +115,12 @@ func _ready() -> void:
 	level_loaded.connect(_on_level_loaded)
 	menu_loaded.connect(on_menu_loaded)
 
+	init_pickups()
 	load_world("main_menu")
+
+func init_pickups() -> void:
+	for area_name: String in _levels.keys():
+		area_pickup_status[area_name] = []
 
 # Used to check the progress of the threaded load call
 func _process(_delta: float) -> void:
@@ -258,12 +266,16 @@ func get_save_data() -> Dictionary:
 	return {
 		"area": region_name,
 		"modifiers": current_modifiers,
-		"checkpoint": current_checkpoint
+		"checkpoint": current_checkpoint,
+		"area_pickup_status": area_pickup_status,
 	}
 
 func respawn() -> void:
 	load_world(_checkpoints[current_checkpoint][0], _checkpoints[current_checkpoint][1])
 	PlayerStats.refill_health()
+
+func fast_travel(checkpoint_name: String) -> void:
+	load_world(_checkpoints[checkpoint_name][0], _checkpoints[checkpoint_name][1])
 
 func update_checkpoint(checkpoint_name: String) -> void:
 	if _checkpoints.keys().has(checkpoint_name):
@@ -288,3 +300,9 @@ func trigger_battle(enemy_name: String, start_translucent: bool = false) -> void
 	else:
 		MenuManager.fader_controller.fade_out_complete.connect(on_fade_out_complete)
 		MenuManager.fader_controller.fade_out()
+
+func load_save(save_data: Dictionary) -> void:
+	current_checkpoint = save_data.get("checkpoint", "start")
+	current_modifiers = save_data.get("modifiers", [])
+	area_pickup_status = save_data.get("area_pickup_status")
+	load_world(save_data["area"])
