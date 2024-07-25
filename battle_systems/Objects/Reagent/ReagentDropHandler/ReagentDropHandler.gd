@@ -114,6 +114,7 @@ func _validate_recipe() -> void:
 		recipe_controller.hide_pages()
 	else:
 		# Passed checks
+		print("Recipe Count: ", valid_recipies.size(), " | ", valid_recipies)
 		recipe_controller.set_data(valid_recipies)
 
 func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:
@@ -121,6 +122,11 @@ func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:
 	if _reagent_data.is_empty(): return false
 
 	var component_copy: Array[TypeChart.ResonateType] = components.duplicate(true)
+	# Do a check that all added reagents are part of the component recipe
+	for data: Data in _reagent_data:
+		if data.reagent not in component_copy: return false
+
+	# Do residue checks
 	var residue_copy: Array[TypeChart.ResonateType]\
 		 = entity_tracker.enemy_entity.get_residues()
 	var has_residue: bool = residue_copy.size() > 0
@@ -132,6 +138,7 @@ func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:
 		if residue in component_copy:
 			component_copy.erase(residue)
 
+	# Check if recipe is valid after accounting for the residues
 	for data: Data in _reagent_data:
 		if data.reagent in component_copy:
 			component_copy.erase(data.reagent)
