@@ -96,8 +96,7 @@ func get_ability_damage_data(ability_name: String) -> Dictionary:
 	return {
 		"damage": ability.damage,
 		"resonate_type": ability.resonate_type,
-		"capture_rate": ability.capture_efficiency,
-		"components": get_ability_recipe(ability_name)
+		"capture_rate": ability.capture_efficiency
 	}
 
 func get_ability_resonance(ability_name: String) -> TypeChart.ResonateType:

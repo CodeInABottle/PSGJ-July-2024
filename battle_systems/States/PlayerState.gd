@@ -8,7 +8,6 @@ extends Node
 func enter() -> void:
 	# End battle if died of effects
 	if entity_tracker.handle_player_effects(): return
-	entity_tracker.enemy_entity.reduce_residues()
 
 	table.candles.light()
 	PlayerStats.regen_alchemy_points()

@@ -1,7 +1,7 @@
 class_name BattlefieldTable
 extends Node2D
 
-signal ability_execute_requested(ability_name: String, spent_residue: Array[TypeChart.ResonateType])
+signal ability_execute_requested(ability_name: String)
 
 @export var entity_tracker: BattlefieldEntityTracker
 @export var control_shield: Panel
@@ -25,8 +25,8 @@ func _ready() -> void:
 	hp_flask_bar.set_data(PlayerStats.health, PlayerStats.max_health, "Health")
 	PlayerStats.health_updated.connect(_on_hp_updated)
 	reagent_drop_handler.ability_execute_requested.connect(
-		func(ability_name: String, usage: Array[TypeChart.ResonateType]) -> void:
-			ability_execute_requested.emit(ability_name, usage)
+		func(ability_name: String) -> void:
+			ability_execute_requested.emit(ability_name)
 	)
 	reagent_drop_handler.entity_tracker = entity_tracker
 
