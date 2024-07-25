@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_gknic")
-requires_awaiting = false
+requires_awaiting = true

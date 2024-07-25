@@ -17,3 +17,4 @@ extends Resource
 @export var icon: CompressedTexture2D
 @export var combat_animation: PackedScene
 @export var special_frame_idx: int = -1
+@export var attack_position: Vector2

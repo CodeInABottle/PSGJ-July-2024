@@ -6,6 +6,11 @@ extends Resource
 @export_multiline var description: String
 @export var modifiers: Array[BattlefieldAttackModifier] = []
 
+@export var moving_attack: bool = false
+@export var attack_movement_speed: float = 0.5
+@export var attack_life_time: float = 0.5
+@export var attack: PackedScene
+
 @export_category("Reagents")
 @export var resonate_type: TypeChart.ResonateType = TypeChart.ResonateType.NONE
 @export var reagent_a: TypeChart.ResonateType = TypeChart.ResonateType.NONE
@@ -28,18 +33,6 @@ func initialize(ability_name: String) -> void:
 		ap_cost += 1
 	assert(ap_cost > 0, "Abilities require at least one reagent.")
 	assert(resonate_type != TypeChart.ResonateType.NONE, "Requires a set resonance for the recipe.")
-
-func get_components() -> Array[TypeChart.ResonateType]:
-	var components: Array[TypeChart.ResonateType] = []
-	if reagent_a != TypeChart.ResonateType.NONE:
-		components.push_back(reagent_a)
-	if reagent_b != TypeChart.ResonateType.NONE:
-		components.push_back(reagent_b)
-	if reagent_c != TypeChart.ResonateType.NONE:
-		components.push_back(reagent_c)
-	if reagent_d != TypeChart.ResonateType.NONE:
-		components.push_back(reagent_d)
-	return components
 
 func get_world_states(idx: int) -> Dictionary:
 	return {

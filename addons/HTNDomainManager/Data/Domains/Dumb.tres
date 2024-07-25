@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_w4epb")
-root_key = &"Sandwich_0"
+root_key = "Sandwich_0"
 task_map = {
 "Sandwich_2": "PickRandomAbility"
 }

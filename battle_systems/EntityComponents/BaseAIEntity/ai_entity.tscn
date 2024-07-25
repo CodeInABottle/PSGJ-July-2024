@@ -89,6 +89,7 @@ unique_name_in_owner = true
 
 [node name="HTNPlanner" parent="." index="1" instance=ExtResource("3_nwu2m")]
 unique_name_in_owner = true
+enable_debugging = true
 
 [node name="HurtPlayer" type="AnimationPlayer" parent="." index="2"]
 unique_name_in_owner = true

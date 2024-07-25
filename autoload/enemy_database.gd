@@ -40,11 +40,6 @@ func get_enemy_data(enemy_name: String) -> BattlefieldEnemyData:
 
 	return _enemies[enemy_name]
 
-func get_ability_data(ability_name: String) -> BattlefieldAbility:
-	assert(ability_name in _abilities, "Ability name: " + ability_name + " does not exist/isn't loaded.")
-
-	return _abilities[ability_name]
-
 func get_alchemy_data(enemy_name: String) -> Dictionary:
 	var enemy_data: BattlefieldEnemyData = get_enemy_data(enemy_name)
 
@@ -69,6 +64,21 @@ func get_alchemy_data(enemy_name: String) -> Dictionary:
 			"ap": 7,
 			"regen": 3
 		}
+
+func get_ability_data(ability_name: String) -> BattlefieldAbility:
+	assert(ability_name in _abilities, "Ability name: " + ability_name + " does not exist/isn't loaded.")
+
+	return _abilities[ability_name]
+
+func get_ability_attack(ability_name: String) -> Dictionary:
+	assert(ability_name in _abilities, "Ability name: " + ability_name + " does not exist/isn't loaded.")
+
+	return {
+		"attack": _abilities[ability_name]["attack"],
+		"movement_speed": _abilities[ability_name]["attack_movement_speed"],
+		"life_time": _abilities[ability_name]["attack_life_time"],
+		"is_moving": _abilities[ability_name]["moving_attack"]
+	}
 
 func get_ability_recipe(ability_name: String) -> Array[TypeChart.ResonateType]:
 	if ability_name not in _abilities: return []
@@ -96,8 +106,7 @@ func get_ability_damage_data(ability_name: String) -> Dictionary:
 	return {
 		"damage": ability.damage,
 		"resonate_type": ability.resonate_type,
-		"capture_rate": ability.capture_efficiency,
-		"components": get_ability_recipe(ability_name)
+		"capture_rate": ability.capture_efficiency
 	}
 
 func get_ability_resonance(ability_name: String) -> TypeChart.ResonateType:
