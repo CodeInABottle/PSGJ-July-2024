@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://c6i5ioviqshja"]
+
+[ext_resource type="Script" path="res://particles/base_attack/base_attack_controller.gd" id="1_a2dy2"]
+
+[node name="BaseAttack" type="Node2D"]
+script = ExtResource("1_a2dy2")
+
+[node name="DieTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 3.0
+one_shot = true
