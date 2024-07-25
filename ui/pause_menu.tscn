@@ -1,6 +1,7 @@
-[gd_scene load_steps=3 format=3 uid="uid://c4fqfvleyq3nd"]
+[gd_scene load_steps=5 format=3 uid="uid://c4fqfvleyq3nd"]
 
 [ext_resource type="Script" path="res://ui/pause_menu_controller.gd" id="1_iexfw"]
+[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_75nro"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01uju"]
 bg_color = Color(0.556863, 0.596078, 0.713726, 1)
@@ -10,7 +11,9 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.635294, 0.423529, 0.239216, 1)
 
-[node name="PauseMenu" type="Control" node_paths=PackedStringArray("save_button", "respawn_button")]
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vieyj"]
+
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("save_button", "respawn_button", "bag_button", "item_list", "item_name_label", "item_icon", "item_description", "interact_button", "items_panel", "details_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -19,10 +22,18 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_iexfw")
-save_button = NodePath("VBoxContainer/SaveButton")
-respawn_button = NodePath("VBoxContainer/RespawnButton")
+save_button = NodePath("PausePanel/VBoxContainer/SaveButton")
+respawn_button = NodePath("PausePanel/VBoxContainer/RespawnButton")
+bag_button = NodePath("PausePanel/VBoxContainer/BagButton")
+item_list = NodePath("ItemsPanel/VBoxContainer/ItemsContainer/ScrollContainer/ItemList")
+item_name_label = NodePath("ItemsDetailPanel/VBoxContainer/DetailsTitleContainer/Title")
+item_icon = NodePath("ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer/TextureRect")
+item_description = NodePath("ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer/Label")
+interact_button = NodePath("ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer/Button")
+items_panel = NodePath("ItemsPanel")
+details_panel = NodePath("ItemsDetailPanel")
 
-[node name="Panel" type="Panel" parent="."]
+[node name="PausePanel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -30,26 +41,122 @@ offset_right = 120.0
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_01uju")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel"]
 layout_mode = 1
 anchors_preset = 4
 anchor_top = 0.5
 anchor_bottom = 0.5
 offset_left = 15.0
-offset_top = -50.5
+offset_top = -58.5
 offset_right = 100.0
-offset_bottom = 50.5
+offset_bottom = 58.5
 grow_vertical = 2
 theme_override_constants/separation = 12
 
-[node name="SaveButton" type="Button" parent="VBoxContainer"]
+[node name="SaveButton" type="Button" parent="PausePanel/VBoxContainer"]
 layout_mode = 2
 text = "SAVE"
 
-[node name="RespawnButton" type="Button" parent="VBoxContainer"]
+[node name="RespawnButton" type="Button" parent="PausePanel/VBoxContainer"]
 layout_mode = 2
 text = "RESPAWN"
 
-[node name="BagButton" type="Button" parent="VBoxContainer"]
+[node name="BagButton" type="Button" parent="PausePanel/VBoxContainer"]
 layout_mode = 2
 text = "BAG"
+
+[node name="ItemsPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_right = 320.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_01uju")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemsPanel"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ItemsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_vieyj")
+
+[node name="ItemsTitleContainer" type="PanelContainer" parent="ItemsPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ItemsPanel/VBoxContainer/ItemsTitleContainer"]
+layout_mode = 2
+text = "BAG"
+horizontal_alignment = 1
+
+[node name="ItemsContainer" type="PanelContainer" parent="ItemsPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="ScrollContainer" type="ScrollContainer" parent="ItemsPanel/VBoxContainer/ItemsContainer"]
+layout_mode = 2
+
+[node name="ItemList" type="ItemList" parent="ItemsPanel/VBoxContainer/ItemsContainer/ScrollContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+auto_height = true
+fixed_icon_size = Vector2i(32, 32)
+
+[node name="ItemsDetailPanel" type="PanelContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 320.0
+offset_right = 520.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_01uju")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemsDetailPanel"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ItemsDetailPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_vieyj")
+
+[node name="DetailsTitleContainer" type="PanelContainer" parent="ItemsDetailPanel/VBoxContainer"]
+layout_mode = 2
+
+[node name="Title" type="Label" parent="ItemsDetailPanel/VBoxContainer/DetailsTitleContainer"]
+layout_mode = 2
+text = "NAME"
+horizontal_alignment = 1
+
+[node name="DetailsContainer" type="PanelContainer" parent="ItemsDetailPanel/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemsDetailPanel/VBoxContainer/DetailsContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_vieyj")
+
+[node name="TextureRect" type="TextureRect" parent="ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_75nro")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer"]
+custom_minimum_size = Vector2(196, 210)
+layout_mode = 2
+size_flags_vertical = 3
+text = "Description"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer"]
+layout_mode = 2
+text = "OPTIONAL INTERACT"

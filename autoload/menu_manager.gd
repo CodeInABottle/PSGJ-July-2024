@@ -15,6 +15,7 @@ func toggle_pause() -> void:
 	if pause_menu:
 		if LevelManager.is_paused():
 			LevelManager.enable_world_node()
+			pause_menu.hide_all()
 			pause_menu.hide()
 			fader_controller.fade_from_translucent()
 		else:
@@ -26,6 +27,7 @@ func toggle_pause_no_fade() -> void:
 	if pause_menu:
 		if LevelManager.is_paused():
 			LevelManager.enable_world_node()
+			pause_menu.hide_all()
 			pause_menu.hide()
 		else:
 			LevelManager.disable_world_node()
