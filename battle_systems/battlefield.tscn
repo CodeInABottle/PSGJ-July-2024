@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=16 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EntityTracker.gd" id="2_oep6u"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://bw5wgs3tjxkp1" path="res://battle_systems/EntityComponents/PlayerEntity/player_entity.tscn" id="8_4gulr"]
 [ext_resource type="Script" path="res://battle_systems/States/CaptureState.gd" id="8_ibtg5"]
 [ext_resource type="PackedScene" uid="uid://1vrxk6abwdej" path="res://battle_systems/Objects/Table/table.tscn" id="9_ou7kj"]
+[ext_resource type="PackedScene" uid="uid://cg2nofxbexpme" path="res://assets/shaders/combat_background.tscn" id="10_ot5yf"]
 [ext_resource type="PackedScene" uid="uid://cp02k4l0gw3u0" path="res://battle_systems/EntityComponents/BaseAIEntity/ai_entity.tscn" id="11_66ej3"]
 [ext_resource type="PackedScene" uid="uid://dob0l3mbcorkh" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.tscn" id="13_7ttxg"]
 
@@ -45,6 +46,9 @@ script = ExtResource("6_28yvg")
 [node name="GameOverState" type="Node" parent="CombatStateMachine"]
 script = ExtResource("7_hc5bd")
 
+[node name="CombatBackground" parent="." instance=ExtResource("10_ot5yf")]
+offset_right = 640.0
+
 [node name="PlayerEntity" parent="." node_paths=PackedStringArray("entity_tracker") instance=ExtResource("8_4gulr")]
 unique_name_in_owner = true
 position = Vector2(200, 163)
@@ -57,9 +61,10 @@ enemy_status_indicator = NodePath("../CanvasLayer/EnemyStatusIndicator")
 player_entity = NodePath("../PlayerEntity")
 entity_tracker = NodePath("../EntityTracker")
 
-[node name="Table" parent="." node_paths=PackedStringArray("player_entity") instance=ExtResource("9_ou7kj")]
+[node name="Table" parent="." node_paths=PackedStringArray("entity_tracker", "control_shield") instance=ExtResource("9_ou7kj")]
 unique_name_in_owner = true
-player_entity = NodePath("../PlayerEntity")
+entity_tracker = NodePath("../EntityTracker")
+control_shield = NodePath("../CanvasLayer/ControlShield")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

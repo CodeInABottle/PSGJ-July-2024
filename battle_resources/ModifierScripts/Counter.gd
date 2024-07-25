@@ -10,6 +10,7 @@ func execute(player: BattlefieldPlayerEntity, enemy: BattlefieldAIEntity,
 		"damage": counter_damage,
 		"resonate_type": additional_data["resonate_type"],
 		"capture_rate": additional_data["efficiency_capture_rate"],
+		"components": additional_data["components"]
 	}
 	# The entity that has the attack phase takes the damage
 	if additional_data["is_players_turn"]:

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8igowxe8opd5"]
+
+[ext_resource type="PackedScene" uid="uid://ccuo8cx5bw5ge" path="res://battle_systems/EntityComponents/base_enemy_sprite_handler.tscn" id="1_bgx03"]
+[ext_resource type="Texture2D" uid="uid://dmuqq3slqsorv" path="res://assets/sprites/mobs/combat_worm.png" id="2_ekb7o"]
+
+[node name="WormSpriteHandler" instance=ExtResource("1_bgx03")]
+
+[node name="Shadow" parent="." index="0"]
+texture = ExtResource("2_ekb7o")
+frame = 3
+
+[node name="Object" parent="." index="1"]
+texture = ExtResource("2_ekb7o")
+frame = 2

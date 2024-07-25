@@ -10,7 +10,7 @@ const EARTH_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/E
 const WIND_REAGENT: PackedScene = preload("res://battle_systems/Objects/Reagent/AnimatedReagents/wind_reagent.tscn")
 const WIND_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WindOrbStill.png")
 
-signal ability_execute_requested(ability_name: String)
+signal ability_execute_requested(ability_name: String, spent_residue: Array[TypeChart.ResonateType])
 
 class Data:
 	var follow_node: PathFollow2D
@@ -24,19 +24,20 @@ class Data:
 @onready var recipe_controller: BattlefieldRecipeController = %RecipeController
 @onready var text_box_animator: AnimationPlayer = %TextBoxAnimator
 @onready var description_label: Label = %DescriptionLabel
+@onready var combine_point: Marker2D = %CombinePoint
+@onready var apex_point: Marker2D = %ApexPoint
 
 var _reagent_data: Array[Data] = []
 var _equipped_ability_cache: PackedStringArray
 var _description_out: bool = false
-var player_entity: BattlefieldPlayerEntity
+var _tween: Tween
+var _ability_activated: bool = false
+var entity_tracker: BattlefieldEntityTracker
+var control_shield: Panel
 
 func _ready() -> void:
 	_equipped_ability_cache = PlayerStats.get_all_equipped_abilities()
-	recipe_controller.pressed.connect(
-		func(ability_name: String) -> void:
-			clear(false)
-			ability_execute_requested.emit(ability_name)
-	)
+	recipe_controller.pressed.connect(_on_recipe_chosen)
 	text_box_animator.animation_finished.connect(
 		func(animation_name: String) -> void:
 			if animation_name != "SlideOut": return
@@ -64,7 +65,11 @@ func _ready() -> void:
 	)
 
 func _physics_process(delta: float) -> void:
+	if _ability_activated: return
+
 	for data: Data in _reagent_data:
+		if data.is_queued_for_deletion(): continue
+
 		data.follow_node.progress_ratio += delta * speed
 		data.animated_sprite.global_rotation_degrees = 0
 		if data.follow_node.progress_ratio > 0.5:
@@ -83,7 +88,7 @@ func clear(return_ap:bool = true) -> void:
 	for data: Data in _reagent_data:
 		if data.is_queued_for_deletion(): continue
 		if return_ap:
-			PlayerStats.alchemy_points += player_entity.get_cost(data.reagent)
+			PlayerStats.alchemy_points += entity_tracker.player_entity.get_cost(data.reagent)
 		data.follow_node.queue_free()
 	_reagent_data.clear()
 	recipe_controller.hide_pages()
@@ -99,24 +104,10 @@ func _validate_recipe() -> void:
 	for equipped_ability_name: String in _equipped_ability_cache:
 		var components: Array[TypeChart.ResonateType] = EnemyDatabase.get_ability_recipe(equipped_ability_name)
 		if _is_valid_recipe(components):
-			var reagent_textures: Array[Texture] = []
-			for reagent: Data in _reagent_data:
-				match reagent.reagent:
-					TypeChart.ResonateType.WATER:
-						reagent_textures.push_back(WATER_ORB_STILL)
-					TypeChart.ResonateType.FIRE:
-						reagent_textures.push_back(FIRE_ORB_STILL)
-					TypeChart.ResonateType.EARTH:
-						reagent_textures.push_back(EARTH_ORB_STILL)
-					TypeChart.ResonateType.AIR:
-						reagent_textures.push_back(WIND_ORB_STILL)
-					_:
-						reagent_textures.push_back(null)
-
 			valid_recipies.push_back({
 				"name": equipped_ability_name,
 				"type": EnemyDatabase.get_ability_resonance(equipped_ability_name),
-				"textures": reagent_textures
+				"textures": EnemyDatabase.get_ability_recipe_textures(equipped_ability_name)
 			})
 
 	if valid_recipies.is_empty():
@@ -126,22 +117,32 @@ func _validate_recipe() -> void:
 		recipe_controller.set_data(valid_recipies)
 
 func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:
-	if components.size() != _reagent_data.size(): return false
+	if components.is_empty(): return false
+	if _reagent_data.is_empty(): return false
 
 	var component_copy: Array[TypeChart.ResonateType] = components.duplicate(true)
+	var residue_copy: Array[TypeChart.ResonateType]\
+		 = entity_tracker.enemy_entity.get_residues()
+	var has_residue: bool = residue_copy.size() > 0
+	if not has_residue:
+		if _reagent_data.size() != components.size(): return false
+
+	while not residue_copy.is_empty():
+		var residue: TypeChart.ResonateType = residue_copy.pop_back()
+		if residue in component_copy:
+			component_copy.erase(residue)
 
 	for data: Data in _reagent_data:
+		if data.reagent in component_copy:
+			component_copy.erase(data.reagent)
+
 		if component_copy.is_empty():
-			return false
+			return true
 
-		if data.reagent not in component_copy:
-			return false
-		component_copy.erase(data.reagent)
-
-	return true
+	return false
 
 func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
-	var ap_cost: int = player_entity.get_cost(reagent)
+	var ap_cost: int = entity_tracker.player_entity.get_cost(reagent)
 	if PlayerStats.alchemy_points >= ap_cost:
 		PlayerStats.alchemy_points -= ap_cost
 	else:
@@ -156,7 +157,7 @@ func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
 			offset -= 1.0
 		follow_instance.progress_ratio = offset
 
-	# Set Data
+	# Create the animated orb
 	var animated_reagent: AnimatedSprite2D
 	match reagent:
 		TypeChart.ResonateType.WATER:
@@ -167,11 +168,55 @@ func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
 			animated_reagent = EARTH_REAGENT.instantiate()
 		TypeChart.ResonateType.AIR:
 			animated_reagent = WIND_REAGENT.instantiate()
-
 	follow_instance.add_child(animated_reagent)
 
+
+	# Set Data
 	var data: Data = Data.new()
 	data.follow_node = follow_instance
 	data.animated_sprite = animated_reagent
 	data.reagent = reagent
 	_reagent_data.push_back(data)
+
+func _on_recipe_chosen(ability_name: String) -> void:
+	control_shield.show()
+	await text_box_animator.animation_finished
+
+	_ability_activated = true
+	# Reset the tween
+	if _tween:
+		_tween.kill()
+	_tween = create_tween()
+	var usage: Array[TypeChart.ResonateType] = []
+	var components: Array[TypeChart.ResonateType] = EnemyDatabase.get_ability_recipe(ability_name)
+
+	# Detach from path follow and "craft"
+	for data: Data in _reagent_data:
+		usage.push_back(data.reagent)
+		var reagent_orb: AnimatedSprite2D = data.follow_node.get_child(0)
+		var global_pos: Vector2 = reagent_orb.global_position
+		data.follow_node.remove_child(reagent_orb)
+		add_child(reagent_orb)
+		reagent_orb.z_index = 5
+		reagent_orb.global_rotation_degrees = 0
+		reagent_orb.global_position = global_pos
+
+		_tween.tween_property(reagent_orb, "global_position", apex_point.global_position, 0.1)
+		_tween.tween_property(reagent_orb, "global_position", combine_point.global_position, 0.25)
+		_tween.tween_property(reagent_orb, "self_modulate", Color(1, 1, 1, 0), 0.1)
+		_tween.tween_callback(reagent_orb.queue_free)
+
+	# Clear cache here
+	clear(false)
+
+	# Get the residue cost
+	for type: TypeChart.ResonateType in usage:
+		components.erase(type)
+
+	# Report attack
+	_tween.tween_callback(
+		func() -> void:
+			ability_execute_requested.emit(ability_name, components)
+			_ability_activated = false
+			control_shield.hide()
+	)

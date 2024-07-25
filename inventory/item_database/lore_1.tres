@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://inventory/lore_item.gd" id="1_s7ou5"]
 [ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_ogtva"]
 [ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_ldrlx"]
-[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="4_4aknr"]
+[ext_resource type="Texture2D" uid="uid://ywlp7vlixhjs" path="res://assets/sprites/combat/UI/BookClosed.png" id="4_45uu2"]
 
 [sub_resource type="Resource" id="Resource_imlnh"]
 script = ExtResource("1_oy1rc")
@@ -28,4 +28,4 @@ script = ExtResource("1_s7ou5")
 dialogue = SubResource("Resource_ocjym")
 item_name = "Lore Book 1"
 item_description = "you should read it!"
-item_icon = ExtResource("4_4aknr")
+item_icon = ExtResource("4_45uu2")

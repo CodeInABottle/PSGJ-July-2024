@@ -4,7 +4,7 @@ extends CanvasLayer
 @export var slot_shadows_button: Button
 @export var hear_lore_button: Button
 @export var menu_close_button: Button
-@export var lore_panel: Panel
+@export var lore_panel: LorePanel
 @export var lore_list: ItemList
 @export var checkpoint: Checkpoint
 @export var battle_button: Button
@@ -42,15 +42,19 @@ func on_battle_pressed() -> void:
 	LevelManager.trigger_battle("Mailbox", true)
 
 func on_hear_lore_pressed() -> void:
-	hide_all_parts()
-	lore_panel.show()
+	if lore_panel.is_visible_in_tree():
+		hide_all_parts()
+	else:
+		hide_all_parts()
+		lore_panel.start()
+		
 
 func on_visibility_changed() -> void:
 	if not is_visible():
 		hide_all_parts()
 
 func hide_all_parts() -> void:
-	lore_panel.hide()
+	lore_panel.hide_all()
 	lore_list.deselect_all()
 
 func on_translucent_to_black_complete() -> void:

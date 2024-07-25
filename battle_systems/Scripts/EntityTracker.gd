@@ -180,7 +180,8 @@ func _reduce_signal_effect_turns(effects: Array[ModData]) -> void:
 # Returns true on skipped turn
 func _execute(additional_data: Dictionary, modifier_data: ModData) -> bool:
 	var execute_data: Dictionary = {
-		"is_players_turn": is_players_turn
+		"is_players_turn": is_players_turn,
+		"components": TypeChart.get_resonance_breakdown(modifier_data.resonate)
 	}
 	execute_data.merge(additional_data, true)
 	execute_data.merge(modifier_data.get_data(), true)

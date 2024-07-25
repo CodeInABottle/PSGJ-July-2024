@@ -16,3 +16,4 @@ extends Resource
 @export_category("Misc")
 @export var icon: CompressedTexture2D
 @export var combat_animation: PackedScene
+@export var special_frame_idx: int = -1
