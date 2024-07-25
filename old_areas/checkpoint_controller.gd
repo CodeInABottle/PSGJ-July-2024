@@ -22,6 +22,8 @@ func on_interaction_started(_interactable: Interactable) -> void:
 	obelisk_sprite.play()
 	set_checkpoint()
 	MenuManager.fader_controller.fade_to_translucent()
+	PlayerStats.refill_health()
+	LevelManager.reset_world()
 
 func on_interaction_advanced(_interactable: Interactable) -> void:
 	print("advanced checkpoint interaction")
