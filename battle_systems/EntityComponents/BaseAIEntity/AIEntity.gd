@@ -17,10 +17,10 @@ signal captured
 
 # { (ResonateType) : [(turns_remaining (int) )...] }
 var _residues: Dictionary = {
-	TypeChart.ResonateType.EARTH: [0],
-	TypeChart.ResonateType.WATER: [0],
-	TypeChart.ResonateType.AIR: [0],
-	TypeChart.ResonateType.FIRE: [0],
+	TypeChart.ResonateType.EARTH: [],
+	TypeChart.ResonateType.WATER: [],
+	TypeChart.ResonateType.AIR: [],
+	TypeChart.ResonateType.FIRE: [],
 }
 var _data: BattlefieldEnemyData
 var _animation_sprite: AnimatedSprite2D
