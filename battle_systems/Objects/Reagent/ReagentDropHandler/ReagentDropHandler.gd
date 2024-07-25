@@ -114,7 +114,7 @@ func _validate_recipe() -> void:
 		recipe_controller.hide_pages()
 	else:
 		# Passed checks
-		print("Recipe Count: ", valid_recipies.size(), " | ", valid_recipies)
+		#print("Recipe Count: ", valid_recipies.size(), " | ", valid_recipies)
 		recipe_controller.set_data(valid_recipies)
 
 func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:

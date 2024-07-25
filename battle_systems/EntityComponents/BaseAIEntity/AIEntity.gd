@@ -100,7 +100,7 @@ func take_damage(damage_data: Dictionary) -> void:
 			for turn_entry_idx: int in _residues[component].size():
 				if _residues[component][turn_entry_idx] < MAX_RESIDUE_TURNS:
 					_residues[component][turn_entry_idx] = 2
-					continue
+			continue
 
 		_residues[component].push_back(MAX_RESIDUE_TURNS)
 
