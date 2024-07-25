@@ -19,7 +19,7 @@ var battle_state: Dictionary = {
 func _ready() -> void:
 	LevelManager.menu_loaded.emit(self)
 	battle_finished.connect(_on_battle_finished)
-	setup_battle("Living Tree")
+	#setup_battle("Living Tree")
 	#setup_battle("Mailbox")
 	#setup_battle("Niter Tiger")
 	#setup_battle("Fighting Fish")
