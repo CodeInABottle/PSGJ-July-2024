@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=2 format=3 uid="uid://b4prswpggurdw"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=3 format=3 uid="uid://b4prswpggurdw"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_1q26j"]
+[ext_resource type="PackedScene" uid="uid://b8igowxe8opd5" path="res://battle_systems/EntityComponents/CombatAnimations/worm_sprite_handler.tscn" id="1_n2jek"]
 
 [resource]
 script = ExtResource("1_1q26j")
@@ -10,3 +11,5 @@ max_health = 150
 resonate = 8
 domain = &"Dumb"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([])
+combat_animation = ExtResource("1_n2jek")
+special_frame_idx = 4

@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://cukn3asdb1m34"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_affhm"]
-[ext_resource type="PackedScene" uid="uid://cv1lpk7t02cdf" path="res://battle_systems/EntityComponents/CombatAnimations/fish_animation.tscn" id="1_dqi12"]
 [ext_resource type="Resource" uid="uid://m0vscmkrmnyi" path="res://battle_resources/abilities/Purify.tres" id="1_ppbmj"]
 [ext_resource type="Resource" uid="uid://dn464bphbncd2" path="res://battle_resources/abilities/Retaliate.tres" id="2_26wvj"]
+[ext_resource type="PackedScene" uid="uid://dyl4w7kmq3wao" path="res://battle_systems/EntityComponents/CombatAnimations/fish_sprite_handler.tscn" id="3_8cm26"]
 
 [resource]
 script = ExtResource("1_affhm")
@@ -13,4 +13,4 @@ max_health = 280
 resonate = 4
 domain = &"Dumb"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_ppbmj"), ExtResource("2_26wvj")])
-combat_animation = ExtResource("1_dqi12")
+combat_animation = ExtResource("3_8cm26")

@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://dyl4w7kmq3wao"]
+
+[ext_resource type="PackedScene" uid="uid://ccuo8cx5bw5ge" path="res://battle_systems/EntityComponents/base_enemy_sprite_handler.tscn" id="1_rs1sa"]
+[ext_resource type="Texture2D" uid="uid://ctbj4dcrlobke" path="res://assets/sprites/mobs/combat_fish.png" id="2_u2j1i"]
+
+[node name="FishSpriteHandler" instance=ExtResource("1_rs1sa")]
+
+[node name="Shadow" parent="." index="0"]
+texture = ExtResource("2_u2j1i")
+vframes = 4
+
+[node name="Object" parent="." index="1"]
+texture = ExtResource("2_u2j1i")
+vframes = 4

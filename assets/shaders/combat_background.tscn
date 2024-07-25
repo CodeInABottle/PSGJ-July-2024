@@ -2,7 +2,7 @@
 
 [ext_resource type="Shader" path="res://assets/shaders/battle_background.gdshader" id="1_ocxd3"]
 [ext_resource type="Texture2D" uid="uid://dtfccgqnpjhvi" path="res://assets/shaders/bg.png" id="2_sjys8"]
-[ext_resource type="Texture2D" uid="uid://6nus10ysgjwt" path="res://battle_systems/purple_palette.tres" id="2_v7xn6"]
+[ext_resource type="Texture2D" uid="uid://6nus10ysgjwt" path="res://battle_systems/combat_palette.tres" id="2_v7xn6"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_bcp8l"]
 

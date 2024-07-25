@@ -23,7 +23,6 @@ var _residues: Dictionary = {
 	TypeChart.ResonateType.FIRE: [],
 }
 var _data: BattlefieldEnemyData
-var _animation_sprite: AnimatedSprite2D
 var _max_alchemy_points: int
 var _alchemy_regen: int
 var _alchemy_points: int
@@ -42,14 +41,21 @@ var _capture_value: int:
 		if is_captured():
 			captured.emit()
 
+func _ready() -> void:
+	hurt_player.animation_finished.connect(
+		func(_animation_name: String) -> void:
+			if _data.special_frame_idx == -1: return
+			animation_holder.get_child(0).reset()
+	)
+
 func load_AI(data: BattlefieldEnemyData) -> void:
 	htn_planner.finished.connect( func() -> void: actions_completed.emit() )
 	_data = data
 	_health = data.max_health
 	_capture_value = data.max_health
 	htn_planner.domain_name = data.domain
-	_animation_sprite = _data.combat_animation.instantiate()
-	animation_holder.add_child(_animation_sprite)
+	var sprite_handler: Node2D = _data.combat_animation.instantiate()
+	animation_holder.add_child(sprite_handler)
 
 	var alchemy_data: Dictionary = EnemyDatabase.get_alchemy_data(_data.name)
 	_max_alchemy_points = alchemy_data["ap"]
@@ -58,7 +64,6 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 
 	enemy_status_indicator.set_resonate(data.resonate)
 	enemy_status_indicator.set_health_data(data.max_health)
-	_animation_sprite.play("Idle")
 
 func regen_ap() -> void:
 	_alchemy_points = clampi(_alchemy_points + _alchemy_regen, 0, _max_alchemy_points)
@@ -80,6 +85,10 @@ func take_damage(damage_data: Dictionary) -> void:
 	# Skip is its an ability that does no damage
 	if damage_data["damage"] == 0: return
 	print("enemy taken damage: ", damage_data["damage"])
+
+	# Check for special frame data
+	if _data.special_frame_idx != -1:
+		animation_holder.get_child(0).set_shadow_frame(_data.special_frame_idx)
 
 	entity_tracker.damage_taken.emit(false, damage_data)
 	_health -= damage_data["damage"]
