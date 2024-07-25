@@ -54,7 +54,7 @@ var _equipped_shadows: Array[String] = [
 ]
 
 # item_name: String : quantity: int
-var invetory_items: Dictionary = {}
+var inventory_items: Dictionary = {}
 
 var max_health: int = 200:
 	set(value):
@@ -77,6 +77,8 @@ var alchemy_points: int:
 
 		alchemy_points = clampi(value, 0, LEVEL_DATA[level]["AP"])
 		ap_updated.emit()
+
+var area_pickup_status: Dictionary = {}
 
 func _ready() -> void:
 	refill_health()
@@ -123,15 +125,15 @@ func get_all_equipped_abilities() -> PackedStringArray:
 	return data
 
 func add_item(item_name: String, quantity: int = 1) -> void:
-	if invetory_items.keys().has(item_name):
-		invetory_items[item_name] = invetory_items[item_name] + quantity
+	if inventory_items.keys().has(item_name):
+		inventory_items[item_name] = inventory_items[item_name] + quantity
 	else:
-		invetory_items[item_name] = quantity
+		inventory_items[item_name] = quantity
 
 func remove_item(item_name: String, quantity: int = 1) -> bool:
-	if invetory_items.keys().has(item_name):
+	if inventory_items.keys().has(item_name):
 		if has_item(item_name, quantity):
-			invetory_items[item_name] = invetory_items[item_name] - quantity
+			inventory_items[item_name] = inventory_items[item_name] - quantity
 			return true
 		else:
 			return false
@@ -139,11 +141,11 @@ func remove_item(item_name: String, quantity: int = 1) -> bool:
 		return false
 
 func get_inventory_items() -> Dictionary:
-	return invetory_items
+	return inventory_items
 
 func has_item(item_name: String, quantity: int = 1) -> bool:
-	if invetory_items.keys().has(item_name):
-		if invetory_items[item_name] >= quantity:
+	if inventory_items.keys().has(item_name):
+		if inventory_items[item_name] >= quantity:
 			return true
 		else:
 			return true
@@ -155,6 +157,7 @@ func load_data(data: Dictionary) -> void:
 	max_health = data.get("max_health", max_health)
 	player.teleport_to(data.get("position", player.get_global_position()))
 	_current_unlocked_shadows = data.get("unlocked_shadow_data", {})
+	inventory_items = data.get("inventory", {})
 
 func get_save_data() -> Dictionary:
 	return {
@@ -162,5 +165,6 @@ func get_save_data() -> Dictionary:
 		"health": health,
 		"max_health": max_health,
 		"unlocked_shadow_data": _current_unlocked_shadows,
-		"position": player.get_global_position()
+		"position": player.get_global_position(),
+		"inventory": inventory_items,
 	}
