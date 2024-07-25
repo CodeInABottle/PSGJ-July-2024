@@ -44,13 +44,16 @@ var _current_unlocked_shadows: Dictionary = {
 	],
 	"Fighting Fish": [
 		"Purify", "Retaliate"
+	],
+	"Earth Worm": [
 	]
 }
 var _equipped_shadows: Array[String] = [
 	"Living Tree",	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
 	"Mailbox",
 	"Niter Tiger",
-	"Fighting Fish"
+	"Fighting Fish",
+	"Earth Worm"
 ]
 
 # item_name: String : quantity: int

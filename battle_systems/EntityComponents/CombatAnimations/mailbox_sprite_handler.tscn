@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://bl1eb82cqjfie"]
+
+[ext_resource type="PackedScene" uid="uid://ccuo8cx5bw5ge" path="res://battle_systems/EntityComponents/base_enemy_sprite_handler.tscn" id="1_elaq8"]
+[ext_resource type="Texture2D" uid="uid://brg4eka782np5" path="res://assets/sprites/mobs/combat_mail_box.png" id="2_gab2t"]
+
+[node name="MailboxSpriteHandler" instance=ExtResource("1_elaq8")]
+
+[node name="Shadow" parent="." index="0"]
+texture = ExtResource("2_gab2t")
+vframes = 3
+
+[node name="Object" parent="." index="1"]
+texture = ExtResource("2_gab2t")
+vframes = 3

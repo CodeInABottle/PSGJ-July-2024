@@ -123,6 +123,9 @@ func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:
 	var component_copy: Array[TypeChart.ResonateType] = components.duplicate(true)
 	var residue_copy: Array[TypeChart.ResonateType]\
 		 = entity_tracker.enemy_entity.get_residues()
+	var has_residue: bool = residue_copy.size() > 0
+	if not has_residue:
+		if _reagent_data.size() != components.size(): return false
 
 	while not residue_copy.is_empty():
 		var residue: TypeChart.ResonateType = residue_copy.pop_back()
