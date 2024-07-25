@@ -46,6 +46,7 @@ var _current_unlocked_shadows: Dictionary = {
 		"Purify", "Retaliate"
 	],
 	"Earth Worm": [
+		"Whip", "Dig"
 	]
 }
 var _equipped_shadows: Array[String] = [
