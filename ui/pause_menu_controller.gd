@@ -39,7 +39,7 @@ func on_bag_button_pressed() -> void:
 		populate_item_list()
 		items_panel.show()
 
-func on_item_selected(index: int) -> void:
+func on_item_selected(_index: int) -> void:
 	update_details()
 	details_panel.show()
 	
@@ -55,7 +55,7 @@ func hide_all() -> void:
 func update_details() -> void:
 	interact_button.hide()
 	if item_list.is_anything_selected():
-		var selected_item_index = item_list.get_selected_items()[0]
+		var selected_item_index: int = item_list.get_selected_items()[0]
 		var item: InventoryItem = InventoryDatabase.get_item(item_list.get_item_text(selected_item_index))
 		item_name_label.text = item.item_name
 		item_icon.texture = item.item_icon

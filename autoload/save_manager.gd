@@ -53,7 +53,7 @@ func generate_scene_from_string(save_string: String) -> void:
 		var save_dictionary: Dictionary = Marshalls.base64_to_variant(save_string)
 		current_save_dictionary = save_dictionary
 		load_pending = true
-		LevelManager.load_world(current_save_dictionary["area"])
+		LevelManager.load_save(current_save_dictionary)
 	else:
 		LevelManager.load_entry_point()
 
@@ -73,4 +73,4 @@ func generate_save_string() -> String:
 
 func on_level_loaded(level: Node) -> void:
 	if level is GameArea and current_save_dictionary == {}:
-		current_save_dictionary = SaveManager.get_save_data()
+		current_save_dictionary = get_save_data()

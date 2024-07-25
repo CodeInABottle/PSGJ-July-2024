@@ -37,7 +37,7 @@ func _on_interaction_ended() -> void:
 		DialogueManager.end_dialogue()
 	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
-	pickup_interaction_ended.emit()
+	pickup_interaction_ended.emit(get_index())
 	pickup_area.hide()
 	item_sprite.hide()
 
@@ -53,5 +53,5 @@ func on_dialogue_timer_timeout() -> void:
 
 func on_fade_from_translucent_complete() -> void:
 	MenuManager.fader_controller.fade_from_translucent_complete.disconnect(on_fade_from_translucent_complete)
-	queue_free.call_deferred()
+	hide.call_deferred()
 	
