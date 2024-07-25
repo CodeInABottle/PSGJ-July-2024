@@ -518,13 +518,6 @@ offset_bottom = 283.0
 scale = Vector2(0.75, 0.75)
 color = Color(0.6, 0.898039, 0.313726, 1)
 
-[node name="ReagentDropHandler" parent="." node_paths=PackedStringArray("reagents") instance=ExtResource("3_ppdie")]
-unique_name_in_owner = true
-visible = false
-position = Vector2(176, 192)
-speed = 0.5
-reagents = [NodePath("../Pillow/Water"), NodePath("../Pillow/Fire"), NodePath("../Pillow/Earth"), NodePath("../Pillow/Air"), NodePath("../PaperTowel")]
-
 [node name="TransmutationNote" parent="." node_paths=PackedStringArray("drop_location", "transmutation_page") instance=ExtResource("8_0qp11")]
 position = Vector2(272, 298)
 scale = Vector2(0.5, 0.5)
@@ -585,6 +578,12 @@ texture = ExtResource("12_0nh0g")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PaperTowel"]
 position = Vector2(0.5, 2)
 shape = SubResource("RectangleShape2D_hidn5")
+
+[node name="ReagentDropHandler" parent="." node_paths=PackedStringArray("reagents") instance=ExtResource("3_ppdie")]
+unique_name_in_owner = true
+position = Vector2(176, 192)
+speed = 0.5
+reagents = [NodePath("../Pillow/Water"), NodePath("../Pillow/Fire"), NodePath("../Pillow/Earth"), NodePath("../Pillow/Air"), NodePath("../PaperTowel")]
 
 [node name="Candles" parent="." instance=ExtResource("16_6e3dm")]
 unique_name_in_owner = true
