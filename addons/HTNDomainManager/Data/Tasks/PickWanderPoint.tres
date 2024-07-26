@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://sb4agmig1tgs"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/Data/Scripts/PickWanderPoint.gd" id="1_y0g5i"]
+
+[resource]
+script = ExtResource("1_y0g5i")
+requires_awaiting = false

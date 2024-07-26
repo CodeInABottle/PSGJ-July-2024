@@ -1,0 +1,243 @@
+[gd_resource type="Resource" script_class="HTNGraphSave" load_steps=2 format=3 uid="uid://bji7tpv0oyicc"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Resources/HTNGraphSave.gd" id="1_r1jtx"]
+
+[resource]
+script = ExtResource("1_r1jtx")
+root_key = "Sandwich_0"
+connections = Array[Dictionary]([{
+"from_node": &"Sandwich_12",
+"from_port": 0,
+"to_node": &"Sandwich_13",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_12",
+"from_port": 0,
+"to_node": &"Sandwich_14",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_14",
+"from_port": 0,
+"to_node": &"Sandwich_15",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_15",
+"from_port": 0,
+"to_node": &"Sandwich_16",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_16",
+"from_port": 0,
+"to_node": &"Sandwich_17",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_16",
+"from_port": 0,
+"to_node": &"Sandwich_18",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_18",
+"from_port": 0,
+"to_node": &"Sandwich_19",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_13",
+"from_port": 0,
+"to_node": &"Sandwich_21",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_17",
+"from_port": 0,
+"to_node": &"Sandwich_23",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_5",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_1",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_5",
+"from_port": 0,
+"to_node": &"Sandwich_2",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_2",
+"from_port": 0,
+"to_node": &"Sandwich_3",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_2",
+"from_port": 0,
+"to_node": &"Sandwich_6",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_6",
+"from_port": 0,
+"to_node": &"Sandwich_10",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_3",
+"from_port": 0,
+"to_node": &"Sandwich_11",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_1",
+"from_port": 0,
+"to_node": &"Sandwich_12",
+"to_port": 0
+}])
+node_types = {
+"Sandwich_0": "Root",
+"Sandwich_1": "Always True Method",
+"Sandwich_10": "Task",
+"Sandwich_11": "Task",
+"Sandwich_12": "Splitter",
+"Sandwich_13": "Always True Method",
+"Sandwich_14": "Method",
+"Sandwich_15": "Task",
+"Sandwich_16": "Splitter",
+"Sandwich_17": "Always True Method",
+"Sandwich_18": "Method",
+"Sandwich_19": "Task",
+"Sandwich_2": "Splitter",
+"Sandwich_21": "Task",
+"Sandwich_23": "Task",
+"Sandwich_3": "Always True Method",
+"Sandwich_5": "Method",
+"Sandwich_6": "Method"
+}
+node_positions = {
+"Sandwich_0": Vector2(60, 20),
+"Sandwich_1": Vector2(480, -120),
+"Sandwich_10": Vector2(1140, 280),
+"Sandwich_11": Vector2(1120, 80),
+"Sandwich_12": Vector2(740, -140),
+"Sandwich_13": Vector2(1080, -240),
+"Sandwich_14": Vector2(1100, -100),
+"Sandwich_15": Vector2(1340, -140),
+"Sandwich_16": Vector2(1600, -140),
+"Sandwich_17": Vector2(1900, -240),
+"Sandwich_18": Vector2(1900, -100),
+"Sandwich_19": Vector2(2220, -100),
+"Sandwich_2": Vector2(580, 140),
+"Sandwich_21": Vector2(1320, -400),
+"Sandwich_23": Vector2(2200, -320),
+"Sandwich_3": Vector2(860, 80),
+"Sandwich_5": Vector2(220, 120),
+"Sandwich_6": Vector2(860, 200)
+}
+node_data = {
+"Sandwich_0": {},
+"Sandwich_1": {
+"condition_data": {
+"AlwaysTrue": true
+},
+"nickname": "",
+"priority": -9223372036854775808
+},
+"Sandwich_10": {
+"task": "StartBattle"
+},
+"Sandwich_11": {
+"task": "ChasePlayer"
+},
+"Sandwich_12": {
+"nickname": "has wander point"
+},
+"Sandwich_13": {
+"condition_data": {
+"AlwaysTrue": true
+},
+"nickname": "",
+"priority": -9223372036854775808
+},
+"Sandwich_14": {
+"condition_data": {
+"has_wander_point": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"nickname": "has_wander_point",
+"priority": 0
+},
+"Sandwich_15": {
+"task": "IsCloseEnoughtToPoint"
+},
+"Sandwich_16": {
+"nickname": "is close enough to point?"
+},
+"Sandwich_17": {
+"condition_data": {
+"AlwaysTrue": true
+},
+"nickname": "",
+"priority": -9223372036854775808
+},
+"Sandwich_18": {
+"condition_data": {
+"close_enough_to_point": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"nickname": "close_enough_to_point",
+"priority": 0
+},
+"Sandwich_19": {
+"task": "WaitAtPoint"
+},
+"Sandwich_2": {
+"nickname": "close enough to player?"
+},
+"Sandwich_21": {
+"task": "PickWanderPoint"
+},
+"Sandwich_23": {
+"task": "WalkToPoint"
+},
+"Sandwich_3": {
+"condition_data": {
+"AlwaysTrue": true
+},
+"nickname": "",
+"priority": -9223372036854775808
+},
+"Sandwich_5": {
+"condition_data": {
+"can_see_player": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"nickname": "can see player",
+"priority": 0
+},
+"Sandwich_6": {
+"condition_data": {
+"is_close_enough_to_player": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"nickname": "close enough to player",
+"priority": 0
+}
+}
