@@ -1,0 +1,99 @@
+[gd_resource type="Resource" script_class="HTNDomain" load_steps=2 format=3 uid="uid://b7kelwverlcpd"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Resources/HTNDomain.gd" id="1_21m0u"]
+
+[resource]
+script = ExtResource("1_21m0u")
+root_key = "Sandwich_0"
+task_map = {
+"Sandwich_10": "StartBattle",
+"Sandwich_11": "ChasePlayer",
+"Sandwich_15": "IsCloseEnoughtToPoint",
+"Sandwich_19": "WaitAtPoint",
+"Sandwich_21": "PickWanderPoint",
+"Sandwich_23": "WalkToPoint"
+}
+domain_map = {}
+quits = Array[StringName]([])
+splits = {
+"Sandwich_0": Array[StringName]([&"Sandwich_5", &"Sandwich_1"]),
+"Sandwich_12": Array[StringName]([&"Sandwich_14", &"Sandwich_13"]),
+"Sandwich_16": Array[StringName]([&"Sandwich_18", &"Sandwich_17"]),
+"Sandwich_2": Array[StringName]([&"Sandwich_6", &"Sandwich_3"])
+}
+methods = {
+"Sandwich_1": {
+"method_data": {
+"AlwaysTrue": true
+},
+"task_chain": Array[StringName]([&"Sandwich_12"])
+},
+"Sandwich_13": {
+"method_data": {
+"AlwaysTrue": true
+},
+"task_chain": Array[StringName]([&"Sandwich_21"])
+},
+"Sandwich_14": {
+"method_data": {
+"has_wander_point": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_15", &"Sandwich_16"])
+},
+"Sandwich_17": {
+"method_data": {
+"AlwaysTrue": true
+},
+"task_chain": Array[StringName]([&"Sandwich_23"])
+},
+"Sandwich_18": {
+"method_data": {
+"close_enough_to_point": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_19"])
+},
+"Sandwich_3": {
+"method_data": {
+"AlwaysTrue": true
+},
+"task_chain": Array[StringName]([&"Sandwich_11"])
+},
+"Sandwich_5": {
+"method_data": {
+"can_see_player": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_2"])
+},
+"Sandwich_6": {
+"method_data": {
+"is_close_enough_to_player": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_10"])
+}
+}
+effects = {}
+modules = {}

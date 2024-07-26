@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://bhsg82hs7c2ig"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/Data/Scripts/IsCloseEnoughtToPoint.gd" id="1_0l4gd"]
+
+[resource]
+script = ExtResource("1_0l4gd")
+requires_awaiting = false
