@@ -14,3 +14,5 @@ resonate = 4
 domain = &"Dumb"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_ppbmj"), ExtResource("2_26wvj")])
 combat_animation = ExtResource("3_8cm26")
+special_frame_idx = -1
+attack_position = Vector2(514, 56)

@@ -1,7 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://bws60pday3bya"]
+[gd_scene load_steps=8 format=3 uid="uid://bws60pday3bya"]
 
 [ext_resource type="Script" path="res://ui/checkpoint_menu_layer_controller2.gd" id="1_qhipo"]
 [ext_resource type="Script" path="res://ui/lore_panel_controller.gd" id="2_y8nyu"]
+[ext_resource type="Texture2D" uid="uid://dricw8clpchv3" path="res://assets/placeholders/concept_map.png" id="3_ae4qe"]
+[ext_resource type="Script" path="res://ui/fast_travel_map_controller.gd" id="4_j67w7"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyk05"]
 bg_color = Color(0.556863, 0.596078, 0.713726, 1)
@@ -21,7 +23,7 @@ border_color = Color(0.286275, 0.176471, 0.0823529, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpwrt"]
 
-[node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("slot_shadows_button", "hear_lore_button", "menu_close_button", "lore_panel", "lore_list", "battle_button")]
+[node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("slot_shadows_button", "hear_lore_button", "menu_close_button", "lore_panel", "lore_list", "battle_button", "fast_travel_button", "fast_travel_map")]
 script = ExtResource("1_qhipo")
 slot_shadows_button = NodePath("OptionsPanel/Options/SlotShadowsButton")
 hear_lore_button = NodePath("OptionsPanel/Options/HearLoreButton")
@@ -29,6 +31,8 @@ menu_close_button = NodePath("OptionsPanel/Options/MenuCloseButton")
 lore_panel = NodePath("OptionsPanel/LorePanel")
 lore_list = NodePath("OptionsPanel/LorePanel/VBoxContainer/ScrollContainer/LoreList")
 battle_button = NodePath("OptionsPanel/Options/BattleButton")
+fast_travel_button = NodePath("OptionsPanel/Options/FastTravelButton")
+fast_travel_map = NodePath("OptionsPanel/FastTravelMap")
 
 [node name="OptionsPanel" type="Panel" parent="."]
 anchors_preset = 9
@@ -62,6 +66,11 @@ layout_mode = 2
 text = "HEAR 
 LORE"
 
+[node name="FastTravelButton" type="Button" parent="OptionsPanel/Options"]
+layout_mode = 2
+text = "FAST
+TRAVEL"
+
 [node name="BattleButton" type="Button" parent="OptionsPanel/Options"]
 layout_mode = 2
 text = "BATTLE"
@@ -71,6 +80,7 @@ layout_mode = 2
 text = "CLOSE"
 
 [node name="LorePanel" type="PanelContainer" parent="OptionsPanel" node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel")]
+visible = false
 layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -113,6 +123,7 @@ auto_height = true
 fixed_icon_size = Vector2i(32, 32)
 
 [node name="LoreDetailsPanel" type="PanelContainer" parent="OptionsPanel"]
+visible = false
 layout_mode = 2
 offset_left = 336.0
 offset_right = 552.0
@@ -151,3 +162,27 @@ size_flags_vertical = 3
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
+
+[node name="FastTravelMap" type="TextureRect" parent="OptionsPanel"]
+visible = false
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 120.0
+offset_right = 640.0
+grow_vertical = 2
+texture = ExtResource("3_ae4qe")
+expand_mode = 2
+script = ExtResource("4_j67w7")
+
+[node name="MapButtons" type="Control" parent="OptionsPanel/FastTravelMap"]
+unique_name_in_owner = true
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="Button" type="Button" parent="OptionsPanel/FastTravelMap/MapButtons"]
+offset_left = 320.0
+offset_top = 168.0
+offset_right = 406.0
+offset_bottom = 199.0
+text = "Old Home"

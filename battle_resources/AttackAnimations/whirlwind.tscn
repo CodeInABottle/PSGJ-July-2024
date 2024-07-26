@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://dq7fce7qsgmym"]
+
+[ext_resource type="Texture2D" uid="uid://yp3c3itycfx" path="res://assets/placeholders/Whirlwind.png" id="1_xifoc"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_lf55i"]
+atlas = ExtResource("1_xifoc")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3e05p"]
+atlas = ExtResource("1_xifoc")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_mh822"]
+atlas = ExtResource("1_xifoc")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_hr0jt"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_lf55i")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3e05p")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_mh822")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Whirlwind" type="AnimatedSprite2D"]
+sprite_frames = SubResource("SpriteFrames_hr0jt")
+autoplay = "default"
+frame_progress = 0.228884

@@ -61,7 +61,8 @@ var _levels: Dictionary = {
 var _checkpoints: Dictionary = {
 	"start" : ["Newbert Town", 0],
 	"home" : ["Newbert Town", 2],
-	"cat_bridge" : ["Newbert Town", 1]
+	"cat_bridge" : ["Newbert Town", 1],
+	"Old Home" : ["area_0", 0],
 }
 
 # Set as the first level to be loaded
@@ -99,6 +100,7 @@ var pending_battle: String = ""
 
 # area name: String : pickup indices: Array[int]
 var area_pickup_status: Dictionary = {}
+var _in_world: bool = false
 
 #endregion
 
@@ -186,6 +188,9 @@ func disable_world_node() -> void:
 func is_paused() -> bool:
 	return _is_paused
 
+func is_in_world() -> bool:
+	return _in_world
+
 # Used to unpause the WorldAnchor Node and its children
 # Intention: Use when unloading a "sub" level like a build's interior or battle scene
 # Usage: Fade to black, call this function once full black, Fade from black to clear
@@ -194,7 +199,8 @@ func is_paused() -> bool:
 func enable_world_node() -> void:
 	for child: Node in world_anchor.get_children():
 		child.show()
-
+	if world_anchor.get_child(0) is GameArea:
+		_in_world = true
 	world_enabled.emit()
 	_is_paused = false
 	# This should be the _process, _physics_process, and the various _input functions
@@ -244,6 +250,10 @@ func _async_update(path: String) -> void:
 # Called on Handshake signal from level
 func _on_level_loaded(level: Node) -> void:
 	loaded_level = level
+	
+	if level is GameArea:
+		_in_world = true
+	
 	# Check if level has a "start_at" function to pass the entry ID
 	if level.has_method("start_at"):
 		# Tell that level, all data is synced up here
@@ -255,6 +265,7 @@ func _on_level_loaded(level: Node) -> void:
 func on_menu_loaded(menu: Node) -> void:
 	loaded_menu = menu
 	loaded_level.hide()
+	_in_world = false
 	MenuManager.fader_controller.fade_in()
 
 	if menu is BattlefieldManager and pending_battle != "":

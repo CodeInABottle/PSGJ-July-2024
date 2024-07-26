@@ -8,6 +8,8 @@ extends CanvasLayer
 @export var lore_list: ItemList
 @export var checkpoint: Checkpoint
 @export var battle_button: Button
+@export var fast_travel_button: Button
+@export var fast_travel_map: FastTravelMap
 
 var pending_load: String = ""
 
@@ -17,6 +19,8 @@ func _ready() -> void:
 	visibility_changed.connect(on_visibility_changed)
 	checkpoint.checkpoint_interaction_ended.connect(on_interaction_ended)
 	battle_button.pressed.connect(on_battle_pressed)
+	fast_travel_button.pressed.connect(on_fast_travel_pressed)
+	fast_travel_map.fast_travel_started.connect(on_fast_travel_started)
 	
 	menu_close_button.pressed.connect(on_menu_close_pressed)
 	
@@ -47,7 +51,12 @@ func on_hear_lore_pressed() -> void:
 	else:
 		hide_all_parts()
 		lore_panel.start()
-		
+
+func on_fast_travel_pressed() -> void:
+	if fast_travel_map.is_visible_in_tree():
+		fast_travel_map.hide()
+	else:
+		fast_travel_map.show()
 
 func on_visibility_changed() -> void:
 	if not is_visible():
@@ -80,4 +89,6 @@ func on_menu_unloaded() -> void:
 	
 	pending_load = ""
 	
-	
+func on_fast_travel_started(_checkpoint_name: String) -> void:
+	hide_all_parts()
+	hide()

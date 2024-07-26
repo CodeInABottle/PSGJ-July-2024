@@ -1,28 +1,21 @@
 class_name BattlefieldAIEntity
 extends BattlefieldEntity
 
-const MAX_RESIDUE_TURNS: int = 2
-const MAX_RESIDUE_STACKS: int = 3
-
 signal actions_completed
+signal ability_finished
 signal captured
 
 @export var enemy_status_indicator: BattlefieldEnemyStatusIndicator
 @export var player_entity: BattlefieldPlayerEntity
+@export var enemy_position: Marker2D
 
 @onready var htn_planner: HTNPlanner = %HTNPlanner
 @onready var hurt_player: AnimationPlayer = %HurtPlayer
 @onready var flash_player: AnimationPlayer = %FlashPlayer
 @onready var animation_holder: Marker2D = %AnimationHolder
 
-# { (ResonateType) : [(turns_remaining (int) )...] }
-var _residues: Dictionary = {
-	TypeChart.ResonateType.EARTH: [],
-	TypeChart.ResonateType.WATER: [],
-	TypeChart.ResonateType.AIR: [],
-	TypeChart.ResonateType.FIRE: [],
-}
 var _data: BattlefieldEnemyData
+var _tween: Tween
 var _max_alchemy_points: int
 var _alchemy_regen: int
 var _alchemy_points: int
@@ -72,16 +65,6 @@ func heal(health: int) -> void:
 	_health += health
 
 func take_damage(damage_data: Dictionary) -> void:
-	# Spend the residue slots
-	var usage: Array[TypeChart.ResonateType] = []
-	usage.assign(damage_data.get("usage", []))
-	if not usage.is_empty():
-		print("Before: ", _residues)
-		for type: TypeChart.ResonateType in usage:
-			_removed_lowest_turn_residue(type)
-		print("After: ", _residues)
-		_update_residue_indicators()
-
 	# Skip is its an ability that does no damage
 	if damage_data["damage"] == 0: return
 	print("enemy taken damage: ", damage_data["damage"])
@@ -93,22 +76,9 @@ func take_damage(damage_data: Dictionary) -> void:
 	entity_tracker.damage_taken.emit(false, damage_data)
 	_health -= damage_data["damage"]
 
-	var components: Array[TypeChart.ResonateType] = damage_data["components"]
-	for component: TypeChart.ResonateType in components:
-		if component not in _residues: continue
-		if _residues[component].size() >= MAX_RESIDUE_STACKS:
-			for turn_entry_idx: int in _residues[component].size():
-				if _residues[component][turn_entry_idx] < MAX_RESIDUE_TURNS:
-					_residues[component][turn_entry_idx] = 2
-					continue
-
-		_residues[component].push_back(MAX_RESIDUE_TURNS)
-
-	if _activate_resonance():
+	if damage_data["resonate_type"] == _data.resonate:
 		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
 		flash_player.play("Flash")
-
-	_update_residue_indicators()
 
 func has_ap() -> bool:
 	return _alchemy_points > 0
@@ -119,90 +89,59 @@ func is_dead() -> bool:
 func is_captured() -> bool:
 	return _capture_value <= 0
 
+func get_attack_position() -> Vector2:
+	return _data.attack_position
+
 func issue_actions() -> void:
 	htn_planner.handle_planning(self, _generate_world_states())
 
-func activate_ability(ability_idx: int) -> int:
-	if ability_idx < 0 or ability_idx > _data.abilities.size(): return 0
+func activate_ability(ability_idx: int) -> void:
+	if ability_idx < 0 or ability_idx > _data.abilities.size(): return
 
 	var ability_data: BattlefieldAbility = _data.abilities[ability_idx]
-	if ability_data.damage > 0:
-		player_entity.take_damage({
-			"damage": ability_data.damage
-		})
-	print("Enemy used ", ability_data.name, " to do ", ability_data.damage)
-
-	entity_tracker.add_modification_stacks(ability_data)
+	var attack_packed_scene: PackedScene = ability_data["attack"]
 
 	_alchemy_points -= ability_data.ap_cost
-	return _alchemy_points
 
-func reduce_residues() -> void:
-	for type: TypeChart.ResonateType in _residues.keys():
-		if _residues[type].is_empty(): continue
-
-		var turns: Array = []
-		while not _residues[type].is_empty():
-			var turns_remaining: int = _residues[type].pop_back()
-
-			turns_remaining -= 1
-
-			if turns_remaining > 0:
-				turns.push_back(turns_remaining)
-
-		while not turns.is_empty():
-			_residues[type].push_back(turns.pop_back())
-	_update_residue_indicators()
-
-func get_residues() -> Array[TypeChart.ResonateType]:
-	var components: Array[TypeChart.ResonateType] = []
-
-	for type: TypeChart.ResonateType in _residues.keys():
-		for __: int in _residues[type].size():
-			components.push_back(type)
-
-	return components
-
-func _removed_lowest_turn_residue(residue: TypeChart.ResonateType) -> void:
-	var stack: Array[TypeChart.ResonateType] = []
-	var smallest: int = MAX_RESIDUE_TURNS + 1
-	var temp: int = 0
-	while not _residues[residue].is_empty():
-		var turn: int = _residues[residue].pop_back()
-		if turn < smallest:
-			if temp > 0:
-				stack.push_back(temp)
-			temp = turn
+	if attack_packed_scene == null:
+		if _tween:
+			_tween.kill()
+		_tween = create_tween()
+		_tween.tween_callback(
+			func() -> void:
+				_internal_attack_logic(ability_data)
+		)
+	else:
+		var attack_instance: Node2D = ability_data["attack"].instantiate()
+		add_child(attack_instance)
+		if ability_data["moving_attack"]:
+			attack_instance.global_position = _data.attack_position
+			if _tween:
+				_tween.kill()
+			_tween = create_tween()
+			_tween.tween_property(
+				attack_instance, "global_position",
+				enemy_position.global_position,
+				ability_data["attack_movement_speed"]
+			)
+			_tween.tween_callback(
+				func() -> void:
+					attack_instance.queue_free()
+					_internal_attack_logic(ability_data)
+			)
 		else:
-			stack.push_back(turn)
-	while not stack.is_empty():
-		_residues[residue].push_back(stack.pop_back())
+			attack_instance.global_position = enemy_position.global_position
+			await get_tree().create_timer(ability_data["attack_life_time"]).timeout
+			attack_instance.queue_free()
+			_internal_attack_logic(ability_data)
 
-func _activate_resonance() -> bool:
-	var breakdown: Array[TypeChart.ResonateType] = TypeChart.get_resonance_breakdown(_data.resonate)
-	if breakdown.is_empty(): return false
+func _internal_attack_logic(ability_data: BattlefieldAbility) -> void:
+	if ability_data["damage"] > 0:
+		player_entity.take_damage({ "damage": ability_data["damage"] })
+	print("Enemy used ", ability_data["name"], " to do ", ability_data["damage"])
 
-	var resonance_break: bool = true
-	var residue_copy: Dictionary = _residues.duplicate(true)
-	for component: TypeChart.ResonateType in breakdown:
-		if residue_copy[component].size() <= 0:
-			resonance_break = false
-			break
-		residue_copy[component].pop_back()
-
-	if resonance_break:
-		for component: TypeChart.ResonateType in breakdown:
-			_residues[component].clear()
-
-	return resonance_break
-
-func _update_residue_indicators() -> void:
-	for component: TypeChart.ResonateType in _residues:
-		var amount: int = _residues[component].size()
-		var blink: bool = false
-		if amount == 1:
-			blink = _residues[component][0] <= 1
-		enemy_status_indicator.set_residue(component, amount, blink)
+	entity_tracker.add_modification_stacks(ability_data)
+	ability_finished.emit()
 
 func _generate_world_states() -> Dictionary:
 	var data: Dictionary = {

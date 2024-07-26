@@ -19,21 +19,14 @@ var battle_state: Dictionary = {
 func _ready() -> void:
 	LevelManager.menu_loaded.emit(self)
 	battle_finished.connect(_on_battle_finished)
-	setup_battle("Earth Worm")
+	#setup_battle("Earth Worm")
 	#setup_battle("Living Tree")
-	#setup_battle("Mailbox")
+	setup_battle("Mailbox")
 	#setup_battle("Niter Tiger")
 	#setup_battle("Fighting Fish")
 
 func setup_battle(enemy_name_encounter: String) -> void:
-	table.ability_execute_requested.connect(
-		func(ability_name: String, usage: Array[TypeChart.ResonateType]) -> void:
-			print("Player used: ", ability_name)
-			var damage_data: Dictionary = EnemyDatabase.get_ability_damage_data(ability_name)
-			damage_data.merge({ "usage": usage }, true)
-			entity_tracker.enemy_entity.take_damage(damage_data)
-			entity_tracker.add_modification_stacks(EnemyDatabase.get_ability_data(ability_name))
-	)
+	table.ability_execute_requested.connect(entity_tracker.player_entity.attack)
 	table.candles.pressed.connect(
 		func() -> void:
 			table.reagent_drop_handler.clear()

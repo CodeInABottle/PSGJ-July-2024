@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_4bnhl")
-root_key = &"Sandwich_0"
+root_key = "Sandwich_0"
 connections = Array[Dictionary]([{
 "from_node": &"Sandwich_0",
 "from_port": 0,

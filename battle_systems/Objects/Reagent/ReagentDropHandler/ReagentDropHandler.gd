@@ -10,7 +10,7 @@ const EARTH_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/E
 const WIND_REAGENT: PackedScene = preload("res://battle_systems/Objects/Reagent/AnimatedReagents/wind_reagent.tscn")
 const WIND_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WindOrbStill.png")
 
-signal ability_execute_requested(ability_name: String, spent_residue: Array[TypeChart.ResonateType])
+signal ability_execute_requested(ability_name: String)
 
 class Data:
 	var follow_node: PathFollow2D
@@ -119,19 +119,10 @@ func _validate_recipe() -> void:
 func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:
 	if components.is_empty(): return false
 	if _reagent_data.is_empty(): return false
+	if components.size() != _reagent_data.size(): return false
 
+	# Check if recipe is valid for each component
 	var component_copy: Array[TypeChart.ResonateType] = components.duplicate(true)
-	var residue_copy: Array[TypeChart.ResonateType]\
-		 = entity_tracker.enemy_entity.get_residues()
-	var has_residue: bool = residue_copy.size() > 0
-	if not has_residue:
-		if _reagent_data.size() != components.size(): return false
-
-	while not residue_copy.is_empty():
-		var residue: TypeChart.ResonateType = residue_copy.pop_back()
-		if residue in component_copy:
-			component_copy.erase(residue)
-
 	for data: Data in _reagent_data:
 		if data.reagent in component_copy:
 			component_copy.erase(data.reagent)
@@ -181,18 +172,15 @@ func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
 func _on_recipe_chosen(ability_name: String) -> void:
 	control_shield.show()
 	await text_box_animator.animation_finished
-
 	_ability_activated = true
+
 	# Reset the tween
 	if _tween:
 		_tween.kill()
 	_tween = create_tween()
-	var usage: Array[TypeChart.ResonateType] = []
-	var components: Array[TypeChart.ResonateType] = EnemyDatabase.get_ability_recipe(ability_name)
 
 	# Detach from path follow and "craft"
 	for data: Data in _reagent_data:
-		usage.push_back(data.reagent)
 		var reagent_orb: AnimatedSprite2D = data.follow_node.get_child(0)
 		var global_pos: Vector2 = reagent_orb.global_position
 		data.follow_node.remove_child(reagent_orb)
@@ -209,14 +197,10 @@ func _on_recipe_chosen(ability_name: String) -> void:
 	# Clear cache here
 	clear(false)
 
-	# Get the residue cost
-	for type: TypeChart.ResonateType in usage:
-		components.erase(type)
-
 	# Report attack
 	_tween.tween_callback(
 		func() -> void:
-			ability_execute_requested.emit(ability_name, components)
+			ability_execute_requested.emit(ability_name)
 			_ability_activated = false
 			control_shield.hide()
 	)
