@@ -46,7 +46,8 @@ func on_fade_in_complete() -> void:
 
 func refresh_pickups() -> void:
 	for index: int in LevelManager.area_pickup_status[LevelManager.region_name]:
-		_area_pickups[index].hide()
+		if _area_pickups[index].get_parent() != null:
+			pickups.remove_child(_area_pickups[index])
 
 func on_item_picked_up(index: int) -> void:
 	LevelManager.area_pickup_status[LevelManager.region_name].append(index)

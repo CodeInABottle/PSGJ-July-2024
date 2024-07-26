@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cj4ejsf00ujiq"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/Data/Scripts/IsCloseEnoughToPlayer.gd" id="1_y62uu"]
+
+[resource]
+script = ExtResource("1_y62uu")
+requires_awaiting = false

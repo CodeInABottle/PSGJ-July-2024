@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://caeagdp575f7v"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/Data/Scripts/StartBattle.gd" id="1_jyijp"]
+
+[resource]
+script = ExtResource("1_jyijp")
+requires_awaiting = false
