@@ -57,12 +57,10 @@ func run_operation(HTN_finished_op_callback: Callable, agent: Node, world_state:
 ## by all previous tasks before this. Consider the world_state given here to be
 ## what the agent is/will act upon. You may alter the [param world_state] here as needed.
 ## [br][br]
-## [color=yellow]Warning:[/color] This may be merged with [method run_operation].
 ## [codeblock]
 ## func apply_effects(world_state: Dictionary) -> void:
 ##     world_state["is_travelling"] = false
 ## [/codeblock]
-## @experimental
 func apply_effects(world_state: Dictionary) -> void:
 	pass
 
@@ -78,5 +76,6 @@ func apply_effects(world_state: Dictionary) -> void:
 ## func apply_expected_effects(world_state: Dictionary) -> void:
 ##     world_state["current_position"] = world_state["target"]
 ## [/codeblock]
+## @deprecated
 func apply_expected_effects(world_state: Dictionary) -> void:
 	pass

@@ -1,157 +1,82 @@
-[gd_scene load_steps=4 format=3 uid="uid://u100efg2u1g6"]
+[gd_scene load_steps=6 format=3 uid="uid://u100efg2u1g6"]
 
 [ext_resource type="Script" path="res://ui/move_details_panel.gd" id="1_h05tc"]
+[ext_resource type="Texture2D" uid="uid://dbfeeyycjg0md" path="res://assets/sprites/combat/Reagents/FireOrbStill.png" id="3_pv2e3"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="4_sitje"]
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jq3rc"]
+[sub_resource type="LabelSettings" id="LabelSettings_1x60e"]
+font = ExtResource("4_sitje")
+font_color = Color(0, 0, 0, 1)
+outline_size = 2
+outline_color = Color(0, 0, 0, 1)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wile2"]
+[sub_resource type="LabelSettings" id="LabelSettings_6rb8a"]
+line_spacing = -1.0
+font = ExtResource("4_sitje")
+font_size = 10
+font_color = Color(0, 0, 0, 1)
 
-[node name="MoveDetailsPanel" type="PanelContainer" node_paths=PackedStringArray("name_label", "type_label", "damage_label", "notes_label", "efficiency_label", "cost_labels")]
-offset_left = 464.0
-offset_top = 28.0
-offset_right = 637.0
-offset_bottom = 126.0
+[node name="MoveDetailsPanel" type="MarginContainer"]
+offset_right = 173.0
+offset_bottom = 102.0
 size_flags_horizontal = 3
 script = ExtResource("1_h05tc")
-name_label = NodePath("VBoxContainer/InfoContainer/NameContainer/NameLabel")
-type_label = NodePath("VBoxContainer/InfoContainer/TypeContainer/TypeLabel")
-damage_label = NodePath("VBoxContainer/InfoContainer/DamageContainer/DamageLabel")
-notes_label = NodePath("VBoxContainer/HBoxContainer/NotesContainer/NotesLabel")
-efficiency_label = NodePath("VBoxContainer/InfoContainer/EfficientyContainer/EfficientyLabel")
-cost_labels = [NodePath("VBoxContainer/HBoxContainer/CostContainer/CostContainer/CostLabel"), NodePath("VBoxContainer/HBoxContainer/CostContainer/CostContainer2/CostLabel"), NodePath("VBoxContainer/HBoxContainer/CostContainer/CostContainer3/CostLabel"), NodePath("VBoxContainer/HBoxContainer/CostContainer/CostContainer4/CostLabel")]
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
+theme_override_constants/separation = -1
 
-[node name="HSeparator" type="HSeparator" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_jq3rc")
-
-[node name="InfoContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 10
-alignment = 1
-
-[node name="NameContainer" type="PanelContainer" parent="VBoxContainer/InfoContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="NameLabel" type="Label" parent="VBoxContainer/InfoContainer/NameContainer"]
+[node name="NameLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
 theme_override_font_sizes/font_size = 10
 text = "Name"
-horizontal_alignment = 1
+label_settings = SubResource("LabelSettings_1x60e")
 
-[node name="DamageContainer" type="PanelContainer" parent="VBoxContainer/InfoContainer"]
-layout_mode = 2
-size_flags_horizontal = 4
-size_flags_vertical = 0
-
-[node name="DamageLabel" type="Label" parent="VBoxContainer/InfoContainer/DamageContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Damage"
-horizontal_alignment = 1
-
-[node name="TypeContainer" type="PanelContainer" parent="VBoxContainer/InfoContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="TypeLabel" type="Label" parent="VBoxContainer/InfoContainer/TypeContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Type"
-horizontal_alignment = 1
-
-[node name="EfficientyContainer" type="PanelContainer" parent="VBoxContainer/InfoContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 0
-
-[node name="EfficientyLabel" type="Label" parent="VBoxContainer/InfoContainer/EfficientyContainer"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "1.0x"
-horizontal_alignment = 1
-
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
-layout_mode = 2
-
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+[node name="Components" type="HBoxContainer" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
 layout_mode = 2
 theme_override_constants/separation = 1
-theme_override_styles/separator = SubResource("StyleBoxEmpty_wile2")
 
-[node name="CostContainer" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="VBoxContainer/Components"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 8
-alignment = 1
+texture = ExtResource("3_pv2e3")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="CostContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CostContainer"]
+[node name="TextureRect2" type="TextureRect" parent="VBoxContainer/Components"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
+texture = ExtResource("3_pv2e3")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="CostLabel" type="Label" parent="VBoxContainer/HBoxContainer/CostContainer/CostContainer"]
+[node name="TextureRect3" type="TextureRect" parent="VBoxContainer/Components"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Cost"
-horizontal_alignment = 1
+texture = ExtResource("3_pv2e3")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="CostContainer2" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CostContainer"]
+[node name="TextureRect4" type="TextureRect" parent="VBoxContainer/Components"]
+unique_name_in_owner = true
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
+texture = ExtResource("3_pv2e3")
+expand_mode = 3
+stretch_mode = 5
 
-[node name="CostLabel" type="Label" parent="VBoxContainer/HBoxContainer/CostContainer/CostContainer2"]
+[node name="DamageTypeLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
 layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Cost"
-horizontal_alignment = 1
+text = "Damage: XXX"
+label_settings = SubResource("LabelSettings_6rb8a")
 
-[node name="CostContainer3" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CostContainer"]
+[node name="DescriptionLabel" type="Label" parent="VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(147, 0)
 layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="CostLabel" type="Label" parent="VBoxContainer/HBoxContainer/CostContainer/CostContainer3"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Cost"
-horizontal_alignment = 1
-
-[node name="CostContainer4" type="PanelContainer" parent="VBoxContainer/HBoxContainer/CostContainer"]
-layout_mode = 2
-size_flags_horizontal = 0
-size_flags_vertical = 0
-
-[node name="CostLabel" type="Label" parent="VBoxContainer/HBoxContainer/CostContainer/CostContainer4"]
-layout_mode = 2
-theme_override_font_sizes/font_size = 10
-text = "Cost"
-horizontal_alignment = 1
-
-[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-theme_override_constants/separation = 1
-theme_override_styles/separator = SubResource("StyleBoxEmpty_wile2")
-
-[node name="NotesContainer" type="PanelContainer" parent="VBoxContainer/HBoxContainer"]
-layout_mode = 2
-size_flags_horizontal = 8
-size_flags_vertical = 8
-
-[node name="NotesLabel" type="Label" parent="VBoxContainer/HBoxContainer/NotesContainer"]
-custom_minimum_size = Vector2(129.205, 52.815)
-layout_mode = 2
-size_flags_horizontal = 8
-theme_override_font_sizes/font_size = 10
-horizontal_alignment = 1
+text = "Description: This is a test to see how the new line looks"
+label_settings = SubResource("LabelSettings_6rb8a")
 autowrap_mode = 3
-
-[node name="HSeparator2" type="HSeparator" parent="VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_jq3rc")

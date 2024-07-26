@@ -6,6 +6,18 @@ const EARTH_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/E
 const FIRE_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/FireOrbStill.png")
 const WATER_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WaterOrbStill.png")
 const WIND_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WindOrbStill.png")
+const SHADOW_COLOR: Dictionary = {
+	TypeChart.ResonateType.EARTH: Color("8f563b"),
+	TypeChart.ResonateType.WATER: Color("5fcde4"),
+	TypeChart.ResonateType.AIR: Color("9badb7"),
+	TypeChart.ResonateType.FIRE: Color("df7126"),
+	TypeChart.ResonateType.SALT: Color("847e87"),
+	TypeChart.ResonateType.MERCURY: Color("ac3232"),
+	TypeChart.ResonateType.SULPHUR: Color("fbf236"),
+	TypeChart.ResonateType.CELESTIAL: Color("76428a"),
+	TypeChart.ResonateType.NITER: Color("323c39"),
+	TypeChart.ResonateType.METAL: Color("696a6a"),
+}
 
 # { enemy_name (String) : enemy_data (BattlefieldEnemyData) }
 var _enemies: Dictionary = {}
@@ -39,6 +51,12 @@ func get_enemy_data(enemy_name: String) -> BattlefieldEnemyData:
 	assert(enemy_name in _enemies, "Enemy name: " + enemy_name + " does not exist/isn't loaded.")
 
 	return _enemies[enemy_name]
+
+func get_shadow_color(shadow_name: String) -> Color:
+	assert(shadow_name in _enemies, "Enemy name: " + shadow_name + " does not exist/isn't loaded.")
+
+	var resonance: TypeChart.ResonateType = (_enemies[shadow_name] as BattlefieldEnemyData).resonate
+	return SHADOW_COLOR[resonance]
 
 func get_alchemy_data(enemy_name: String) -> Dictionary:
 	var enemy_data: BattlefieldEnemyData = get_enemy_data(enemy_name)

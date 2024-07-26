@@ -24,7 +24,8 @@ func apply_expected_effects(world_state: Dictionary) -> void:
 
 static func check_if_task_name_exists(task_name: String) -> bool:
 	var files: PackedStringArray = DirAccess.get_files_at(TASK_PATH)
-	return task_name + ".tres" in files
+	var file_name: String = task_name.to_pascal_case()
+	return file_name + ".tres" in files
 
 static func check_if_domain_name_exists(domain_name: String) -> HTNDomain:
 	var files: PackedStringArray = DirAccess.get_files_at(DOMAIN_PATH)

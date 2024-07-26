@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://d3gjdv8lqdwqy"
-path="res://.godot/imported/workbench_concept3.png-c84851f6530433a8152284e795213ca4.ctex"
+uid="uid://c1bsfjyvcmtlf"
+path="res://.godot/imported/Symbols_0006.png-a823dbc20e2a5352bc409bca1b92f1ee.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ui/workbench_concept3.png"
-dest_files=["res://.godot/imported/workbench_concept3.png-c84851f6530433a8152284e795213ca4.ctex"]
+source_file="res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0006.png"
+dest_files=["res://.godot/imported/Symbols_0006.png-a823dbc20e2a5352bc409bca1b92f1ee.ctex"]
 
 [params]
 

@@ -159,7 +159,7 @@ func load_menu(menu_name: String, _args: Array = []) -> void:
 	match menu_name:
 		"workbench":
 			disable_world_node()
-			_async_load("res://ui/workbench_menu.tscn", menu_anchor)
+			_async_load("res://ui/ShadowAlchemyBench/workbench_menu.tscn", menu_anchor)
 		"battle":
 			disable_world_node()
 			_async_load("res://battle_systems/battlefield.tscn", menu_anchor)
@@ -206,7 +206,6 @@ func enable_world_node() -> void:
 	# This should be the _process, _physics_process, and the various _input functions
 	world_anchor.process_mode = Node.PROCESS_MODE_INHERIT
 
-
 func _unload_level() -> void:
 	if loaded_level: loaded_level.queue_free()
 	loaded_level = null
@@ -250,10 +249,10 @@ func _async_update(path: String) -> void:
 # Called on Handshake signal from level
 func _on_level_loaded(level: Node) -> void:
 	loaded_level = level
-	
+
 	if level is GameArea:
 		_in_world = true
-	
+
 	# Check if level has a "start_at" function to pass the entry ID
 	if level.has_method("start_at"):
 		# Tell that level, all data is synced up here
