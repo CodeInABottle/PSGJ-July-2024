@@ -1,12 +1,11 @@
-[gd_scene load_steps=15 format=3 uid="uid://b3jitrn2a5kek"]
+[gd_scene load_steps=19 format=3 uid="uid://b3jitrn2a5kek"]
 
 [ext_resource type="Script" path="res://ui/ShadowAlchemyBench/workbench_menu_controller.gd" id="1_r45yu"]
 [ext_resource type="Texture2D" uid="uid://b8mugkkmdn7he" path="res://assets/sprites/shadow_alchemybench/AlchemyWorkbench.png" id="2_f36yw"]
 [ext_resource type="Texture2D" uid="uid://b0xmin6uq1q1n" path="res://assets/sprites/shadow_alchemybench/BeakerBackgrounds/BeakerBGs_0001.png" id="3_cib84"]
-[ext_resource type="PackedScene" uid="uid://c3wke3s6gk0mo" path="res://ui/ShadowAlchemyBench/shadow_details_panel.tscn" id="4_b1u5h"]
 [ext_resource type="Texture2D" uid="uid://p23cjnsvtye3" path="res://assets/sprites/shadow_alchemybench/BeakerBackgrounds/BeakerBGs_0002.png" id="4_b6k2h"]
 [ext_resource type="PackedScene" uid="uid://u100efg2u1g6" path="res://ui/move_details_panel.tscn" id="5_1xbq0"]
-[ext_resource type="PackedScene" uid="uid://dtx7vn1bwo1x" path="res://ui/ShadowAlchemyBench/slotted_moves_container.tscn" id="5_4t0kl"]
+[ext_resource type="PackedScene" uid="uid://dtx7vn1bwo1x" path="res://ui/ShadowAlchemyBench/SlottedMovesPanel/slotted_moves_container.tscn" id="5_4t0kl"]
 [ext_resource type="Texture2D" uid="uid://byhb5wp1sl8l7" path="res://assets/sprites/shadow_alchemybench/BeakerBackgrounds/BeakerBGs_0003.png" id="5_l11ax"]
 [ext_resource type="Texture2D" uid="uid://qmarow2u0421" path="res://assets/sprites/shadow_alchemybench/BeakerBackgrounds/BeakerBGs_0004.png" id="6_0dnid"]
 [ext_resource type="Texture2D" uid="uid://ds2h1nmaxexun" path="res://assets/sprites/shadow_alchemybench/BeakerBackgrounds/BeakerBGs_0005.png" id="7_g5ll2"]
@@ -19,6 +18,16 @@ texture_margin_left = 30.0
 texture_margin_top = 15.0
 texture_margin_right = 30.0
 texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_eblq8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_0bmhr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yls0g"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h0hjn"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_yia3b"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rhkw2"]
 radius = 31.0
@@ -123,24 +132,17 @@ layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -640.0
-offset_top = 337.0
-offset_right = -618.0
-offset_bottom = 359.0
+offset_left = -634.0
+offset_top = 326.0
+offset_right = -579.0
+offset_bottom = 340.0
 grow_horizontal = 0
 theme_override_font_sizes/font_size = 10
-text = "X"
-
-[node name="CreatureDetailsPanel" parent="." instance=ExtResource("4_b1u5h")]
-unique_name_in_owner = true
-visible = false
-layout_mode = 0
-offset_left = 460.0
-offset_top = 13.0
-offset_right = 633.0
-offset_bottom = 97.0
-grow_vertical = 1
-mouse_filter = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_eblq8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_0bmhr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_yls0g")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_h0hjn")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_yia3b")
 
 [node name="MoveDetailsPanel" parent="." instance=ExtResource("5_1xbq0")]
 unique_name_in_owner = true
@@ -153,7 +155,7 @@ offset_top = 31.0
 offset_right = -20.0
 offset_bottom = 94.0
 grow_horizontal = 0
-rotation = -0.115797
+rotation = -0.105737
 mouse_filter = 2
 
 [node name="MarginContainer" type="MarginContainer" parent="."]
@@ -187,12 +189,16 @@ grow_vertical = 0
 workbench_menu = NodePath("..")
 
 [node name="ShadowSlots" type="Node" parent="."]
+unique_name_in_owner = true
 
 [node name="ShadowSlot1" type="Area2D" parent="ShadowSlots"]
 unique_name_in_owner = true
 position = Vector2(42, 241)
 collision_layer = 4
 collision_mask = 0
+
+[node name="Marker2D" type="Marker2D" parent="ShadowSlots/ShadowSlot1"]
+position = Vector2(31, -21)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShadowSlots/ShadowSlot1"]
 polygon = PackedVector2Array(53, -30, 58, -17, 56, -1, 49, 5, 31, 7, 9, 2, 4, -11, 5, -23, 13, -41, 36, -55, 54, -54)
@@ -203,6 +209,9 @@ position = Vector2(146, 170)
 collision_layer = 4
 collision_mask = 0
 
+[node name="Marker2D2" type="Marker2D" parent="ShadowSlots/ShadowSlot2"]
+position = Vector2(28, -8)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShadowSlots/ShadowSlot2"]
 polygon = PackedVector2Array(17, -35, 27, -40, 37, -35, 46, -27, 49, -19, 49, -10, 33, 22, 22, 22, 6, -10, 6, -20, 11, -29)
 
@@ -211,6 +220,9 @@ unique_name_in_owner = true
 position = Vector2(269, 285)
 collision_layer = 4
 collision_mask = 0
+
+[node name="Marker2D3" type="Marker2D" parent="ShadowSlots/ShadowSlot3"]
+position = Vector2(-94, -20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot3"]
 position = Vector2(-94, -20)
@@ -222,6 +234,9 @@ position = Vector2(349, 156)
 collision_layer = 4
 collision_mask = 0
 
+[node name="Marker2D4" type="Marker2D" parent="ShadowSlots/ShadowSlot4"]
+position = Vector2(31, -18)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot4"]
 position = Vector2(31, -18)
 shape = SubResource("CircleShape2D_r618o")
@@ -232,16 +247,10 @@ position = Vector2(357, 324)
 collision_layer = 4
 collision_mask = 0
 
+[node name="Marker2D5" type="Marker2D" parent="ShadowSlots/ShadowSlot5"]
+position = Vector2(25, -17)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShadowSlots/ShadowSlot5"]
 polygon = PackedVector2Array(20, -41, 31, -41, 49, -4, 38, 1, 12, 1, 1, -4)
-
-[node name="ConfirmButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 268.0
-offset_top = 261.0
-offset_right = 323.0
-offset_bottom = 283.0
-theme_override_font_sizes/font_size = 10
-text = "CONFIRM"
 
 [connection signal="pressed" from="CloseButton" to="." method="_on_close_button_pressed"]

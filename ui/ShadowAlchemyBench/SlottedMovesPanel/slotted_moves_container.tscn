@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dtx7vn1bwo1x"]
 
-[ext_resource type="Script" path="res://ui/ShadowAlchemyBench/slotted_moves_controller.gd" id="1_0w8ay"]
+[ext_resource type="Script" path="res://ui/ShadowAlchemyBench/SlottedMovesPanel/slotted_moves_controller.gd" id="1_0w8ay"]
 [ext_resource type="LabelSettings" uid="uid://ddeki7t5uhece" path="res://ui/ShadowAlchemyBench/AbilityLabel.tres" id="2_px3q0"]
 
 [node name="SlottedMovesContainer" type="MarginContainer"]
@@ -17,7 +17,7 @@ mouse_filter = 2
 
 [node name="Label" type="Label" parent="VBoxContainer"]
 layout_mode = 2
-text = "Abilities"
+text = "Equipped Abilities"
 label_settings = ExtResource("2_px3q0")
 horizontal_alignment = 1
 

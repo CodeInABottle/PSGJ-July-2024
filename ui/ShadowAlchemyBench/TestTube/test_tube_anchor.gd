@@ -4,6 +4,8 @@ extends Control
 const RETURN_SPEED: float = 0.25
 
 signal slot_requested(area: Area2D, reset_callback: Callable)
+signal hovered(shadow_name: String)
+signal unhovered
 
 enum State { IDLE, HOVERING, HOLDING, DROPPED, RETURNING }
 
@@ -14,14 +16,12 @@ enum State { IDLE, HOVERING, HOLDING, DROPPED, RETURNING }
 
 var _alchemy_bench: WorkbenchMenu
 var _state: State = State.IDLE
-var _original_position: Vector2
 var _at_drop_point: bool = false
 var _tween: Tween
 var shadow_name: String
 
 func initialize(alchemy_bench: WorkbenchMenu) -> void:
 	_alchemy_bench = alchemy_bench
-	_original_position = global_position
 	background.self_modulate = EnemyDatabase.get_shadow_color(shadow_name)
 
 func _process(_delta: float) -> void:
@@ -63,10 +63,10 @@ func _release() -> void:
 
 func reset_placement() -> void:
 	_reset_tween()
-	_tween.tween_property(test_tube, "global_position", _original_position, RETURN_SPEED)
+	_tween.tween_property(test_tube, "global_position", global_position, RETURN_SPEED)
 	_tween.tween_callback(
 		func() -> void:
-			test_tube.global_position = _original_position
+			test_tube.global_position = global_position
 			if _state == State.RETURNING:
 				_state = State.IDLE
 	)
@@ -81,12 +81,14 @@ func _on_area_2d_mouse_entered() -> void:
 
 	_state = State.HOVERING
 	foreground.self_modulate = Color("fbf236")
+	hovered.emit(shadow_name)
 
 func _on_area_2d_mouse_exited() -> void:
 	if _state != State.HOVERING: return
 
 	_state = State.IDLE
 	foreground.self_modulate = Color.WHITE
+	unhovered.emit()
 
 func _on_drop_detector_area_entered(_area: Area2D) -> void:
 	if _state != State.HOLDING: return

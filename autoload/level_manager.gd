@@ -206,7 +206,6 @@ func enable_world_node() -> void:
 	# This should be the _process, _physics_process, and the various _input functions
 	world_anchor.process_mode = Node.PROCESS_MODE_INHERIT
 
-
 func _unload_level() -> void:
 	if loaded_level: loaded_level.queue_free()
 	loaded_level = null

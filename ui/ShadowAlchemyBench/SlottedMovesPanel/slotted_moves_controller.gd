@@ -1,7 +1,7 @@
 class_name SlottedMovesContainer
 extends MarginContainer
 
-const ABILITY_LABEL: LabelSettings = preload("res://ui/ShadowAlchemyBench/AbilityLabel.tres")
+const ABILITY_ITEM: PackedScene = preload("res://ui/ShadowAlchemyBench/SlottedMovesPanel/AbilityItem/ability_item.tscn")
 
 signal ability_hovered(ability_name: String)
 signal ability_unhovered
@@ -35,20 +35,12 @@ func _add_shadow_moves(shadow_name: String) -> void:
 		_create_label(ability.name)
 
 func _create_label(text: String, is_ability: bool = true) -> void:
-	var label_instance: Label = Label.new()
-	ability_container.add_child(label_instance)
-	label_instance.label_settings = ABILITY_LABEL
+	var item_instance: HBoxContainer = ABILITY_ITEM.instantiate()
+	ability_container.add_child(item_instance)
 	if is_ability:
-		label_instance.mouse_filter = Control.MOUSE_FILTER_STOP
-		label_instance.mouse_entered.connect(
-			func() -> void:
-				print(text)
-				ability_hovered.emit(text)
-		)
-		label_instance.mouse_exited.connect(
-			func() -> void:
-				ability_unhovered.emit()
-		)
-		label_instance.text = "-" + text
+		var data: Dictionary = EnemyDatabase.get_ability_info(text)
+		item_instance.mouse_entered.connect( func() -> void: ability_hovered.emit(text) )
+		item_instance.mouse_exited.connect( func() -> void: ability_unhovered.emit() )
+		item_instance.set_data("-" + text, TypeChart.get_symbol_texture(data["resonate"]))
 	else:
-		label_instance.text = text
+		item_instance.set_data(text, null)

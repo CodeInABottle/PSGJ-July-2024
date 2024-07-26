@@ -33,6 +33,18 @@ const TEXTURE_LOOK_UP_TABLE: Dictionary = {
 	TypeChart.ResonateType.NITER: 1,
 	TypeChart.ResonateType.METAL: 0,
 }
+const TEXTURE_TABLE: Dictionary = {
+	TypeChart.ResonateType.EARTH: preload("res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0007.png"),
+	TypeChart.ResonateType.WATER: preload("res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0008.png"),
+	TypeChart.ResonateType.AIR: preload("res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0005.png"),
+	TypeChart.ResonateType.FIRE: preload("res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0006.png"),
+	TypeChart.ResonateType.SALT: preload("res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0004.png"),
+	TypeChart.ResonateType.MERCURY: preload("res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0010.png"),
+	TypeChart.ResonateType.SULPHUR: preload("res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0009.png"),
+	TypeChart.ResonateType.CELESTIAL: preload("res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0003.png"),
+	TypeChart.ResonateType.NITER: preload("res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0002.png"),
+	TypeChart.ResonateType.METAL: preload("res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0001.png")
+}
 const MAX_EFFECT_STACK: int = 3
 const PRIMARY_REAGENTS: Array[ResonateType]\
 	= [ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
@@ -70,3 +82,8 @@ func get_texture(resonance: ResonateType) -> Texture:
 		TypeChart.ResonateType.FIRE:
 			return FIRE_ORB_STILL
 	return null
+
+func get_symbol_texture(resonance: ResonateType) -> Texture:
+	if resonance not in TEXTURE_TABLE: return null
+
+	return TEXTURE_TABLE[resonance]

@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://nl5v7pgi634o"]
+
+[ext_resource type="Script" path="res://ui/ShadowAlchemyBench/SlottedMovesPanel/AbilityItem/ability_item.gd" id="1_6itpk"]
+[ext_resource type="Texture2D" uid="uid://c16724dp22hw8" path="res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0001.png" id="1_7b77d"]
+[ext_resource type="LabelSettings" uid="uid://ddeki7t5uhece" path="res://ui/ShadowAlchemyBench/AbilityLabel.tres" id="2_cgn86"]
+[ext_resource type="Texture2D" uid="uid://cq4p6ygh6dt8f" path="res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0012.png" id="2_tb326"]
+[ext_resource type="Texture2D" uid="uid://broohh8xx2ivm" path="res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0011.png" id="3_x4vlr"]
+
+[node name="AbilityItem" type="HBoxContainer"]
+mouse_filter = 0
+script = ExtResource("1_6itpk")
+
+[node name="BG" type="TextureRect" parent="."]
+unique_name_in_owner = true
+self_modulate = Color(0.12549, 0.180392, 0.215686, 1)
+layout_mode = 2
+texture = ExtResource("2_tb326")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TextureRect" type="TextureRect" parent="BG"]
+self_modulate = Color(0.658824, 0.709804, 0.698039, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_x4vlr")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Symbol" type="TextureRect" parent="BG/TextureRect"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_7b77d")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Label" type="Label" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+text = "- Move"
+label_settings = ExtResource("2_cgn86")

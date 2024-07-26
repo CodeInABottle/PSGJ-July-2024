@@ -4,10 +4,10 @@ extends Control
 const TEST_TUBE_ANCHOR: PackedScene = preload("res://ui/ShadowAlchemyBench/TestTube/test_tube_anchor.tscn")
 const MAX_BOOKS: int = 17
 
-@onready var creature_details_panel: ShadowDetailsContainer = %CreatureDetailsPanel
 @onready var slotted_moves_container: SlottedMovesContainer = %SlottedMovesContainer
 @onready var move_details_panel: MoveDetailsContainer = %MoveDetailsPanel
 @onready var shadow_container: HBoxContainer = %ShadowBooks
+@onready var shadow_slots: Node = %ShadowSlots
 @onready var _slot_data: Dictionary = {
 	%ShadowSlot1: {
 		"beaker": $AlchemyBench/TextureRect,
@@ -43,23 +43,21 @@ var slotted_shadows: Array[String] = []
 
 func _ready() -> void:
 	LevelManager.menu_loaded.emit(self)
-	move_details_panel.hide()
+	move_details_panel.clear()
 	slotted_moves_container.ability_hovered.connect(
 		func(ability_name: String) -> void:
-			move_details_panel.update_details(ability_name)
-			move_details_panel.show()
+			move_details_panel.update_sign_details(ability_name, true)
 	)
 	slotted_moves_container.ability_unhovered.connect(
 		func() -> void:
-			move_details_panel.hide()
+			move_details_panel.clear()
 	)
-
+	slotted_shadows = PlayerStats.get_equipped_shadows()
+	var idx: int = 0
 	for area: Area2D in _slot_data:
-		_slot_data[area]["beaker"].hide()
-		area.mouse_entered.connect(
-			func() -> void:
-				_on_area_mouse_entered(area)
-		)
+		if idx >= slotted_shadows.size():
+			_slot_data[area]["beaker"].hide()
+		area.mouse_entered.connect( func() -> void: _on_area_mouse_entered(area) )
 		area.mouse_exited.connect(_on_area_mouse_exited)
 
 	create_shadow_books()
@@ -90,6 +88,22 @@ func create_shadow_books() -> void:
 func initialize_shadow_books() -> void:
 	for test_tube: TestTube in shadow_container.get_children():
 		test_tube.initialize(self)
+		test_tube.hovered.connect(move_details_panel.update_sign_details.bind(false))
+		test_tube.unhovered.connect(move_details_panel.clear)
+
+	for test_tube: TestTube in shadow_container.get_children():
+		var index: int = slotted_shadows.find(test_tube.shadow_name)
+		if index == -1: continue
+
+		var area: Area2D = shadow_slots.get_child(index)
+		test_tube.test_tube.global_position = area.get_child(0).global_position - test_tube.pivot_offset
+		test_tube.hide()
+		_slot_data[area]["test_tube"] = test_tube
+		_slot_data[area]["full"] = true
+		_slot_data[area]["beaker"].self_modulate = test_tube.background.self_modulate
+		_slot_data[area]["beaker"].show()
+	if shadow_container.get_child_count() > 0:
+		slotted_moves_container.refresh_slotted_moves()
 
 func on_fade_out_complete() -> void:
 	MenuManager.fader_controller.fade_out_complete.disconnect(on_fade_out_complete)
@@ -118,5 +132,6 @@ func _on_slot_requested(area: Area2D, test_tube: TestTube) -> void:
 		test_tube.reset_placement()
 
 func _on_close_button_pressed() -> void:
+	PlayerStats.set_equipped_shadows(slotted_shadows)
 	MenuManager.fader_controller.fade_out_complete.connect(on_fade_out_complete)
 	MenuManager.fader_controller.fade_out()
