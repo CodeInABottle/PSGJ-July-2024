@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://c1n4ntxhihmgu"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_6326q"]
+[ext_resource type="Resource" uid="uid://dj13rksk5iww5" path="res://battle_resources/Modifiers/20_2_turn_DoTMod.tres" id="1_vv3fx"]
+
+[resource]
+script = ExtResource("1_6326q")
+damage = 20
+capture_efficiency = 1.1
+description = "Opponent takes an additional 20 damage for 2 turns."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_vv3fx")])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 2
+reagent_a = 2
+reagent_b = 2
+reagent_c = 0
+reagent_d = 0

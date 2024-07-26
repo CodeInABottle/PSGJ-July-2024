@@ -5,7 +5,7 @@ extends HTNTask
 
 func run_operation(HTN_finished_op_callback: Callable, agent: Node, world_state: Dictionary) -> void:
 	var npc: BaseNPC = agent
-	npc.chase_player(world_state)
+	npc.chase_player()
 
 func apply_effects(world_state: Dictionary) -> void:
 	pass

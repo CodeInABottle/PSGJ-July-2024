@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5o60qdoaeg0y"]
+
+[ext_resource type="PackedScene" uid="uid://ccuo8cx5bw5ge" path="res://battle_systems/EntityComponents/base_enemy_sprite_handler.tscn" id="1_78q3n"]
+[ext_resource type="Texture2D" uid="uid://df1mspsbxnt06" path="res://assets/sprites/mobs/combat_beetle.png" id="2_0jk1g"]
+
+[node name="BeetleSpriteHandler" instance=ExtResource("1_78q3n")]
+
+[node name="Shadow" parent="." index="0"]
+texture = ExtResource("2_0jk1g")
+vframes = 4
+
+[node name="Object" parent="." index="1"]
+texture = ExtResource("2_0jk1g")
+vframes = 4

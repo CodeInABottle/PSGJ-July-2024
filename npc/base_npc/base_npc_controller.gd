@@ -15,8 +15,8 @@ extends CharacterBody2D
 @onready var _wander_point: Vector2 = get_global_position()
 
 var _delta: float = 0.0
-var _wait_progress: float = 0.0
-var _has_wander_point = false
+#var _wait_progress: float = 0.0
+var _has_wander_point: bool = false
 
 const BATTLE_START_DISTANCE: float = 32.0
 const WANDER_STOP_DISTANCE: float = 2.0
@@ -38,10 +38,10 @@ func look_for_player() -> bool:
 			vision_raycast.set_target_position(relative_position)
 			vision_raycast.force_raycast_update()
 			if vision_raycast.is_colliding():
-				var seen_collider = vision_raycast.get_collider()
+				var seen_collider: Object = vision_raycast.get_collider()
 				if seen_collider is Player:
 					return true
-	
+
 	return false
 
 func is_close_enough_to_player() -> bool:
@@ -74,16 +74,16 @@ func walk_to_point(world_state: Dictionary) -> void:
 		velocity = velocity.lerp(desired_direction * npc_speed, _delta * LERP_SCALE)
 	else:
 		velocity = Vector2.ZERO
-	
+
 	move_and_slide()
 
-func wait_at_point(world_state: Dictionary) -> void:
+func wait_at_point() -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	var wait_time = rng.randf_range(0.5, 5.0)
+	var wait_time: float = rng.randf_range(0.5, 5.0)
 	npc_sprite.stop()
 	await get_tree().create_timer(wait_time).timeout
 
-func chase_player(world_state: Dictionary) -> void:
+func chase_player() -> void:
 	var desired_direction: Vector2 = (PlayerStats.player.get_global_position() - get_global_position()).normalized()
 	if abs(rad_to_deg(desired_direction.angle())) < 90.0:
 			npc_sprite.flip_h = true
@@ -91,10 +91,10 @@ func chase_player(world_state: Dictionary) -> void:
 		npc_sprite.flip_h = false
 	velocity = velocity.lerp(desired_direction * npc_speed, _delta * LERP_SCALE)
 	npc_sprite.play("walk", 1.0)
-	
+
 	move_and_slide()
 
-func start_battle(world_state: Dictionary) -> void:
+func start_battle(_world_state: Dictionary) -> void:
 	pass
 
 func generate_world_state() -> Dictionary:
