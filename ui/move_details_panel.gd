@@ -1,31 +1,26 @@
 class_name MoveDetailsContainer
-extends PanelContainer
+extends MarginContainer
 
-@export var name_label: Label
-@export var type_label: Label
-@export var damage_label: Label
-@export var notes_label: Label
-@export var efficiency_label: Label
-
-@export var cost_labels: Array[Label]
+@onready var name_label: Label = %NameLabel
+@onready var components: Array[TextureRect] = [
+	%TextureRect, %TextureRect2, %TextureRect3, %TextureRect4
+]
+@onready var damage_type_label: Label = %DamageTypeLabel
+@onready var description_label: Label = %DescriptionLabel
 
 func update_details(move_name: String) -> void:
 	var move_data: Dictionary = EnemyDatabase.get_ability_info(move_name)
-	if move_data:
-		name_label.text = move_name
-		damage_label.text = str(move_data.damage) + " DMG"
-		notes_label.text = move_data.description
-		efficiency_label.text = str(move_data.efficiency) + "x"
-		type_label.text = TypeChart.ResonateType.find_key(move_data.resonate)
-		
-		hide_cost()
-		
-		var type_index: int = 0
-		for type: TypeChart.ResonateType in move_data.cost:
-			cost_labels[type_index].text = TypeChart.ResonateType.find_key(type)
-			cost_labels[type_index].show()
-			type_index += 1
+	if move_data.is_empty(): return
 
-func hide_cost() -> void:
-	for label: Label in cost_labels:
-		label.hide()
+	name_label.text = move_name
+	damage_type_label.text = str(move_data.damage) + " DMG | Type: "\
+		+ TypeChart.ResonateType.find_key(move_data.resonate)
+	description_label.text = move_data.description
+
+	for idx: int in 4:
+		if idx < move_data.cost.size():
+			var type: TypeChart.ResonateType = move_data.cost[idx]
+			components[idx].texture = TypeChart.get_texture(type)
+			components[idx].show()
+		else:
+			components[idx].hide()

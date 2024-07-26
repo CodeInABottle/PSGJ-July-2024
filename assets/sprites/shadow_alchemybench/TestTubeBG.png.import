@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0kx43aonryus"
-path="res://.godot/imported/Testtube.png-a79141139be1b76e7692353a8c0a335e.ctex"
+uid="uid://cgoivjrbcidbf"
+path="res://.godot/imported/TestTubeBG.png-629e4d76c10f8142f471be0598483d94.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/Testtube.png"
-dest_files=["res://.godot/imported/Testtube.png-a79141139be1b76e7692353a8c0a335e.ctex"]
+source_file="res://assets/sprites/shadow_alchemybench/TestTubeBG.png"
+dest_files=["res://.godot/imported/TestTubeBG.png-629e4d76c10f8142f471be0598483d94.ctex"]
 
 [params]
 

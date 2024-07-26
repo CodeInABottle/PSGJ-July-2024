@@ -1,5 +1,10 @@
 extends Node
 
+const EARTH_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/EarthOrbStill.png")
+const FIRE_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/FireOrbStill.png")
+const WATER_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WaterOrbStill.png")
+const WIND_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WindOrbStill.png")
+
 enum ResonateType {
 	NONE = 0,
 	EARTH = 0b1000,
@@ -51,3 +56,17 @@ func get_resonance_breakdown(resonance: ResonateType) -> Array[ResonateType]:
 		ResonateType.METAL:
 			return PRIMARY_REAGENTS
 		_: return []
+
+func get_texture(resonance: ResonateType) -> Texture:
+	if resonance not in PRIMARY_REAGENTS: return null
+
+	match resonance:
+		TypeChart.ResonateType.EARTH:
+			return EARTH_ORB_STILL
+		TypeChart.ResonateType.WATER:
+			return WATER_ORB_STILL
+		TypeChart.ResonateType.AIR:
+			return WIND_ORB_STILL
+		TypeChart.ResonateType.FIRE:
+			return FIRE_ORB_STILL
+	return null

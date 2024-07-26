@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c7rwacc0r1c4s"
-path="res://.godot/imported/AlchemyWorkbench.png-53da37a92e05f0e72c147101274f5ff8.ctex"
+uid="uid://ds2h1nmaxexun"
+path="res://.godot/imported/BeakerBGs_0005.png-43864c9d449b75fdf01649d6a15e485c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/general/AlchemyWorkbench.png"
-dest_files=["res://.godot/imported/AlchemyWorkbench.png-53da37a92e05f0e72c147101274f5ff8.ctex"]
+source_file="res://assets/sprites/shadow_alchemybench/BeakerBackgrounds/BeakerBGs_0005.png"
+dest_files=["res://.godot/imported/BeakerBGs_0005.png-43864c9d449b75fdf01649d6a15e485c.ctex"]
 
 [params]
 

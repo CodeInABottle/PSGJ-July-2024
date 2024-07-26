@@ -10,9 +10,9 @@ func update_details(shadow_name: String) -> void:
 	if enemy_data:
 		name_label.text = enemy_data.name
 		type_label.text = TypeChart.ResonateType.find_key(enemy_data.resonate)
-		
+
 		hide_moves()
-		
+
 		var ability_index: int = 0
 		for ability: BattlefieldAbility in enemy_data.abilities:
 			move_labels[ability_index].text = ability.name
