@@ -5,6 +5,7 @@
 
 [node name="Ferret" instance=ExtResource("1_er1we")]
 script = ExtResource("2_bds8u")
+npc_name = "Morph Ferret"
 
 [node name="NPCSprite" parent="." index="1"]
 animation = &"head_bob"

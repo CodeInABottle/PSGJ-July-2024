@@ -42,9 +42,9 @@ var _current_unlocked_shadows: Dictionary = {
 	"Niter Tiger": [
 		"Worldless Roar", "Pounce", "Silver Spire"
 	],
-	#"Fighting Fish": [
-		#"Purify", "Retaliate",
-	#],
+	"Fighting Fish": [
+		"Purify", "Retaliate",
+	],
 	"Earth Worm": [
 		"Whip", "Dig"
 	]
@@ -54,7 +54,7 @@ var _equipped_shadows: Array[String] = [
 	"Living Tree",
 	"Mailbox",
 	"Niter Tiger",
-	#"Fighting Fish",
+	"Fighting Fish",
 	"Earth Worm"
 ]
 
