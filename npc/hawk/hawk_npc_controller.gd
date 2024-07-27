@@ -1,8 +1,8 @@
 class_name HawkNPC
 extends BaseNPC
 
-func wait_at_point(world_state: Dictionary) -> void:
-	var wait_time = 0.0
+func wait_at_point(_world_state: Dictionary) -> void:
+	var wait_time: float = 0.0
 	await get_tree().create_timer(wait_time).timeout
 
 func walk_to_point(world_state: Dictionary) -> void:
@@ -17,7 +17,7 @@ func walk_to_point(world_state: Dictionary) -> void:
 	
 	move_and_slide()
 
-func chase_player(world_state: Dictionary) -> void:
+func chase_player(_world_state: Dictionary) -> void:
 	_has_wander_point = false
 	nav.set_target_position(PlayerStats.player.get_global_position())
 	var next_path_point: Vector2 = nav.get_next_path_position()

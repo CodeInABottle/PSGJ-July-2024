@@ -48,6 +48,7 @@ unique_name_in_owner = true
 domain_name = &"Npc"
 
 [node name="Shiny" parent="." instance=ExtResource("4_0vt5e")]
+unique_name_in_owner = true
 
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true

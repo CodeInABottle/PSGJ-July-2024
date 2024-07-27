@@ -12,6 +12,7 @@ extends CharacterBody2D
 @onready var npc_sprite: AnimatedSprite2D = %NPCSprite
 @onready var htn_planner: HTNPlanner = %HTNPlanner
 @onready var nav: NavigationAgent2D = %NavAgent
+@onready var shiny: Shiny = %Shiny
 
 @onready var _start_position: Vector2 = get_global_position()
 @onready var _wander_point: Vector2 = get_global_position()
@@ -19,9 +20,9 @@ extends CharacterBody2D
 signal battle_finished()
 
 var _delta: float = 0.0
-var _wait_progress: float = 0.0
-var _has_wander_point = false
+var _has_wander_point: bool = false
 var _can_detect_player: bool = false
+var _has_been_defeated: bool = false
 
 const BATTLE_START_DISTANCE: float = 32.0
 const WANDER_STOP_DISTANCE: float = 2.0
@@ -42,15 +43,13 @@ func _physics_process(delta: float) -> void:
 	
 
 func look_for_player() -> bool:
-	var detected_bodies: Array = detection_area.get_overlapping_bodies()
-	
 	if _can_detect_player:
 		var detected_body: Player = PlayerStats.player
 		var relative_position: Vector2 = detected_body.get_global_position() - get_global_position()
 		vision_raycast.set_target_position(relative_position)
 		vision_raycast.force_raycast_update()
 		if vision_raycast.is_colliding():
-			var seen_collider = vision_raycast.get_collider()
+			var seen_collider: Object = vision_raycast.get_collider()
 			if seen_collider is Player:
 				return true
 	
@@ -96,13 +95,13 @@ func walk_to_point(world_state: Dictionary) -> void:
 	
 	move_and_slide()
 
-func wait_at_point(world_state: Dictionary) -> void:
+func wait_at_point(_world_state: Dictionary) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	var wait_time = rng.randf_range(0.5, 5.0)
+	var wait_time: float = rng.randf_range(0.5, 5.0)
 	npc_sprite.stop()
 	await get_tree().create_timer(wait_time).timeout
 
-func chase_player(world_state: Dictionary) -> void:
+func chase_player(_world_state: Dictionary) -> void:
 	_has_wander_point = false
 	nav.set_target_position(PlayerStats.player.get_global_position())
 	var next_path_point: Vector2 = nav.get_next_path_position()
@@ -116,7 +115,7 @@ func chase_player(world_state: Dictionary) -> void:
 	
 	move_and_slide()
 
-func start_battle(world_state: Dictionary) -> void:
+func start_battle(_world_state: Dictionary) -> void:
 	if EnemyDatabase.get_enemy_data(npc_name) != null:
 		LevelManager.menu_unloaded.connect(on_battle_finished)
 		LevelManager.trigger_battle(npc_name)
@@ -130,6 +129,7 @@ func generate_world_state() -> Dictionary:
 		"close_enough_to_point": false,
 		"npc_position": get_global_position(),
 		"has_been_captured" : has_been_captured(),
+		"has_been_defeated" : _has_been_defeated,
 	}
 
 func on_body_entered_detect_area(entered_body: Node2D) -> void:
@@ -147,4 +147,8 @@ func has_been_captured() -> bool:
 	return false
 
 func on_battle_finished() -> void:
+	shiny.queue_free()
+	_has_been_defeated = true
+	LevelManager.menu_unloaded.disconnect(on_battle_finished)
 	battle_finished.emit()
+	MenuManager.fader_controller.fade_in()

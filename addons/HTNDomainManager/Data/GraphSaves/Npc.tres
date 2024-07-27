@@ -229,6 +229,13 @@ node_data = {
 "RangeInclusivity": [false, false],
 "SingleID": 0,
 "Value": false
+},
+"has_been_defeated": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": false
 }
 },
 "nickname": "can see player",
