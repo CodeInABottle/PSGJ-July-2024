@@ -276,7 +276,7 @@ func _generate_world_states() -> Dictionary:
 			"player_ap": PlayerStats.alchemy_points,
 			"can_player_burst": PlayerStats.alchemy_points >= _long_term_memory["ap_cost"]\
 				and _long_term_memory["highest_damage"] > 0,
-			"can_use_stun": _alchemy_points >= _long_term_memory["stun_ap"]
+			"can_use_stun": _long_term_memory.has("stun_ap") and _alchemy_points >= _long_term_memory["stun_ap"]
 		})
 
 	return data
