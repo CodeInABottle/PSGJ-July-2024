@@ -8,6 +8,7 @@
 script = ExtResource("2_1l8bf")
 npc_speed = 300.0
 npc_name = "Fire Hawk"
+normal_sprite_frames = ExtResource("2_xuilm")
 
 [node name="NPCSprite" parent="." index="1"]
 sprite_frames = ExtResource("2_xuilm")

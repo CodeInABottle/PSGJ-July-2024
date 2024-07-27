@@ -6,6 +6,8 @@ extends CharacterBody2D
 
 @export var wander_x_bound: float = 200.0
 @export var wander_y_bound: float = 200.0
+@export var normal_sprite_frames: SpriteFrames
+@export var afflicted_sprite_frames: SpriteFrames
 
 @onready var detection_area: Area2D = %DetectionArea
 @onready var vision_raycast: RayCast2D = %VisionRaycast
@@ -68,7 +70,6 @@ func is_close_enough_to_point(world_state: Dictionary) -> void:
 
 func pick_point(world_state: Dictionary) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	var chance: float = rng.randf_range(0.0,100.0)
 	var has_valid_point: bool = false
 	while not has_valid_point:
 		var x_pos: float = rng.randf_range(_start_position.x-wander_x_bound, _start_position.x+wander_x_bound)
@@ -116,7 +117,8 @@ func chase_player(_world_state: Dictionary) -> void:
 	move_and_slide()
 
 func start_battle(_world_state: Dictionary) -> void:
-	if EnemyDatabase.get_enemy_data(npc_name) != null:
+	npc_sprite.stop()
+	if npc_name in EnemyDatabase._enemies:
 		LevelManager.menu_unloaded.connect(on_battle_finished)
 		LevelManager.trigger_battle(npc_name)
 
@@ -152,3 +154,6 @@ func on_battle_finished() -> void:
 	LevelManager.menu_unloaded.disconnect(on_battle_finished)
 	battle_finished.emit()
 	MenuManager.fader_controller.fade_in()
+
+func saturate_colors() -> void:
+	pass

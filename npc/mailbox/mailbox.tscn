@@ -2,12 +2,13 @@
 
 [ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_nw1xj"]
 [ext_resource type="Script" path="res://npc/mailbox/mailbox.gd" id="2_38mpo"]
-[ext_resource type="SpriteFrames" uid="uid://bl4oolqupivve" path="res://npc/mailbox/mailbox_sprite_framems.tres" id="3_x7314"]
+[ext_resource type="SpriteFrames" uid="uid://bl4oolqupivve" path="res://npc/mailbox/mailbox_sprite_frames.tres" id="3_x7314"]
 
 [node name="Mailbox" instance=ExtResource("1_nw1xj")]
 script = ExtResource("2_38mpo")
 npc_speed = 130.0
 npc_name = "Mailbox"
+normal_sprite_frames = ExtResource("3_x7314")
 
 [node name="NPCSprite" parent="." index="1"]
 sprite_frames = ExtResource("3_x7314")

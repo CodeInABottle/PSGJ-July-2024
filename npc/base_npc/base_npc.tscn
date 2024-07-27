@@ -16,6 +16,8 @@ motion_mode = 1
 script = ExtResource("1_a6oxw")
 wander_x_bound = 100.0
 wander_y_bound = 100.0
+normal_sprite_frames = ExtResource("2_6onjl")
+afflicted_sprite_frames = ExtResource("2_6onjl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = ExtResource("2_0bdfi")

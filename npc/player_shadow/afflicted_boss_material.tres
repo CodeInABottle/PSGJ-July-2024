@@ -1,0 +1,26 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://do2xy617wcc44"]
+
+[ext_resource type="Shader" path="res://assets/shaders/battle_background.gdshader" id="1_8bphp"]
+
+[sub_resource type="Gradient" id="Gradient_3iu1m"]
+offsets = PackedFloat32Array(0, 0.202358, 0.408644, 0.583497, 0.732809, 0.803536, 0.880157, 1)
+colors = PackedColorArray(0, 0, 0.219608, 1, 0.345098, 0.258824, 0.419608, 1, 0.410193, 0.119786, 0.168911, 1, 0.6773, 0.530511, 0.157125, 1, 0.274354, 0.192844, 0.128128, 1, 1, 1, 1, 1, 0.314213, 0.572203, 0.573039, 1, 0, 0, 0.219608, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_r4oal"]
+gradient = SubResource("Gradient_3iu1m")
+
+[resource]
+shader = ExtResource("1_8bphp")
+shader_parameter/screen_height = 640.0
+shader_parameter/amplitude = 0.005
+shader_parameter/frequency = 10.0
+shader_parameter/speed = 2.0
+shader_parameter/amplitude_vertical = 0.0
+shader_parameter/frequency_vertical = 0.0
+shader_parameter/speed_vertical = 0.0
+shader_parameter/scroll_direction = Vector2(0, 0)
+shader_parameter/scrolling_speed = 0.08
+shader_parameter/enable_palette_cycling = true
+shader_parameter/palette_speed = 0.1
+shader_parameter/enable_scanlines = false
+shader_parameter/palette = SubResource("GradientTexture1D_r4oal")

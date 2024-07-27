@@ -5,6 +5,7 @@
 
 [node name="Snail" instance=ExtResource("1_12ct1")]
 npc_name = "Armored Snail"
+normal_sprite_frames = ExtResource("2_8b60g")
 
 [node name="NPCSprite" parent="." index="1"]
 sprite_frames = ExtResource("2_8b60g")

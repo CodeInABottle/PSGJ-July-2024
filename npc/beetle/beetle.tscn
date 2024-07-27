@@ -5,6 +5,7 @@
 
 [node name="Beetle" instance=ExtResource("1_yoryc")]
 npc_name = "Bombardier Beetle"
+normal_sprite_frames = ExtResource("2_tlm8c")
 
 [node name="NPCSprite" parent="." index="1"]
 sprite_frames = ExtResource("2_tlm8c")
