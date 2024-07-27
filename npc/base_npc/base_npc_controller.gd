@@ -1,10 +1,11 @@
 class_name BaseNPC
 extends CharacterBody2D
 
+@export var npc_speed: float = 80.0
+@export var npc_name: String
+
 @export var wander_x_bound: float = 200.0
 @export var wander_y_bound: float = 200.0
-
-@export var npc_speed: float = 80.0
 
 @onready var detection_area: Area2D = %DetectionArea
 @onready var vision_raycast: RayCast2D = %VisionRaycast
@@ -15,6 +16,7 @@ extends CharacterBody2D
 @onready var _start_position: Vector2 = get_global_position()
 @onready var _wander_point: Vector2 = get_global_position()
 
+signal battle_finished()
 
 var _delta: float = 0.0
 var _wait_progress: float = 0.0
@@ -37,6 +39,7 @@ func _physics_process(delta: float) -> void:
 	_delta = delta
 	var world_state: Dictionary = generate_world_state()
 	htn_planner.handle_planning(self, world_state)
+	
 
 func look_for_player() -> bool:
 	var detected_bodies: Array = detection_area.get_overlapping_bodies()
@@ -54,7 +57,8 @@ func look_for_player() -> bool:
 	return false
 
 func is_close_enough_to_player() -> bool:
-	if (get_global_position() - PlayerStats.player.get_global_position()).length() < BATTLE_START_DISTANCE:
+	var distance: float = global_position.distance_to(PlayerStats.player.get_global_position())
+	if distance < BATTLE_START_DISTANCE:
 		return true
 	return false
 
@@ -113,7 +117,9 @@ func chase_player(world_state: Dictionary) -> void:
 	move_and_slide()
 
 func start_battle(world_state: Dictionary) -> void:
-	pass
+	if EnemyDatabase.get_enemy_data(npc_name) != null:
+		LevelManager.menu_unloaded.connect(on_battle_finished)
+		LevelManager.trigger_battle(npc_name)
 
 func generate_world_state() -> Dictionary:
 	return {
@@ -123,6 +129,7 @@ func generate_world_state() -> Dictionary:
 		"wander_point": _wander_point,
 		"close_enough_to_point": false,
 		"npc_position": get_global_position(),
+		"has_been_captured" : has_been_captured(),
 	}
 
 func on_body_entered_detect_area(entered_body: Node2D) -> void:
@@ -132,3 +139,12 @@ func on_body_entered_detect_area(entered_body: Node2D) -> void:
 func on_body_exited_detect_area(exited_body: Node2D) -> void:
 	if exited_body is Player:
 		_can_detect_player = false
+
+func has_been_captured() -> bool:
+	var unlocked_shadows: PackedStringArray = PlayerStats.get_all_unlocked_shadows()
+	if unlocked_shadows.has(npc_name):
+		return true
+	return false
+
+func on_battle_finished() -> void:
+	battle_finished.emit()
