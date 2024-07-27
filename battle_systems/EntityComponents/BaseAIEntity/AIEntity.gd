@@ -63,6 +63,7 @@ func regen_ap() -> void:
 	ap_penality = 0
 
 func heal(health: int) -> void:
+	print("Enemy healed: ", health)
 	_health += health
 
 func take_damage(damage_data: Dictionary) -> void:

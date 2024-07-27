@@ -43,7 +43,7 @@ var _current_unlocked_shadows: Dictionary = {
 		"Worldless Roar", "Pounce", "Silver Spire"
 	],
 	"Fighting Fish": [
-		"Purify", "Retaliate", "Explode"
+		"Purify", "Retaliate", "Gaia Howl"
 	],
 	"Earth Worm": [
 		"Whip", "Dig"
@@ -61,7 +61,7 @@ var _equipped_shadows: Array[String] = [
 # item_name: String : quantity: int
 var inventory_items: Dictionary = {}
 
-var max_health: int = 200:
+var max_health: int = 10000:
 	set(value):
 		max_health = value
 

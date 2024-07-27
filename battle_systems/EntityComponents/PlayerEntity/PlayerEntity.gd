@@ -16,6 +16,7 @@ func take_damage(damage_data: Dictionary) -> void:
 	PlayerStats.health -= damage_data["damage"]
 
 func heal(value: int) -> void:
+	print("Player healed: ", value)
 	PlayerStats.health += value
 
 func regen_ap() -> void:
