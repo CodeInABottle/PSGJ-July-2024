@@ -43,7 +43,7 @@ var _current_unlocked_shadows: Dictionary = {
 		"Worldless Roar", "Pounce", "Silver Spire"
 	],
 	"Fighting Fish": [
-		"Purify", "Retaliate", "Gaia Howl"
+		"Purify", "Retaliate",
 	],
 	"Earth Worm": [
 		"Whip", "Dig"
@@ -160,6 +160,14 @@ func has_item(item_name: String, quantity: int = 1) -> bool:
 			return true
 		else:
 			return true
+	return false
+
+func can_stun() -> bool:
+	for ability_name: String in get_all_equipped_abilities():
+		var ability: BattlefieldAbility = EnemyDatabase.get_ability_data(ability_name)
+		for mod: BattlefieldAttackModifier in ability.modifiers:
+			if mod is BattlefieldSkipTurnMod:
+				return true
 	return false
 
 func load_data(data: Dictionary) -> void:

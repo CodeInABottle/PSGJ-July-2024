@@ -5,9 +5,8 @@ extends HTNTask
 
 func run_operation(HTN_finished_op_callback: Callable, agent: Node, world_state: Dictionary) -> void:
 	var battle_agent: BattlefieldAIEntity = (agent as BattlefieldAIEntity)
-	var ability_idx: int = world_state["rng"] % world_state["ability_count"]
 
-	await battle_agent.activate_ability(ability_idx)
+	await battle_agent.activate_ability(world_state["ability_idx"])
 	await battle_agent.ability_finished
 	HTN_finished_op_callback.call()
 

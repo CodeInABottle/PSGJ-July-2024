@@ -59,7 +59,14 @@ func attack(ability_name: String) -> void:
 
 func _internal_attack_logic(ability_name: String) -> void:
 	var damage_data: Dictionary = EnemyDatabase.get_ability_damage_data(ability_name)
-	entity_tracker.enemy_entity.take_damage(damage_data)
 	var ability: BattlefieldAbility = EnemyDatabase.get_ability_data(ability_name)
+
+	# Record for AI use
+	entity_tracker.enemy_entity.short_term_memory.push_back({
+		"damage": damage_data["damage"],
+		"ap_used": ability.ap_cost
+	})
+
+	entity_tracker.enemy_entity.take_damage(damage_data)
 	entity_tracker.add_modification_stacks(ability)
 	actions_done += 1

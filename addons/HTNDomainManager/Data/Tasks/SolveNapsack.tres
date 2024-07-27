@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://cq4fkegwwmbel"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/Data/Scripts/SolveNapsack.gd" id="1_ryujp"]
+
+[resource]
+script = ExtResource("1_ryujp")
+requires_awaiting = true

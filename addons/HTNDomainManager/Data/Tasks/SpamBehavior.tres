@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://lu6unctkpxir"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/Data/Scripts/SpamBehavior.gd" id="1_t4rac"]
+
+[resource]
+script = ExtResource("1_t4rac")
+requires_awaiting = true
