@@ -4,8 +4,7 @@ extends BattlefieldAttackModifier
 @export var shield_amount: int = 30
 
 # Returns true on skip turn
-func execute(_player: BattlefieldPlayerEntity, _enemy: BattlefieldAIEntity,
-		additional_data: Dictionary) -> bool:
+func execute(_tracker: BattlefieldEntityTracker, additional_data: Dictionary) -> bool:
 	if not additional_data.has("damage"): return false
 
 	var damage: int = additional_data["damage"]

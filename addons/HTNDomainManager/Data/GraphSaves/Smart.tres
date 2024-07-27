@@ -1,0 +1,148 @@
+[gd_resource type="Resource" script_class="HTNGraphSave" load_steps=2 format=3 uid="uid://bnxum6kko0emu"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Resources/HTNGraphSave.gd" id="1_peqbo"]
+
+[resource]
+script = ExtResource("1_peqbo")
+root_key = "Sandwich_0"
+connections = Array[Dictionary]([{
+"from_node": &"Sandwich_2",
+"from_port": 0,
+"to_node": &"Sandwich_4",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_3",
+"from_port": 0,
+"to_node": &"Sandwich_5",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_6",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_6",
+"from_port": 0,
+"to_node": &"Sandwich_7",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_7",
+"from_port": 0,
+"to_node": &"Sandwich_2",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_7",
+"from_port": 0,
+"to_node": &"Sandwich_3",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_8",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_8",
+"from_port": 0,
+"to_node": &"Sandwich_9",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_10",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_10",
+"from_port": 0,
+"to_node": &"Sandwich_7",
+"to_port": 0
+}])
+node_types = {
+"Sandwich_0": "Root",
+"Sandwich_10": "Method",
+"Sandwich_2": "Method",
+"Sandwich_3": "Always True Method",
+"Sandwich_4": "Task",
+"Sandwich_5": "Task",
+"Sandwich_6": "Method",
+"Sandwich_7": "Splitter",
+"Sandwich_8": "Always True Method",
+"Sandwich_9": "Quit"
+}
+node_positions = {
+"Sandwich_0": Vector2(20, 60),
+"Sandwich_10": Vector2(220, 340),
+"Sandwich_2": Vector2(760, 280),
+"Sandwich_3": Vector2(760, 100),
+"Sandwich_4": Vector2(1000, 280),
+"Sandwich_5": Vector2(1000, 100),
+"Sandwich_6": Vector2(220, 180),
+"Sandwich_7": Vector2(480, 180),
+"Sandwich_8": Vector2(220, 60),
+"Sandwich_9": Vector2(420, 60)
+}
+node_data = {
+"Sandwich_0": {},
+"Sandwich_10": {
+"condition_data": {
+"at_has_max_ap": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"nickname": "Check if at max AP",
+"priority": 1
+},
+"Sandwich_2": {
+"condition_data": {
+"rng": {
+"CompareID": 1,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 1,
+"Value": 50
+}
+},
+"nickname": "Check if RNG < 50",
+"priority": 0
+},
+"Sandwich_3": {
+"condition_data": {
+"AlwaysTrue": true
+},
+"nickname": "",
+"priority": -9223372036854775808
+},
+"Sandwich_4": {
+"task": "MostDamageBehavior"
+},
+"Sandwich_5": {
+"task": "SpamBehavior"
+},
+"Sandwich_6": {
+"condition_data": {
+"above_30%_health": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": false
+}
+},
+"nickname": "Check Health <= 30%",
+"priority": 0
+},
+"Sandwich_7": {
+"nickname": "Pick an attack behavior"
+},
+"Sandwich_8": {
+"condition_data": {
+"AlwaysTrue": true
+},
+"nickname": "",
+"priority": -9223372036854775808
+},
+"Sandwich_9": {}
+}

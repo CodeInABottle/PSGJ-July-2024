@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://dwlb2w8pr1nm2"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_1nteb"]
+[ext_resource type="Resource" uid="uid://c0a7fvw0lvehh" path="res://battle_resources/Modifiers/ReduceAPBy_1_2Turns.tres" id="1_vrn36"]
+
+[resource]
+script = ExtResource("1_1nteb")
+damage = 120
+capture_efficiency = 1.1
+description = "Opponent looses 1 AP for 2 turns."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_vrn36")])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 14
+reagent_a = 8
+reagent_b = 4
+reagent_c = 2
+reagent_d = 2

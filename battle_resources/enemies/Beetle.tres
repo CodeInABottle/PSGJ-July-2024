@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://ccyxk6lgkk1al"]
+
+[ext_resource type="Resource" uid="uid://c1n4ntxhihmgu" path="res://battle_resources/abilities/IncendiaryCloud.tres" id="1_w0k2b"]
+[ext_resource type="Resource" uid="uid://dj5y3l4i8ef4b" path="res://battle_resources/abilities/Cannon.tres" id="2_yy11u"]
+[ext_resource type="PackedScene" uid="uid://c5o60qdoaeg0y" path="res://battle_resources/CombatAnimations/beetle_sprite_handler.tscn" id="3_85u40"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="3_v3qor"]
+
+[resource]
+script = ExtResource("3_v3qor")
+name = "Bombardier Beetle"
+description = ""
+max_health = 450
+resonate = 3
+domain = &"Smart"
+abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_w0k2b"), ExtResource("2_yy11u")])
+combat_animation = ExtResource("3_85u40")
+special_frame_idx = -1
+attack_position = Vector2(512, 61)

@@ -53,10 +53,12 @@ func _run() -> void:
 		return
 	elif HTNDatabase.has_task(_current_task["Domain"], _current_task["TaskKey"]):
 		var task: HTNTask = HTNDatabase.get_task(_current_task["Domain"], _current_task["TaskKey"])
-		task.run_operation(func() -> void: _plan_state = PlanState.EFFECT, _agent, _world_state_copy)
 		if task.requires_awaiting:
 			_plan_state = PlanState.WAIT
+			task.run_operation(func() -> void: _plan_state = PlanState.EFFECT, _agent, _world_state_copy)
 			return
+		else:
+			task.run_operation(func() -> void: _plan_state = PlanState.EFFECT, _agent, _world_state_copy)
 	_plan_state = PlanState.EFFECT
 
 func _effect() -> void:

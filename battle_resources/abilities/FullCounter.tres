@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://bajckdhsuwcmc"]
+
+[ext_resource type="Resource" uid="uid://cxrfmub6c6h8k" path="res://battle_resources/Modifiers/FullCounter.tres" id="1_6thu5"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_vnu3o"]
+
+[resource]
+script = ExtResource("1_vnu3o")
+damage = 0
+capture_efficiency = 1.1
+description = "On the next turn, if attacked, do the complete same damage to the opponent."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_6thu5")])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 6
+reagent_a = 4
+reagent_b = 2
+reagent_c = 2
+reagent_d = 0

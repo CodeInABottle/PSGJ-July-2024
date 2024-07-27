@@ -6,11 +6,14 @@ extends Node
 @onready var table: BattlefieldTable = %Table
 
 func enter() -> void:
-	# End battle if died of effects
-	if entity_tracker.handle_player_effects(): return
+	# End battle if died of effects/Check for turn skipping
+	if entity_tracker.handle_player_effects():
+		print("Skipping Player turn")
+		return
 
+	entity_tracker.player_entity.reset_action_counter()
+	entity_tracker.player_entity.regen_ap()
 	table.candles.light()
-	PlayerStats.regen_alchemy_points()
 	control_shield.hide()
 
 func exit() -> void:

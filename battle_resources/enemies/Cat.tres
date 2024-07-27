@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_fdqer"]
 [ext_resource type="Resource" uid="uid://o8qhfxt5q7da" path="res://battle_resources/abilities/Pounce.tres" id="2_ygnaa"]
 [ext_resource type="Resource" uid="uid://0vnynh3rllw3" path="res://battle_resources/abilities/SilverSpire.tres" id="3_tyr4w"]
-[ext_resource type="PackedScene" uid="uid://dabhe6mfi3x11" path="res://battle_systems/EntityComponents/CombatAnimations/cat_sprite_handler.tscn" id="4_y7xnh"]
+[ext_resource type="PackedScene" uid="uid://dabhe6mfi3x11" path="res://battle_resources/CombatAnimations/cat_sprite_handler.tscn" id="4_y7xnh"]
 
 [resource]
 script = ExtResource("1_fdqer")
@@ -12,6 +12,8 @@ name = "Niter Tiger"
 description = ""
 max_health = 600
 resonate = 7
-domain = &"Dumb"
+domain = &"Clever"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_2l20h"), ExtResource("2_ygnaa"), ExtResource("3_tyr4w")])
 combat_animation = ExtResource("4_y7xnh")
+special_frame_idx = -1
+attack_position = Vector2(0, 0)

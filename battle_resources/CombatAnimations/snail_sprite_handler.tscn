@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ct3iutsk8dbi2"]
+
+[ext_resource type="PackedScene" uid="uid://ccuo8cx5bw5ge" path="res://battle_systems/EntityComponents/base_enemy_sprite_handler.tscn" id="1_225ai"]
+[ext_resource type="Texture2D" uid="uid://dd4xcnect6yb7" path="res://assets/sprites/mobs/combat_snail.png" id="2_h3v7q"]
+
+[node name="SnailSpriteHandler" instance=ExtResource("1_225ai")]
+
+[node name="Shadow" parent="." index="0"]
+texture = ExtResource("2_h3v7q")
+vframes = 3
+
+[node name="Object" parent="." index="1"]
+texture = ExtResource("2_h3v7q")
+vframes = 3

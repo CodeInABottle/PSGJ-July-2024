@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="HTNDomain" load_steps=2 format=3 uid="uid://ritfjl64gg5b"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Resources/HTNDomain.gd" id="1_pufgl"]
+
+[resource]
+script = ExtResource("1_pufgl")
+root_key = "Sandwich_0"
+task_map = {
+"Sandwich_4": "MostDamageBehavior",
+"Sandwich_5": "SpamBehavior"
+}
+domain_map = {}
+quits = Array[StringName]([&"Sandwich_9"])
+splits = {
+"Sandwich_0": Array[StringName]([&"Sandwich_10", &"Sandwich_6", &"Sandwich_8"]),
+"Sandwich_7": Array[StringName]([&"Sandwich_2", &"Sandwich_3"])
+}
+methods = {
+"Sandwich_10": {
+"method_data": {
+"at_has_max_ap": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_7"])
+},
+"Sandwich_2": {
+"method_data": {
+"rng": {
+"CompareID": 1,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 1,
+"Value": 50
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_4"])
+},
+"Sandwich_3": {
+"method_data": {
+"AlwaysTrue": true
+},
+"task_chain": Array[StringName]([&"Sandwich_5"])
+},
+"Sandwich_6": {
+"method_data": {
+"above_30%_health": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": false
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_7"])
+},
+"Sandwich_8": {
+"method_data": {
+"AlwaysTrue": true
+},
+"task_chain": Array[StringName]([&"Sandwich_9"])
+}
+}
+effects = {}
+modules = {}

@@ -5,15 +5,18 @@ signal damage_taken(is_player: bool, data: Dictionary)
 
 class ModData:
 	var mod: BattlefieldAttackModifier
+	var created_by_player: bool
 	var turns: int = 0
 	var resonate: TypeChart.ResonateType
 	var efficiency_capture_rate: float
 
-	func _init(ability: BattlefieldAbility, modifier: BattlefieldAttackModifier) -> void:
+	func _init(ability: BattlefieldAbility, modifier: BattlefieldAttackModifier, whois: bool) -> void:
 		mod = modifier
 		turns = modifier.turns
-		resonate = ability["resonate_type"]
-		efficiency_capture_rate = ability["capture_efficiency"]
+		created_by_player = whois
+		if ability:
+			resonate = ability["resonate_type"]
+			efficiency_capture_rate = ability["capture_efficiency"]
 
 	func get_data() -> Dictionary:
 		return {
@@ -78,14 +81,15 @@ func end_turn() -> void:
 		combat_state_machine.switch_state("EnemyState")
 
 func add_modification_stacks(ability: BattlefieldAbility) -> void:
+	var skip_turn: bool = false
 	for modification: BattlefieldAttackModifier in ability["modifiers"]:
 		var apply_to_player: bool\
 			= BattlefieldEntityTracker.do_apply_to_player(is_players_turn, modification["apply_to_self"])
-		var mod_data: ModData = ModData.new(ability, modification)
+		var mod_data: ModData = ModData.new(ability, modification, is_players_turn)
 
 		# Check to see if the modification is immediate
 		if modification["immediate"]:
-			_execute({}, mod_data)
+			skip_turn = _execute({}, mod_data)
 			continue
 
 		if apply_to_player:
@@ -102,6 +106,36 @@ func add_modification_stacks(ability: BattlefieldAbility) -> void:
 			else:
 				if mod_data not in _enemy_effects:
 					_enemy_effects.push_back(mod_data)
+	if skip_turn:
+		end_turn()
+
+func add_modification(resonate: TypeChart.ResonateType, efficiency_capture_rate: float,
+		modification: BattlefieldAttackModifier, is_player: bool) -> void:
+	var apply_to_player: bool\
+		= BattlefieldEntityTracker.do_apply_to_player(is_players_turn, modification["apply_to_self"])
+	var mod_data: ModData = ModData.new(null, modification, is_player)
+	mod_data.resonate = resonate
+	mod_data.efficiency_capture_rate = efficiency_capture_rate
+
+	# Check to see if the modification is immediate
+	if modification["immediate"]:
+		if _execute({}, mod_data): end_turn()
+		return
+
+	if apply_to_player:
+		if modification["is_attacked_triggered"]:
+			if mod_data not in _player_signal_effects:
+				_player_signal_effects.push_back(mod_data)
+		else:
+			if mod_data not in _player_effects:
+				_player_effects.push_back(mod_data)
+	else:
+		if modification["is_attacked_triggered"]:
+			if mod_data not in _enemy_signal_effects:
+				_enemy_signal_effects.push_back(mod_data)
+		else:
+			if mod_data not in _enemy_effects:
+				_enemy_effects.push_back(mod_data)
 
 # Returns true on state switch
 func handle_enemy_effects() -> bool:
@@ -167,6 +201,15 @@ func _reduce_signal_effect_turns(effects: Array[ModData]) -> void:
 	while not effects.is_empty():
 		var data: ModData = effects.pop_back()
 
+		# Mod created by the player
+		if not is_players_turn and data.created_by_player:
+			requeue_effects.push_back(data)
+			continue
+		# Mod created by enemy
+		elif is_players_turn and not data.created_by_player:
+			requeue_effects.push_back(data)
+			continue
+
 		# Reduce effect's turns
 		data.turns -= 1
 
@@ -184,7 +227,9 @@ func _execute(additional_data: Dictionary, modifier_data: ModData) -> bool:
 	}
 	execute_data.merge(additional_data, true)
 	execute_data.merge(modifier_data.get_data(), true)
-	return modifier_data.mod.execute(player_entity, enemy_entity, execute_data)
+	var skip_turn: bool = modifier_data.mod.execute(self, execute_data)
+	additional_data.merge(execute_data, true)
+	return skip_turn
 
 func _handle_damage_taken_signal(was_player: bool, data: Dictionary) -> void:
 	if was_player:

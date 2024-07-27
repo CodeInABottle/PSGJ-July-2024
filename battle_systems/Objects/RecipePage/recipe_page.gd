@@ -6,6 +6,7 @@ signal mouse_hovered
 signal mouse_left
 
 @export var wiggle_on_set: bool = true
+@export var enable_clicking: bool = true
 
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var label: Label = %Label
@@ -44,6 +45,7 @@ func _on_hidden() -> void:
 
 func _on_button_pressed() -> void:
 	if not visible: return
+	if not enable_clicking: return
 
 	hide()
 	pressed.emit()

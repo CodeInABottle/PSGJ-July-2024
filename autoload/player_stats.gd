@@ -43,7 +43,7 @@ var _current_unlocked_shadows: Dictionary = {
 		"Worldless Roar", "Pounce", "Silver Spire"
 	],
 	"Fighting Fish": [
-		"Purify", "Retaliate"
+		"Purify", "Retaliate",
 	],
 	"Earth Worm": [
 		"Whip", "Dig"
@@ -61,7 +61,7 @@ var _equipped_shadows: Array[String] = [
 # item_name: String : quantity: int
 var inventory_items: Dictionary = {}
 
-var max_health: int = 200:
+var max_health: int = 10000:
 	set(value):
 		max_health = value
 
@@ -97,8 +97,8 @@ func reset_alchemy_points() -> void:
 	alchemy_points = get_max_alchemy_points()
 	was_ap_used = false
 
-func regen_alchemy_points() -> void:
-	alchemy_points += LEVEL_DATA[level]["Regen"]
+func regen_alchemy_points(penalty: int = 0) -> void:
+	alchemy_points += LEVEL_DATA[level]["Regen"] - penalty
 	was_ap_used = false
 
 func get_max_alchemy_points() -> int:
@@ -160,6 +160,14 @@ func has_item(item_name: String, quantity: int = 1) -> bool:
 			return true
 		else:
 			return true
+	return false
+
+func can_stun() -> bool:
+	for ability_name: String in get_all_equipped_abilities():
+		var ability: BattlefieldAbility = EnemyDatabase.get_ability_data(ability_name)
+		for mod: BattlefieldAttackModifier in ability.modifiers:
+			if mod is BattlefieldSkipTurnMod:
+				return true
 	return false
 
 func load_data(data: Dictionary) -> void:

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://cctmrbcnbdxrn"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_mpgn0"]
+[ext_resource type="Resource" uid="uid://cybgmntej4n8x" path="res://battle_resources/Modifiers/90_1_turn_DoTMod.tres" id="1_npmn5"]
+
+[resource]
+script = ExtResource("1_mpgn0")
+damage = 60
+capture_efficiency = 1.1
+description = "Opponent takes 90 damage on their turn."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_npmn5")])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 8
+reagent_a = 8
+reagent_b = 8
+reagent_c = 0
+reagent_d = 0
