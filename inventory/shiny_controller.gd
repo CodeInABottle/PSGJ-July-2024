@@ -6,7 +6,7 @@ extends Sprite2D
 @export var pickup_area: Area2D
 @export var shiny_area: Area2D
 @export var shiny_sprite: Sprite2D
-@export var shiny_player: AnimationPlayer 
+@export var shiny_player: AnimationPlayer
 @export var fade_timer: Timer
 
 # Called when the node enters the scene tree for the first time.
@@ -30,6 +30,8 @@ func on_fade_timer_timeout() -> void:
 	shiny_player.stop()
 
 func stop_shiny() -> void:
+	if LevelManager.is_paused(): return
+
 	var shiny_tween: Tween = shiny_sprite.create_tween()
 	shiny_tween.tween_property(shiny_sprite, "modulate", Color(1,1,1,0), 0.5)
 	fade_timer.start()

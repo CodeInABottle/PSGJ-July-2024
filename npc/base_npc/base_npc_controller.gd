@@ -41,7 +41,7 @@ func _physics_process(delta: float) -> void:
 	_delta = delta
 	var world_state: Dictionary = generate_world_state()
 	htn_planner.handle_planning(self, world_state)
-	
+
 
 func look_for_player() -> bool:
 	if _can_detect_player:
@@ -53,7 +53,7 @@ func look_for_player() -> bool:
 			var seen_collider: Object = vision_raycast.get_collider()
 			if seen_collider is Player:
 				return true
-	
+
 	return false
 
 func is_close_enough_to_player() -> bool:
@@ -94,7 +94,7 @@ func walk_to_point(world_state: Dictionary) -> void:
 		velocity = velocity.lerp(desired_direction * npc_speed, _delta * LERP_SCALE)
 	else:
 		velocity = Vector2.ZERO
-	
+
 	move_and_slide()
 
 func wait_at_point(_world_state: Dictionary) -> void:
@@ -114,7 +114,7 @@ func chase_player(_world_state: Dictionary) -> void:
 		npc_sprite.flip_h = false
 	velocity = velocity.lerp(desired_direction * npc_speed, _delta * LERP_SCALE)
 	npc_sprite.play("walk", 1.0)
-	
+
 	move_and_slide()
 
 func start_battle(_world_state: Dictionary) -> void:

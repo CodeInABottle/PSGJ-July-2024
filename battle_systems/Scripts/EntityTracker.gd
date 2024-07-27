@@ -58,11 +58,11 @@ func end_turn() -> void:
 	if PlayerStats.health <= 0:
 		combat_state_machine.switch_state("GameOverState")
 		return
-	elif enemy_entity.is_dead():
-		combat_state_machine.switch_state("RewardState")
-		return
 	elif enemy_entity.is_captured():
 		combat_state_machine.switch_state("CaptureState")
+		return
+	elif enemy_entity.is_dead():
+		combat_state_machine.switch_state("RewardState")
 		return
 
 	# Reduce signal effects

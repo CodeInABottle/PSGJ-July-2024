@@ -16,9 +16,9 @@ func _ready() -> void:
 		_warp_points.push_back(warp_point)
 	setup_timer.timeout.connect(_on_setup_timeout)
 	setup_timer.start()
-	
+
 	init_pickups()
-	
+
 	# Alert the level manager we done setting up
 	LevelManager.level_loaded.emit(self)
 

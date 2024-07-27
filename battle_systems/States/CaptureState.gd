@@ -5,7 +5,7 @@ extends Node
 
 func enter() -> void:
 	battlefield.captured_shadow()
-	combat_state_machine.switch_state("RewardState")
+	battlefield.won_battle()
 
 func exit() -> void:
 	pass
