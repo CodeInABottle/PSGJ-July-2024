@@ -1,0 +1,32 @@
+[gd_resource type="SpriteFrames" load_steps=5 format=3 uid="uid://pb6r5aque1dy"]
+
+[ext_resource type="Texture2D" uid="uid://bs7iyi6jfv05q" path="res://assets/sprites/mobs/overworld_fire_hawk.png" id="1_t638p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2omfv"]
+atlas = ExtResource("1_t638p")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_eanlm"]
+atlas = ExtResource("1_t638p")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dc8hv"]
+atlas = ExtResource("1_t638p")
+region = Rect2(64, 0, 32, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2omfv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_eanlm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dc8hv")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 7.0
+}]

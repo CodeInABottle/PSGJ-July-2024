@@ -1,0 +1,53 @@
+[gd_resource type="SpriteFrames" load_steps=8 format=3 uid="uid://dpfnbvao2c2h5"]
+
+[ext_resource type="Texture2D" uid="uid://4y8akwtj5y3s" path="res://assets/sprites/mobs/overworld_snail.png" id="1_0tlmj"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hjfyl"]
+atlas = ExtResource("1_0tlmj")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uyngd"]
+atlas = ExtResource("1_0tlmj")
+region = Rect2(32, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jnyvj"]
+atlas = ExtResource("1_0tlmj")
+region = Rect2(64, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_333e8"]
+atlas = ExtResource("1_0tlmj")
+region = Rect2(96, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kiij4"]
+atlas = ExtResource("1_0tlmj")
+region = Rect2(128, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h04ll"]
+atlas = ExtResource("1_0tlmj")
+region = Rect2(160, 32, 32, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hjfyl")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uyngd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jnyvj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_333e8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kiij4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h04ll")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

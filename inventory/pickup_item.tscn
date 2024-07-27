@@ -8,7 +8,7 @@
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5i53s"]
 
-[node name="PickupItem" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "item_sprite", "shiny", "pickup_area", "interactable")]
+[node name="PickupItem" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "item_sprite", "shiny", "pickup_area", "interactable") groups=["navigation"]]
 collision_layer = 2
 script = ExtResource("1_sf50m")
 menu_layer = NodePath("PickupLayer")

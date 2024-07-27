@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://defoswobu2xiy"]
+
+[ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_er1we"]
+[ext_resource type="Script" path="res://npc/ferret/ferret_npc_controller.gd" id="2_bds8u"]
+
+[node name="Ferret" instance=ExtResource("1_er1we")]
+script = ExtResource("2_bds8u")
+
+[node name="NPCSprite" parent="." index="1"]
+animation = &"head_bob"

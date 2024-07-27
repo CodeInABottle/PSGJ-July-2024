@@ -1,0 +1,51 @@
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://cqflvl52smsff"]
+
+[ext_resource type="Texture2D" uid="uid://cp0fethjooqtj" path="res://assets/sprites/mobs/overworld_dog.png" id="1_lqx0p"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hu8x2"]
+atlas = ExtResource("1_lqx0p")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_di5s7"]
+atlas = ExtResource("1_lqx0p")
+region = Rect2(0, 64, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3a0u7"]
+atlas = ExtResource("1_lqx0p")
+region = Rect2(0, 128, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dqn6k"]
+atlas = ExtResource("1_lqx0p")
+region = Rect2(0, 192, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_logjl"]
+atlas = ExtResource("1_lqx0p")
+region = Rect2(0, 256, 32, 64)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hu8x2")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_di5s7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3a0u7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dqn6k")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_logjl")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
