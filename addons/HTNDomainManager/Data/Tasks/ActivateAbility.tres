@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://gqh2pr4v8vqu"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/Data/Scripts/ActivateAbility.gd" id="1_ecp0f"]
+
+[resource]
+script = ExtResource("1_ecp0f")
+requires_awaiting = true

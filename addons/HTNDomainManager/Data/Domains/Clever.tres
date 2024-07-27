@@ -1,0 +1,156 @@
+[gd_resource type="Resource" script_class="HTNDomain" load_steps=2 format=3 uid="uid://c7prb0hewaqck"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Resources/HTNDomain.gd" id="1_5um5p"]
+
+[resource]
+script = ExtResource("1_5um5p")
+root_key = "Sandwich_0"
+task_map = {
+"Sandwich_13": "ActivateAbility",
+"Sandwich_16": "SolveNapsack",
+"Sandwich_4": "SpamBehavior",
+"Sandwich_5": "MostDamageBehavior"
+}
+domain_map = {}
+quits = Array[StringName]([&"Sandwich_10"])
+splits = {
+"Sandwich_0": Array[StringName]([&"Sandwich_11", &"Sandwich_8", &"Sandwich_20", &"Sandwich_7"]),
+"Sandwich_1": Array[StringName]([&"Sandwich_21", &"Sandwich_3", &"Sandwich_2"]),
+"Sandwich_22": Array[StringName]([&"Sandwich_23", &"Sandwich_24"])
+}
+methods = {
+"Sandwich_11": {
+"method_data": {
+"can_player_burst": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+},
+"can_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+},
+"can_use_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_14", &"Sandwich_13", &"Sandwich_16"])
+},
+"Sandwich_2": {
+"method_data": {
+"AlwaysTrue": true
+},
+"task_chain": Array[StringName]([&"Sandwich_4"])
+},
+"Sandwich_20": {
+"method_data": {
+"above_30%_health": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": false
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_1"])
+},
+"Sandwich_21": {
+"method_data": {
+"can_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+},
+"can_use_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_14", &"Sandwich_13", &"Sandwich_16"])
+},
+"Sandwich_23": {
+"method_data": {
+"can_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+},
+"can_use_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+},
+"rng": {
+"CompareID": 1,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 1,
+"Value": 20
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_14", &"Sandwich_13", &"Sandwich_16"])
+},
+"Sandwich_24": {
+"method_data": {
+"AlwaysTrue": true
+},
+"task_chain": Array[StringName]([&"Sandwich_16"])
+},
+"Sandwich_3": {
+"method_data": {
+"rng": {
+"CompareID": 1,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 1,
+"Value": 50
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_5"])
+},
+"Sandwich_7": {
+"method_data": {
+"AlwaysTrue": true
+},
+"task_chain": Array[StringName]([&"Sandwich_10"])
+},
+"Sandwich_8": {
+"method_data": {
+"at_has_max_ap": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_22"])
+}
+}
+effects = {
+"Sandwich_14": {
+"ability_idx": {
+"TypeID": 6,
+"Value": "stun_idx"
+}
+}
+}
+modules = {}

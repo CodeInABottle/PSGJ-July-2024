@@ -1,0 +1,313 @@
+[gd_resource type="Resource" script_class="HTNGraphSave" load_steps=2 format=3 uid="uid://c875572icotja"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/GameLibrary/Resources/HTNGraphSave.gd" id="1_c5j7c"]
+
+[resource]
+script = ExtResource("1_c5j7c")
+root_key = "Sandwich_0"
+connections = Array[Dictionary]([{
+"from_node": &"Sandwich_1",
+"from_port": 0,
+"to_node": &"Sandwich_2",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_1",
+"from_port": 0,
+"to_node": &"Sandwich_3",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_2",
+"from_port": 0,
+"to_node": &"Sandwich_4",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_3",
+"from_port": 0,
+"to_node": &"Sandwich_5",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_7",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_8",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_7",
+"from_port": 0,
+"to_node": &"Sandwich_10",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_14",
+"from_port": 0,
+"to_node": &"Sandwich_13",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_11",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_11",
+"from_port": 0,
+"to_node": &"Sandwich_14",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_20",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_20",
+"from_port": 0,
+"to_node": &"Sandwich_1",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_1",
+"from_port": 0,
+"to_node": &"Sandwich_21",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_21",
+"from_port": 0,
+"to_node": &"Sandwich_14",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_8",
+"from_port": 0,
+"to_node": &"Sandwich_22",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_22",
+"from_port": 0,
+"to_node": &"Sandwich_23",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_23",
+"from_port": 0,
+"to_node": &"Sandwich_14",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_22",
+"from_port": 0,
+"to_node": &"Sandwich_24",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_24",
+"from_port": 0,
+"to_node": &"Sandwich_16",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_13",
+"from_port": 0,
+"to_node": &"Sandwich_16",
+"to_port": 0
+}])
+node_types = {
+"Sandwich_0": "Root",
+"Sandwich_1": "Splitter",
+"Sandwich_10": "Quit",
+"Sandwich_11": "Method",
+"Sandwich_13": "Task",
+"Sandwich_14": "Applicator",
+"Sandwich_16": "Task",
+"Sandwich_2": "Always True Method",
+"Sandwich_20": "Method",
+"Sandwich_21": "Method",
+"Sandwich_22": "Splitter",
+"Sandwich_23": "Method",
+"Sandwich_24": "Always True Method",
+"Sandwich_3": "Method",
+"Sandwich_4": "Task",
+"Sandwich_5": "Task",
+"Sandwich_7": "Always True Method",
+"Sandwich_8": "Method"
+}
+node_positions = {
+"Sandwich_0": Vector2(47.5, 55),
+"Sandwich_1": Vector2(560, 40),
+"Sandwich_10": Vector2(480, -100),
+"Sandwich_11": Vector2(460, 420),
+"Sandwich_13": Vector2(1480, 420),
+"Sandwich_14": Vector2(1320, 420),
+"Sandwich_16": Vector2(1740, 280),
+"Sandwich_2": Vector2(940, -220),
+"Sandwich_20": Vector2(280, 40),
+"Sandwich_21": Vector2(920, 140),
+"Sandwich_22": Vector2(700, 280),
+"Sandwich_23": Vector2(980, 380),
+"Sandwich_24": Vector2(960, 280),
+"Sandwich_3": Vector2(920, -20),
+"Sandwich_4": Vector2(1140, -220),
+"Sandwich_5": Vector2(1140, -20),
+"Sandwich_7": Vector2(280, -100),
+"Sandwich_8": Vector2(460, 280)
+}
+node_data = {
+"Sandwich_0": {},
+"Sandwich_1": {
+"nickname": "Pick a desperate attack behavior"
+},
+"Sandwich_10": {},
+"Sandwich_11": {
+"condition_data": {
+"can_player_burst": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+},
+"can_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+},
+"can_use_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"nickname": "Check if player can burst attack",
+"priority": 2
+},
+"Sandwich_13": {
+"task": "ActivateAbility"
+},
+"Sandwich_14": {
+"effect_data": {
+"ability_idx": {
+"TypeID": 6,
+"Value": "stun_idx"
+}
+},
+"nickname": ""
+},
+"Sandwich_16": {
+"task": "SolveNapsack"
+},
+"Sandwich_2": {
+"condition_data": {
+"AlwaysTrue": true
+},
+"nickname": "",
+"priority": -9223372036854775808
+},
+"Sandwich_20": {
+"condition_data": {
+"above_30%_health": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": false
+}
+},
+"nickname": "Check if below 30% health",
+"priority": 0
+},
+"Sandwich_21": {
+"condition_data": {
+"can_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+},
+"can_use_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"nickname": "Check if can stun",
+"priority": 1
+},
+"Sandwich_22": {
+"nickname": "Check if should Stun or Napsack"
+},
+"Sandwich_23": {
+"condition_data": {
+"can_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+},
+"can_use_stun": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+},
+"rng": {
+"CompareID": 1,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 1,
+"Value": 20
+}
+},
+"nickname": "Check if should stun",
+"priority": 0
+},
+"Sandwich_24": {
+"condition_data": {
+"AlwaysTrue": true
+},
+"nickname": "",
+"priority": -9223372036854775808
+},
+"Sandwich_3": {
+"condition_data": {
+"rng": {
+"CompareID": 1,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 1,
+"Value": 50
+}
+},
+"nickname": "Check if rng < 50",
+"priority": 0
+},
+"Sandwich_4": {
+"task": "SpamBehavior"
+},
+"Sandwich_5": {
+"task": "MostDamageBehavior"
+},
+"Sandwich_7": {
+"condition_data": {
+"AlwaysTrue": true
+},
+"nickname": "",
+"priority": -9223372036854775808
+},
+"Sandwich_8": {
+"condition_data": {
+"at_has_max_ap": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"nickname": "Check if at max AP",
+"priority": 1
+}
+}

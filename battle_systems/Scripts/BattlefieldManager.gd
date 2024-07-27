@@ -23,8 +23,8 @@ func _ready() -> void:
 	#setup_battle("Living Tree")
 	#setup_battle("Mailbox")
 	#setup_battle("Bombardier Beetle")
-	setup_battle("Armored Snail")
-	#setup_battle("Niter Tiger")
+	#setup_battle("Armored Snail")
+	setup_battle("Niter Tiger")
 	#setup_battle("Fighting Fish")
 	#setup_battle("Celestial Canine")
 
