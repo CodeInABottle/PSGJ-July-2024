@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bhmtk1d3c4s68"]
+[gd_scene load_steps=17 format=3 uid="uid://bhmtk1d3c4s68"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_y57qd"]
 [ext_resource type="PackedScene" uid="uid://cm5val12sno1d" path="res://old_areas/checkpoint.tscn" id="2_dyflh"]
@@ -8,10 +8,8 @@
 [ext_resource type="PackedScene" uid="uid://cmgjwfs2ucnt7" path="res://inventory/pickup_item.tscn" id="6_fug8w"]
 [ext_resource type="PackedScene" uid="uid://7g63ugqd7du3" path="res://inventory/pickup_lore.tscn" id="7_qddya"]
 [ext_resource type="PackedScene" uid="uid://bjvdu0glstg11" path="res://npc/dog/dog.tscn" id="9_nnsxx"]
-[ext_resource type="PackedScene" uid="uid://ds35huua8eii6" path="res://npc/snail/snail_npc.tscn" id="9_qr46d"]
 [ext_resource type="PackedScene" uid="uid://s2b21vrsco2e" path="res://npc/fish/fish.tscn" id="10_5lu1v"]
-[ext_resource type="PackedScene" uid="uid://bppvi54ifn5rs" path="res://npc/cat/cat.tscn" id="11_vtgal"]
-[ext_resource type="PackedScene" uid="uid://b7vtqsxy3wb8l" path="res://npc/worm/worm.tscn" id="12_2isyo"]
+[ext_resource type="PackedScene" uid="uid://duwb5yac61ndk" path="res://npc/mailbox/mailbox.tscn" id="14_8sym0"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gf41"]
 size = Vector2(20, 48)
@@ -150,37 +148,10 @@ navigation_polygon = SubResource("NavigationPolygon_ava20")
 [node name="Shadows" type="Node2D" parent="." index="15"]
 
 [node name="Dog" parent="Shadows" index="0" instance=ExtResource("9_nnsxx")]
-position = Vector2(403, 1129)
+position = Vector2(956, 720)
 
-[node name="Dog2" parent="Shadows" index="1" instance=ExtResource("9_nnsxx")]
-position = Vector2(304, 1163)
+[node name="Mailbox" parent="Shadows" index="1" instance=ExtResource("14_8sym0")]
+position = Vector2(527, 862)
 
-[node name="Dog3" parent="Shadows" index="2" instance=ExtResource("9_nnsxx")]
-position = Vector2(168, 1102)
-
-[node name="Snail" parent="Shadows" index="3" instance=ExtResource("9_qr46d")]
-position = Vector2(306, 553)
-
-[node name="Snail2" parent="Shadows" index="4" instance=ExtResource("9_qr46d")]
-position = Vector2(428, 417)
-
-[node name="Snail3" parent="Shadows" index="5" instance=ExtResource("9_qr46d")]
-position = Vector2(856, 313)
-
-[node name="Fish" parent="Shadows" index="6" instance=ExtResource("10_5lu1v")]
-position = Vector2(1018, 1018)
-
-[node name="Fish2" parent="Shadows" index="7" instance=ExtResource("10_5lu1v")]
-position = Vector2(1133, 958)
-
-[node name="Cat" parent="Shadows" index="8" instance=ExtResource("11_vtgal")]
-position = Vector2(1247, 178)
-
-[node name="Worm" parent="Shadows" index="9" instance=ExtResource("12_2isyo")]
-position = Vector2(836, 773)
-
-[node name="Worm2" parent="Shadows" index="10" instance=ExtResource("12_2isyo")]
-position = Vector2(799, 834)
-
-[node name="Worm3" parent="Shadows" index="11" instance=ExtResource("12_2isyo")]
-position = Vector2(929, 783)
+[node name="Fish" parent="Shadows" index="2" instance=ExtResource("10_5lu1v")]
+position = Vector2(1074, 976)

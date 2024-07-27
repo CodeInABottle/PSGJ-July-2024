@@ -1,34 +1,15 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7vtqsxy3wb8l"]
+[gd_scene load_steps=4 format=3 uid="uid://b7vtqsxy3wb8l"]
 
 [ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_gmk1u"]
-[ext_resource type="Texture2D" uid="uid://daupmk7au0ws8" path="res://assets/sprites/mobs/overworld_worm.png" id="2_b5mx5"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_nv8u0"]
-atlas = ExtResource("2_b5mx5")
-region = Rect2(0, 32, 32, 32)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_p7nad"]
-atlas = ExtResource("2_b5mx5")
-region = Rect2(32, 32, 32, 32)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_t1aou"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_nv8u0")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_p7nad")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
+[ext_resource type="SpriteFrames" uid="uid://c6keqd17qydn" path="res://npc/worm/worm_sprite_frames.tres" id="2_hctio"]
+[ext_resource type="SpriteFrames" uid="uid://cgkqe8alnm47x" path="res://npc/worm/afflicted_worm_sprite_frames.tres" id="3_4u24s"]
 
 [node name="Worm" instance=ExtResource("1_gmk1u")]
 npc_name = "Earth Worm"
+normal_sprite_frames = ExtResource("2_hctio")
+afflicted_sprite_frames = ExtResource("3_4u24s")
 
 [node name="NPCSprite" parent="." index="1"]
-sprite_frames = SubResource("SpriteFrames_t1aou")
+sprite_frames = ExtResource("2_hctio")
 animation = &"walk"
 frame_progress = 0.678705

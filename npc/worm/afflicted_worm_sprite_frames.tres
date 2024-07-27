@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://cgkqe8alnm47x"]
+
+[ext_resource type="Texture2D" uid="uid://cml8xvojfpgg0" path="res://assets/sprites/mobs/afflicted/overworld_worm_gray.png" id="1_vyk70"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5m7xg"]
+atlas = ExtResource("1_vyk70")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0sjcg"]
+atlas = ExtResource("1_vyk70")
+region = Rect2(32, 32, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_5m7xg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0sjcg")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

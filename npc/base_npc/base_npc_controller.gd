@@ -6,6 +6,9 @@ extends CharacterBody2D
 
 @export var wander_x_bound: float = 200.0
 @export var wander_y_bound: float = 200.0
+@export var normal_sprite_frames: SpriteFrames
+@export var afflicted_sprite_frames: SpriteFrames
+@export var afflicted_material: ShaderMaterial
 
 @onready var detection_area: Area2D = %DetectionArea
 @onready var vision_raycast: RayCast2D = %VisionRaycast
@@ -32,8 +35,14 @@ const MIN_X_WANDER: float = 50.0
 func _ready() -> void:
 	detection_area.body_entered.connect(on_body_entered_detect_area)
 	detection_area.body_exited.connect(on_body_exited_detect_area)
+	init_npc.call_deferred()
+
+func init_npc() -> void:
 	if has_been_captured():
 		shiny.queue_free()
+		saturate_colors()
+	else:
+		desaturate_colors()
 
 func _physics_process(delta: float) -> void:
 	_delta = delta
@@ -68,7 +77,6 @@ func is_close_enough_to_point(world_state: Dictionary) -> void:
 
 func pick_point(world_state: Dictionary) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	var chance: float = rng.randf_range(0.0,100.0)
 	var has_valid_point: bool = false
 	while not has_valid_point:
 		var x_pos: float = rng.randf_range(_start_position.x-wander_x_bound, _start_position.x+wander_x_bound)
@@ -116,7 +124,8 @@ func chase_player(_world_state: Dictionary) -> void:
 	move_and_slide()
 
 func start_battle(_world_state: Dictionary) -> void:
-	if EnemyDatabase.get_enemy_data(npc_name) != null:
+	npc_sprite.stop()
+	if npc_name in EnemyDatabase._enemies:
 		LevelManager.menu_unloaded.connect(on_battle_finished)
 		LevelManager.trigger_battle(npc_name)
 
@@ -149,6 +158,15 @@ func has_been_captured() -> bool:
 func on_battle_finished() -> void:
 	shiny.queue_free()
 	_has_been_defeated = true
+	saturate_colors()
 	LevelManager.menu_unloaded.disconnect(on_battle_finished)
 	battle_finished.emit()
 	MenuManager.fader_controller.fade_in()
+
+func saturate_colors() -> void:
+	npc_sprite.set_sprite_frames(normal_sprite_frames)
+	npc_sprite.set_material(null)
+
+func desaturate_colors() -> void:
+	npc_sprite.set_sprite_frames(afflicted_sprite_frames)
+	npc_sprite.set_material(afflicted_material)
