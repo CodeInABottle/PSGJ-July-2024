@@ -1,0 +1,32 @@
+[gd_scene load_steps=3 format=3 uid="uid://dtx7vn1bwo1x"]
+
+[ext_resource type="Script" path="res://ui/ShadowAlchemyBench/SlottedMovesPanel/slotted_moves_controller.gd" id="1_0w8ay"]
+[ext_resource type="LabelSettings" uid="uid://ddeki7t5uhece" path="res://ui/ShadowAlchemyBench/AbilityLabel.tres" id="2_px3q0"]
+
+[node name="SlottedMovesContainer" type="MarginContainer"]
+offset_left = 464.0
+offset_top = 125.0
+offset_right = 637.0
+offset_bottom = 354.0
+mouse_filter = 2
+script = ExtResource("1_0w8ay")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+text = "Equipped Abilities"
+label_settings = ExtResource("2_px3q0")
+horizontal_alignment = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="AbilityContainer" type="VBoxContainer" parent="VBoxContainer/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2

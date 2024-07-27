@@ -49,8 +49,9 @@ var _current_unlocked_shadows: Dictionary = {
 		"Whip", "Dig"
 	]
 }
+# TEMP: Waiting for inventory system; Hard coding "insertion" for now
 var _equipped_shadows: Array[String] = [
-	"Living Tree",	# TEMP: Waiting for inventory system; Hard coding "insertion" for now
+	"Living Tree",
 	"Mailbox",
 	"Niter Tiger",
 	"Fighting Fish",
@@ -127,6 +128,12 @@ func get_all_equipped_abilities() -> PackedStringArray:
 			if ability_name in data: continue
 			data.push_back(ability_name)
 	return data
+
+func get_equipped_shadows() -> Array[String]:
+	return _equipped_shadows
+
+func set_equipped_shadows(shadows: Array[String]) -> void:
+	_equipped_shadows.assign(shadows)
 
 func add_item(item_name: String, quantity: int = 1) -> void:
 	if inventory_items.keys().has(item_name):

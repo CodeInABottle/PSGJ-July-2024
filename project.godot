@@ -60,6 +60,8 @@ folder_colors={
 "res://autoload/": "teal",
 "res://battle_resources/": "purple",
 "res://battle_systems/": "blue",
+"res://battle_systems/Objects/EnemyStatusIndicator/": "pink",
+"res://battle_systems/Objects/ResonateIndicator/": "pink",
 "res://dialogue/": "blue",
 "res://game_manager/": "blue",
 "res://inventory/": "blue",
@@ -116,6 +118,8 @@ sprint={
 
 2d_physics/layer_1="Player"
 2d_physics/layer_2="Walls"
+2d_physics/layer_3="ShadowSlot"
+2d_physics/layer_4="TestTube"
 2d_physics/layer_5="NPCs"
 
 [rendering]

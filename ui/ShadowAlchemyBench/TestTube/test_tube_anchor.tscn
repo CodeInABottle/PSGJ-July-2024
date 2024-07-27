@@ -1,0 +1,74 @@
+[gd_scene load_steps=6 format=3 uid="uid://b34xt5fp5eo8p"]
+
+[ext_resource type="Texture2D" uid="uid://cgoivjrbcidbf" path="res://assets/sprites/shadow_alchemybench/TestTubeBG.png" id="1_5u702"]
+[ext_resource type="Script" path="res://ui/ShadowAlchemyBench/TestTube/test_tube_anchor.gd" id="1_6xxq5"]
+[ext_resource type="Texture2D" uid="uid://8synompd4v1j" path="res://assets/sprites/shadow_alchemybench/TestTube.png" id="2_ie485"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gi2p1"]
+size = Vector2(18, 85)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_col72"]
+size = Vector2(18, 17)
+
+[node name="TestTubeAnchor" type="Control"]
+custom_minimum_size = Vector2(24, 85)
+layout_mode = 3
+anchor_right = 0.037
+anchor_bottom = 0.236
+offset_right = 0.32
+offset_bottom = 0.0399933
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(12, 42.5)
+mouse_filter = 2
+script = ExtResource("1_6xxq5")
+metadata/_edit_use_anchors_ = true
+
+[node name="TestTube" type="MarginContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(24, 85)
+layout_mode = 2
+offset_right = 24.0
+offset_bottom = 85.0
+pivot_offset = Vector2(12, 42.5)
+mouse_filter = 2
+
+[node name="Background" type="TextureRect" parent="TestTube"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("1_5u702")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="Foreground" type="TextureRect" parent="TestTube"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+texture = ExtResource("2_ie485")
+expand_mode = 5
+stretch_mode = 4
+
+[node name="MouseDetector" type="Area2D" parent="TestTube"]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestTube/MouseDetector"]
+visible = false
+position = Vector2(12, 42.5)
+shape = SubResource("RectangleShape2D_gi2p1")
+
+[node name="DropDetector" type="Area2D" parent="TestTube"]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 4
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TestTube/DropDetector"]
+position = Vector2(12, 42)
+shape = SubResource("RectangleShape2D_col72")
+
+[connection signal="mouse_entered" from="TestTube/MouseDetector" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="TestTube/MouseDetector" to="." method="_on_area_2d_mouse_exited"]
+[connection signal="area_entered" from="TestTube/DropDetector" to="." method="_on_drop_detector_area_entered"]
+[connection signal="area_exited" from="TestTube/DropDetector" to="." method="_on_drop_detector_area_exited"]
