@@ -80,7 +80,7 @@ animations = [{
 "speed": 5.0
 }]
 
-[node name="Checkpoint" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "interactable")]
+[node name="Checkpoint" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "interactable") groups=["navigation"]]
 collision_layer = 2
 script = ExtResource("1_0n6m0")
 menu_layer = NodePath("CheckpointMenuLayer")

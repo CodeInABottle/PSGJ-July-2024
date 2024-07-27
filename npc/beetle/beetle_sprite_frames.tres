@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://d4ay68tljbn8l"]
+
+[ext_resource type="Texture2D" uid="uid://dowrx01ajd4pj" path="res://assets/sprites/mobs/overworld_beetle.png" id="1_djefq"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qv366"]
+atlas = ExtResource("1_djefq")
+region = Rect2(256, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hk4mw"]
+atlas = ExtResource("1_djefq")
+region = Rect2(224, 0, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qv366")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hk4mw")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 10.0
+}]

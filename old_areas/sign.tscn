@@ -8,8 +8,7 @@
 [sub_resource type="CircleShape2D" id="CircleShape2D_ef2k2"]
 radius = 16.0
 
-[node name="Sign" type="StaticBody2D" node_paths=PackedStringArray("interactable")]
-position = Vector2(274, 273)
+[node name="Sign" type="StaticBody2D" node_paths=PackedStringArray("interactable") groups=["navigation"]]
 collision_layer = 2
 script = ExtResource("1_o35ik")
 interactable = NodePath("Area2D")

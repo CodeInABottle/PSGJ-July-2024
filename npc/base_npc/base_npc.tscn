@@ -1,54 +1,15 @@
-[gd_scene load_steps=11 format=3 uid="uid://dgfbiygvyomee"]
+[gd_scene load_steps=7 format=3 uid="uid://dgfbiygvyomee"]
 
 [ext_resource type="Script" path="res://npc/base_npc/base_npc_controller.gd" id="1_a6oxw"]
-[ext_resource type="Texture2D" uid="uid://jl4kriu3e505" path="res://assets/sprites/mobs/overworld_ferret.png" id="2_g2lt1"]
+[ext_resource type="Shape2D" uid="uid://dpfsvsxurb7x3" path="res://npc/base_npc/base_npc_collision.tres" id="2_0bdfi"]
+[ext_resource type="SpriteFrames" uid="uid://kao4giv5ebvo" path="res://npc/ferret/ferret_sprites.tres" id="2_6onjl"]
 [ext_resource type="PackedScene" uid="uid://buh35bnijt1om" path="res://addons/HTNDomainManager/GameLibrary/htn_planner.tscn" id="3_8lnov"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1813"]
-radius = 2.0
-height = 32.0
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tbkst"]
-atlas = ExtResource("2_g2lt1")
-region = Rect2(0, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_n7jlv"]
-atlas = ExtResource("2_g2lt1")
-region = Rect2(32, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_oyab4"]
-atlas = ExtResource("2_g2lt1")
-region = Rect2(64, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_etetw"]
-atlas = ExtResource("2_g2lt1")
-region = Rect2(96, 0, 32, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_eu7dc"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tbkst")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_n7jlv")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_oyab4")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_etetw")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 5.0
-}]
+[ext_resource type="PackedScene" uid="uid://dfx4boutf3fkk" path="res://inventory/shiny.tscn" id="4_0vt5e"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gp21r"]
 radius = 150.0
 
 [node name="BaseNPC" type="CharacterBody2D"]
-position = Vector2(854, 740)
 collision_layer = 16
 collision_mask = 19
 motion_mode = 1
@@ -57,15 +18,12 @@ wander_x_bound = 100.0
 wander_y_bound = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_x1813")
+shape = ExtResource("2_0bdfi")
 
 [node name="NPCSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1, -8)
-sprite_frames = SubResource("SpriteFrames_eu7dc")
-animation = &"walk"
-offset = Vector2(-2.12, -7.29)
+sprite_frames = ExtResource("2_6onjl")
+animation = &"jump"
 
 [node name="DetectionArea" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -76,8 +34,15 @@ shape = SubResource("CircleShape2D_gp21r")
 
 [node name="VisionRaycast" type="RayCast2D" parent="."]
 unique_name_in_owner = true
+enabled = false
 collision_mask = 3
 
 [node name="HTNPlanner" parent="." instance=ExtResource("3_8lnov")]
 unique_name_in_owner = true
 domain_name = &"Npc"
+
+[node name="Shiny" parent="." instance=ExtResource("4_0vt5e")]
+unique_name_in_owner = true
+
+[node name="NavAgent" type="NavigationAgent2D" parent="."]
+unique_name_in_owner = true

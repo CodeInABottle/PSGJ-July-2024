@@ -128,7 +128,7 @@ node_positions = {
 "Sandwich_21": Vector2(1320, -400),
 "Sandwich_23": Vector2(2200, -320),
 "Sandwich_3": Vector2(860, 80),
-"Sandwich_5": Vector2(220, 120),
+"Sandwich_5": Vector2(300, 120),
 "Sandwich_6": Vector2(860, 200)
 }
 node_data = {
@@ -222,6 +222,20 @@ node_data = {
 "RangeInclusivity": [false, false],
 "SingleID": 0,
 "Value": true
+},
+"has_been_captured": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": false
+},
+"has_been_defeated": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": false
 }
 },
 "nickname": "can see player",
@@ -229,7 +243,7 @@ node_data = {
 },
 "Sandwich_6": {
 "condition_data": {
-"is_close_enough_to_player": {
+"close_enough_to_player": {
 "CompareID": 2,
 "RangeID": -1,
 "RangeInclusivity": [false, false],

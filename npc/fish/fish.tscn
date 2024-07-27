@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://s2b21vrsco2e"]
+
+[ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_rvlp8"]
+[ext_resource type="SpriteFrames" uid="uid://xpg3imla857i" path="res://npc/fish/fish_sprite_frames.tres" id="2_c1yhp"]
+[ext_resource type="Script" path="res://npc/fish/fish_npc_controller.gd" id="2_sxrfo"]
+
+[node name="Fish" instance=ExtResource("1_rvlp8")]
+script = ExtResource("2_sxrfo")
+npc_name = "Fighting Fish"
+
+[node name="NPCSprite" parent="." index="1"]
+sprite_frames = ExtResource("2_c1yhp")
+animation = &"walk"
+offset = Vector2(-2.225, 0)
