@@ -25,8 +25,9 @@ var _can_detect_player: bool = false
 var _has_been_defeated: bool = false
 
 const BATTLE_START_DISTANCE: float = 32.0
-const WANDER_STOP_DISTANCE: float = 2.0
+const WANDER_STOP_DISTANCE: float = 10.0
 const LERP_SCALE: float = 25.0
+const MIN_X_WANDER: float = 50.0
 
 func _ready() -> void:
 	detection_area.body_entered.connect(on_body_entered_detect_area)
@@ -69,6 +70,7 @@ func is_close_enough_to_point(world_state: Dictionary) -> void:
 
 func pick_point(world_state: Dictionary) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
+	var chance: float = rng.randf_range(0.0,100.0)
 	var has_valid_point: bool = false
 	while not has_valid_point:
 		var x_pos: float = rng.randf_range(_start_position.x-wander_x_bound, _start_position.x+wander_x_bound)

@@ -13,3 +13,4 @@ npc_name = "Fire Hawk"
 sprite_frames = ExtResource("2_xuilm")
 animation = &"walk"
 frame_progress = 0.21146
+offset = Vector2(1.7, 0)

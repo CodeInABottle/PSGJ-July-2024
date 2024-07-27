@@ -6,13 +6,13 @@
 
 [node name="Dog" instance=ExtResource("1_3mnbp")]
 script = ExtResource("2_8brgj")
+npc_speed = 225.0
+npc_name = "Celestial Canine"
 wander_x_bound = 200.0
 wander_y_bound = 200.0
-
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, 6)
-rotation = 0.0
 
 [node name="NPCSprite" parent="." index="1"]
 sprite_frames = ExtResource("3_ljd24")
 animation = &"idle"
+frame_progress = 0.000367057
+offset = Vector2(0, -11.655)

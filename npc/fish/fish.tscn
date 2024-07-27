@@ -8,10 +8,7 @@
 script = ExtResource("2_sxrfo")
 npc_name = "Fighting Fish"
 
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, 0.065)
-
 [node name="NPCSprite" parent="." index="1"]
 sprite_frames = ExtResource("2_c1yhp")
 animation = &"walk"
-offset = Vector2(-1.54, 8.675)
+offset = Vector2(-2.225, 0)

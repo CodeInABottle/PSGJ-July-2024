@@ -11,3 +11,4 @@ sprite_frames = ExtResource("2_8b60g")
 animation = &"walk"
 frame = 2
 frame_progress = 0.270645
+offset = Vector2(0, -4.64)

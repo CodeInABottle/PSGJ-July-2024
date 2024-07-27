@@ -6,12 +6,8 @@
 [node name="Beetle" instance=ExtResource("1_yoryc")]
 npc_name = "Bombardier Beetle"
 
-[node name="CollisionShape2D" parent="." index="0"]
-position = Vector2(0, -2)
-rotation = 0.0
-
 [node name="NPCSprite" parent="." index="1"]
 sprite_frames = ExtResource("2_tlm8c")
 animation = &"walk"
 frame_progress = 0.963659
-offset = Vector2(0, 9.055)
+offset = Vector2(0, 3.58)

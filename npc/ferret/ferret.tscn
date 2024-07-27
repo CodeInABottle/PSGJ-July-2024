@@ -9,3 +9,4 @@ npc_name = "Morph Ferret"
 
 [node name="NPCSprite" parent="." index="1"]
 animation = &"head_bob"
+offset = Vector2(0.865, -5.8)

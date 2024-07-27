@@ -1,13 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://dgfbiygvyomee"]
 
 [ext_resource type="Script" path="res://npc/base_npc/base_npc_controller.gd" id="1_a6oxw"]
+[ext_resource type="Shape2D" uid="uid://dpfsvsxurb7x3" path="res://npc/base_npc/base_npc_collision.tres" id="2_0bdfi"]
 [ext_resource type="SpriteFrames" uid="uid://kao4giv5ebvo" path="res://npc/ferret/ferret_sprites.tres" id="2_6onjl"]
 [ext_resource type="PackedScene" uid="uid://buh35bnijt1om" path="res://addons/HTNDomainManager/GameLibrary/htn_planner.tscn" id="3_8lnov"]
 [ext_resource type="PackedScene" uid="uid://dfx4boutf3fkk" path="res://inventory/shiny.tscn" id="4_0vt5e"]
-
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x1813"]
-radius = 7.73499
-height = 27.47
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_gp21r"]
 radius = 150.0
@@ -21,16 +18,12 @@ wander_x_bound = 100.0
 wander_y_bound = 100.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0, -0.735)
-rotation = 1.5708
-shape = SubResource("CapsuleShape2D_x1813")
+shape = ExtResource("2_0bdfi")
 
 [node name="NPCSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(1, -8)
 sprite_frames = ExtResource("2_6onjl")
 animation = &"jump"
-offset = Vector2(-0.76, 0)
 
 [node name="DetectionArea" type="Area2D" parent="."]
 unique_name_in_owner = true
@@ -41,6 +34,7 @@ shape = SubResource("CircleShape2D_gp21r")
 
 [node name="VisionRaycast" type="RayCast2D" parent="."]
 unique_name_in_owner = true
+enabled = false
 collision_mask = 3
 
 [node name="HTNPlanner" parent="." instance=ExtResource("3_8lnov")]

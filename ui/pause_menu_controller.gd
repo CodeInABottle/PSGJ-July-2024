@@ -67,9 +67,9 @@ func update_details() -> void:
 
 func populate_item_list() -> void:
 	item_list.clear()
-	for item_name: String in PlayerStats.invetory_items:
+	for item_name: String in PlayerStats.inventory_items:
 		var item: InventoryItem = InventoryDatabase.get_item(item_name)
-		for index: int in range(PlayerStats.invetory_items[item_name]):
+		for index: int in range(PlayerStats.inventory_items[item_name]):
 			item_list.add_item(item.item_name, item.item_icon)
 
 
