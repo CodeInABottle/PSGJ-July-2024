@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bhmtk1d3c4s68"]
+[gd_scene load_steps=19 format=3 uid="uid://bhmtk1d3c4s68"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_y57qd"]
 [ext_resource type="PackedScene" uid="uid://cm5val12sno1d" path="res://old_areas/checkpoint.tscn" id="2_dyflh"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bjvdu0glstg11" path="res://npc/dog/dog.tscn" id="9_nnsxx"]
 [ext_resource type="PackedScene" uid="uid://ds35huua8eii6" path="res://npc/snail/snail_npc.tscn" id="9_qr46d"]
 [ext_resource type="PackedScene" uid="uid://s2b21vrsco2e" path="res://npc/fish/fish.tscn" id="10_5lu1v"]
+[ext_resource type="PackedScene" uid="uid://bppvi54ifn5rs" path="res://npc/cat/cat.tscn" id="11_vtgal"]
+[ext_resource type="PackedScene" uid="uid://b7vtqsxy3wb8l" path="res://npc/worm/worm.tscn" id="12_2isyo"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gf41"]
 size = Vector2(20, 48)
@@ -170,3 +172,15 @@ position = Vector2(1018, 1018)
 
 [node name="Fish2" parent="Shadows" index="7" instance=ExtResource("10_5lu1v")]
 position = Vector2(1133, 958)
+
+[node name="Cat" parent="Shadows" index="8" instance=ExtResource("11_vtgal")]
+position = Vector2(1247, 178)
+
+[node name="Worm" parent="Shadows" index="9" instance=ExtResource("12_2isyo")]
+position = Vector2(836, 773)
+
+[node name="Worm2" parent="Shadows" index="10" instance=ExtResource("12_2isyo")]
+position = Vector2(799, 834)
+
+[node name="Worm3" parent="Shadows" index="11" instance=ExtResource("12_2isyo")]
+position = Vector2(929, 783)

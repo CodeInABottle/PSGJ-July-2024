@@ -32,10 +32,8 @@ const MIN_X_WANDER: float = 50.0
 func _ready() -> void:
 	detection_area.body_entered.connect(on_body_entered_detect_area)
 	detection_area.body_exited.connect(on_body_exited_detect_area)
-	enable_npc.call_deferred()
-
-func enable_npc() -> void:
-	pass
+	if has_been_captured():
+		shiny.queue_free()
 
 func _physics_process(delta: float) -> void:
 	_delta = delta

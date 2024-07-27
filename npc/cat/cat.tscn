@@ -1,0 +1,14 @@
+[gd_scene load_steps=4 format=3 uid="uid://bppvi54ifn5rs"]
+
+[ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_l7xmu"]
+[ext_resource type="Script" path="res://npc/cat/cat_npc_controller.gd" id="2_qoan0"]
+[ext_resource type="SpriteFrames" uid="uid://dptdm3kr70q8a" path="res://npc/cat/cat_sprite_frames.tres" id="3_34qsj"]
+
+[node name="Cat" instance=ExtResource("1_l7xmu")]
+script = ExtResource("2_qoan0")
+npc_name = "Niter Tiger"
+
+[node name="NPCSprite" parent="." index="1"]
+sprite_frames = ExtResource("3_34qsj")
+animation = &"idle"
+offset = Vector2(0, -9.12)

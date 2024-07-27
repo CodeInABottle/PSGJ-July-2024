@@ -1,0 +1,34 @@
+[gd_scene load_steps=6 format=3 uid="uid://b7vtqsxy3wb8l"]
+
+[ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_gmk1u"]
+[ext_resource type="Texture2D" uid="uid://daupmk7au0ws8" path="res://assets/sprites/mobs/overworld_worm.png" id="2_b5mx5"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv8u0"]
+atlas = ExtResource("2_b5mx5")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7nad"]
+atlas = ExtResource("2_b5mx5")
+region = Rect2(32, 32, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_t1aou"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv8u0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7nad")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
+
+[node name="Worm" instance=ExtResource("1_gmk1u")]
+npc_name = "Earth Worm"
+
+[node name="NPCSprite" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_t1aou")
+animation = &"walk"
+frame_progress = 0.678705
