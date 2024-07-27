@@ -64,7 +64,7 @@ animations = [{
 }],
 "loop": true,
 "name": &"wag",
-"speed": 5.0
+"speed": 7.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -87,5 +87,5 @@ animations = [{
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 7.0
 }]

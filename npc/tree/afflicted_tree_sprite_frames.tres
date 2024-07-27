@@ -1,3 +1,18 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://bb17rygnm3xo0"]
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bb17rygnm3xo0"]
+
+[ext_resource type="Texture2D" uid="uid://bhsjtjyamrong" path="res://assets/sprites/tiles/afflicted/overworld_ground_01_gray.png" id="1_36oaa"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qhtcp"]
+atlas = ExtResource("1_36oaa")
+region = Rect2(128, 212, 64, 106)
 
 [resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qhtcp")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]

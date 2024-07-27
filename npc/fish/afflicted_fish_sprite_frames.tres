@@ -1,3 +1,25 @@
-[gd_resource type="SpriteFrames" format=3 uid="uid://u1sc2olninhs"]
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://u1sc2olninhs"]
+
+[ext_resource type="Texture2D" uid="uid://71qmqor4530r" path="res://assets/sprites/mobs/afflicted/overworld_fish_gray.png" id="1_5bxst"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rqeaf"]
+atlas = ExtResource("1_5bxst")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q57n6"]
+atlas = ExtResource("1_5bxst")
+region = Rect2(32, 32, 32, 32)
 
 [resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rqeaf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q57n6")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

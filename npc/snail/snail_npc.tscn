@@ -1,11 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://ds35huua8eii6"]
+[gd_scene load_steps=4 format=3 uid="uid://ds35huua8eii6"]
 
 [ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_12ct1"]
 [ext_resource type="SpriteFrames" uid="uid://dpfnbvao2c2h5" path="res://npc/snail/snail_sprite_frames.tres" id="2_8b60g"]
+[ext_resource type="SpriteFrames" uid="uid://j284q8xxjp0" path="res://npc/snail/afflicted_snail_sprite_frames.tres" id="3_6f854"]
 
 [node name="Snail" instance=ExtResource("1_12ct1")]
 npc_name = "Armored Snail"
 normal_sprite_frames = ExtResource("2_8b60g")
+afflicted_sprite_frames = ExtResource("3_6f854")
 
 [node name="NPCSprite" parent="." index="1"]
 sprite_frames = ExtResource("2_8b60g")
