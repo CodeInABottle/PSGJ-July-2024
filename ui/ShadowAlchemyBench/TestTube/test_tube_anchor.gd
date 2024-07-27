@@ -52,10 +52,14 @@ func drop() -> void:
 func _release() -> void:
 	# Check if we on the drop point
 	if _at_drop_point:
-		slot_requested.emit(
-			drop_detector.get_overlapping_areas()[0],
-			self
-		)
+		var detected_bodies: Array = drop_detector.get_overlapping_areas()
+		if not detected_bodies.is_empty():
+			slot_requested.emit(
+				detected_bodies[0],
+				self
+			)
+		else:
+			reset_placement()
 	else:
 		reset_placement()
 	_state = State.IDLE
