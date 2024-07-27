@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://b8yvv0gnqfqjv"]
+
+[ext_resource type="PackedScene" uid="uid://ha3p2jmtvbyb" path="res://battle_resources/CombatAnimations/ferret_sprite_handler.tscn" id="1_3j4d1"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_neiqp"]
+[ext_resource type="Resource" uid="uid://bkx3mtvtsl8vs" path="res://battle_resources/abilities/Sleep.tres" id="1_xwcj8"]
+[ext_resource type="Resource" uid="uid://bajckdhsuwcmc" path="res://battle_resources/abilities/FullCounter.tres" id="2_w74ht"]
+
+[resource]
+script = ExtResource("1_neiqp")
+name = "Morph Ferret"
+description = ""
+max_health = 360
+resonate = 6
+domain = &"Dumb"
+abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_xwcj8"), ExtResource("2_w74ht")])
+combat_animation = ExtResource("1_3j4d1")
+special_frame_idx = -1
+attack_position = Vector2(0, 0)

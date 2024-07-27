@@ -11,6 +11,8 @@ var _costs: Dictionary = {
 	"Fire": 1,
 	"Water": 1,
 }
+var actions_done: int = 0
+var ap_penality: int = 0
 
 func set_cost(reagent: TypeChart.ResonateType, cost_type: TypeChart.CostType, cost: int) -> void:
 	var key: String
@@ -47,6 +49,9 @@ func get_cost(reagent: TypeChart.ResonateType) -> int:
 		_:
 			assert(false, "What happen here?")
 			return 0
+
+func reset_action_counter() -> void:
+	actions_done = 0
 
 func reset_costs() -> void:
 	if not _was_cost_changed: return

@@ -21,9 +21,12 @@ func _ready() -> void:
 	battle_finished.connect(_on_battle_finished)
 	#setup_battle("Earth Worm")
 	#setup_battle("Living Tree")
-	setup_battle("Mailbox")
+	#setup_battle("Mailbox")
+	#setup_battle("Bombardier Beetle")
+	#setup_battle("Armored Snail")
 	#setup_battle("Niter Tiger")
 	#setup_battle("Fighting Fish")
+	setup_battle("Celestial Canine")
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	table.ability_execute_requested.connect(entity_tracker.player_entity.attack)

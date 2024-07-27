@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BattlefieldSkipTurnMod" load_steps=2 format=3 uid="uid://c1vb5y62w6ehy"]
+
+[ext_resource type="Script" path="res://battle_resources/ModifierScripts/SkipTurn.gd" id="1_6fejj"]
+
+[resource]
+script = ExtResource("1_6fejj")
+chance = 50
+apply_to_self = false
+is_attacked_triggered = false
+immediate = false
+turns = 1

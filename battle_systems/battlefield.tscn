@@ -58,7 +58,6 @@ entity_tracker = NodePath("../EntityTracker")
 
 [node name="EnemyEntity" parent="." node_paths=PackedStringArray("enemy_status_indicator", "player_entity", "enemy_position", "entity_tracker") instance=ExtResource("11_66ej3")]
 unique_name_in_owner = true
-visible = false
 position = Vector2(288, 120)
 enemy_status_indicator = NodePath("../CanvasLayer/EnemyStatusIndicator")
 player_entity = NodePath("../PlayerEntity")
@@ -91,6 +90,6 @@ metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
-position = Vector2(445, 40)
+position = Vector2(512, 61)
 scale = Vector2(0.285, 0.285)
 texture = ExtResource("14_jcqrt")

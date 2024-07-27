@@ -10,7 +10,6 @@ func run_operation(HTN_finished_op_callback: Callable, agent: Node, world_state:
 
 	await battle_agent.activate_ability(ability_idx)
 	await battle_agent.ability_finished
-	print("test")
 	HTN_finished_op_callback.call()
 
 func apply_effects(world_state: Dictionary) -> void:

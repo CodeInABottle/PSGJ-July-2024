@@ -43,7 +43,7 @@ var _current_unlocked_shadows: Dictionary = {
 		"Worldless Roar", "Pounce", "Silver Spire"
 	],
 	"Fighting Fish": [
-		"Purify", "Retaliate"
+		"Purify", "Retaliate", "Gaia Howl"
 	],
 	"Earth Worm": [
 		"Whip", "Dig"
@@ -61,7 +61,7 @@ var _equipped_shadows: Array[String] = [
 # item_name: String : quantity: int
 var inventory_items: Dictionary = {}
 
-var max_health: int = 200:
+var max_health: int = 10000:
 	set(value):
 		max_health = value
 
@@ -97,8 +97,8 @@ func reset_alchemy_points() -> void:
 	alchemy_points = get_max_alchemy_points()
 	was_ap_used = false
 
-func regen_alchemy_points() -> void:
-	alchemy_points += LEVEL_DATA[level]["Regen"]
+func regen_alchemy_points(penalty: int = 0) -> void:
+	alchemy_points += LEVEL_DATA[level]["Regen"] - penalty
 	was_ap_used = false
 
 func get_max_alchemy_points() -> int:

@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="APAlteration" load_steps=2 format=3 uid="uid://c0a7fvw0lvehh"]
+
+[ext_resource type="Script" path="res://battle_resources/ModifierScripts/APAlteration.gd" id="1_qblsi"]
+
+[resource]
+script = ExtResource("1_qblsi")
+amount = 1
+apply_to_self = false
+is_attacked_triggered = false
+immediate = false
+turns = 2

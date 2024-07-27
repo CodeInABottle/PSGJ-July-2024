@@ -3,7 +3,7 @@
 [ext_resource type="Resource" uid="uid://cch2kw6rwhpyd" path="res://battle_resources/abilities/Branch.tres" id="1_1wgsf"]
 [ext_resource type="Resource" uid="uid://dflhnvbcq18wc" path="res://battle_resources/abilities/Hydrate.tres" id="2_126rk"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="3_oo8eu"]
-[ext_resource type="PackedScene" uid="uid://dy5huttafacuf" path="res://battle_systems/EntityComponents/CombatAnimations/tree_sprite_handler.tscn" id="3_pnnou"]
+[ext_resource type="PackedScene" uid="uid://dy5huttafacuf" path="res://battle_resources/CombatAnimations/tree_sprite_handler.tscn" id="3_pnnou"]
 
 [resource]
 script = ExtResource("3_oo8eu")

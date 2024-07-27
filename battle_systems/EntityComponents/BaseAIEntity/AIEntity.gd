@@ -59,9 +59,11 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 	enemy_status_indicator.set_health_data(data.max_health)
 
 func regen_ap() -> void:
-	_alchemy_points = clampi(_alchemy_points + _alchemy_regen, 0, _max_alchemy_points)
+	_alchemy_points = clampi(_alchemy_points + _alchemy_regen - ap_penality, 0, _max_alchemy_points)
+	ap_penality = 0
 
 func heal(health: int) -> void:
+	print("Enemy healed: ", health)
 	_health += health
 
 func take_damage(damage_data: Dictionary) -> void:
@@ -97,6 +99,7 @@ func issue_actions() -> void:
 
 func activate_ability(ability_idx: int) -> void:
 	if ability_idx < 0 or ability_idx > _data.abilities.size(): return
+
 
 	var ability_data: BattlefieldAbility = _data.abilities[ability_idx]
 	var attack_packed_scene: PackedScene = ability_data["attack"]
@@ -142,6 +145,7 @@ func _internal_attack_logic(ability_data: BattlefieldAbility) -> void:
 
 	entity_tracker.add_modification_stacks(ability_data)
 	ability_finished.emit()
+	actions_done += 1
 
 func _generate_world_states() -> Dictionary:
 	var data: Dictionary = {
