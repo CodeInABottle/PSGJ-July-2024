@@ -89,6 +89,7 @@ theme_override_styles/panel = SubResource("StyleBoxEmpty_altgx")
 metadata/_edit_lock_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+visible = false
 position = Vector2(512, 61)
 scale = Vector2(0.285, 0.285)
 texture = ExtResource("14_jcqrt")

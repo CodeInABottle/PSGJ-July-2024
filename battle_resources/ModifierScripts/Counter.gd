@@ -2,19 +2,22 @@ class_name BattlefieldCounterMod
 extends BattlefieldAttackModifier
 
 @export var counter_damage: int = 0
+@export var full_counter: bool = false
 
 # Returns true on skip turn
-func execute(player: BattlefieldPlayerEntity, enemy: BattlefieldAIEntity,
-		additional_data: Dictionary) -> bool:
+func execute(tracker: BattlefieldEntityTracker, additional_data: Dictionary) -> bool:
+	var damage: int = counter_damage
+	if full_counter:
+		damage = additional_data["damage"]
 	var damage_data: Dictionary = {
-		"damage": counter_damage,
+		"damage": damage,
 		"resonate_type": additional_data["resonate_type"],
 		"capture_rate": additional_data["efficiency_capture_rate"],
 	}
 	# The entity that has the attack phase takes the damage
 	if additional_data["is_players_turn"]:
-		player.take_damage(damage_data)
+		tracker.player_entity.take_damage(damage_data)
 	else:
-		enemy.take_damage(damage_data)
+		tracker.enemy_entity.take_damage(damage_data)
 
 	return false

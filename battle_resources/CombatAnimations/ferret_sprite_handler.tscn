@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ha3p2jmtvbyb"]
+
+[ext_resource type="PackedScene" uid="uid://ccuo8cx5bw5ge" path="res://battle_systems/EntityComponents/base_enemy_sprite_handler.tscn" id="1_rgwhi"]
+[ext_resource type="Texture2D" uid="uid://c1pq6kdsj1pvp" path="res://assets/sprites/mobs/combat_ferret.png" id="2_thh7s"]
+
+[node name="FerretSpriteHandler" instance=ExtResource("1_rgwhi")]
+
+[node name="Shadow" parent="." index="0"]
+texture = ExtResource("2_thh7s")
+vframes = 3
+
+[node name="Object" parent="." index="1"]
+texture = ExtResource("2_thh7s")
+vframes = 3

@@ -4,8 +4,7 @@ extends BattlefieldAttackModifier
 @export var damage: int = 0
 
 # Returns true on skip turn
-func execute(player: BattlefieldPlayerEntity, enemy: BattlefieldAIEntity,
-		additional_data: Dictionary) -> bool:
+func execute(tracker: BattlefieldEntityTracker, additional_data: Dictionary) -> bool:
 	var apply_to_player: bool = BattlefieldEntityTracker.do_apply_to_player(
 		additional_data["is_players_turn"],
 		apply_to_self
@@ -18,9 +17,9 @@ func execute(player: BattlefieldPlayerEntity, enemy: BattlefieldAIEntity,
 
 	# This is flipped to apply DoT
 	if apply_to_player:
-		enemy.take_damage(damage_data)
+		tracker.enemy_entity.take_damage(damage_data)
 	else:
-		player.take_damage(damage_data)
+		tracker.player_entity.take_damage(damage_data)
 
 	return false
 

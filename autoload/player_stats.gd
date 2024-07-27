@@ -97,8 +97,8 @@ func reset_alchemy_points() -> void:
 	alchemy_points = get_max_alchemy_points()
 	was_ap_used = false
 
-func regen_alchemy_points() -> void:
-	alchemy_points += LEVEL_DATA[level]["Regen"]
+func regen_alchemy_points(penalty: int = 0) -> void:
+	alchemy_points += LEVEL_DATA[level]["Regen"] - penalty
 	was_ap_used = false
 
 func get_max_alchemy_points() -> int:

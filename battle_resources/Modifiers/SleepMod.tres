@@ -1,0 +1,12 @@
+[gd_resource type="Resource" script_class="BattlefieldSleepMod" load_steps=3 format=3 uid="uid://br0u2nbsxgl2q"]
+
+[ext_resource type="Resource" uid="uid://bo3rofy0na7gi" path="res://battle_resources/Modifiers/50_1_turn_healMod.tres" id="1_5xari"]
+[ext_resource type="Script" path="res://battle_resources/ModifierScripts/Sleep.gd" id="2_624w2"]
+
+[resource]
+script = ExtResource("2_624w2")
+mod = ExtResource("1_5xari")
+apply_to_self = true
+is_attacked_triggered = false
+immediate = true
+turns = 1

@@ -1,11 +1,10 @@
 class_name BattlefieldSkipTurnMod
 extends BattlefieldAttackModifier
 
-func execute(_player: BattlefieldPlayerEntity, _enemy: BattlefieldAIEntity,
-		_additional_data: Dictionary) -> bool:
-	#var apply_to_player: bool = BattlefieldEntityTracker.do_apply_to_player(
-		#additional_data["is_players_turn"],
-		#apply_to_self
-	#)
+@export_range(0, 100, 1) var chance: int = 100
 
-	return true
+func execute(_tracker: BattlefieldEntityTracker, _additional_data: Dictionary) -> bool:
+	if chance == 100: return true
+	if chance == 0: return false
+
+	return randi_range(0, 100) <= chance

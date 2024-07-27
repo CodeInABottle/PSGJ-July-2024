@@ -944,6 +944,7 @@ offset_right = 68.0
 offset_bottom = 72.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage2" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -954,6 +955,7 @@ offset_right = 168.0
 offset_bottom = 72.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage3" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -964,6 +966,7 @@ offset_right = 268.0
 offset_bottom = 72.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage4" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -974,6 +977,7 @@ offset_right = 368.0
 offset_bottom = 72.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage5" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -984,6 +988,7 @@ offset_right = 468.0
 offset_bottom = 72.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage6" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -994,6 +999,7 @@ offset_right = 568.0
 offset_bottom = 72.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage7" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -1004,6 +1010,7 @@ offset_right = 68.0
 offset_bottom = 192.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage8" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -1014,6 +1021,7 @@ offset_right = 168.0
 offset_bottom = 192.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage9" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -1024,6 +1032,7 @@ offset_right = 268.0
 offset_bottom = 192.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage10" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -1034,6 +1043,7 @@ offset_right = 368.0
 offset_bottom = 192.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage11" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -1044,6 +1054,7 @@ offset_right = 468.0
 offset_bottom = 192.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="RecipePage12" parent="." instance=ExtResource("1_wwf2e")]
 unique_name_in_owner = true
@@ -1054,6 +1065,7 @@ offset_right = 568.0
 offset_bottom = 192.0
 size_flags_vertical = 4
 wiggle_on_set = false
+enable_clicking = false
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
