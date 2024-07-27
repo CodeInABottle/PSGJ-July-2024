@@ -43,7 +43,7 @@ var _current_unlocked_shadows: Dictionary = {
 		"Worldless Roar", "Pounce", "Silver Spire"
 	],
 	"Fighting Fish": [
-		"Purify", "Retaliate", "Gaia Howl"
+		"Purify", "Retaliate",
 	],
 	"Earth Worm": [
 		"Whip", "Dig"
