@@ -145,7 +145,7 @@ navigation_polygon = SubResource("NavigationPolygon_5n5xx")
 [node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." index="14"]
 navigation_polygon = SubResource("NavigationPolygon_ava20")
 
-[node name="Shadows" type="Node" parent="." index="15"]
+[node name="Shadows" type="Node2D" parent="." index="15"]
 
 [node name="Dog" parent="Shadows" index="0" instance=ExtResource("9_nnsxx")]
 position = Vector2(403, 1129)

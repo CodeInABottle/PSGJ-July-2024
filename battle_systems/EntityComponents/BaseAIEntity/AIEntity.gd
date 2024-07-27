@@ -35,6 +35,7 @@ var _health: int:
 var _capture_value: int:
 	set(value):
 		_capture_value = value
+		print("HP: ", _health, " | Capture: ", value)
 		if is_captured():
 			captured.emit()
 
@@ -90,12 +91,17 @@ func take_damage(damage_data: Dictionary) -> void:
 	if _data.special_frame_idx != -1:
 		animation_holder.get_child(0).set_shadow_frame(_data.special_frame_idx)
 
+	# Calculate Capture
+	if damage_data["resonate_type"] == _data.resonate:
+		var capture_damage: int = ceili(damage_data["damage"] * damage_data["capture_rate"])
+		print("Capture Damage: ", capture_damage)
+		_capture_value -= capture_damage
+		flash_player.play("Flash")
+
+	# Calculate Damage
 	entity_tracker.damage_taken.emit(false, damage_data)
 	_health -= damage_data["damage"]
 
-	if damage_data["resonate_type"] == _data.resonate:
-		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
-		flash_player.play("Flash")
 
 func has_ap() -> bool:
 	return _alchemy_points > 0
