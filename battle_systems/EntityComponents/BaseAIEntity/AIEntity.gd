@@ -138,6 +138,36 @@ func activate_ability(ability_idx: int) -> void:
 			attack_instance.queue_free()
 			_internal_attack_logic(ability_data)
 
+func get_most_damaging_ability_within_AP_cost() -> int:
+	if _alchemy_points <= 0: return -1
+
+	var ability_idx: int = -1
+	var damage: int = 0
+
+	var idx: int = 0
+	for ability: BattlefieldAbility in _data.abilities:
+		if ability.damage > damage and _alchemy_points >= ability.ap_cost:
+			damage = ability.damage
+			ability_idx = idx
+		idx += 1
+
+	return ability_idx
+
+func get_cheapest_ability() -> int:
+	if _alchemy_points <= 0: return -1
+
+	var ability_idx: int = -1
+	var ap_cost: int = 100000000000
+
+	var idx: int = 0
+	for ability: BattlefieldAbility in _data.abilities:
+		if ability.ap_cost < ap_cost and _alchemy_points >= ability.ap_cost:
+			ap_cost = ability.ap_cost
+			ability_idx = idx
+		idx += 1
+
+	return ability_idx
+
 func _internal_attack_logic(ability_data: BattlefieldAbility) -> void:
 	if ability_data["damage"] > 0:
 		player_entity.take_damage({ "damage": ability_data["damage"] })
@@ -151,15 +181,13 @@ func _generate_world_states() -> Dictionary:
 	var data: Dictionary = {
 		"rng": randi_range(0, 100),
 		"health": _health,
+		"above_30%_health": _health > ceili(float(_data.max_health) * 0.3),
 		"max_health": _data.max_health,
 		"ap": _alchemy_points,
+		"at_has_max_ap": _alchemy_points >= _max_alchemy_points,
 		"max_ap": _max_alchemy_points,
 		"ap_regen_rate": _alchemy_regen,
 		"ability_count": _data.abilities.size()
 	}
-	var idx: int = 0
-	for ability: BattlefieldAbility in _data.abilities:
-		data.merge(ability.get_world_states(idx), true)
-		idx += 1
 
 	return data

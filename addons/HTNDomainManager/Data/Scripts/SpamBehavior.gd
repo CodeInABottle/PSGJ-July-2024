@@ -4,11 +4,13 @@ extends HTNTask
 # for HTNTask`. Happy scripting! :D
 
 func run_operation(HTN_finished_op_callback: Callable, agent: Node, world_state: Dictionary) -> void:
-	var battle_agent: BattlefieldAIEntity = (agent as BattlefieldAIEntity)
-	var ability_idx: int = world_state["rng"] % world_state["ability_count"]
-
-	await battle_agent.activate_ability(ability_idx)
-	await battle_agent.ability_finished
+	var enemy: BattlefieldAIEntity = agent as BattlefieldAIEntity
+	var ability_idx: int = enemy.get_cheapest_ability()
+	while ability_idx > -1:
+		await enemy.activate_ability(ability_idx)
+		await enemy.ability_finished
+		ability_idx = enemy.get_cheapest_ability()
+		print(enemy._alchemy_points)
 	HTN_finished_op_callback.call()
 
 func apply_effects(world_state: Dictionary) -> void:
