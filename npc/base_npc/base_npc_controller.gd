@@ -70,7 +70,7 @@ func is_close_enough_to_point(world_state: Dictionary) -> void:
 
 func pick_point(world_state: Dictionary) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	var chance: float = rng.randf_range(0.0,100.0)
+	#var chance: float = rng.randf_range(0.0,100.0)
 	var has_valid_point: bool = false
 	while not has_valid_point:
 		var x_pos: float = rng.randf_range(_start_position.x-wander_x_bound, _start_position.x+wander_x_bound)

@@ -638,7 +638,6 @@ texture = ExtResource("16_1b4qc")
 
 [node name="RecipePageDisplay" parent="CanvasLayer" instance=ExtResource("17_f21l0")]
 unique_name_in_owner = true
-visible = false
 
 [node name="TableShaker" type="AnimationPlayer" parent="."]
 unique_name_in_owner = true
