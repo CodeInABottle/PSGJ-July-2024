@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://ckrsaenbxvr1e"]
+
+[ext_resource type="PackedScene" uid="uid://ccuo8cx5bw5ge" path="res://battle_systems/EntityComponents/base_enemy_sprite_handler.tscn" id="1_oslne"]
+[ext_resource type="Texture2D" uid="uid://dw2ureslo1xtn" path="res://assets/sprites/mobs/combat_fire_hawk.png" id="2_e7yfw"]
+
+[node name="FireHawnSpriteHandler" instance=ExtResource("1_oslne")]
+
+[node name="Shadow" parent="." index="0"]
+texture = ExtResource("2_e7yfw")
+vframes = 3
+
+[node name="Object" parent="." index="1"]
+texture = ExtResource("2_e7yfw")
+vframes = 3

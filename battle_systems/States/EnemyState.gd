@@ -4,7 +4,7 @@ extends Node
 @onready var entity_tracker: BattlefieldEntityTracker = %EntityTracker
 
 func enter() -> void:
-	# End battle if died of effects
+	# End battle if died of effects/Check for turn skipping
 	if entity_tracker.handle_enemy_effects():
 		print("skipping enemy turn")
 		return

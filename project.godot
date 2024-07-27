@@ -67,6 +67,7 @@ folder_colors={
 "res://dialogue/": "blue",
 "res://game_manager/": "blue",
 "res://inventory/": "blue",
+"res://npc/": "blue",
 "res://old_areas/": "orange",
 "res://regions/": "orange",
 "res://regions/RegionBase/Cameras/": "blue",

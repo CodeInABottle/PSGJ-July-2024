@@ -12,6 +12,7 @@ func take_damage(damage_data: Dictionary) -> void:
 
 	animation_player.play("Hurt")
 	entity_tracker.damage_taken.emit(true, damage_data)
+	print("Player taken damage: ", damage_data["damage"])
 	PlayerStats.health -= damage_data["damage"]
 
 func heal(value: int) -> void:

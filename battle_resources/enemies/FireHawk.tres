@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://beyu157b76ytl"]
+
+[ext_resource type="PackedScene" uid="uid://ckrsaenbxvr1e" path="res://battle_resources/CombatAnimations/fire_hawk_sprite_handler.tscn" id="1_cxu6t"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_kowx8"]
+[ext_resource type="Resource" uid="uid://bnyjpaxfkvsl5" path="res://battle_resources/abilities/Sharpen.tres" id="1_rd31s"]
+[ext_resource type="Resource" uid="uid://d2u25fllwqx3d" path="res://battle_resources/abilities/Explode.tres" id="2_rbvw4"]
+
+[resource]
+script = ExtResource("1_kowx8")
+name = "Fire Hawk"
+description = ""
+max_health = 360
+resonate = 1
+domain = &"Dumb"
+abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_rd31s"), ExtResource("2_rbvw4")])
+combat_animation = ExtResource("1_cxu6t")
+special_frame_idx = -1
+attack_position = Vector2(0, 0)

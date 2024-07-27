@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=4 format=3 uid="uid://d2u25fllwqx3d"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_2p31j"]
+[ext_resource type="Resource" uid="uid://d1xil5jl26n1y" path="res://battle_resources/Modifiers/20_to_selfMod.tres" id="1_esmhd"]
+[ext_resource type="Resource" uid="uid://dj13rksk5iww5" path="res://battle_resources/Modifiers/20_2_turn_DoTMod.tres" id="2_1dj62"]
+
+[resource]
+script = ExtResource("1_2p31j")
+damage = 40
+capture_efficiency = 1.1
+description = "Deal 20 health to self but opponent takes 20 damage for 2 turns."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_esmhd"), ExtResource("2_1dj62")])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 1
+reagent_a = 1
+reagent_b = 1
+reagent_c = 0
+reagent_d = 0
