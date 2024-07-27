@@ -183,7 +183,8 @@ func disable_world_node() -> void:
 	world_disabled.emit()
 	_is_paused = true
 	# This should be the _process, _physics_process, and the various _input functions
-	world_anchor.process_mode = Node.PROCESS_MODE_DISABLED
+	master_node.remove_child(world_anchor)
+	#world_anchor.process_mode = Node.PROCESS_MODE_DISABLED
 
 func is_paused() -> bool:
 	return _is_paused
@@ -199,12 +200,14 @@ func is_in_world() -> bool:
 func enable_world_node() -> void:
 	for child: Node in world_anchor.get_children():
 		child.show()
+	master_node.add_child(world_anchor)
+	master_node.move_child(world_anchor, 0)
 	if world_anchor.get_child(0) is GameArea:
 		_in_world = true
 	world_enabled.emit()
 	_is_paused = false
 	# This should be the _process, _physics_process, and the various _input functions
-	world_anchor.process_mode = Node.PROCESS_MODE_INHERIT
+	#world_anchor.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _unload_level() -> void:
 	if loaded_level: loaded_level.queue_free()
