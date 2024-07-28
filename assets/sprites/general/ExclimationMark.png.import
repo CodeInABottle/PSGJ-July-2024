@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://uo4i75pewhl7"
-path="res://.godot/imported/books01.png-3ca9cb7eca0abefd68a9c693b50076d7.ctex"
+uid="uid://cwj4wevijq888"
+path="res://.godot/imported/ExclimationMark.png-4fa9e5b9c53f43f833c19adb951d88f4.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/general/books01.png"
-dest_files=["res://.godot/imported/books01.png-3ca9cb7eca0abefd68a9c693b50076d7.ctex"]
+source_file="res://assets/sprites/general/ExclimationMark.png"
+dest_files=["res://.godot/imported/ExclimationMark.png-4fa9e5b9c53f43f833c19adb951d88f4.ctex"]
 
 [params]
 

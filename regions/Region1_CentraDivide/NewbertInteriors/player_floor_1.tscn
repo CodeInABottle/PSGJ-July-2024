@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://cy8cc7djwpd7h" path="res://overworld_stuff/unlockable_transition_area.tscn" id="2_5kv4j"]
 [ext_resource type="PackedScene" uid="uid://7g63ugqd7du3" path="res://inventory/pickup_lore.tscn" id="3_eojow"]
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="5_1gpcv"]
-[ext_resource type="Texture2D" uid="uid://cte4mtlosaofi" path="res://assets/sprites/general/direction_arrow.png" id="6_s01kc"]
+[ext_resource type="Texture2D" uid="uid://b6ukbsrs6vcdq" path="res://assets/sprites/player/UI/MovementArrow.png" id="6_pmjjn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbp6l"]
 size = Vector2(42, 26)
@@ -88,6 +88,8 @@ region_rect = Rect2(227, 69, 26.5, 38)
 
 [node name="PlayerPhysicsBody" parent="." index="11"]
 position = Vector2(140, 27)
+player_speed = 65.0
+sprint_scale = 2.0
 
 [node name="PlayerVisualBody" parent="." index="12"]
 position = Vector2(140, 27)
@@ -130,25 +132,31 @@ text = "WASD to
 walk"
 
 [node name="ArrowHintLabel" type="Label" parent="." index="18"]
-offset_left = 87.0
-offset_top = 141.0
-offset_right = 219.0
-offset_bottom = 172.0
+offset_left = 84.0
+offset_top = 130.0
+offset_right = 216.0
+offset_bottom = 161.0
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_fonts/font = ExtResource("5_1gpcv")
 theme_override_font_sizes/font_size = 15
 text = "is where you're facing"
+vertical_alignment = 1
 
-[node name="Panel" type="Panel" parent="ArrowHintLabel" index="0"]
-layout_mode = 0
-offset_left = -21.0
-offset_top = -12.0
-offset_right = 18.0
-offset_bottom = 25.0
-scale = Vector2(0.537965, 0.537965)
-
-[node name="Sprite2D" type="Sprite2D" parent="ArrowHintLabel/Panel" index="0"]
+[node name="Sprite2D" type="Sprite2D" parent="ArrowHintLabel" index="0"]
 z_index = 1
-position = Vector2(18.5886, 18.5886)
-scale = Vector2(1.85886, 1.85886)
-texture = ExtResource("6_s01kc")
+position = Vector2(-8, 14)
+rotation = 3.14159
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_pmjjn")
+hframes = 2
+
+[node name="PauseHintLabel" type="Label" parent="." index="19"]
+offset_left = 278.0
+offset_top = 137.0
+offset_right = 353.0
+offset_bottom = 151.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_1gpcv")
+theme_override_font_sizes/font_size = 15
+text = "ESC to pause"
+vertical_alignment = 1

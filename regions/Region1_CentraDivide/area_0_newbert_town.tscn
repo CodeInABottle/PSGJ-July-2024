@@ -1,4 +1,4 @@
-[gd_scene load_steps=44 format=3 uid="uid://bhmtk1d3c4s68"]
+[gd_scene load_steps=45 format=3 uid="uid://bhmtk1d3c4s68"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_y57qd"]
 [ext_resource type="PackedScene" uid="uid://cm5val12sno1d" path="res://overworld_stuff/checkpoint.tscn" id="2_dyflh"]
@@ -23,6 +23,9 @@ size = Vector2(20, 48)
 size = Vector2(20, 19)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_i357e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_7mrfj"]
+size = Vector2(20, 71)
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_5n5xx"]
 vertices = PackedVector2Array(707, 574, 479, 574, 234, 555, 383, 544, 860, 170, 895, 216, 824, 209, 810, 199, 794, 144, 807, 466, 801, 511, 722, 511, 618, 491, 618, 370, 413, 514, 503, 491, 410, 529, 471, 305, 470, 255, 482, 279, 1047, 102, 1055, 91, 1055, 118, 917, 339, 926, 444, 887, 381, 885, 369, 885, 393, 929, 169, 980, 123, 985, 339, 898, 261, 835, 265, 749, 223, 735, 198, 923, 113, 359, 378, 356, 372, 379, 373, 469, 204, 469, 194, 471, 195, 651, 231, 852, 470, 875, 403, 863, 405, 121, 370, 219, 371, 215, 383, 125, 415, 647, 199, 482, 162, 500, 142, 596, 94, 854, 113, 51, 402, 30, 404, 30, 370, 63, 370, 67, 423, 70, 445, 374, 304, 410, 499, 503, 370, 119, 555, 480, 636, 30, 637, 30, 575, 851, 403, 843, 466, 852, 581, 843, 581, 500, 94, 119, 437, 742, 353, 863, 357, 851, 359, 875, 359, 469, 158, 469, 144, 398, 487, 721, 143, 679, 102, 841, 393, 839, 381, 841, 369, 668, 354, 639, 64, 641, 66, 656, 69, 664, 67, 602, 289, 30, 545, 30, 453, 28, 574, 28, 546, 234, 437, 282, 459, 356, 499, 353, 514, 383, 484, 398, 541, 368, 487, 356, 529, 368, 541)
@@ -149,11 +152,14 @@ position = Vector2(33, 560)
 [node name="CatBridge" type="Marker2D" parent="WarpPoints" index="4"]
 position = Vector2(158, 60)
 
-[node name="RememberanceTransition" parent="TransitionAreas" index="0" instance=ExtResource("2_e8a2y")]
+[node name="RemembranceTop" type="Marker2D" parent="WarpPoints" index="5"]
+position = Vector2(36, 151)
+
+[node name="RemembranceTransition" parent="TransitionAreas" index="0" instance=ExtResource("2_e8a2y")]
 position = Vector2(8, 560)
 transition_scene_name = "Remembrance"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/RememberanceTransition" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/RemembranceTransition" index="0"]
 position = Vector2(-8, 0)
 shape = SubResource("RectangleShape2D_3gf41")
 
@@ -174,6 +180,15 @@ transition_entry_id = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/HouseTransition" index="0"]
 shape = SubResource("RectangleShape2D_i357e")
+
+[node name="RemembranceTop" parent="TransitionAreas" index="3" instance=ExtResource("2_e8a2y")]
+position = Vector2(2, 151)
+transition_scene_name = "Remembrance"
+transition_entry_id = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/RemembranceTop" index="0"]
+position = Vector2(0, 3.5)
+shape = SubResource("RectangleShape2D_7mrfj")
 
 [node name="NavRegion1" type="NavigationRegion2D" parent="NavigationRegions" index="0"]
 navigation_polygon = SubResource("NavigationPolygon_5n5xx")
@@ -211,7 +226,6 @@ position = Vector2(66, 22)
 position = Vector2(839, 553)
 script = ExtResource("16_2tg1f")
 disable_type = "Shadow"
-trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_f6h3e")
 redirect_marker = NodePath("../TreeBlocker/TreeRedirectMarker")
 disable_leash_name = "Living Tree"
@@ -235,7 +249,7 @@ position = Vector2(156, 9)
 checkpoint_name = "Cat Bridge"
 
 [node name="Checkpoint2" parent="Interactables" index="1" instance=ExtResource("2_dyflh")]
-position = Vector2(755, 566)
+position = Vector2(370, 893)
 checkpoint_name = "Newbert Town"
 
 [node name="CenterSign" parent="Interactables" index="2" instance=ExtResource("3_ys51d")]
@@ -304,6 +318,8 @@ shape = SubResource("RectangleShape2D_d0ftd")
 
 [node name="PlayerPhysicsBody" parent="." index="10"]
 collision_mask = 18
+player_speed = 65.0
+sprint_scale = 2.0
 
 [node name="Camera2D" parent="." index="12"]
 position = Vector2(328, 188)

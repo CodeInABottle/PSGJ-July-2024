@@ -242,6 +242,7 @@ theme = ExtResource("6_qm2ju")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4lb0o")
 
 [node name="LorePanel" type="PanelContainer" parent="." node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel", "lore_author_label")]
+visible = false
 custom_minimum_size = Vector2(216, 0)
 anchors_preset = 9
 anchor_bottom = 1.0
@@ -288,6 +289,7 @@ auto_height = true
 fixed_icon_size = Vector2i(32, 32)
 
 [node name="LoreDetailsPanel" type="PanelContainer" parent="."]
+visible = false
 custom_minimum_size = Vector2(216, 0)
 anchors_preset = 11
 anchor_left = 1.0

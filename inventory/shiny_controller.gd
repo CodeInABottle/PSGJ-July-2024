@@ -1,11 +1,10 @@
 class_name Shiny
-extends Sprite2D
+extends AnimatedSprite2D
 
 @export var shiny_radius: float = 150.0
 
 @export var pickup_area: Area2D
 @export var shiny_area: Area2D
-@export var shiny_sprite: Sprite2D
 @export var shiny_player: AnimationPlayer
 @export var fade_timer: Timer
 
@@ -19,8 +18,8 @@ func _ready() -> void:
 func on_body_entered_area(entered_body: Node2D) -> void:
 	if entered_body.is_in_group("player"):
 		shiny_player.play("bounce")
-		var shiny_tween: Tween = shiny_sprite.create_tween()
-		shiny_tween.tween_property(shiny_sprite, "modulate", Color(1,1,1,1), 0.5)
+		var shiny_tween: Tween = create_tween()
+		shiny_tween.tween_property(self, "modulate:a", 1, 0.5)
 
 func on_body_exited_area(exited_body: Node2D) -> void:
 	if exited_body.is_in_group("player"):
@@ -32,11 +31,11 @@ func on_fade_timer_timeout() -> void:
 func stop_shiny() -> void:
 	if LevelManager.is_paused(): return
 
-	var shiny_tween: Tween = shiny_sprite.create_tween()
-	shiny_tween.tween_property(shiny_sprite, "modulate", Color(1,1,1,0), 0.5)
+	var shiny_tween: Tween = create_tween()
+	shiny_tween.tween_property(self, "modulate:a", 0, 0.5)
 	fade_timer.start()
 
 func show_shiny() -> void:
 	shiny_player.play()
-	var shiny_tween: Tween = shiny_sprite.create_tween()
-	shiny_tween.tween_property(shiny_sprite, "modulate", Color(1,1,1,1), 0.5)
+	var shiny_tween: Tween = create_tween()
+	shiny_tween.tween_property(self, "modulate:a", 1, 0.5)

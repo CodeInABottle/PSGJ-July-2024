@@ -1,17 +1,41 @@
-[gd_scene load_steps=5 format=3 uid="uid://bh1xhng4qi57g"]
+[gd_scene load_steps=12 format=3 uid="uid://bh1xhng4qi57g"]
 
 [ext_resource type="Script" path="res://ui/pickup_layer_controller.gd" id="1_8878h"]
 [ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="1_gilnm"]
+[ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="2_gmr7h"]
+[ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="3_uhpxc"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="4_xy5ne"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ws1cl"]
-bg_color = Color(0.556863, 0.596078, 0.713726, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.635294, 0.423529, 0.239216, 1)
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_wqdlx"]
+texture = ExtResource("3_uhpxc")
+texture_margin_left = 24.0
+texture_margin_top = 16.0
+texture_margin_right = 32.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="LabelSettings" id="LabelSettings_ykj42"]
+font = ExtResource("4_xy5ne")
+font_size = 30
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l7re7"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_o676c"]
+font = ExtResource("4_xy5ne")
+font_size = 24
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_niax3"]
+bg_color = Color(0.83, 0.679908, 0.5395, 1)
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_jpkn7"]
+font = ExtResource("4_xy5ne")
+font_color = Color(0, 0, 0, 1)
 
 [node name="PickupLayer" type="CanvasLayer" node_paths=PackedStringArray("continue_button", "interact_button", "name_label", "description_label", "icon_rect", "pickup_menu")]
 script = ExtResource("1_8878h")
@@ -19,11 +43,10 @@ continue_button = NodePath("PanelContainer/VBoxContainer/ContinueButton")
 interact_button = NodePath("PanelContainer/VBoxContainer/InteractButton")
 name_label = NodePath("PanelContainer/VBoxContainer/HBoxContainer/NameLabel")
 description_label = NodePath("PanelContainer/VBoxContainer/DescriptionLabel")
-icon_rect = NodePath("PanelContainer/VBoxContainer/HBoxContainer/Icon")
+icon_rect = NodePath("PanelContainer/VBoxContainer/HBoxContainer/Panel/Icon")
 pickup_menu = NodePath("PanelContainer")
 
 [node name="PanelContainer" type="PanelContainer" parent="."]
-modulate = Color(1, 1, 1, 0)
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -37,7 +60,8 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
-theme_override_styles/panel = SubResource("StyleBoxFlat_ws1cl")
+theme = ExtResource("2_gmr7h")
+theme_override_styles/panel = SubResource("StyleBoxTexture_wqdlx")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="PanelContainer"]
 layout_mode = 2
@@ -45,6 +69,7 @@ layout_mode = 2
 [node name="Title" type="Label" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 text = "ITEM GET!"
+label_settings = SubResource("LabelSettings_ykj42")
 horizontal_alignment = 1
 vertical_alignment = 1
 
@@ -62,23 +87,36 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_l7re7")
 [node name="NameLabel" type="Label" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 text = "Name"
+label_settings = SubResource("LabelSettings_o676c")
 horizontal_alignment = 1
 
-[node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer"]
+[node name="Panel" type="Panel" parent="PanelContainer/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_niax3")
+
+[node name="Icon" type="TextureRect" parent="PanelContainer/VBoxContainer/HBoxContainer/Panel"]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 texture = ExtResource("1_gilnm")
-expand_mode = 1
+expand_mode = 3
+stretch_mode = 5
 
 [node name="HSeparator2" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
 
 [node name="DescriptionLabel" type="Label" parent="PanelContainer/VBoxContainer"]
+custom_minimum_size = Vector2(350, 0)
 layout_mode = 2
-text = "Description
-"
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit."
+label_settings = SubResource("LabelSettings_jpkn7")
 horizontal_alignment = 1
 autowrap_mode = 3
 
