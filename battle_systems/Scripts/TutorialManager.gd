@@ -42,6 +42,7 @@ func _ready() -> void:
 			if _state == State.RECIPE_BOOK:
 				next_state()
 	)
+	_state = State.FINISHED
 	set_process(false)
 
 func complete() -> bool:
