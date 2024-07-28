@@ -2,16 +2,19 @@ class_name LeashArea
 extends Area2D
 
 @export_enum("None", "Item", "Shadow") var disable_type: String = "None"
-
+@export_enum("Enter","Exit") var trigger_type: String = "Exit"
 @export var hint_dialogue: Dialogue
 
 @export var redirect_marker: Marker2D
 @export var disable_leash_name: String
 
 func _ready() -> void:
-	body_exited.connect(on_body_exited)
 	LevelManager.world_event_occurred.connect(on_world_event)
 	is_disabled()
+	if trigger_type == "Exit":
+		body_exited.connect(leash_body)
+	else:
+		body_entered.connect(leash_body)
 
 func is_disabled() -> bool:
 	match disable_type:
@@ -40,7 +43,7 @@ func is_player_in_area() -> bool:
 	
 	return false
 
-func on_body_exited(exited_body: Node2D) -> void:
+func leash_body(exited_body: Node2D) -> void:
 	if not is_disabled() and not LevelManager.is_transitioning and exited_body is Player:
 		redirect_player()
 

@@ -43,9 +43,9 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func handle_interact_input() -> void:
-	if not in_interaction:
+	if not in_interaction and not hint_manager.is_hint_active():
 		interact()
-	else:
+	elif not hint_manager.is_hint_active():
 		advance_interaction()
 
 func _physics_process(_delta: float) -> void:

@@ -36,15 +36,22 @@ const MIN_X_WANDER: float = 50.0
 func _ready() -> void:
 	detection_area.body_entered.connect(on_body_entered_detect_area)
 	detection_area.body_exited.connect(on_body_exited_detect_area)
-	init_npc.call_deferred()
 	detection_area.get_child(0).shape.radius = notice_radius
 	LevelManager.world_event_occurred.connect(on_world_event)
+	if SaveManager.load_pending:
+		PlayerStats.save_loaded.connect(init_npc)
+	else:
+		init_npc.call_deferred()
+	
 
 func init_npc() -> void:
 	if has_been_captured():
 		saturate_colors()
 	else:
 		desaturate_colors()
+	
+	if PlayerStats.save_loaded.is_connected(init_npc):
+		PlayerStats.save_loaded.disconnect(init_npc)
 
 func _physics_process(delta: float) -> void:
 	_delta = delta

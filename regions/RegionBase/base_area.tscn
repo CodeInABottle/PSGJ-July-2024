@@ -61,9 +61,11 @@ layer_4/tile_data = PackedInt32Array()
 
 [node name="PlayerPhysicsBody" parent="." node_paths=PackedStringArray("player_visual_body", "player_camera", "player_phantom_camera") instance=ExtResource("2_358nu")]
 collision_mask = 2
+player_speed = null
 player_visual_body = NodePath("../PlayerVisualBody")
 player_camera = NodePath("../Camera2D")
 player_phantom_camera = NodePath("../PhantomCamera2D")
+sprint_scale = null
 
 [node name="PlayerVisualBody" parent="." instance=ExtResource("3_bn01o")]
 

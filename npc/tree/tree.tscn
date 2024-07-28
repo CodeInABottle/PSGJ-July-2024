@@ -5,11 +5,13 @@
 [ext_resource type="SpriteFrames" uid="uid://bb17rygnm3xo0" path="res://npc/tree/afflicted_tree_sprite_frames.tres" id="3_r30ly"]
 
 [node name="Tree" instance=ExtResource("1_ypbbb")]
+wall_min_slide_angle = 0.0
 npc_name = "Living Tree"
 normal_sprite_frames = ExtResource("2_iwfej")
 afflicted_sprite_frames = ExtResource("3_r30ly")
 
 [node name="NPCSprite" parent="." index="1"]
+position = Vector2(0, 7.525)
 sprite_frames = ExtResource("2_iwfej")
 animation = &"walk"
-offset = Vector2(0, -34.9)
+offset = Vector2(2.09, -38.415)
