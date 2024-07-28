@@ -37,6 +37,7 @@ func start_at(entry_id: int) -> void:
 	refresh_pickups.call_deferred()
 
 func _on_setup_timeout() -> void:
+	if MenuManager.fader_controller == null: return
 	MenuManager.fader_controller.fade_in_complete.connect(on_fade_in_complete)
 	MenuManager.fader_controller.fade_in()
 
