@@ -1,7 +1,29 @@
-[gd_scene load_steps=7 format=3 uid="uid://dfx4boutf3fkk"]
+[gd_scene load_steps=10 format=3 uid="uid://dfx4boutf3fkk"]
 
-[ext_resource type="Texture2D" uid="uid://cte4mtlosaofi" path="res://assets/sprites/general/direction_arrow.png" id="1_4eipc"]
+[ext_resource type="Texture2D" uid="uid://cwj4wevijq888" path="res://assets/sprites/general/ExclimationMark.png" id="1_eb1jp"]
 [ext_resource type="Script" path="res://inventory/shiny_controller.gd" id="2_6s60x"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nme56"]
+atlas = ExtResource("1_eb1jp")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4gqd3"]
+atlas = ExtResource("1_eb1jp")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_3dpa3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nme56")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4gqd3")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
 
 [sub_resource type="Animation" id="Animation_jdm1g"]
 length = 0.001
@@ -44,16 +66,17 @@ _data = {
 [sub_resource type="CircleShape2D" id="CircleShape2D_7ryfh"]
 radius = 150.0
 
-[node name="Shiny" type="Sprite2D" node_paths=PackedStringArray("pickup_area", "shiny_area", "shiny_sprite", "shiny_player", "fade_timer")]
+[node name="Shiny" type="AnimatedSprite2D" node_paths=PackedStringArray("pickup_area", "shiny_area", "shiny_player", "fade_timer")]
 modulate = Color(1, 1, 1, 0)
+self_modulate = Color(0.984314, 0.94902, 0.211765, 1)
 z_index = 2
 position = Vector2(0, -28)
-rotation = 1.5708
-texture = ExtResource("1_4eipc")
+sprite_frames = SubResource("SpriteFrames_3dpa3")
+autoplay = "default"
+frame_progress = 0.929931
 script = ExtResource("2_6s60x")
 pickup_area = NodePath("ShinyArea")
 shiny_area = NodePath("ShinyArea")
-shiny_sprite = NodePath(".")
 shiny_player = NodePath("AnimationPlayer")
 fade_timer = NodePath("FadeTimer")
 
@@ -69,8 +92,7 @@ wait_time = 0.5
 one_shot = true
 
 [node name="ShinyArea" type="Area2D" parent="."]
-position = Vector2(28, -0.00010136)
-rotation = -1.5708
+position = Vector2(0, 28)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShinyArea"]
 shape = SubResource("CircleShape2D_7ryfh")

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cte4mtlosaofi"
-path="res://.godot/imported/direction_arrow.png-bb931d4a326e0bd651d1bab1c9e7f7a6.ctex"
+uid="uid://1nibgd4lqlrc"
+path="res://.godot/imported/books-export.png-bf3944a1ce251e181fa05a1211cb0f63.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/general/direction_arrow.png"
-dest_files=["res://.godot/imported/direction_arrow.png-bb931d4a326e0bd651d1bab1c9e7f7a6.ctex"]
+source_file="res://assets/sprites/general/Books/books-export.png"
+dest_files=["res://.godot/imported/books-export.png-bf3944a1ce251e181fa05a1211cb0f63.ctex"]
 
 [params]
 
