@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=24 format=3 uid="uid://c2ppqoj6pfm85"]
+[gd_resource type="Theme" load_steps=25 format=3 uid="uid://c2ppqoj6pfm85"]
 
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="1_pfn0u"]
 
@@ -81,7 +81,20 @@ bg_color = Color(0.25098, 0.121569, 0.141176, 0.14902)
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erk0d"]
 bg_color = Color(0.25098, 0.121569, 0.141176, 0.14902)
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lt7m6"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7q4tt"]
+bg_color = Color(0.270588, 0.156863, 0.235294, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.67451, 0.196078, 0.196078, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxi3q"]
 bg_color = Color(0.270588, 0.156863, 0.235294, 1)
@@ -98,7 +111,23 @@ expand_margin_left = 5.0
 expand_margin_right = 5.0
 anti_aliasing = false
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gmp2"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_51mbp"]
+bg_color = Color(0.270588, 0.156863, 0.235294, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.67451, 0.196078, 0.196078, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qs16v"]
+bg_color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtqau"]
 bg_color = Color(0.435294, 0.435294, 0.435294, 1)
@@ -140,9 +169,11 @@ ItemList/styles/cursor = SubResource("StyleBoxFlat_4fnh2")
 ItemList/styles/cursor_unfocused = SubResource("StyleBoxFlat_nsx4e")
 ItemList/styles/focus = SubResource("StyleBoxEmpty_rky46")
 ItemList/styles/panel = SubResource("StyleBoxFlat_erk0d")
-LineEdit/styles/focus = SubResource("StyleBoxEmpty_lt7m6")
+LineEdit/colors/font_selected_color = Color(0.498039, 1, 1, 1)
+LineEdit/styles/focus = SubResource("StyleBoxFlat_7q4tt")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_lxi3q")
-LineEdit/styles/read_only = SubResource("StyleBoxEmpty_3gmp2")
+LineEdit/styles/read_only = SubResource("StyleBoxFlat_51mbp")
+TextEdit/styles/normal = SubResource("StyleBoxFlat_qs16v")
 VScrollBar/styles/grabber = SubResource("StyleBoxFlat_jtqau")
 VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_d8o1r")
 VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_qwk13")
