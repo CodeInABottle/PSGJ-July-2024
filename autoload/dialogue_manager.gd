@@ -43,5 +43,5 @@ func dialogue_to_text(dialogue: Dialogue, content_key: String = "main") -> Strin
 		dialogue_text = ""
 		for line: DialogueLine in dialogue_block.block_lines:
 			dialogue_text = dialogue_text + line.line_text + "\n\n"
-		
+
 	return dialogue_text
