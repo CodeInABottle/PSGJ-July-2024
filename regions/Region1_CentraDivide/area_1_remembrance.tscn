@@ -40,7 +40,8 @@ layer_3/tile_data = PackedInt32Array(1638375, 196610, 805306372, 1703911, 196610
 layer_4/tile_data = PackedInt32Array(1376254, 65540, 6, 1376255, 65540, 6, 1310720, 65540, 6, 1310721, 65540, 6, 1310722, 65540, 6, 1310723, 65540, 6, 1310724, 65540, 6, 1179636, 65540, 6, 1179637, 65540, 6, 1179638, 65540, 6, 1179639, 65540, 6, 1179640, 65540, 6, 1179641, 65540, 6)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TileMap" index="0"]
-visible = false
+collision_layer = 2
+collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap/StaticBody2D" index="0"]
 polygon = PackedVector2Array(992, 0, 992, 8, -96, 8, -96, 64, -64, 96, -64, 256, -32, 288, -32, 448, 0, 480, 0, 544, 32, 608, 32, 640, 24, 640, -40, 448, -72, 256, -104, 64, -104, 0)

@@ -1,0 +1,81 @@
+[gd_scene load_steps=11 format=3 uid="uid://dk4e0kp7eg3mv"]
+
+[ext_resource type="Script" path="res://battle_systems/Tutorial/TextButton/tutorial_text_button.gd" id="1_dn6ut"]
+[ext_resource type="LabelSettings" uid="uid://d3wg2exii4n05" path="res://battle_systems/Tutorial/TutorialLabelSettings.tres" id="1_kh1om"]
+[ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="1_qbpn8"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_q5jtp"]
+texture = ExtResource("1_qbpn8")
+texture_margin_left = 24.0
+texture_margin_top = 16.0
+texture_margin_right = 32.0
+texture_margin_bottom = 19.0
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_xjigq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_mso8b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_8vmwd"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_cpah4"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jp08w"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_aipqi"]
+
+[node name="TutorialTextButton" type="MarginContainer"]
+offset_right = 217.0
+offset_bottom = 202.0
+mouse_filter = 2
+script = ExtResource("1_dn6ut")
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_q5jtp")
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/margin_left = 24
+theme_override_constants/margin_top = 16
+theme_override_constants/margin_right = 32
+theme_override_constants/margin_bottom = 19
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="MarginContainer/VBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "This is your health bar.
+When it hits 0, you lost the battle and will respawn.
+
+Try hovering your mouse over it. :D"
+label_settings = ExtResource("1_kh1om")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_styles/separator = SubResource("StyleBoxEmpty_xjigq")
+
+[node name="Label2" type="Label" parent="MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+text = "(Click this to continue...)"
+label_settings = ExtResource("1_kh1om")
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_mso8b")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_8vmwd")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_cpah4")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jp08w")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_aipqi")
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

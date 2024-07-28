@@ -13,8 +13,8 @@ func _on_mouse_entered() -> void:
 	timer.start()
 
 func _on_mouse_exited() -> void:
-	transmutation_page.hide()
 	timer.stop()
+	transmutation_page.hide()
 
 func _on_timer_timeout() -> void:
 	transmutation_page.show()

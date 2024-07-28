@@ -647,3 +647,6 @@ libraries = {
 }
 
 [connection signal="pressed" from="Book/BookButton" to="." method="_on_book_button_pressed"]
+[connection signal="recipe_clicked" from="ReagentDropHandler" to="." method="_on_reagent_drop_handler_recipe_clicked"]
+[connection signal="recipe_displayed" from="ReagentDropHandler" to="." method="_on_reagent_drop_handler_recipe_displayed"]
+[connection signal="display_closed" from="CanvasLayer/RecipePageDisplay" to="." method="_on_recipe_page_display_display_closed"]

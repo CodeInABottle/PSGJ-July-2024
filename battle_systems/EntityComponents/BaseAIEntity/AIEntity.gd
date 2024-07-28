@@ -4,6 +4,7 @@ extends BattlefieldEntity
 signal actions_completed
 signal ability_finished
 signal captured
+signal capture_status_animated
 
 @export var enemy_status_indicator: BattlefieldEnemyStatusIndicator
 @export var player_entity: BattlefieldPlayerEntity
@@ -27,7 +28,9 @@ var _health: int:
 	set(value):
 		if value < _health:
 			hurt_player.play("Hurt")
-			enemy_status_indicator.update_health(_health-value)
+			enemy_status_indicator.damage_health(_health-value)
+		elif value > _health:
+			enemy_status_indicator.heal_health(value-_health)
 		_health = clampi(value, 0, _data.max_health)
 		if _health <= 0:
 			entity_tracker.end_turn()
@@ -280,3 +283,6 @@ func _generate_world_states() -> Dictionary:
 		})
 
 	return data
+
+func _on_capture_animation() -> void:
+	capture_status_animated.emit()
