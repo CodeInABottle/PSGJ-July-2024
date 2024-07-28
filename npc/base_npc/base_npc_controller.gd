@@ -4,6 +4,7 @@ extends CharacterBody2D
 @export var npc_speed: float = 80.0
 @export var npc_name: String
 
+@export var notice_radius: float = 100.0
 @export var wander_x_bound: float = 200.0
 @export var wander_y_bound: float = 200.0
 @export var normal_sprite_frames: SpriteFrames
@@ -36,10 +37,11 @@ func _ready() -> void:
 	detection_area.body_entered.connect(on_body_entered_detect_area)
 	detection_area.body_exited.connect(on_body_exited_detect_area)
 	init_npc.call_deferred()
+	detection_area.get_child(0).shape.radius = notice_radius
+	LevelManager.world_event_occurred.connect(on_world_event)
 
 func init_npc() -> void:
 	if has_been_captured():
-		shiny.queue_free()
 		saturate_colors()
 	else:
 		desaturate_colors()
@@ -156,17 +158,25 @@ func has_been_captured() -> bool:
 	return false
 
 func on_battle_finished() -> void:
-	shiny.queue_free()
-	_has_been_defeated = true
 	saturate_colors()
 	LevelManager.menu_unloaded.disconnect(on_battle_finished)
 	battle_finished.emit()
 	MenuManager.fader_controller.fade_in()
 
 func saturate_colors() -> void:
+	if shiny != null:
+		shiny.queue_free()
+	_has_been_defeated = true
 	npc_sprite.set_sprite_frames(normal_sprite_frames)
 	npc_sprite.set_material(null)
 
 func desaturate_colors() -> void:
 	npc_sprite.set_sprite_frames(afflicted_sprite_frames)
 	npc_sprite.set_material(afflicted_material)
+
+func on_world_event(event_name: String, args: Array) -> void:
+	if event_name == "battle_finished":
+		var battle_state: Dictionary = args[0]
+		
+		if battle_state["shadow_name"] == npc_name:
+			saturate_colors()

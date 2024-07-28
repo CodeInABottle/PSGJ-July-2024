@@ -19,7 +19,19 @@ unique_name_in_owner = true
 [node name="TransitionAreas" type="Node" parent="."]
 unique_name_in_owner = true
 
+[node name="NavigationRegions" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="LeashAreas" type="Node" parent="."]
+unique_name_in_owner = true
+
+[node name="Interactables" type="Node" parent="."]
+unique_name_in_owner = true
+
 [node name="Pickups" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Shadows" type="Node2D" parent="."]
 unique_name_in_owner = true
 
 [node name="SetupTimer" type="Timer" parent="."]
