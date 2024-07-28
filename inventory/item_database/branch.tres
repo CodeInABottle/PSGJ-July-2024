@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="KeyItem" load_steps=3 format=3 uid="uid://cj2cghythmrpt"]
+
+[ext_resource type="Script" path="res://inventory/key_item.gd" id="1_6r2hf"]
+[ext_resource type="Texture2D" uid="uid://b7qc06ujh2vhd" path="res://assets/sprites/general/branch.png" id="1_h4q2g"]
+
+[resource]
+script = ExtResource("1_6r2hf")
+pickup_event_name = "branch_got"
+item_name = "Branch"
+item_description = "This branch was in the way of the cellar! It has a weird looking shadow..."
+item_icon = ExtResource("1_h4q2g")

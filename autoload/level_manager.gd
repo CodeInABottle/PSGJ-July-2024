@@ -41,6 +41,8 @@ signal game_unpaused
 signal world_disabled
 signal world_enabled
 
+signal world_event_occurred(event_name: String, args: Array)
+
 #region Variables
 # { "level_name" (String) : scene_path (String) }
 # ie. { "level_name": "path to scene" }
@@ -320,6 +322,9 @@ func load_save(save_data: Dictionary) -> void:
 	area_pickup_status = save_data.get("area_pickup_status")
 	load_world(save_data["area"])
 
-# to be use to reset enemy battles if any on checkpoint rest
+# to be use to reset enemy battles if any on checkpoint rest, if needed?
 func reset_world() -> void:
 	pass
+
+func on_world_event(event_name: String, args: Array = []) -> void:
+	world_event_occurred.emit(event_name, args)

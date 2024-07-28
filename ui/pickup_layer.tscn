@@ -80,6 +80,7 @@ layout_mode = 2
 text = "Description
 "
 horizontal_alignment = 1
+autowrap_mode = 3
 
 [node name="HSeparator3" type="HSeparator" parent="PanelContainer/VBoxContainer"]
 layout_mode = 2
