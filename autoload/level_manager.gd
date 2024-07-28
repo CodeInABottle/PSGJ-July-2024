@@ -48,7 +48,7 @@ signal world_event_occurred(event_name: String, args: Array)
 # ie. { "level_name": "path to scene" }
 var _levels: Dictionary = {
 # UI
-"main_menu": "res://ui/main_menu.tscn",
+"main_menu": "res://ui/MainMenu/main_menu.tscn",
 
 # Newbert Town
 "Newbert Town": "res://regions/Region1_CentraDivide/area_0_newbert_town.tscn",
