@@ -172,6 +172,7 @@ func load_menu(menu_name: String, _args: Array = []) -> void:
 			_async_load("res://battle_systems/battlefield.tscn", menu_anchor)
 
 func unload_menu() -> void:
+	is_transitioning = false
 	if loaded_menu: loaded_menu.queue_free()
 	loaded_menu = null
 	enable_world_node()
@@ -314,6 +315,7 @@ func on_translucent_to_black_complete() -> void:
 func trigger_battle(enemy_name: String, start_translucent: bool = false) -> void:
 	DialogueManager.end_dialogue()
 	pending_load = "battle"
+	is_transitioning = true
 	pending_battle = enemy_name
 	if start_translucent:
 		MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)

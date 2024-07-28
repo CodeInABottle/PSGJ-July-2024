@@ -23,3 +23,6 @@ func advance_hint() -> void:
 func on_hint_ended() -> void:
 	_hint_active = false
 	DialogueManager.dialogue_ended.disconnect(on_hint_ended)
+
+func is_hint_active() -> bool:
+	return _hint_active

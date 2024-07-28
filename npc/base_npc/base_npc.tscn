@@ -4,7 +4,7 @@
 [ext_resource type="Shape2D" uid="uid://dpfsvsxurb7x3" path="res://npc/base_npc/base_npc_collision.tres" id="2_0bdfi"]
 [ext_resource type="SpriteFrames" uid="uid://kao4giv5ebvo" path="res://npc/ferret/ferret_sprites.tres" id="2_6onjl"]
 [ext_resource type="Material" uid="uid://c0pqivu88bmtx" path="res://npc/afflicted_material.tres" id="3_4hn8b"]
-[ext_resource type="SpriteFrames" uid="uid://d60a4d1fpxl7" path="res://npc/ferret/afflicted_ferret_sprite_frames.tres" id="3_5n0lm"]
+[ext_resource type="SpriteFrames" uid="uid://cw3vw5wihnly4" path="res://npc/ferret/afflicted_ferret_sprite_frames.tres" id="3_5n0lm"]
 [ext_resource type="PackedScene" uid="uid://buh35bnijt1om" path="res://addons/HTNDomainManager/GameLibrary/htn_planner.tscn" id="3_8lnov"]
 [ext_resource type="PackedScene" uid="uid://dfx4boutf3fkk" path="res://inventory/shiny.tscn" id="4_0vt5e"]
 
@@ -12,6 +12,8 @@
 radius = 100.0
 
 [node name="BaseNPC" type="CharacterBody2D"]
+z_index = 1
+y_sort_enabled = true
 collision_layer = 16
 collision_mask = 19
 motion_mode = 1
@@ -27,8 +29,7 @@ shape = ExtResource("2_0bdfi")
 
 [node name="NPCSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
-z_index = 1
-y_sort_enabled = true
+texture_filter = 1
 sprite_frames = ExtResource("2_6onjl")
 animation = &"jump"
 

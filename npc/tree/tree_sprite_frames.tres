@@ -1,16 +1,16 @@
 [gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://qpmf7gwfip30"]
 
-[ext_resource type="Texture2D" uid="uid://dxpw1nbasnw5x" path="res://assets/sprites/tiles/overworld_ground_01.png" id="1_rvkl6"]
+[ext_resource type="Texture2D" uid="uid://lwjrs8x5jfty" path="res://assets/sprites/mobs/overworld_tree.png" id="1_jg7lf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_q6kfn"]
-atlas = ExtResource("1_rvkl6")
-region = Rect2(128, 212, 64, 106)
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cqmq"]
+atlas = ExtResource("1_jg7lf")
+region = Rect2(0, 0, 61, 76)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_q6kfn")
+"texture": SubResource("AtlasTexture_3cqmq")
 }],
 "loop": true,
 "name": &"walk",
