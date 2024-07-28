@@ -47,14 +47,19 @@ signal world_event_occurred(event_name: String, args: Array)
 # { "level_name" (String) : scene_path (String) }
 # ie. { "level_name": "path to scene" }
 var _levels: Dictionary = {
+# UI
 "main_menu": "res://ui/main_menu.tscn",
+
+# Newbert Town
 "Newbert Town": "res://regions/Region1_CentraDivide/area_0_newbert_town.tscn",
+"NewbertPlayerCellar": "res://regions/Region1_CentraDivide/NewbertInteriors/player_cellar.tscn",
+"NewbertPlayerFloor1": "res://regions/Region1_CentraDivide/NewbertInteriors/player_floor_1.tscn",
+
+# Remembrance Town
 "Remembrance": "res://regions/Region1_CentraDivide/area_1_remembrance.tscn",
 
 # OLD -- Deprecated
 "area_0": "res://old_areas/area_0.tscn",
-"area_1": "res://old_areas/area_1.tscn",
-"area_0_cellar": "res://old_areas/area_0_cellar.tscn",
 "area_0_player_house_F1": "res://old_areas/area_0_player_house_F1.tscn",
 }
 
