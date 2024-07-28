@@ -75,9 +75,11 @@ func lost_battle() -> void:
 	battle_finished.emit(battle_state)
 
 func _on_battle_finished(_final_state: Dictionary) -> void:
+	LevelManager.world_event_occurred.emit("battle_finished", [_final_state])
+	
 	if MenuManager.fader_controller == null: return
 	if MenuManager.fader_controller.fade_out_complete == null: return
-
+	
 	MenuManager.fader_controller.fade_out_complete.connect(_on_fade_out_complete)
 	MenuManager.fader_controller.fade_out()
 
