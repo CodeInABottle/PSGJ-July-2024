@@ -22,7 +22,7 @@ func _ready() -> void:
 	battle_finished.connect(_on_battle_finished)
 	#setup_battle("Earth Worm")
 	#setup_battle("Living Tree")
-	setup_battle("Mailbox")
+	#setup_battle("Mailbox")
 	#setup_battle("Bombardier Beetle")
 	#setup_battle("Armored Snail")
 	#setup_battle("Niter Tiger")
