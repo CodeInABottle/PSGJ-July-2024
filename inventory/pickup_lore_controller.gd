@@ -37,6 +37,7 @@ func _on_interaction_ended() -> void:
 	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
 	PlayerStats.add_item(item_name, quantity)
+	LevelManager.world_event_occurred.emit("item_get:"+item_name, [])
 	pickup_interaction_ended.emit(get_index())
 	get_parent().remove_child(self)
 
@@ -47,8 +48,8 @@ func on_dialogue_ended() -> void:
 
 func on_dialogue_timer_timeout() -> void:
 	dialogue_timer.timeout.disconnect(on_dialogue_timer_timeout)
-	var item: InventoryItem = InventoryDatabase.get_item(item_name)
-	DialogueManager.play_dialogue(item.dialogue, "main")
+	var item: LoreItem = InventoryDatabase.get_item(item_name)
+	DialogueManager.play_dialogue(item.dialogue, "main", item.author_name, item.item_icon)
 
 func on_fade_from_translucent_complete() -> void:
 	MenuManager.fader_controller.fade_from_translucent_complete.disconnect(on_fade_from_translucent_complete)

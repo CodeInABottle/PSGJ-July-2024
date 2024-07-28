@@ -88,16 +88,18 @@ radius = 311.17
 y_sort_enabled = true
 
 [node name="Start" parent="WarpPoints" index="0"]
-position = Vector2(305, 894)
+position = Vector2(321, 879)
 
-[node name="CatBridge" type="Marker2D" parent="WarpPoints" index="1"]
-position = Vector2(157, 155)
+[node name="Cellar" type="Marker2D" parent="WarpPoints" index="1"]
 
-[node name="Home" type="Marker2D" parent="WarpPoints" index="2"]
+[node name="Checkpoint" type="Marker2D" parent="WarpPoints" index="2"]
 position = Vector2(758, 612)
 
 [node name="Remembrance" type="Marker2D" parent="WarpPoints" index="3"]
 position = Vector2(33, 560)
+
+[node name="CatBridge" type="Marker2D" parent="WarpPoints" index="4"]
+position = Vector2(158, 60)
 
 [node name="RememberanceTransition" parent="TransitionAreas" index="0" instance=ExtResource("2_e8a2y")]
 position = Vector2(8, 560)
@@ -109,9 +111,9 @@ shape = SubResource("RectangleShape2D_3gf41")
 
 [node name="CellarTransition" parent="TransitionAreas" index="1" instance=ExtResource("3_kh0h1")]
 position = Vector2(234, 811)
-unlock_event_name = "branch_got"
+unlock_event_name = "item_get:Branch"
 unlock_item_name = "Branch"
-transition_scene_name = "Remembrance"
+transition_scene_name = "Cellar"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/CellarTransition" index="0"]
 position = Vector2(8, 2.5)
@@ -119,7 +121,8 @@ shape = SubResource("RectangleShape2D_8pae8")
 
 [node name="HouseTransition" parent="TransitionAreas" index="2" instance=ExtResource("2_e8a2y")]
 position = Vector2(322, 835)
-transition_scene_name = "Remembrance"
+transition_scene_name = "Home"
+transition_entry_id = 1
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/HouseTransition" index="0"]
 shape = SubResource("RectangleShape2D_i357e")
@@ -132,7 +135,7 @@ position = Vector2(831, 356)
 
 [node name="Lore1" parent="Pickups" index="1" instance=ExtResource("7_qddya")]
 position = Vector2(648, 720)
-item_name = "Lore Book 1"
+item_name = "Alchemist's Notes: 1"
 
 [node name="PickupBranch" parent="Pickups" index="2" instance=ExtResource("5_aqmjy")]
 position = Vector2(203, 792)
@@ -182,12 +185,12 @@ limit_bottom = 1424
 editor_draw_limits = true
 
 [node name="Checkpoint" parent="." index="8" instance=ExtResource("2_dyflh")]
-position = Vector2(157, 44)
+position = Vector2(156, 9)
 checkpoint_name = "cat_bridge"
 
 [node name="Checkpoint2" parent="." index="9" instance=ExtResource("2_dyflh")]
 position = Vector2(755, 566)
-checkpoint_name = "home"
+checkpoint_name = "newbert_town_1"
 
 [node name="CenterSign" parent="." index="10" instance=ExtResource("3_ys51d")]
 position = Vector2(383, 514)
@@ -226,11 +229,8 @@ position = Vector2(321, 835)
 script = ExtResource("16_2tg1f")
 disable_type = "DisableOnItem"
 hint_dialogue = SubResource("Resource_bn84e")
-redirect_marker = NodePath("RedirectMarker")
+redirect_marker = NodePath("../WarpPoints/Start")
 disable_leash_name = "Branch"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="IntroArea" index="0"]
 shape = SubResource("CircleShape2D_dsw8y")
-
-[node name="RedirectMarker" type="Marker2D" parent="IntroArea" index="1"]
-position = Vector2(0, 44)

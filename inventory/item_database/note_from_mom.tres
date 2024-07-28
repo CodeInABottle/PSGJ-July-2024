@@ -1,0 +1,40 @@
+[gd_resource type="Resource" script_class="LoreItem" load_steps=12 format=3 uid="uid://dthl34xxrp56g"]
+
+[ext_resource type="Texture2D" uid="uid://cdc6rlxnyvxdm" path="res://assets/sprites/general/overworld_note.png" id="1_0xvdk"]
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_7ruo8"]
+[ext_resource type="Script" path="res://inventory/lore_item.gd" id="1_ryfef"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_eb5oa"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_ilmde"]
+
+[sub_resource type="Resource" id="Resource_dmxl1"]
+script = ExtResource("1_7ruo8")
+line_text = "Dear Clint,"
+
+[sub_resource type="Resource" id="Resource_8wn1y"]
+script = ExtResource("1_7ruo8")
+line_text = "I am going to the store today. I need you to do a few chores for me before you go play."
+
+[sub_resource type="Resource" id="Resource_472xl"]
+script = ExtResource("1_7ruo8")
+line_text = "Please go outside, and into the cellar. I need you to take care of all those worms down there. I think there's something wrong with them."
+
+[sub_resource type="Resource" id="Resource_mmp6j"]
+script = ExtResource("1_7ruo8")
+line_text = "Anyways, I'll be home by dark. Love you!"
+
+[sub_resource type="Resource" id="Resource_acqe1"]
+script = ExtResource("2_eb5oa")
+block_lines = Array[ExtResource("1_7ruo8")]([SubResource("Resource_dmxl1"), SubResource("Resource_8wn1y"), SubResource("Resource_472xl"), SubResource("Resource_mmp6j")])
+
+[sub_resource type="Resource" id="Resource_tupcm"]
+script = ExtResource("3_ilmde")
+contents = Array[ExtResource("2_eb5oa")]([SubResource("Resource_acqe1")])
+content_keys = Array[String](["main"])
+
+[resource]
+script = ExtResource("1_ryfef")
+dialogue = SubResource("Resource_tupcm")
+author_name = "Mom"
+item_name = "Note From Mom"
+item_description = "Mom went to the store, she left us a note!"
+item_icon = ExtResource("1_0xvdk")

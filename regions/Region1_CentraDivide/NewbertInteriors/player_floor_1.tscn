@@ -1,7 +1,12 @@
-[gd_scene load_steps=5 format=3 uid="uid://ds4vibf7tkvds"]
+[gd_scene load_steps=8 format=3 uid="uid://ds4vibf7tkvds"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_21exl"]
 [ext_resource type="Texture2D" uid="uid://dkqveu4j6mms0" path="res://assets/sprites/tiles/overworld_interior_01.png" id="2_4wey2"]
+[ext_resource type="PackedScene" uid="uid://cy8cc7djwpd7h" path="res://overworld_stuff/unlockable_transition_area.tscn" id="2_5kv4j"]
+[ext_resource type="PackedScene" uid="uid://7g63ugqd7du3" path="res://inventory/pickup_lore.tscn" id="3_eojow"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_pbp6l"]
+size = Vector2(42, 26)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jtekq"]
 size = Vector2(27, 20)
@@ -12,10 +17,24 @@ size = Vector2(32, 9)
 [node name="PlayerFloor1" instance=ExtResource("1_21exl")]
 
 [node name="Start" parent="WarpPoints" index="0"]
-position = Vector2(239, 117)
+position = Vector2(139, 27)
 
-[node name="BasementEntrance" type="Marker2D" parent="WarpPoints" index="1"]
-position = Vector2(100, 68)
+[node name="Outside" type="Marker2D" parent="WarpPoints" index="1"]
+position = Vector2(239, 111)
+
+[node name="UnlockableTransitionArea" parent="TransitionAreas" index="0" instance=ExtResource("2_5kv4j")]
+position = Vector2(240, 144)
+unlock_event_name = "item_get:Note From Mom"
+unlock_item_name = "Note From Mom"
+transition_scene_name = "Newbert Town"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TransitionAreas/UnlockableTransitionArea" index="0"]
+position = Vector2(-1, 3)
+shape = SubResource("RectangleShape2D_pbp6l")
+
+[node name="NoteFromMom" parent="Pickups" index="0" instance=ExtResource("3_eojow")]
+position = Vector2(146, 94)
+item_name = "Note From Mom"
 
 [node name="ColorRect" type="ColorRect" parent="." index="4"]
 offset_left = 21.0
@@ -26,9 +45,9 @@ color = Color(0.176256, 0.094911, 0.151054, 1)
 metadata/_edit_lock_ = true
 
 [node name="TileMap" parent="." index="5"]
-layer_0/tile_data = PackedInt32Array(6, 7, 4, 65542, 7, 4, 131078, 7, 4, 7, 7, 4, 65543, 7, 4, 131079, 7, 4, 8, 7, 4, 65544, 7, 4, 131080, 7, 4, 9, 7, 4, 65545, 7, 4, 131081, 7, 4, 10, 7, 4, 65546, 7, 4, 131082, 7, 4, 11, 7, 4, 65547, 7, 4, 131083, 7, 4, 2, 7, 7, 131074, 7, 0, 196610, 7, 9, 262146, 7, 0, 3, 7, 0, 65539, 7, 0, 131075, 7, 0, 196611, 7, 0, 262147, 7, 0, 4, 7, 0, 65540, 7, 0, 131076, 7, 0, 196612, 7, 0, 262148, 7, 0, 5, 7, 0, 65541, 7, 0, 131077, 7, 0, 196613, 7, 0, 262149, 7, 0, 262150, 7, 0, 262151, 7, 0, 262152, 7, 0, 262153, 7, 0, 262154, 7, 0, 262155, 7, 0, 65538, 7, 0, 196614, 7, 0, 196615, 7, 0, 196616, 7, 0, 196617, 7, 0, 196618, 7, 0, 196619, 7, 0)
-layer_1/tile_data = PackedInt32Array(-65530, 65543, 0, -65529, 131079, 0, -65528, 131079, 0, -65527, 131079, 0, -65526, 131079, 0, -65525, 196615, 0, 1, 131079, 6, 65537, 131079, 6, 131073, 131079, 6, 196609, 131079, 6, 262145, 131079, 7, 262146, 196615, 7, 65542, 196615, 6, 131078, 196615, 7, 5, 131079, 2, 65541, 131079, 6, 131077, 131079, 7, 6, 65543, 2, -65531, 196615, 4, -65533, 65543, 4, -65532, 131079, 4, 3, 393223, 7, 131074, 65543, 6, 65538, 65543, 6, 2, 65543, 6, 196610, 196615, 6, 196611, 196615, 6, 262147, 262151, 5, -65534, 131079, 6, 11, 131079, 2, 65547, 262151, 2, 131083, 196615, 4, 12, 65543, 2, 65548, 65543, 2, 131084, 65543, 2, 196620, 65543, 2, 262156, 65543, 2, -65524, 65543, 2, 131079, 262151, 5, 131080, 262151, 5, 131081, 393223, 7, 131082, 327687, 7, 65543, 262151, 4, 65544, 262151, 4, 65545, 393223, 6, 65546, 327687, 6, 196619, 262151, 6, 262155, 262151, 7, 196616, 262151, 4, 262152, 262151, 5, 196617, 262151, 4, 262153, 262151, 5, 196618, 262151, 4, 262154, 262151, 5, 196612, 262151, 4, 262148, 262151, 5, 196613, 262151, 4, 262149, 262151, 5, 196614, 262151, 4, 262150, 262151, 5)
-layer_2/tile_data = PackedInt32Array(-65527, 393223, 4, 2, 458759, 10)
+layer_0/tile_data = PackedInt32Array(6, 7, 4, 65542, 7, 4, 131078, 7, 4, 7, 7, 4, 65543, 7, 4, 131079, 7, 4, 8, 7, 4, 65544, 7, 4, 131080, 7, 4, 9, 7, 4, 65545, 7, 4, 131081, 7, 4, 10, 7, 4, 65546, 7, 4, 131082, 7, 4, 11, 7, 4, 65547, 7, 4, 131083, 7, 4, 2, 7, 7, 131074, 7, 0, 196610, 7, 0, 262146, 7, 0, 3, 7, 0, 65539, 7, 0, 131075, 7, 0, 196611, 7, 0, 262147, 7, 0, 4, 7, 0, 65540, 7, 0, 131076, 7, 0, 196612, 7, 0, 262148, 7, 0, 5, 7, 0, 65541, 7, 0, 131077, 7, 0, 196613, 7, 0, 262149, 7, 0, 262150, 7, 0, 262151, 7, 0, 262152, 7, 0, 262153, 7, 0, 262154, 7, 0, 262155, 7, 0, 65538, 7, 0, 196614, 7, 0, 196615, 7, 0, 196616, 7, 0, 196617, 7, 0, 196618, 7, 0, 196619, 7, 0)
+layer_1/tile_data = PackedInt32Array(-65530, 65543, 0, -65529, 131079, 0, -65528, 131079, 0, -65527, 131079, 0, -65526, 131079, 0, -65525, 196615, 0, 1, 131079, 6, 65537, 131079, 6, 131073, 131079, 6, 196609, 131079, 6, 262145, 131079, 7, 262146, 196615, 7, 65542, 196615, 6, 131078, 196615, 7, 5, 131079, 2, 65541, 131079, 6, 131077, 131079, 7, 6, 65543, 2, -65531, 196615, 4, -65533, 65543, 4, -65532, 131079, 4, 3, 393223, 7, 131074, 65543, 6, 65538, 65543, 6, 2, 65543, 6, 196610, 196615, 6, 262147, 262151, 5, -65534, 131079, 6, 11, 131079, 2, 65547, 262151, 2, 131083, 196615, 4, 12, 65543, 2, 65548, 65543, 2, 131084, 65543, 2, 196620, 65543, 2, 262156, 65543, 2, -65524, 65543, 2, 131079, 262151, 5, 131080, 262151, 5, 131081, 393223, 7, 131082, 327687, 7, 65543, 262151, 4, 65544, 262151, 4, 65545, 393223, 6, 65546, 327687, 6, 196619, 262151, 6, 262155, 262151, 7, 196616, 262151, 4, 262152, 262151, 5, 196617, 262151, 4, 262153, 262151, 5, 196618, 262151, 4, 262154, 262151, 5, 196612, 262151, 4, 262148, 262151, 5, 196613, 262151, 4, 262149, 262151, 5, 196614, 262151, 4, 262150, 262151, 5, 196611, 262151, 4)
+layer_2/tile_data = PackedInt32Array(-65527, 393223, 4, 2, 458759, 10, 262151, 393223, 5)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TileMap" index="0"]
 collision_layer = 2
