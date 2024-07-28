@@ -8,7 +8,7 @@ extends Area2D
 func _ready() -> void:
 	body_entered.connect(on_body_entered)
 	LevelManager.world_event_occurred.connect(on_world_event)
-	
+
 	if SaveManager.load_pending:
 		PlayerStats.save_loaded.connect(check_for_delete)
 	else:
@@ -28,7 +28,7 @@ func check_for_delete() -> void:
 			var unlocked_shadows: PackedStringArray = PlayerStats.get_all_unlocked_shadows()
 			if unlocked_shadows.has(delete_name):
 				queue_free()
-	
+
 	if PlayerStats.save_loaded.is_connected(check_for_delete):
 		PlayerStats.save_loaded.disconnect(check_for_delete)
 

@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://1nibgd4lqlrc"
-path="res://.godot/imported/books-export.png-5f5057b4b10334b42fcd32dc9dcf1655.ctex"
+uid="uid://by8fjfvenwwl0"
+path="res://.godot/imported/books10.png-a409274a70002181839965de07300c19.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/general/books-export.png"
-dest_files=["res://.godot/imported/books-export.png-5f5057b4b10334b42fcd32dc9dcf1655.ctex"]
+source_file="res://assets/sprites/general/Books/books10.png"
+dest_files=["res://.godot/imported/books10.png-a409274a70002181839965de07300c19.ctex"]
 
 [params]
 
