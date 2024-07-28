@@ -2,13 +2,13 @@
 
 [ext_resource type="Script" path="res://regions/RegionBase/area_controller.gd" id="1_21p1r"]
 [ext_resource type="Texture2D" uid="uid://b7gd1o0128eix" path="res://assets/placeholders/tilemap_packed.png" id="2_dm1ri"]
-[ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://old_areas/transition_area.tscn" id="3_nse0s"]
+[ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://overworld_stuff/transition_area.tscn" id="3_nse0s"]
 [ext_resource type="Texture2D" uid="uid://mej5p3q5u7c4" path="res://assets/placeholders/interior.png" id="3_oqd0h"]
 [ext_resource type="PackedScene" uid="uid://dkv0v1k16bwca" path="res://regions/RegionBase/Cameras/area_camera.tscn" id="6_kacxc"]
 [ext_resource type="PackedScene" uid="uid://bfqw64oerqxlo" path="res://regions/RegionBase/player/player_physics_body.tscn" id="7_7uy4q"]
 [ext_resource type="PackedScene" uid="uid://ix7hbnaiolav" path="res://regions/RegionBase/Cameras/area_phantom_camera.tscn" id="7_ogcms"]
 [ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://regions/RegionBase/player/player_visual_body.tscn" id="8_6ggmq"]
-[ext_resource type="PackedScene" uid="uid://dbdse8704j148" path="res://old_areas/setup_timer.tscn" id="9_g7duv"]
+[ext_resource type="PackedScene" uid="uid://dbdse8704j148" path="res://overworld_stuff/setup_timer.tscn" id="9_g7duv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wo2h"]
 texture = ExtResource("2_dm1ri")

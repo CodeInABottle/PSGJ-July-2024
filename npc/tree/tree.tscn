@@ -1,0 +1,15 @@
+[gd_scene load_steps=4 format=3 uid="uid://binja76g82dw2"]
+
+[ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_ypbbb"]
+[ext_resource type="SpriteFrames" uid="uid://qpmf7gwfip30" path="res://npc/tree/tree_sprite_frames.tres" id="2_iwfej"]
+[ext_resource type="SpriteFrames" uid="uid://bb17rygnm3xo0" path="res://npc/tree/afflicted_tree_sprite_frames.tres" id="3_r30ly"]
+
+[node name="Tree" instance=ExtResource("1_ypbbb")]
+npc_name = "Living Tree"
+normal_sprite_frames = ExtResource("2_iwfej")
+afflicted_sprite_frames = ExtResource("3_r30ly")
+
+[node name="NPCSprite" parent="." index="1"]
+sprite_frames = ExtResource("2_iwfej")
+animation = &"walk"
+offset = Vector2(0, -34.9)

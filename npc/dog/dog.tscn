@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bjvdu0glstg11"]
+[gd_scene load_steps=5 format=3 uid="uid://bjvdu0glstg11"]
 
 [ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_3mnbp"]
 [ext_resource type="Script" path="res://npc/dog/dog_npc_controller.gd" id="2_8brgj"]
 [ext_resource type="SpriteFrames" uid="uid://cqflvl52smsff" path="res://npc/dog/dog_sprite_frames.tres" id="3_ljd24"]
+[ext_resource type="SpriteFrames" uid="uid://bjmon0doanmh8" path="res://npc/dog/afflicted_dog_sprite_frames.tres" id="4_ws8kk"]
 
 [node name="Dog" instance=ExtResource("1_3mnbp")]
 script = ExtResource("2_8brgj")
@@ -10,9 +11,11 @@ npc_speed = 225.0
 npc_name = "Celestial Canine"
 wander_x_bound = 200.0
 wander_y_bound = 200.0
+normal_sprite_frames = ExtResource("3_ljd24")
+afflicted_sprite_frames = ExtResource("4_ws8kk")
 
 [node name="NPCSprite" parent="." index="1"]
 sprite_frames = ExtResource("3_ljd24")
-animation = &"idle"
-frame_progress = 0.000367057
-offset = Vector2(0, -11.655)
+animation = &"walk"
+frame_progress = 0.774835
+offset = Vector2(0, -15.49)

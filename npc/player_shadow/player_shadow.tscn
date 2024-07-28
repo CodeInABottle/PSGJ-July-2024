@@ -1,0 +1,20 @@
+[gd_scene load_steps=5 format=3 uid="uid://k4sypw8x8rw2"]
+
+[ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_i4moq"]
+[ext_resource type="Material" uid="uid://do2xy617wcc44" path="res://npc/player_shadow/afflicted_boss_material.tres" id="2_a1avl"]
+[ext_resource type="SpriteFrames" uid="uid://b1fiq04vdyt84" path="res://npc/player_shadow/player_shadow_sprite_frames.tres" id="3_63fdk"]
+[ext_resource type="SpriteFrames" uid="uid://byf7r2m54bn3t" path="res://npc/player_shadow/afflicted_player_shadow_sprite_frames.tres" id="3_lslg3"]
+
+[node name="PlayerShadow" instance=ExtResource("1_i4moq")]
+npc_speed = 200.0
+npc_name = "Player Shadow"
+normal_sprite_frames = ExtResource("3_63fdk")
+afflicted_sprite_frames = ExtResource("3_lslg3")
+
+[node name="NPCSprite" parent="." index="1"]
+material = ExtResource("2_a1avl")
+sprite_frames = ExtResource("3_63fdk")
+animation = &"walk"
+frame = 3
+frame_progress = 0.484425
+offset = Vector2(8.025, -11.705)
