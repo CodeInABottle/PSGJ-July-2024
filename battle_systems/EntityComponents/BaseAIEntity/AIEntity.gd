@@ -6,6 +6,9 @@ signal ability_finished
 signal captured
 signal capture_status_animated
 
+const MAX_RESIDUE_STACKS: int = 3
+const MAX_RESIDUE_TURNS: int = 2
+
 @export var enemy_status_indicator: BattlefieldEnemyStatusIndicator
 @export var player_entity: BattlefieldPlayerEntity
 @export var enemy_position: Marker2D
@@ -16,6 +19,12 @@ signal capture_status_animated
 @onready var animation_holder: Marker2D = %AnimationHolder
 
 var _data: BattlefieldEnemyData
+var _residues: Dictionary = {
+	TypeChart.ResonateType.EARTH: [],
+	TypeChart.ResonateType.WATER: [],
+	TypeChart.ResonateType.AIR: [],
+	TypeChart.ResonateType.FIRE: [],
+}
 var _long_term_memory: Dictionary = {
 	"highest_damage": 0,
 	"ap_cost": 0
@@ -94,17 +103,36 @@ func take_damage(damage_data: Dictionary) -> void:
 	if _data.special_frame_idx != -1:
 		animation_holder.get_child(0).set_shadow_frame(_data.special_frame_idx)
 
+	var trigger_capture_damage: bool = damage_data["resonate_type"] == _data.resonate
+	# Check for residue capture
+	if not trigger_capture_damage:
+		var residues_used: Array[TypeChart.ResonateType] = _check_if_can_resonate_with_residues(damage_data)
+		if not residues_used.is_empty():
+			trigger_capture_damage = true
+			# Reduce residues
+			for type: TypeChart.ResonateType in residues_used:
+				_residues[type].clear()
+
 	# Calculate Capture
-	if damage_data["resonate_type"] == _data.resonate:
-		var capture_damage: int = ceili(damage_data["damage"] * damage_data["capture_rate"])
+	if trigger_capture_damage:
+		var capture_damage: int = ceili(damage_data["damage"] * EnemyDatabase.CAPTURE_RATE_EFFICENCY)
 		print("Capture Damage: ", capture_damage)
 		_capture_value -= capture_damage
 		flash_player.play("Flash")
+	# Didnt do capture damage, leave residues
+	else:
+		for type: TypeChart.ResonateType in damage_data["components"]:
+			# Skip if at max stacks
+			if _residues[type].size() >= MAX_RESIDUE_STACKS: continue
+
+			_residues[type].push_back(MAX_RESIDUE_TURNS)
+
+	# Update status residues
+	_update_residues()
 
 	# Calculate Damage
 	entity_tracker.damage_taken.emit(false, damage_data)
 	_health -= damage_data["damage"]
-
 
 func has_ap() -> bool:
 	return _alchemy_points > 0
@@ -220,6 +248,54 @@ func get_ability_chain() -> Array[int]:
 			abilities_chosen.erase(ability.name)
 		idx += 1
 	return ability_idxs
+
+func reduce_residues() -> void:
+	for type: TypeChart.ResonateType in _residues.keys():
+		var temp_stack: Array[int] = []
+		while not _residues[type].is_empty():
+			var turn_count: int = _residues[type].pop_back()
+
+			turn_count -= 1
+			if turn_count > 0:
+				temp_stack.push_back(turn_count)
+		_residues[type].assign(temp_stack)
+	_update_residues()
+
+func _update_residues() -> void:
+	for type: TypeChart.ResonateType in _residues.keys():
+		var amount: int = _residues[type].size()
+		var blink: bool = false
+		if amount == 1 and _residues[type][0] == 1:
+			blink = true
+		enemy_status_indicator.update_residues(type, amount, blink)
+
+func _check_if_can_resonate_with_residues(damage_data: Dictionary) -> Array[TypeChart.ResonateType]:
+		var resonance_breakdown: Array[TypeChart.ResonateType] = TypeChart.get_resonance_breakdown(_data.resonate)
+		var used_components: Array[TypeChart.ResonateType] = damage_data["components"].duplicate()
+
+		# Reduce residues
+		var temp_resudue_usage: Dictionary = _residues.duplicate(true)
+		var temp_stack: Array[TypeChart.ResonateType] = []
+		while not resonance_breakdown.is_empty():
+			var breakdown_type: TypeChart.ResonateType = resonance_breakdown.pop_back()
+			if temp_resudue_usage[breakdown_type].is_empty():
+				temp_stack.push_back(breakdown_type)
+				continue
+
+			temp_resudue_usage[breakdown_type].pop_back()
+
+		while not temp_stack.is_empty():
+			var temp_type: TypeChart.ResonateType = temp_stack.pop_back()
+			if temp_type in used_components:
+				used_components.erase(temp_type)
+				continue
+			return []
+
+		var results: Array[TypeChart.ResonateType] = []
+		for type: TypeChart.ResonateType in _residues.keys():
+			if _residues[type].size() != temp_resudue_usage[type].size():
+				results.push_back(type)
+		return results
 
 func _knap_sack(ap: int, abilities: Array[BattlefieldAbility], ability_count: int) -> Dictionary:
 	if ability_count == 0 or ap <= 0: return {}

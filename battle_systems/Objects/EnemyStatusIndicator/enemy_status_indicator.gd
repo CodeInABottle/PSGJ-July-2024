@@ -6,6 +6,11 @@ extends Control
 @onready var secondary: ProgressBar = %Secondary
 @onready var hp_timer: Timer = %HPTimer
 
+@onready var earth_residue: TextureRect = %EarthResidue
+@onready var water_residue: TextureRect = %WaterResidue
+@onready var air_residue: TextureRect = %AirResidue
+@onready var fire_residue: TextureRect = %FireResidue
+
 var _damage_pooled: int = 0
 var _tween: Tween
 
@@ -30,6 +35,17 @@ func heal_health(amount: int) -> void:
 
 func set_resonate(type: TypeChart.ResonateType) -> void:
 	resonate_indicator.set_data(type)
+
+func update_residues(type: TypeChart.ResonateType, amount: int, blink: bool) -> void:
+	match type:
+		TypeChart.ResonateType.EARTH:
+			earth_residue.set_amount(amount, blink)
+		TypeChart.ResonateType.WATER:
+			water_residue.set_amount(amount, blink)
+		TypeChart.ResonateType.AIR:
+			air_residue.set_amount(amount, blink)
+		TypeChart.ResonateType.FIRE:
+			fire_residue.set_amount(amount, blink)
 
 func _on_hp_timer_timeout() -> void:
 	if _tween:

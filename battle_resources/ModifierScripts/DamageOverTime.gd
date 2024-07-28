@@ -12,7 +12,6 @@ func execute(tracker: BattlefieldEntityTracker, additional_data: Dictionary) -> 
 	var damage_data: Dictionary = {
 		"damage": damage,
 		"resonate_type": additional_data["resonate_type"],
-		"capture_rate": additional_data["efficiency_capture_rate"],
 	}
 
 	# This is flipped to apply DoT
