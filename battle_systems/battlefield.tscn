@@ -74,7 +74,7 @@ metadata/_edit_lock_ = true
 
 [node name="PlayerEntity" parent="." node_paths=PackedStringArray("attack_position", "entity_tracker") instance=ExtResource("8_4gulr")]
 unique_name_in_owner = true
-position = Vector2(200, 163)
+position = Vector2(39, 0)
 attack_position = NodePath("../PlayerAttackPosition")
 entity_tracker = NodePath("../EntityTracker")
 
@@ -95,7 +95,7 @@ metadata/_edit_lock_ = true
 
 [node name="PlayerAttackPosition" type="Marker2D" parent="."]
 unique_name_in_owner = true
-position = Vector2(176, 135)
+position = Vector2(133, 135)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

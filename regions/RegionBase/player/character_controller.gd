@@ -55,12 +55,15 @@ func _physics_process(_delta: float) -> void:
 			if Input.is_action_pressed("sprint"):
 				velocity = input_direction * player_speed * sprint_scale
 				player_visual_body.player_sprite.play("walk", sprint_scale)
+				player_visual_body.arrow_indicator.play("sprint")
 			else:
 				velocity = input_direction * player_speed
 				player_visual_body.player_sprite.play("walk", 1.0)
+				player_visual_body.arrow_indicator.stop()
 		else:
 			velocity = Vector2.ZERO
 			player_visual_body.player_sprite.stop()
+			player_visual_body.arrow_indicator.stop()
 	elif being_redirected:
 		var next_path_position: Vector2 = nav.get_next_path_position()
 		var desired_direction: Vector2 = global_position.direction_to(next_path_position)
