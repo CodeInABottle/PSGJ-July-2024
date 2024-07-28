@@ -171,12 +171,13 @@ func can_stun() -> bool:
 	return false
 
 func load_data(data: Dictionary) -> void:
-	#level = data.get("level", 0)
+	level = data.get("level", 0)
 	health = data.get("health", health)
 	max_health = data.get("max_health", max_health)
 	player.teleport_to(data.get("position", player.get_global_position()))
 	_current_unlocked_shadows = data.get("unlocked_shadow_data", {})
 	inventory_items = data.get("inventory", {})
+	_equipped_shadows.assign(data.get("equipped_shadows", {}))
 
 func get_save_data() -> Dictionary:
 	return {
@@ -186,4 +187,5 @@ func get_save_data() -> Dictionary:
 		"unlocked_shadow_data": _current_unlocked_shadows,
 		"position": player.get_global_position(),
 		"inventory": inventory_items,
+		"equipped_shadows": _equipped_shadows,
 	}

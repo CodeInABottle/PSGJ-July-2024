@@ -6,8 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://bfqw64oerqxlo" path="res://regions/RegionBase/player/player_physics_body.tscn" id="6_cslu1"]
 [ext_resource type="PackedScene" uid="uid://ix7hbnaiolav" path="res://regions/RegionBase/Cameras/area_phantom_camera.tscn" id="7_cto0r"]
 [ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://regions/RegionBase/player/player_visual_body.tscn" id="7_hwcki"]
-[ext_resource type="PackedScene" uid="uid://dbdse8704j148" path="res://old_areas/setup_timer.tscn" id="8_6ewx1"]
-[ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://old_areas/transition_area.tscn" id="8_fx8f5"]
+[ext_resource type="PackedScene" uid="uid://dbdse8704j148" path="res://overworld_stuff/setup_timer.tscn" id="8_6ewx1"]
+[ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://overworld_stuff/transition_area.tscn" id="8_fx8f5"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_1wo2h"]
 texture = ExtResource("1_q7fjw")

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Dialogue" load_steps=6 format=3 uid="uid://u1ym5mdaelck"]
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://u1ym5mdaelck"]
 
 [ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_2dwx7"]
 [ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_th45p"]
@@ -6,11 +6,15 @@
 
 [sub_resource type="Resource" id="Resource_re3da"]
 script = ExtResource("1_2dwx7")
-line_text = "Hello"
+line_text = "ATTENTION!"
+
+[sub_resource type="Resource" id="Resource_fk1gw"]
+script = ExtResource("1_2dwx7")
+line_text = "Please be kind to the wildlife :D"
 
 [sub_resource type="Resource" id="Resource_ay6td"]
 script = ExtResource("2_th45p")
-block_lines = Array[ExtResource("1_2dwx7")]([SubResource("Resource_re3da")])
+block_lines = Array[ExtResource("1_2dwx7")]([SubResource("Resource_re3da"), SubResource("Resource_fk1gw")])
 
 [resource]
 script = ExtResource("3_j6ica")

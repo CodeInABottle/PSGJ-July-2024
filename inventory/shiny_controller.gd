@@ -24,7 +24,7 @@ func on_body_entered_area(entered_body: Node2D) -> void:
 
 func on_body_exited_area(exited_body: Node2D) -> void:
 	if exited_body.is_in_group("player"):
-		stop_shiny.call_deferred()
+		stop_shiny()
 
 func on_fade_timer_timeout() -> void:
 	shiny_player.stop()

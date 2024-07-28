@@ -38,8 +38,7 @@ func _on_interaction_ended() -> void:
 	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
 	pickup_interaction_ended.emit(get_index())
-	pickup_area.hide()
-	item_sprite.hide()
+	get_parent().remove_child(self)
 
 func on_dialogue_ended() -> void:
 	DialogueManager.dialogue_ended.disconnect(on_dialogue_ended)

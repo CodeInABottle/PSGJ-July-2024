@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://inventory/pickup_lore_controller.gd" id="1_g8mjm"]
 [ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_pi61h"]
-[ext_resource type="Script" path="res://old_areas/interactable_controller.gd" id="3_nbbub"]
+[ext_resource type="Script" path="res://overworld_stuff/interactable_controller.gd" id="3_nbbub"]
 [ext_resource type="PackedScene" uid="uid://bh1xhng4qi57g" path="res://ui/pickup_layer.tscn" id="4_ugjrt"]
 [ext_resource type="PackedScene" uid="uid://dfx4boutf3fkk" path="res://inventory/shiny.tscn" id="5_7gtov"]
 
@@ -10,6 +10,7 @@
 
 [node name="PickupLore" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "item_sprite", "shiny", "pickup_area", "interactable") groups=["navigation"]]
 collision_layer = 2
+collision_mask = 17
 script = ExtResource("1_g8mjm")
 menu_layer = NodePath("PickupLayer")
 item_sprite = NodePath("Sprite2D")
