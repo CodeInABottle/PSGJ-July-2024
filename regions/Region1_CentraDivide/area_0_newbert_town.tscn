@@ -188,32 +188,35 @@ editor_draw_limits = true
 position = Vector2(156, 9)
 checkpoint_name = "cat_bridge"
 
-[node name="Checkpoint2" parent="." index="9" instance=ExtResource("2_dyflh")]
-position = Vector2(755, 566)
+[node name="TEMPCheckpoint" type="Marker2D" parent="." index="9"]
+position = Vector2(755, 567)
+
+[node name="Checkpoint2" parent="." index="10" instance=ExtResource("2_dyflh")]
+position = Vector2(369, 907)
 checkpoint_name = "newbert_town_1"
 
-[node name="CenterSign" parent="." index="10" instance=ExtResource("3_ys51d")]
+[node name="CenterSign" parent="." index="11" instance=ExtResource("3_ys51d")]
 position = Vector2(383, 514)
 dialogue = ExtResource("4_5sarm")
 
-[node name="NorthSign" parent="." index="11" instance=ExtResource("3_ys51d")]
+[node name="NorthSign" parent="." index="12" instance=ExtResource("3_ys51d")]
 position = Vector2(656, 39)
 dialogue = SubResource("Resource_n4asm")
 
-[node name="PhantomCamera2D" parent="." index="12"]
+[node name="PhantomCamera2D" parent="." index="13"]
 position = Vector2(328, 188)
 limit_left = 8
 limit_top = 8
 limit_right = 1530
 limit_bottom = 1424
 
-[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="14"]
+[node name="NavigationRegion2D" type="NavigationRegion2D" parent="." index="15"]
 navigation_polygon = SubResource("NavigationPolygon_5n5xx")
 
-[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." index="15"]
+[node name="NavigationRegion2D2" type="NavigationRegion2D" parent="." index="16"]
 navigation_polygon = SubResource("NavigationPolygon_ava20")
 
-[node name="Shadows" type="Node2D" parent="." index="16"]
+[node name="Shadows" type="Node2D" parent="." index="17"]
 
 [node name="Dog" parent="Shadows" index="0" instance=ExtResource("9_nnsxx")]
 position = Vector2(956, 720)
@@ -224,7 +227,7 @@ position = Vector2(527, 862)
 [node name="Fish" parent="Shadows" index="2" instance=ExtResource("10_5lu1v")]
 position = Vector2(1074, 976)
 
-[node name="IntroArea" type="Area2D" parent="." index="17" node_paths=PackedStringArray("redirect_marker")]
+[node name="IntroArea" type="Area2D" parent="." index="18" node_paths=PackedStringArray("redirect_marker")]
 position = Vector2(321, 835)
 script = ExtResource("16_2tg1f")
 disable_type = "DisableOnItem"

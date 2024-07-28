@@ -1,9 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://bws60pday3bya"]
+[gd_scene load_steps=22 format=3 uid="uid://bws60pday3bya"]
 
 [ext_resource type="Script" path="res://ui/checkpoint_menu_layer_controller2.gd" id="1_qhipo"]
 [ext_resource type="Script" path="res://ui/lore_panel_controller.gd" id="2_y8nyu"]
 [ext_resource type="Texture2D" uid="uid://dricw8clpchv3" path="res://assets/placeholders/concept_map.png" id="3_ae4qe"]
 [ext_resource type="Script" path="res://ui/fast_travel_map_controller.gd" id="4_j67w7"]
+[ext_resource type="Texture2D" uid="uid://bs46umtlkhyso" path="res://assets/sprites/general/checkpoint.png" id="5_ld75s"]
+[ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="6_qm2ju"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyk05"]
 bg_color = Color(0.556863, 0.596078, 0.713726, 1)
@@ -23,11 +25,91 @@ border_color = Color(0.286275, 0.176471, 0.0823529, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpwrt"]
 
-[node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("slot_shadows_button", "hear_lore_button", "menu_close_button", "lore_panel", "lore_list", "battle_button", "fast_travel_button", "fast_travel_map")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iud6o"]
+bg_color = Color(0, 0, 0, 0.27451)
+anti_aliasing = false
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_58jxe"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qga6c"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4fv7"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wrns"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gakx2"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2vwx"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaf3n"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfeug"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqgpr"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(256, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np50f"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xy34n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58jxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qga6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4fv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wrns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gakx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2vwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaf3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfeug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqgpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np50f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("slot_shadows_button", "lore_panel", "lore_list", "battle_button", "fast_travel_button", "fast_travel_map")]
 script = ExtResource("1_qhipo")
 slot_shadows_button = NodePath("OptionsPanel/Options/SlotShadowsButton")
-hear_lore_button = NodePath("OptionsPanel/Options/HearLoreButton")
-menu_close_button = NodePath("OptionsPanel/Options/MenuCloseButton")
 lore_panel = NodePath("OptionsPanel/LorePanel")
 lore_list = NodePath("OptionsPanel/LorePanel/VBoxContainer/ScrollContainer/LoreList")
 battle_button = NodePath("OptionsPanel/Options/BattleButton")
@@ -61,11 +143,6 @@ layout_mode = 2
 text = "SLOT 
 SHADOWS"
 
-[node name="HearLoreButton" type="Button" parent="OptionsPanel/Options"]
-layout_mode = 2
-text = "HEAR 
-LORE"
-
 [node name="FastTravelButton" type="Button" parent="OptionsPanel/Options"]
 layout_mode = 2
 text = "FAST
@@ -74,10 +151,6 @@ TRAVEL"
 [node name="BattleButton" type="Button" parent="OptionsPanel/Options"]
 layout_mode = 2
 text = "BATTLE"
-
-[node name="MenuCloseButton" type="Button" parent="OptionsPanel/Options"]
-layout_mode = 2
-text = "CLOSE"
 
 [node name="LorePanel" type="PanelContainer" parent="OptionsPanel" node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel", "lore_author_label")]
 visible = false
@@ -199,3 +272,81 @@ offset_top = 168.0
 offset_right = 406.0
 offset_bottom = 199.0
 text = "Old Home"
+
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_iud6o")
+metadata/_edit_lock_ = true
+
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_qm2ju")
+metadata/_edit_lock_ = true
+
+[node name="Polygon2D" type="Polygon2D" parent="Buttons"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(348, 82, 515, 51, 516, 56, 352, 85)
+
+[node name="Polygon2D2" type="Polygon2D" parent="Buttons"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(464, 172, 352, 147, 351, 153, 462, 178)
+
+[node name="Polygon2D3" type="Polygon2D" parent="Buttons"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(169, 270, 273, 209, 279, 212, 173, 274)
+
+[node name="Polygon2D4" type="Polygon2D" parent="Buttons"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(193, 91, 280, 126, 281, 131, 191, 98)
+
+[node name="Close" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 30.0
+offset_right = 589.0
+offset_bottom = 62.0
+text = "Close"
+
+[node name="Lore" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 74.0
+offset_right = 201.0
+offset_bottom = 106.0
+text = "Read Lore"
+
+[node name="Shadows" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 169.0
+offset_right = 564.0
+offset_bottom = 201.0
+text = "Shadows"
+
+[node name="FastTravel" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 265.0
+offset_right = 183.0
+offset_bottom = 297.0
+text = "Fast Travel"
+
+[node name="CheckPoint" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 180)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_xy34n")
+autoplay = "default"
+frame_progress = 0.805613
+metadata/_edit_lock_ = true
+
+[connection signal="pressed" from="Buttons/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Buttons/Lore" to="." method="_on_lore_pressed"]

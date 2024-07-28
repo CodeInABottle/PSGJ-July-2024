@@ -3,6 +3,7 @@
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="1_pfn0u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h40tw"]
+content_margin_top = 4.0
 bg_color = Color(0.45, 0.1305, 0.1305, 1)
 border_width_right = 3
 border_width_bottom = 3
@@ -16,6 +17,7 @@ anti_aliasing = false
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1sguu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22f4b"]
+content_margin_top = 2.0
 bg_color = Color(0.85098, 0.341176, 0.388235, 1)
 border_width_right = 3
 border_width_bottom = 3
@@ -27,6 +29,7 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uumir"]
+content_margin_top = 4.0
 bg_color = Color(0.67451, 0.196078, 0.196078, 1)
 border_width_right = 3
 border_width_bottom = 3
@@ -38,6 +41,7 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2ll8"]
+content_margin_top = 2.0
 bg_color = Color(0.270588, 0.156863, 0.235294, 1)
 border_width_right = 3
 border_width_bottom = 3

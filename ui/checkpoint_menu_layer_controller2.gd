@@ -2,8 +2,6 @@ class_name CheckpointMenuLayer2
 extends CanvasLayer
 
 @export var slot_shadows_button: Button
-@export var hear_lore_button: Button
-@export var menu_close_button: Button
 @export var lore_panel: LorePanel
 @export var lore_list: ItemList
 @export var checkpoint: Checkpoint
@@ -15,19 +13,12 @@ var pending_load: String = ""
 
 func _ready() -> void:
 	slot_shadows_button.pressed.connect(on_slot_shadows_pressed)
-	hear_lore_button.pressed.connect(on_hear_lore_pressed)
 	visibility_changed.connect(on_visibility_changed)
 	checkpoint.checkpoint_interaction_ended.connect(on_interaction_ended)
 	battle_button.pressed.connect(on_battle_pressed)
 	fast_travel_button.pressed.connect(on_fast_travel_pressed)
 	fast_travel_map.fast_travel_started.connect(on_fast_travel_started)
-	
-	menu_close_button.pressed.connect(on_menu_close_pressed)
-	
-	hide_all_parts()
 
-func on_menu_close_pressed() -> void:
-	checkpoint.end_interaction()
 	hide_all_parts()
 
 func on_slot_shadows_pressed() -> void:
@@ -44,13 +35,6 @@ func on_battle_pressed() -> void:
 	pending_load = "battle"
 	LevelManager.menu_unloaded.connect(on_menu_unloaded)
 	LevelManager.trigger_battle("Mailbox", true)
-
-func on_hear_lore_pressed() -> void:
-	if lore_panel.is_visible_in_tree():
-		hide_all_parts()
-	else:
-		hide_all_parts()
-		lore_panel.start()
 
 func on_fast_travel_pressed() -> void:
 	if fast_travel_map.is_visible_in_tree():
@@ -69,7 +53,7 @@ func hide_all_parts() -> void:
 func on_translucent_to_black_complete() -> void:
 	if pending_load == "workbench":
 		LevelManager.load_menu("workbench")
-	
+
 func on_black_to_translucent_complete() -> void:
 	show()
 	MenuManager.fader_controller.black_to_translucent_complete.disconnect(on_black_to_translucent_complete)
@@ -81,14 +65,25 @@ func on_interaction_ended() -> void:
 func on_menu_unloaded() -> void:
 	if MenuManager.fader_controller.translucent_to_black_complete.is_connected(on_translucent_to_black_complete):
 		MenuManager.fader_controller.translucent_to_black_complete.disconnect(on_translucent_to_black_complete)
-	
+
 	LevelManager.menu_unloaded.disconnect(on_menu_unloaded)
-	
+
 	MenuManager.fader_controller.black_to_translucent_complete.connect(on_black_to_translucent_complete)
 	MenuManager.fader_controller.black_to_translucent()
-	
+
 	pending_load = ""
-	
+
 func on_fast_travel_started(_checkpoint_name: String) -> void:
 	hide_all_parts()
 	hide()
+
+func _on_close_pressed() -> void:
+	checkpoint.end_interaction()
+	hide_all_parts()
+
+func _on_lore_pressed() -> void:
+	if lore_panel.is_visible_in_tree():
+		hide_all_parts()
+	else:
+		hide_all_parts()
+		lore_panel.start()
