@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://c2ppqoj6pfm85"]
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://c2ppqoj6pfm85"]
 
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="1_pfn0u"]
 
@@ -71,6 +71,24 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gmp2"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtqau"]
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8o1r"]
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwk13"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywt0a"]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6trt"]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
 [resource]
 Button/constants/outline_size = 2
 Button/font_sizes/font_size = 28
@@ -83,3 +101,8 @@ Button/styles/pressed = SubResource("StyleBoxFlat_m2ll8")
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_lt7m6")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_lxi3q")
 LineEdit/styles/read_only = SubResource("StyleBoxEmpty_3gmp2")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_jtqau")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_d8o1r")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_qwk13")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_ywt0a")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_c6trt")

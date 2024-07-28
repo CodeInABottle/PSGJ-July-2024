@@ -1,46 +1,20 @@
 class_name CheckpointMenuLayer2
 extends CanvasLayer
 
-@export var slot_shadows_button: Button
+@onready var fast_travel_map: FastTravelMap = %FastTravelMap
+
 @export var lore_panel: LorePanel
 @export var lore_list: ItemList
 @export var checkpoint: Checkpoint
-@export var battle_button: Button
-@export var fast_travel_button: Button
-@export var fast_travel_map: FastTravelMap
 
 var pending_load: String = ""
 
 func _ready() -> void:
-	slot_shadows_button.pressed.connect(on_slot_shadows_pressed)
 	visibility_changed.connect(on_visibility_changed)
 	checkpoint.checkpoint_interaction_ended.connect(on_interaction_ended)
-	battle_button.pressed.connect(on_battle_pressed)
-	fast_travel_button.pressed.connect(on_fast_travel_pressed)
 	fast_travel_map.fast_travel_started.connect(on_fast_travel_started)
 
 	hide_all_parts()
-
-func on_slot_shadows_pressed() -> void:
-	hide_all_parts()
-	hide()
-	pending_load = "workbench"
-	LevelManager.menu_unloaded.connect(on_menu_unloaded)
-	MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)
-	MenuManager.fader_controller.translucent_to_black()
-
-func on_battle_pressed() -> void:
-	hide_all_parts()
-	hide()
-	pending_load = "battle"
-	LevelManager.menu_unloaded.connect(on_menu_unloaded)
-	LevelManager.trigger_battle("Mailbox", true)
-
-func on_fast_travel_pressed() -> void:
-	if fast_travel_map.is_visible_in_tree():
-		fast_travel_map.hide()
-	else:
-		fast_travel_map.show()
 
 func on_visibility_changed() -> void:
 	if not is_visible():
@@ -87,3 +61,17 @@ func _on_lore_pressed() -> void:
 	else:
 		hide_all_parts()
 		lore_panel.start()
+
+func _on_shadows_pressed() -> void:
+	hide_all_parts()
+	hide()
+	pending_load = "workbench"
+	LevelManager.menu_unloaded.connect(on_menu_unloaded)
+	MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)
+	MenuManager.fader_controller.translucent_to_black()
+
+func _on_fast_travel_pressed() -> void:
+	if fast_travel_map.is_visible_in_tree():
+		fast_travel_map.hide()
+	else:
+		fast_travel_map.show()
