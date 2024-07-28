@@ -234,7 +234,7 @@ position = Vector2(156, 9)
 checkpoint_name = "Cat Bridge"
 
 [node name="Checkpoint2" parent="Interactables" index="1" instance=ExtResource("2_dyflh")]
-position = Vector2(755, 566)
+position = Vector2(370, 893)
 checkpoint_name = "Newbert Town"
 
 [node name="CenterSign" parent="Interactables" index="2" instance=ExtResource("3_ys51d")]
