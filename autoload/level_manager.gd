@@ -52,8 +52,8 @@ var _levels: Dictionary = {
 
 # Newbert Town
 "Newbert Town": "res://regions/Region1_CentraDivide/area_0_newbert_town.tscn",
-"NewbertPlayerCellar": "res://regions/Region1_CentraDivide/NewbertInteriors/player_cellar.tscn",
-"NewbertPlayerFloor1": "res://regions/Region1_CentraDivide/NewbertInteriors/player_floor_1.tscn",
+"Cellar": "res://regions/Region1_CentraDivide/NewbertInteriors/player_cellar.tscn",
+"Home": "res://regions/Region1_CentraDivide/NewbertInteriors/player_floor_1.tscn",
 
 # Remembrance Town
 "Remembrance": "res://regions/Region1_CentraDivide/area_1_remembrance.tscn",
@@ -66,10 +66,9 @@ var _levels: Dictionary = {
 # checkpoints
 # checkpoint_name (String) : [area_name (String), entry_id(int)]
 var _checkpoints: Dictionary = {
-	"start" : ["Newbert Town", 0],
-	"home" : ["Newbert Town", 2],
-	"cat_bridge" : ["Newbert Town", 1],
-	"Old Home" : ["area_0", 0],
+	"start" : ["Home", 0],
+	"newbert_town_1" : ["Newbert Town", 2],
+	"cat_bridge" : ["Newbert Town", 4],
 }
 
 # Set as the first level to be loaded
@@ -80,6 +79,7 @@ var _entry_point: String = "Newbert Town"
 
 # used by is_paused() utility function
 var _is_paused: bool = false
+var is_transitioning: bool = false
 
 # Anchors
 var master_node: Node
