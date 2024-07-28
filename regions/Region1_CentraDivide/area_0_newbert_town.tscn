@@ -134,10 +134,10 @@ shape = SubResource("RectangleShape2D_i357e")
 [node name="IntroArea" type="Area2D" parent="LeashAreas" index="0" node_paths=PackedStringArray("redirect_marker")]
 position = Vector2(321, 835)
 script = ExtResource("16_2tg1f")
-disable_type = "DisableOnItem"
+disable_type = "DisableOnShadow"
 hint_dialogue = SubResource("Resource_bn84e")
 redirect_marker = NodePath("../../WarpPoints/Start")
-disable_leash_name = "Branch"
+disable_leash_name = "Earth Worm"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeashAreas/IntroArea" index="0"]
 shape = SubResource("CircleShape2D_dsw8y")

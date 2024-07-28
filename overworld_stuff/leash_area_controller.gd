@@ -8,7 +8,6 @@ extends Area2D
 @export var redirect_marker: Marker2D
 @export var disable_leash_name: String
 
-
 func _ready() -> void:
 	body_exited.connect(on_body_exited)
 	is_disabled()
@@ -48,3 +47,8 @@ func redirect_player() -> void:
 	if hint_dialogue != null:
 		PlayerStats.player.play_hint(hint_dialogue)
 	PlayerStats.player.redirect(redirect_marker.get_global_position())
+
+func on_world_event(event_name:String, args: Array) -> void:
+	if event_name == "battle_finished" and disable_type == "DisableOnShadow":
+		if args[0] == disable_leash_name:
+			queue_free()
