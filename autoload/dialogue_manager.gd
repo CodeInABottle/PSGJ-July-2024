@@ -2,6 +2,7 @@ extends Node
 
 var player_dialogue_ui: DialogueUI
 
+signal dialogue_started()
 signal dialogue_ended()
 
 func play_dialogue(dialogue: Dialogue, content_key: String, speaker_name: String = "", speaker_icon: Texture2D = null) -> void:
@@ -11,7 +12,8 @@ func play_dialogue(dialogue: Dialogue, content_key: String, speaker_name: String
 		
 		if speaker_icon != null:
 			player_dialogue_ui.speaker_icon.texture = speaker_icon
-
+		
+		dialogue_started.emit()
 		player_dialogue_ui.show_dialogue(dialogue, content_key)
 
 func advance_dialogue() -> void:

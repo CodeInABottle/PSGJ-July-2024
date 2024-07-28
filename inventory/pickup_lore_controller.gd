@@ -6,6 +6,8 @@ extends PickupItem
 var in_dialogue: bool = false
 
 func on_interaction_started(_interactable: Interactable) -> void:
+	LevelManager.world_event_occurred.emit("item_get:"+item_name, [])
+	DialogueManager.end_dialogue()
 	shiny.stop_shiny()
 	menu_layer.update_info(item_name)
 	menu_layer.reveal()
@@ -37,7 +39,6 @@ func _on_interaction_ended() -> void:
 	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
 	PlayerStats.add_item(item_name, quantity)
-	LevelManager.world_event_occurred.emit("item_get:"+item_name, [])
 	pickup_interaction_ended.emit(get_index())
 	get_parent().remove_child(self)
 

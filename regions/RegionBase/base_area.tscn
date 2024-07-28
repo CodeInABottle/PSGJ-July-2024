@@ -25,6 +25,9 @@ unique_name_in_owner = true
 [node name="LeashAreas" type="Node" parent="."]
 unique_name_in_owner = true
 
+[node name="HintAreas" type="Node" parent="."]
+unique_name_in_owner = true
+
 [node name="Interactables" type="Node" parent="."]
 unique_name_in_owner = true
 

@@ -74,7 +74,7 @@ var _checkpoints: Dictionary = {
 # Set as the first level to be loaded
 # -- Used by `load_entry_point()` only
 # -- entry_id used is 0
-var _entry_point: String = "Newbert Town"
+var _entry_point: String = "Home"
 #var _entry_point: String = "area_0"
 
 # used by is_paused() utility function
@@ -312,6 +312,7 @@ func on_translucent_to_black_complete() -> void:
 		load_menu("battle")
 
 func trigger_battle(enemy_name: String, start_translucent: bool = false) -> void:
+	DialogueManager.end_dialogue()
 	pending_load = "battle"
 	pending_battle = enemy_name
 	if start_translucent:

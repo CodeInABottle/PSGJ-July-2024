@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://0lkpdbn1f0j4"]
+
+[ext_resource type="Script" path="res://overworld_stuff/hint_area_controller.gd" id="1_63kh5"]
+
+[node name="HintArea" type="Area2D"]
+script = ExtResource("1_63kh5")
