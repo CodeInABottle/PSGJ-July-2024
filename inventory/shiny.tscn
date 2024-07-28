@@ -46,6 +46,7 @@ radius = 150.0
 
 [node name="Shiny" type="Sprite2D" node_paths=PackedStringArray("pickup_area", "shiny_area", "shiny_sprite", "shiny_player", "fade_timer")]
 modulate = Color(1, 1, 1, 0)
+z_index = 2
 position = Vector2(0, -28)
 rotation = 1.5708
 texture = ExtResource("1_4eipc")

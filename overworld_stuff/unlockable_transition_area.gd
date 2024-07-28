@@ -9,10 +9,12 @@ var _is_unlocked: bool = false
 func _ready() -> void:
 	body_entered.connect(_on_player_entered)
 	LevelManager.world_event_occurred.connect(on_world_event)
-	refresh_unlock()
+	PlayerStats.save_loaded.connect(refresh_unlock)
 
 func refresh_unlock() -> void:
 	var player_items: Dictionary = PlayerStats.get_inventory_items()
+	if PlayerStats.save_loaded.is_connected(refresh_unlock):
+		PlayerStats.save_loaded.disconnect(refresh_unlock)
 	if player_items.keys().has(unlock_item_name):
 		LevelManager.world_event_occurred.disconnect(on_world_event)
 		_is_unlocked = true

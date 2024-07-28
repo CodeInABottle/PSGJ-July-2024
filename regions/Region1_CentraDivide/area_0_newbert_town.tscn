@@ -118,7 +118,7 @@ position = Vector2(648, 720)
 item_name = "Lore Book 1"
 
 [node name="PickupBranch" parent="Pickups" index="2" instance=ExtResource("5_aqmjy")]
-position = Vector2(200, 786)
+position = Vector2(203, 792)
 collision_mask = 1
 
 [node name="TileMap" parent="." index="4" groups=["navigation"]]
