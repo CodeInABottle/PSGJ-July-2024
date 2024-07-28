@@ -2,7 +2,7 @@ class_name CheckpointMenuLayer2
 extends CanvasLayer
 
 @onready var fast_travel_map: FastTravelMap = %FastTravelMap
-
+@onready var lore_panel_shield: Panel = %LorePanelShield
 @export var lore_panel: LorePanel
 @export var lore_list: ItemList
 @export var checkpoint: Checkpoint
@@ -22,6 +22,7 @@ func on_visibility_changed() -> void:
 
 func hide_all_parts() -> void:
 	lore_panel.hide_all()
+	lore_panel_shield.hide()
 	lore_list.deselect_all()
 
 func on_translucent_to_black_complete() -> void:
@@ -61,6 +62,7 @@ func _on_lore_pressed() -> void:
 	else:
 		hide_all_parts()
 		lore_panel.start()
+		lore_panel_shield.show()
 
 func _on_shadows_pressed() -> void:
 	hide_all_parts()
@@ -75,3 +77,6 @@ func _on_fast_travel_pressed() -> void:
 		fast_travel_map.hide()
 	else:
 		fast_travel_map.show()
+
+func _on_close_lore_button_pressed() -> void:
+	_on_lore_pressed()

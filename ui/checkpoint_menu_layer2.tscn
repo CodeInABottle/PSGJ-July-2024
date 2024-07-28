@@ -93,15 +93,6 @@ animations = [{
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4lb0o"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7ssy"]
-bg_color = Color(0.329412, 0.364706, 0.470588, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_bottom = 4
-border_color = Color(0.25098, 0.121569, 0.141176, 1)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpwrt"]
-
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gvwuf"]
 texture = ExtResource("7_yehf5")
 texture_margin_left = 24.0
@@ -110,6 +101,13 @@ texture_margin_right = 32.0
 texture_margin_bottom = 20.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxmyy"]
+font = ExtResource("8_o4g1v")
+font_size = 21
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_15tgb"]
 font = ExtResource("8_o4g1v")
@@ -122,14 +120,16 @@ outline_color = Color(0, 0, 0, 1)
 font = ExtResource("8_o4g1v")
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpwrt"]
+
 [sub_resource type="LabelSettings" id="LabelSettings_xuspy"]
 font = ExtResource("8_o4g1v")
 font_color = Color(0, 0, 0, 1)
 
 [node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("lore_panel", "lore_list")]
 script = ExtResource("1_qhipo")
-lore_panel = NodePath("LorePanel/LorePanel")
-lore_list = NodePath("LorePanel/LorePanel/VBoxContainer/ScrollContainer/LoreList")
+lore_panel = NodePath("LorePanel")
+lore_list = NodePath("LorePanel/VBoxContainer/ScrollContainer/LoreList")
 
 [node name="Panel" type="Panel" parent="."]
 anchors_preset = 15
@@ -231,24 +231,24 @@ offset_right = 361.0
 offset_bottom = 199.0
 text = "Old Home"
 
-[node name="LorePanel" type="Panel" parent="."]
+[node name="LorePanelShield" type="Panel" parent="."]
+unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 2
+theme = ExtResource("6_qm2ju")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4lb0o")
-metadata/_edit_lock_ = true
 
-[node name="LorePanel" type="PanelContainer" parent="LorePanel" node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel", "lore_author_label")]
+[node name="LorePanel" type="PanelContainer" parent="." node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel", "lore_author_label")]
 custom_minimum_size = Vector2(216, 0)
-layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
 offset_right = 216.0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t7ssy")
+theme = ExtResource("6_qm2ju")
+theme_override_styles/panel = SubResource("StyleBoxTexture_gvwuf")
 script = ExtResource("2_y8nyu")
 lore_list = NodePath("VBoxContainer/ScrollContainer/LoreList")
 lore_name = NodePath("../LoreDetailsPanel/MarginContainer/VBoxContainer/TitleLabel")
@@ -256,59 +256,62 @@ lore_text = NodePath("../LoreDetailsPanel/MarginContainer/VBoxContainer/MarginCo
 lore_details_panel = NodePath("../LoreDetailsPanel")
 lore_author_label = NodePath("../LoreDetailsPanel/MarginContainer/VBoxContainer/Author Label")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LorePanel/LorePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LorePanel"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="LorePanel/LorePanel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LorePanel/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
 
-[node name="TitleLabel" type="Label" parent="LorePanel/LorePanel/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="LorePanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 text = "LORE"
+label_settings = SubResource("LabelSettings_sxmyy")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="LorePanel/LorePanel/VBoxContainer"]
+[node name="CloseLoreButton" type="Button" parent="LorePanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
+text = "Close"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LorePanel/LorePanel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LorePanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LoreList" type="ItemList" parent="LorePanel/LorePanel/VBoxContainer/ScrollContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="LoreList" type="ItemList" parent="LorePanel/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 auto_height = true
 fixed_icon_size = Vector2i(32, 32)
 
-[node name="LoreDetailsPanel" type="PanelContainer" parent="LorePanel"]
+[node name="LoreDetailsPanel" type="PanelContainer" parent="."]
 custom_minimum_size = Vector2(216, 0)
-layout_mode = 1
 anchors_preset = 11
 anchor_left = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -93.0
+offset_left = -220.0
 grow_horizontal = 0
 grow_vertical = 2
+theme = ExtResource("6_qm2ju")
 theme_override_styles/panel = SubResource("StyleBoxTexture_gvwuf")
 
-[node name="MarginContainer" type="MarginContainer" parent="LorePanel/LoreDetailsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="LoreDetailsPanel"]
 layout_mode = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="LorePanel/LoreDetailsPanel/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LoreDetailsPanel/MarginContainer"]
 layout_mode = 2
 
-[node name="TitleLabel" type="Label" parent="LorePanel/LoreDetailsPanel/MarginContainer/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="LoreDetailsPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "NAME"
 label_settings = SubResource("LabelSettings_15tgb")
 horizontal_alignment = 1
 
-[node name="Author Label" type="Label" parent="LorePanel/LoreDetailsPanel/MarginContainer/VBoxContainer"]
+[node name="Author Label" type="Label" parent="LoreDetailsPanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 0.355)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
@@ -317,20 +320,20 @@ label_settings = SubResource("LabelSettings_nqj7s")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSeparator3" type="HSeparator" parent="LorePanel/LoreDetailsPanel/MarginContainer/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="LoreDetailsPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
 
-[node name="MarginContainer" type="MarginContainer" parent="LorePanel/LoreDetailsPanel/MarginContainer/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LoreDetailsPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="LorePanel/LoreDetailsPanel/MarginContainer/VBoxContainer/MarginContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LoreDetailsPanel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
 theme = ExtResource("6_qm2ju")
 horizontal_scroll_mode = 0
 
-[node name="Text" type="Label" parent="LorePanel/LoreDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+[node name="Text" type="Label" parent="LoreDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
 custom_minimum_size = Vector2(160, 275)
 layout_mode = 2
 size_flags_vertical = 3
@@ -352,3 +355,4 @@ autowrap_mode = 3
 [connection signal="pressed" from="Buttons/Lore" to="." method="_on_lore_pressed"]
 [connection signal="pressed" from="Buttons/Shadows" to="." method="_on_shadows_pressed"]
 [connection signal="pressed" from="Buttons/FastTravel" to="." method="_on_fast_travel_pressed"]
+[connection signal="pressed" from="LorePanel/VBoxContainer/HBoxContainer/CloseLoreButton" to="." method="_on_close_lore_button_pressed"]

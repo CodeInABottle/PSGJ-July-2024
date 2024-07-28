@@ -6,6 +6,7 @@ extends Control
 @onready var load_confirm: Button = %LoadConfirm
 @onready var menu_buttons: Control = %MenuButtons
 @onready var save_string_container: Control = %SaveStringContainer
+@onready var splash_art: Control = %SplashArt
 
 var _fader_controller: CanvasLayer
 var _save_string: String
@@ -45,6 +46,8 @@ func _on_back_pressed() -> void:
 	animation_player.play_backwards("SlideSaveStringUp")
 	await animation_player.animation_finished
 	animation_player.play_backwards("SlideMainButtonsDown")
+	await animation_player.animation_finished
+	control_shield.hide()
 
 func _on_credits_pressed() -> void:
 	animation_player.play("SlideMainButtonsDown")
@@ -52,3 +55,5 @@ func _on_credits_pressed() -> void:
 	animation_player.play("Credits")
 	await animation_player.animation_finished
 	animation_player.play_backwards("SlideMainButtonsDown")
+	await animation_player.animation_finished
+	control_shield.hide()
