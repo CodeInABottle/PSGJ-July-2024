@@ -4,6 +4,8 @@ extends Control
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var save_string_edit: LineEdit = %SaveStringEdit
 @onready var load_confirm: Button = %LoadConfirm
+@onready var menu_buttons: Control = %MenuButtons
+@onready var save_string_container: Control = %SaveStringContainer
 
 var _fader_controller: CanvasLayer
 var _save_string: String
@@ -12,6 +14,8 @@ func _ready() -> void:
 	_fader_controller = get_node("/root/Main/FaderLayer")
 	_fader_controller.fade_out_complete.connect(_on_fade_out_complete)
 	control_shield.hide()
+	menu_buttons.show()
+	save_string_container.show()
 
 func _on_fade_out_complete() -> void:
 	_fader_controller.fade_out_complete.disconnect(_on_fade_out_complete)
@@ -39,5 +43,12 @@ func _on_save_string_edit_text_changed(new_text: String) -> void:
 
 func _on_back_pressed() -> void:
 	animation_player.play_backwards("SlideSaveStringUp")
+	await animation_player.animation_finished
+	animation_player.play_backwards("SlideMainButtonsDown")
+
+func _on_credits_pressed() -> void:
+	animation_player.play("SlideMainButtonsDown")
+	await animation_player.animation_finished
+	animation_player.play("Credits")
 	await animation_player.animation_finished
 	animation_player.play_backwards("SlideMainButtonsDown")

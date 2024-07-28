@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b00ed71qa2ap5"
-path="res://.godot/imported/JamSmall.png-840625ea69679612b1cb96ac42975d9a.ctex"
+uid="uid://pvumv3xswurv"
+path="res://.godot/imported/gamejam.png-b59ea0298eccb072e0f81fda16b2b475.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/sprites/general/JamSmall.png"
-dest_files=["res://.godot/imported/JamSmall.png-840625ea69679612b1cb96ac42975d9a.ctex"]
+source_file="res://assets/sprites/general/gamejam.png"
+dest_files=["res://.godot/imported/gamejam.png-b59ea0298eccb072e0f81fda16b2b475.ctex"]
 
 [params]
 
