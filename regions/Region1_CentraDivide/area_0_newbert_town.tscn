@@ -303,6 +303,8 @@ shape = SubResource("RectangleShape2D_d0ftd")
 
 [node name="PlayerPhysicsBody" parent="." index="10"]
 collision_mask = 18
+player_speed = 65.0
+sprint_scale = 2.0
 
 [node name="Camera2D" parent="." index="12"]
 position = Vector2(328, 188)
