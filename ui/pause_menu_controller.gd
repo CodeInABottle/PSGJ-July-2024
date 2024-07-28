@@ -42,7 +42,7 @@ func on_bag_button_pressed() -> void:
 func on_item_selected(_index: int) -> void:
 	update_details()
 	details_panel.show()
-	
+
 func on_interact_button_pressed() -> void:
 	pass
 
@@ -60,7 +60,7 @@ func update_details() -> void:
 		item_name_label.text = item.item_name
 		item_icon.texture = item.item_icon
 		item_description.text = item.item_description
-		
+
 		if item is LoreItem:
 			#interact_button.show()
 			pass
