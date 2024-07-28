@@ -28,7 +28,6 @@ func on_interaction_advanced(_interactable: Interactable) -> void:
 
 func on_interaction_quick_closed() -> void:
 	print("pickup interaction quick-closed")
-	PlayerStats.add_item(item_name, quantity)
 	_on_interaction_ended()
 
 func _on_interaction_ended() -> void:
@@ -37,6 +36,7 @@ func _on_interaction_ended() -> void:
 		DialogueManager.end_dialogue()
 	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
+	PlayerStats.add_item(item_name, quantity)
 	pickup_interaction_ended.emit(get_index())
 	get_parent().remove_child(self)
 

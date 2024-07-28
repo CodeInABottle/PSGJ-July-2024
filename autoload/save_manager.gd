@@ -9,6 +9,8 @@ var modifier_saves: Dictionary = {}
 var current_save_dictionary: Dictionary = {}
 var load_pending: bool = false
 
+
+
 func _ready() -> void:
 	create_unique_saves()
 	create_modifier_saves()
