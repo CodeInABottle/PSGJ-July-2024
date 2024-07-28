@@ -35,7 +35,7 @@ func update_info(item_name: String) -> void:
 func hide_menu() -> void:
 	var menu_tween: Tween = pickup_menu.create_tween()
 	menu_tween.tween_property(pickup_menu, "modulate", Color(1,1,1,0), 0.5)
-	
+
 func show_menu() -> void:
 	var menu_tween: Tween = pickup_menu.create_tween()
 	menu_tween.tween_property(pickup_menu, "modulate", Color(1,1,1,1), 0.5)
