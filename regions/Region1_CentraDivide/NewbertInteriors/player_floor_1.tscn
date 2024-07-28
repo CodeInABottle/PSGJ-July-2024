@@ -145,6 +145,18 @@ vertical_alignment = 1
 [node name="Sprite2D" type="Sprite2D" parent="ArrowHintLabel" index="0"]
 z_index = 1
 position = Vector2(-8, 14)
+rotation = 3.14159
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("6_pmjjn")
 hframes = 2
+
+[node name="PauseHintLabel" type="Label" parent="." index="19"]
+offset_left = 278.0
+offset_top = 137.0
+offset_right = 353.0
+offset_bottom = 151.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("5_1gpcv")
+theme_override_font_sizes/font_size = 15
+text = "ESC to pause"
+vertical_alignment = 1
