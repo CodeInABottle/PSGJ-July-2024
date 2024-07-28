@@ -3,6 +3,8 @@ extends Node
 signal health_updated
 signal ap_updated
 
+signal save_loaded()
+
 var player: Player
 
 # If the player did no other actions when turn ends,
@@ -178,6 +180,7 @@ func load_data(data: Dictionary) -> void:
 	_current_unlocked_shadows = data.get("unlocked_shadow_data", {})
 	inventory_items = data.get("inventory", {})
 	_equipped_shadows.assign(data.get("equipped_shadows", {}))
+	save_loaded.emit()
 
 func get_save_data() -> Dictionary:
 	return {
