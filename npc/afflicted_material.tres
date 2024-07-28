@@ -3,8 +3,8 @@
 [ext_resource type="Shader" path="res://assets/shaders/battle_background.gdshader" id="1_pbswd"]
 
 [sub_resource type="Gradient" id="Gradient_fphvd"]
-offsets = PackedFloat32Array(0, 0.202358, 0.408644, 0.583497, 0.732809, 0.803536, 0.880157, 1)
-colors = PackedColorArray(0.154, 0.154, 0.22, 1, 0.3612, 0.294, 0.42, 1, 0.41, 0.287, 0.3075, 1, 0.68, 0.6222, 0.476, 1, 0.28, 0.2338, 0.196, 1, 0.3, 0.3, 0.3, 1, 0.4845, 0.57, 0.57, 1, 0.154, 0.154, 0.22, 1)
+offsets = PackedFloat32Array(0, 0.146259, 0.285714, 0.414966, 0.557823, 0.710884, 0.843537, 1)
+colors = PackedColorArray(0.154, 0.154, 0.22, 1, 0.3612, 0.294, 0.42, 1, 0.41, 0.287, 0.3075, 1, 0.145808, 0.239802, 0.0708308, 1, 0.28, 0.2338, 0.196, 1, 0.3, 0.3, 0.3, 1, 0.316947, 0.386653, 0.386736, 1, 0.154, 0.154, 0.22, 1)
 
 [sub_resource type="GradientTexture1D" id="GradientTexture1D_r4oal"]
 gradient = SubResource("Gradient_fphvd")
