@@ -66,9 +66,9 @@ var _levels: Dictionary = {
 # checkpoints
 # checkpoint_name (String) : [area_name (String), entry_id(int)]
 var _checkpoints: Dictionary = {
-	"start" : ["Home", 0],
-	"newbert_town_1" : ["Newbert Town", 2],
-	"cat_bridge" : ["Newbert Town", 4],
+	"Home" : ["Home", 0],
+	"Newbert Town" : ["Newbert Town", 2],
+	"Cat Bridge" : ["Newbert Town", 4],
 }
 
 # Set as the first level to be loaded
@@ -99,7 +99,7 @@ var loaded_menu: Node = null
 # Can be used to check what is the currently loaded level
 var region_name: String
 var current_modifiers: Array = []
-var current_checkpoint: String = "start"
+var current_checkpoint: String = "Home"
 var current_anchor: Node
 
 var pending_load: String = ""
