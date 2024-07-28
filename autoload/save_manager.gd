@@ -6,6 +6,7 @@ var unique_saves: Dictionary = {}
 # save string : custom save dictionary
 var modifier_saves: Dictionary = {}
 
+var tutorial_save_dictionary: Dictionary = {}
 var current_save_dictionary: Dictionary = {}
 var load_pending: bool = false
 
@@ -56,14 +57,19 @@ func generate_scene_from_string(save_string: String) -> void:
 		current_save_dictionary = save_dictionary
 		load_pending = true
 		LevelManager.load_save(current_save_dictionary)
+		load_tutorial_data(current_save_dictionary)
 	else:
 		LevelManager.load_entry_point()
+
+func load_tutorial_data(current_save_dictionary: Dictionary) -> void:
+	pass
 
 func get_save_data() -> Dictionary:
 	var save_dictionary: Dictionary = PlayerStats.get_save_data() # initialize w/ player saves
 	var level_save_dictionary: Dictionary = LevelManager.get_save_data()
 
 	save_dictionary.merge(level_save_dictionary)
+	save_dictionary.merge(tutorial_save_dictionary)
 
 	return save_dictionary
 
