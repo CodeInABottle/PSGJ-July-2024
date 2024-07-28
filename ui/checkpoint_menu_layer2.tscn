@@ -229,7 +229,7 @@ offset_left = 275.0
 offset_top = 168.0
 offset_right = 361.0
 offset_bottom = 199.0
-text = "Old Home"
+text = "Home"
 
 [node name="LorePanelShield" type="Panel" parent="."]
 unique_name_in_owner = true
