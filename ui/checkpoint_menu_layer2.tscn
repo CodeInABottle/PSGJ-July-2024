@@ -1,201 +1,358 @@
-[gd_scene load_steps=8 format=3 uid="uid://bws60pday3bya"]
+[gd_scene load_steps=28 format=3 uid="uid://bws60pday3bya"]
 
 [ext_resource type="Script" path="res://ui/checkpoint_menu_layer_controller2.gd" id="1_qhipo"]
 [ext_resource type="Script" path="res://ui/lore_panel_controller.gd" id="2_y8nyu"]
 [ext_resource type="Texture2D" uid="uid://dricw8clpchv3" path="res://assets/placeholders/concept_map.png" id="3_ae4qe"]
 [ext_resource type="Script" path="res://ui/fast_travel_map_controller.gd" id="4_j67w7"]
+[ext_resource type="Texture2D" uid="uid://bs46umtlkhyso" path="res://assets/sprites/general/checkpoint.png" id="5_ld75s"]
+[ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="6_qm2ju"]
+[ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="7_yehf5"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="8_o4g1v"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyk05"]
-bg_color = Color(0.556863, 0.596078, 0.713726, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.635294, 0.423529, 0.239216, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iud6o"]
+bg_color = Color(0, 0, 0, 0.27451)
+anti_aliasing = false
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t7ssy"]
-bg_color = Color(0.329412, 0.364706, 0.470588, 1)
-border_width_left = 4
-border_width_top = 4
-border_width_right = 4
-border_width_bottom = 4
-border_color = Color(0.286275, 0.176471, 0.0823529, 1)
+[sub_resource type="AtlasTexture" id="AtlasTexture_58jxe"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qga6c"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(32, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_b4fv7"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(64, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7wrns"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gakx2"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(128, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v2vwx"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(160, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_xaf3n"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(192, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kfeug"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(224, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qqgpr"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(256, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np50f"]
+atlas = ExtResource("5_ld75s")
+region = Rect2(0, 0, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_xy34n"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_58jxe")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qga6c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_b4fv7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7wrns")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gakx2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v2vwx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xaf3n")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kfeug")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qqgpr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np50f")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_4lb0o"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_gvwuf"]
+texture = ExtResource("7_yehf5")
+texture_margin_left = 24.0
+texture_margin_top = 16.0
+texture_margin_right = 32.0
+texture_margin_bottom = 20.0
+axis_stretch_horizontal = 2
+axis_stretch_vertical = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_sxmyy"]
+font = ExtResource("8_o4g1v")
+font_size = 21
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_15tgb"]
+font = ExtResource("8_o4g1v")
+font_size = 18
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_nqj7s"]
+font = ExtResource("8_o4g1v")
+font_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_tpwrt"]
 
-[node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("slot_shadows_button", "hear_lore_button", "menu_close_button", "lore_panel", "lore_list", "battle_button", "fast_travel_button", "fast_travel_map")]
+[sub_resource type="LabelSettings" id="LabelSettings_xuspy"]
+font = ExtResource("8_o4g1v")
+font_color = Color(0, 0, 0, 1)
+
+[node name="CheckpointMenuLayer" type="CanvasLayer" node_paths=PackedStringArray("lore_panel", "lore_list")]
 script = ExtResource("1_qhipo")
-slot_shadows_button = NodePath("OptionsPanel/Options/SlotShadowsButton")
-hear_lore_button = NodePath("OptionsPanel/Options/HearLoreButton")
-menu_close_button = NodePath("OptionsPanel/Options/MenuCloseButton")
-lore_panel = NodePath("OptionsPanel/LorePanel")
-lore_list = NodePath("OptionsPanel/LorePanel/VBoxContainer/ScrollContainer/LoreList")
-battle_button = NodePath("OptionsPanel/Options/BattleButton")
-fast_travel_button = NodePath("OptionsPanel/Options/FastTravelButton")
-fast_travel_map = NodePath("OptionsPanel/FastTravelMap")
+lore_panel = NodePath("LorePanel")
+lore_list = NodePath("LorePanel/VBoxContainer/ScrollContainer/LoreList")
 
-[node name="OptionsPanel" type="Panel" parent="."]
-anchors_preset = 9
+[node name="Panel" type="Panel" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = 120.0
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_vyk05")
-
-[node name="Options" type="VBoxContainer" parent="OptionsPanel"]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -44.0
-offset_top = -60.0
-offset_right = 44.0
-offset_bottom = 60.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_constants/separation = 12
+theme_override_styles/panel = SubResource("StyleBoxFlat_iud6o")
+metadata/_edit_lock_ = true
 
-[node name="SlotShadowsButton" type="Button" parent="OptionsPanel/Options"]
-layout_mode = 2
-text = "SLOT 
-SHADOWS"
+[node name="Buttons" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_qm2ju")
+metadata/_edit_lock_ = true
 
-[node name="HearLoreButton" type="Button" parent="OptionsPanel/Options"]
-layout_mode = 2
-text = "HEAR 
-LORE"
+[node name="Polygon2D" type="Polygon2D" parent="Buttons"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(348, 82, 515, 51, 516, 56, 352, 85)
 
-[node name="FastTravelButton" type="Button" parent="OptionsPanel/Options"]
-layout_mode = 2
-text = "FAST
-TRAVEL"
+[node name="Polygon2D2" type="Polygon2D" parent="Buttons"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(464, 172, 352, 147, 351, 153, 462, 178)
 
-[node name="BattleButton" type="Button" parent="OptionsPanel/Options"]
-layout_mode = 2
-text = "BATTLE"
+[node name="Polygon2D3" type="Polygon2D" parent="Buttons"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(168, 236, 273, 209, 279, 212, 169, 242)
 
-[node name="MenuCloseButton" type="Button" parent="OptionsPanel/Options"]
-layout_mode = 2
-text = "CLOSE"
+[node name="Polygon2D4" type="Polygon2D" parent="Buttons"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(193, 91, 280, 126, 281, 131, 191, 98)
 
-[node name="LorePanel" type="PanelContainer" parent="OptionsPanel" node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel", "lore_author_label")]
+[node name="Close" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 510.0
+offset_top = 30.0
+offset_right = 589.0
+offset_bottom = 62.0
+text = "Close"
+
+[node name="Lore" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 86.0
+offset_top = 74.0
+offset_right = 201.0
+offset_bottom = 106.0
+text = "Read Lore"
+
+[node name="Shadows" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 457.0
+offset_top = 169.0
+offset_right = 564.0
+offset_bottom = 201.0
+text = "Shadows"
+
+[node name="FastTravel" type="Button" parent="Buttons"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 224.0
+offset_right = 183.0
+offset_bottom = 256.0
+text = "Fast Travel"
+
+[node name="CheckPoint" type="AnimatedSprite2D" parent="."]
+position = Vector2(320, 180)
+scale = Vector2(5, 5)
+sprite_frames = SubResource("SpriteFrames_xy34n")
+autoplay = "default"
+frame_progress = 0.546567
+metadata/_edit_lock_ = true
+
+[node name="FastTravelMap" type="TextureRect" parent="."]
+unique_name_in_owner = true
 visible = false
-layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_ae4qe")
+expand_mode = 2
+script = ExtResource("4_j67w7")
+
+[node name="MapButtons" type="Control" parent="FastTravelMap"]
+unique_name_in_owner = true
+anchors_preset = 0
+mouse_filter = 1
+
+[node name="Button" type="Button" parent="FastTravelMap/MapButtons"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 168.0
+offset_right = 361.0
+offset_bottom = 199.0
+text = "Old Home"
+
+[node name="LorePanelShield" type="Panel" parent="."]
+unique_name_in_owner = true
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("6_qm2ju")
+theme_override_styles/panel = SubResource("StyleBoxEmpty_4lb0o")
+
+[node name="LorePanel" type="PanelContainer" parent="." node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel", "lore_author_label")]
+custom_minimum_size = Vector2(216, 0)
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 120.0
-offset_right = 336.0
+offset_right = 216.0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t7ssy")
+theme = ExtResource("6_qm2ju")
+theme_override_styles/panel = SubResource("StyleBoxTexture_gvwuf")
 script = ExtResource("2_y8nyu")
 lore_list = NodePath("VBoxContainer/ScrollContainer/LoreList")
-lore_name = NodePath("../LoreDetailsPanel/VBoxContainer/TitleLabel")
-lore_text = NodePath("../LoreDetailsPanel/VBoxContainer/TextContainer/ScrollContainer/Text")
+lore_name = NodePath("../LoreDetailsPanel/MarginContainer/VBoxContainer/TitleLabel")
+lore_text = NodePath("../LoreDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer/Text")
 lore_details_panel = NodePath("../LoreDetailsPanel")
-lore_author_label = NodePath("../LoreDetailsPanel/VBoxContainer/Author Label")
+lore_author_label = NodePath("../LoreDetailsPanel/MarginContainer/VBoxContainer/Author Label")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel/LorePanel"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LorePanel"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="OptionsPanel/LorePanel/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="LorePanel/VBoxContainer"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
 
-[node name="TitleLabel" type="Label" parent="OptionsPanel/LorePanel/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="LorePanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
 text = "LORE"
+label_settings = SubResource("LabelSettings_sxmyy")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="OptionsPanel/LorePanel/VBoxContainer"]
+[node name="CloseLoreButton" type="Button" parent="LorePanel/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
+text = "Close"
 
-[node name="ScrollContainer" type="ScrollContainer" parent="OptionsPanel/LorePanel/VBoxContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LorePanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="LoreList" type="ItemList" parent="OptionsPanel/LorePanel/VBoxContainer/ScrollContainer"]
-custom_minimum_size = Vector2(200, 0)
+[node name="LoreList" type="ItemList" parent="LorePanel/VBoxContainer/ScrollContainer"]
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 auto_height = true
 fixed_icon_size = Vector2i(32, 32)
 
-[node name="LoreDetailsPanel" type="PanelContainer" parent="OptionsPanel"]
-visible = false
-layout_mode = 2
-offset_left = 336.0
-offset_right = 552.0
-offset_bottom = 360.0
+[node name="LoreDetailsPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(216, 0)
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -220.0
+grow_horizontal = 0
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t7ssy")
+theme = ExtResource("6_qm2ju")
+theme_override_styles/panel = SubResource("StyleBoxTexture_gvwuf")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel/LoreDetailsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="LoreDetailsPanel"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="LoreDetailsPanel/MarginContainer"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
 
-[node name="TitleLabel" type="Label" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="LoreDetailsPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 text = "NAME"
+label_settings = SubResource("LabelSettings_15tgb")
 horizontal_alignment = 1
 
-[node name="HSeparator2" type="HSeparator" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
-
-[node name="Author Label" type="Label" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+[node name="Author Label" type="Label" parent="LoreDetailsPanel/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 0.355)
 layout_mode = 2
 theme_override_font_sizes/font_size = 11
 text = "Author"
+label_settings = SubResource("LabelSettings_nqj7s")
 horizontal_alignment = 1
 autowrap_mode = 3
 
-[node name="HSeparator3" type="HSeparator" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+[node name="HSeparator3" type="HSeparator" parent="LoreDetailsPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
 
-[node name="TextContainer" type="PanelContainer" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="LoreDetailsPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 
-[node name="ScrollContainer" type="ScrollContainer" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer/TextContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="LoreDetailsPanel/MarginContainer/VBoxContainer/MarginContainer"]
 layout_mode = 2
+theme = ExtResource("6_qm2ju")
+horizontal_scroll_mode = 0
 
-[node name="Text" type="Label" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer/TextContainer/ScrollContainer"]
-custom_minimum_size = Vector2(195.465, 275)
+[node name="Text" type="Label" parent="LoreDetailsPanel/MarginContainer/VBoxContainer/MarginContainer/ScrollContainer"]
+custom_minimum_size = Vector2(160, 275)
 layout_mode = 2
 size_flags_vertical = 3
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id ex aliquam, dapibus orci vel, imperdiet lorem. Nulla ac dignissim orci. Nam eu ligula sapien. Etiam et neque vitae enim feugiat maximus at id erat. Phasellus sit amet elit orci. Pellentesque at odio lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur pulvinar elementum dolor. Ut urna leo, ultrices quis pellentesque et, dignissim et odio. Ut interdum mauris metus, id vulputate turpis tincidunt eu. Fusce facilisis a magna convallis sodales.
+
+Pellentesque id nisi odio. Nulla auctor non augue eget mattis. Maecenas tincidunt elit sit amet cursus suscipit. Mauris sit amet hendrerit enim, et tincidunt erat. Sed efficitur dignissim elit, sed scelerisque arcu luctus sed. Vivamus viverra, ipsum eget tristique ultrices, nisi odio ullamcorper massa, vitae fringilla est nunc ut ante. Aliquam ante lacus, congue sed elit quis, semper volutpat velit. Suspendisse et facilisis arcu, nec dapibus nibh. Phasellus id eros ac purus sagittis commodo. Donec et dolor nisi. Pellentesque porttitor pellentesque congue.
+
+Cras quis nulla enim. Aliquam eget metus quis elit iaculis volutpat non nec augue. In eget quam non nibh vulputate fermentum vel in ligula. Curabitur pellentesque dui et nisi pretium, eu dapibus sem pretium. Quisque accumsan felis eu justo eleifend facilisis at at justo. Etiam et placerat ligula. Vestibulum non lorem dolor. Duis eu porttitor urna. Donec consectetur tincidunt enim. In pulvinar dui in nisl vestibulum, vitae dictum nulla congue.
+
+Vestibulum condimentum lorem at mi tincidunt, a mollis magna posuere. Proin eu ipsum faucibus, bibendum mi sit amet, fringilla ex. Morbi commodo aliquam lectus, in ornare augue malesuada a. Aenean et nisi aliquam, consectetur erat non, efficitur arcu. Ut magna libero, efficitur eu lectus non, suscipit ultricies risus. Nam sit amet ornare ante. Nunc elit ligula, gravida in volutpat et, pretium et tellus. Ut vitae sodales leo. Duis a suscipit ipsum. Phasellus quis enim quis tellus suscipit feugiat.
+
+Vestibulum blandit placerat augue in tempus. Donec euismod ut enim in commodo. Integer elementum auctor venenatis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque quis mauris a arcu sagittis faucibus consectetur sed sapien. In vulputate mi in odio hendrerit, vel faucibus nulla semper. Nam vel hendrerit purus. In dapibus enim imperdiet turpis tempor condimentum."
+label_settings = SubResource("LabelSettings_xuspy")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="FastTravelMap" type="TextureRect" parent="OptionsPanel"]
-visible = false
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_left = 120.0
-offset_right = 640.0
-grow_vertical = 2
-texture = ExtResource("3_ae4qe")
-expand_mode = 2
-script = ExtResource("4_j67w7")
-
-[node name="MapButtons" type="Control" parent="OptionsPanel/FastTravelMap"]
-unique_name_in_owner = true
-anchors_preset = 0
-mouse_filter = 1
-
-[node name="Button" type="Button" parent="OptionsPanel/FastTravelMap/MapButtons"]
-layout_mode = 0
-offset_left = 320.0
-offset_top = 168.0
-offset_right = 406.0
-offset_bottom = 199.0
-text = "Old Home"
+[connection signal="pressed" from="Buttons/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Buttons/Lore" to="." method="_on_lore_pressed"]
+[connection signal="pressed" from="Buttons/Shadows" to="." method="_on_shadows_pressed"]
+[connection signal="pressed" from="Buttons/FastTravel" to="." method="_on_fast_travel_pressed"]
+[connection signal="pressed" from="LorePanel/VBoxContainer/HBoxContainer/CloseLoreButton" to="." method="_on_close_lore_button_pressed"]

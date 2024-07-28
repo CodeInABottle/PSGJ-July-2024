@@ -25,6 +25,9 @@ func update_lore_list() -> void:
 		var item: InventoryItem = InventoryDatabase.get_item(item_name)
 		if item is LoreItem:
 			lore_list.add_item(item.item_name, item.item_icon)
+	# Disable tooltips since you can't theme them
+	for i: int in lore_list.item_count:
+		lore_list.set_item_tooltip_enabled(i, false)
 
 func update_lore_details() -> void:
 	if lore_list.is_anything_selected():

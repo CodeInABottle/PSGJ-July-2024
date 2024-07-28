@@ -1,8 +1,9 @@
-[gd_resource type="Theme" load_steps=10 format=3 uid="uid://c2ppqoj6pfm85"]
+[gd_resource type="Theme" load_steps=24 format=3 uid="uid://c2ppqoj6pfm85"]
 
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="1_pfn0u"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h40tw"]
+content_margin_top = 4.0
 bg_color = Color(0.45, 0.1305, 0.1305, 1)
 border_width_right = 3
 border_width_bottom = 3
@@ -16,6 +17,7 @@ anti_aliasing = false
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1sguu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22f4b"]
+content_margin_top = 2.0
 bg_color = Color(0.85098, 0.341176, 0.388235, 1)
 border_width_right = 3
 border_width_bottom = 3
@@ -27,6 +29,7 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uumir"]
+content_margin_top = 4.0
 bg_color = Color(0.67451, 0.196078, 0.196078, 1)
 border_width_right = 3
 border_width_bottom = 3
@@ -38,6 +41,7 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2ll8"]
+content_margin_top = 2.0
 bg_color = Color(0.270588, 0.156863, 0.235294, 1)
 border_width_right = 3
 border_width_bottom = 3
@@ -47,6 +51,35 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7byto"]
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vyfk5"]
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vrryu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_afpgw"]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_14htg"]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fnh2"]
+bg_color = Color(0.25098, 0.121569, 0.141176, 0.14902)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nsx4e"]
+bg_color = Color(0.25098, 0.121569, 0.141176, 0.14902)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_rky46"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_erk0d"]
+bg_color = Color(0.25098, 0.121569, 0.141176, 0.14902)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lt7m6"]
 
@@ -67,6 +100,24 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gmp2"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jtqau"]
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d8o1r"]
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qwk13"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywt0a"]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.180392, 0.180392, 0.180392, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c6trt"]
+content_margin_left = 2.0
+content_margin_right = 2.0
+bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
 [resource]
 Button/constants/outline_size = 2
 Button/font_sizes/font_size = 28
@@ -76,6 +127,24 @@ Button/styles/focus = SubResource("StyleBoxEmpty_1sguu")
 Button/styles/hover = SubResource("StyleBoxFlat_22f4b")
 Button/styles/normal = SubResource("StyleBoxFlat_uumir")
 Button/styles/pressed = SubResource("StyleBoxFlat_m2ll8")
+HScrollBar/styles/grabber = SubResource("StyleBoxFlat_7byto")
+HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_vyfk5")
+HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_vrryu")
+HScrollBar/styles/scroll = SubResource("StyleBoxFlat_afpgw")
+HScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_14htg")
+ItemList/colors/font_color = Color(0, 0, 0, 1)
+ItemList/colors/font_hovered_color = Color(0, 0, 0, 1)
+ItemList/colors/font_selected_color = Color(0.144063, 0.144063, 0.144063, 1)
+ItemList/fonts/font = ExtResource("1_pfn0u")
+ItemList/styles/cursor = SubResource("StyleBoxFlat_4fnh2")
+ItemList/styles/cursor_unfocused = SubResource("StyleBoxFlat_nsx4e")
+ItemList/styles/focus = SubResource("StyleBoxEmpty_rky46")
+ItemList/styles/panel = SubResource("StyleBoxFlat_erk0d")
 LineEdit/styles/focus = SubResource("StyleBoxEmpty_lt7m6")
 LineEdit/styles/normal = SubResource("StyleBoxFlat_lxi3q")
 LineEdit/styles/read_only = SubResource("StyleBoxEmpty_3gmp2")
+VScrollBar/styles/grabber = SubResource("StyleBoxFlat_jtqau")
+VScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_d8o1r")
+VScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_qwk13")
+VScrollBar/styles/scroll = SubResource("StyleBoxFlat_ywt0a")
+VScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_c6trt")
