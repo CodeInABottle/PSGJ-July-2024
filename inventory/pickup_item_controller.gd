@@ -46,6 +46,7 @@ func _on_interaction_ended() -> void:
 	menu_layer.disappear()
 	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
+	LevelManager.world_event_occurred.emit("item_get:"+item_name, [])
 	PlayerStats.add_item(item_name, quantity)
 	pickup_interaction_ended.emit(get_index())
 	get_parent().remove_child(self)

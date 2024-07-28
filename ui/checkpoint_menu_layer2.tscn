@@ -79,7 +79,7 @@ text = "BATTLE"
 layout_mode = 2
 text = "CLOSE"
 
-[node name="LorePanel" type="PanelContainer" parent="OptionsPanel" node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel")]
+[node name="LorePanel" type="PanelContainer" parent="OptionsPanel" node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel", "lore_author_label")]
 visible = false
 layout_mode = 1
 anchors_preset = 9
@@ -93,6 +93,7 @@ lore_list = NodePath("VBoxContainer/ScrollContainer/LoreList")
 lore_name = NodePath("../LoreDetailsPanel/VBoxContainer/TitleLabel")
 lore_text = NodePath("../LoreDetailsPanel/VBoxContainer/TextContainer/ScrollContainer/Text")
 lore_details_panel = NodePath("../LoreDetailsPanel")
+lore_author_label = NodePath("../LoreDetailsPanel/VBoxContainer/Author Label")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="OptionsPanel/LorePanel"]
 layout_mode = 2
@@ -147,6 +148,18 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
 
+[node name="Author Label" type="Label" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+custom_minimum_size = Vector2(0, 0.355)
+layout_mode = 2
+theme_override_font_sizes/font_size = 11
+text = "Author"
+horizontal_alignment = 1
+autowrap_mode = 3
+
+[node name="HSeparator3" type="HSeparator" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_tpwrt")
+
 [node name="TextContainer" type="PanelContainer" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
@@ -155,9 +168,8 @@ size_flags_vertical = 3
 layout_mode = 2
 
 [node name="Text" type="Label" parent="OptionsPanel/LoreDetailsPanel/VBoxContainer/TextContainer/ScrollContainer"]
-custom_minimum_size = Vector2(208, 309)
+custom_minimum_size = Vector2(195.465, 275)
 layout_mode = 2
-size_flags_horizontal = 3
 size_flags_vertical = 3
 horizontal_alignment = 1
 vertical_alignment = 1
@@ -181,6 +193,7 @@ anchors_preset = 0
 mouse_filter = 1
 
 [node name="Button" type="Button" parent="OptionsPanel/FastTravelMap/MapButtons"]
+layout_mode = 0
 offset_left = 320.0
 offset_top = 168.0
 offset_right = 406.0

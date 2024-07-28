@@ -7,6 +7,7 @@ extends Area2D
 var fader_controller: CanvasLayer
 
 func _ready() -> void:
+	LevelManager.is_transitioning = false
 	body_entered.connect(_on_player_entered)
 
 func _on_player_entered(entered_body: Node2D) -> void:
@@ -16,5 +17,6 @@ func _on_player_entered(entered_body: Node2D) -> void:
 		fader_controller.fade_out()
 
 func on_fade_out_complete() -> void:
+	LevelManager.is_transitioning = true
 	fader_controller.fade_out_complete.disconnect(on_fade_out_complete)
 	LevelManager.load_world(transition_scene_name, transition_entry_id)

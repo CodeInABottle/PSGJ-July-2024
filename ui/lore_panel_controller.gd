@@ -5,6 +5,7 @@ extends PanelContainer
 @export var lore_name: Label
 @export var lore_text: Label
 @export var lore_details_panel: PanelContainer
+@export var lore_author_label: Label
 
 func _ready() -> void:
 	lore_list.item_selected.connect(on_lore_selected)
@@ -15,6 +16,7 @@ func on_lore_selected(_index: int) -> void:
 
 func hide_all() -> void:
 	lore_details_panel.hide()
+	lore_author_label.hide()
 	hide()
 
 func update_lore_list() -> void:
@@ -31,6 +33,11 @@ func update_lore_details() -> void:
 		if item is LoreItem:
 			lore_name.text = item.item_name
 			lore_text.text = DialogueManager.dialogue_to_text(item.dialogue)
+			if item.author_name != "":
+				lore_author_label.text = item.author_name
+				lore_author_label.show()
+			else:
+				lore_author_label.hide()
 
 func start() -> void:
 	update_lore_list()

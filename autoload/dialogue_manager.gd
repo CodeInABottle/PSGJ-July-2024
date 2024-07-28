@@ -4,8 +4,14 @@ var player_dialogue_ui: DialogueUI
 
 signal dialogue_ended()
 
-func play_dialogue(dialogue: Dialogue, content_key: String) -> void:
+func play_dialogue(dialogue: Dialogue, content_key: String, speaker_name: String = "", speaker_icon: Texture2D = null) -> void:
 	if player_dialogue_ui:
+		if speaker_name != "":
+			player_dialogue_ui.speaker_name_label.text = speaker_name
+		
+		if speaker_icon != null:
+			player_dialogue_ui.speaker_icon.texture = speaker_icon
+
 		player_dialogue_ui.show_dialogue(dialogue, content_key)
 
 func advance_dialogue() -> void:

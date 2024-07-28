@@ -10,6 +10,7 @@ func _ready() -> void:
 	body_entered.connect(_on_player_entered)
 	LevelManager.world_event_occurred.connect(on_world_event)
 	PlayerStats.save_loaded.connect(refresh_unlock)
+	refresh_unlock()
 
 func refresh_unlock() -> void:
 	var player_items: Dictionary = PlayerStats.get_inventory_items()

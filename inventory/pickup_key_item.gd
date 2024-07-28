@@ -19,11 +19,13 @@ func _on_interaction_ended() -> void:
 	MenuManager.fader_controller.fade_from_translucent()
 	pickup_interaction_ended.emit(get_index())
 	PlayerStats.add_item(item_name, quantity)
+	LevelManager.world_event_occurred.emit("item_get:"+item_name, [])
 	world_event()
 	get_parent().remove_child(self)
 
 func world_event() -> void:
-	LevelManager.world_event_occurred.emit(_pickup_event_name, [])
+	if _pickup_event_name != "":
+		LevelManager.world_event_occurred.emit(_pickup_event_name, [])
 
 func update_key_info() -> void:
 	var item: KeyItem = InventoryDatabase.get_item(item_name)

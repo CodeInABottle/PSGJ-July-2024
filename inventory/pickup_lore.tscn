@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://7g63ugqd7du3"]
 
 [ext_resource type="Script" path="res://inventory/pickup_lore_controller.gd" id="1_g8mjm"]
-[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_pi61h"]
+[ext_resource type="Texture2D" uid="uid://cdc6rlxnyvxdm" path="res://assets/sprites/general/overworld_note.png" id="2_ftlex"]
 [ext_resource type="Script" path="res://overworld_stuff/interactable_controller.gd" id="3_nbbub"]
 [ext_resource type="PackedScene" uid="uid://bh1xhng4qi57g" path="res://ui/pickup_layer.tscn" id="4_ugjrt"]
 [ext_resource type="PackedScene" uid="uid://dfx4boutf3fkk" path="res://inventory/shiny.tscn" id="5_7gtov"]
@@ -23,8 +23,9 @@ interactable = NodePath("PickupArea")
 shape = SubResource("CircleShape2D_5i53s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.25, 0.25)
-texture = ExtResource("2_pi61h")
+z_index = 1
+y_sort_enabled = true
+texture = ExtResource("2_ftlex")
 region_rect = Rect2(0, 0, 384, 32)
 
 [node name="PickupArea" type="Area2D" parent="." groups=["interactable"]]

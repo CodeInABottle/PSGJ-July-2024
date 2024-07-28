@@ -32,8 +32,16 @@ func is_disabled() -> bool:
 		_:
 			return true
 
+func is_player_in_area() -> bool:
+	var detected_bodies: Array[Node2D] = get_overlapping_bodies()
+	for body: Node2D in detected_bodies:
+		if body is Player:
+			return true
+	
+	return false
+
 func on_body_exited(exited_body: Node2D) -> void:
-	if not is_disabled():
+	if not is_disabled() and not LevelManager.is_transitioning and exited_body is Player:
 		redirect_player()
 
 func redirect_player() -> void:
