@@ -1,19 +1,626 @@
-[gd_scene load_steps=5 format=3 uid="uid://c4fqfvleyq3nd"]
+[gd_scene load_steps=22 format=3 uid="uid://c4fqfvleyq3nd"]
 
+[ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="1_gpvpw"]
 [ext_resource type="Script" path="res://ui/pause_menu_controller.gd" id="1_iexfw"]
 [ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="2_75nro"]
+[ext_resource type="Texture2D" uid="uid://ck0ryfpje7uw8" path="res://assets/sprites/general/TitleScreen/title_screen_07.png" id="3_60pih"]
+[ext_resource type="Texture2D" uid="uid://8h714of42bsy" path="res://assets/sprites/player/player.png" id="3_763oi"]
+[ext_resource type="Shader" path="res://assets/shaders/battle_background.gdshader" id="3_ribot"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="6_rgki2"]
+[ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="7_811t4"]
+[ext_resource type="LabelSettings" uid="uid://c28j32sw07n2t" path="res://ui/Themes/TitleHeading.tres" id="8_6m7np"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_01uju"]
-bg_color = Color(0.556863, 0.596078, 0.713726, 1)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.635294, 0.423529, 0.239216, 1)
+[sub_resource type="Animation" id="Animation_fr2o3"]
+resource_name = "JumpUp"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(320, 478), Vector2(320, 478), Vector2(320, 107), Vector2(320, 251)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.3, 0.5, 0.75, 0.95, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4), Vector2i(3, 0), Vector2i(3, 1)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, false]
+}
 
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vieyj"]
+[sub_resource type="Animation" id="Animation_vswff"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 478)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:frame_coords")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [Vector2i(3, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Buttons/Close:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Buttons/Close:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Buttons/Save:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Buttons/Save:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Buttons/Inventory:disabled")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Buttons/Inventory:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Buttons/Respawn:visible")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/10/type = "value"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath("Buttons/Respawn:disabled")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/11/type = "value"
+tracks/11/imported = false
+tracks/11/enabled = true
+tracks/11/path = NodePath("SaveUI/ClipboardButton:size")
+tracks/11/interp = 1
+tracks/11/loop_wrap = true
+tracks/11/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(206, 32)]
+}
+tracks/12/type = "value"
+tracks/12/imported = false
+tracks/12/enabled = true
+tracks/12/path = NodePath("SaveUI/ClipboardButton:position")
+tracks/12/interp = 1
+tracks/12/loop_wrap = true
+tracks/12/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(246, 373)]
+}
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("SaveUI/BackFromSave:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(502, 370)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("SaveUI/BackFromSave:size")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(57, 32)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("SaveUI/ClipboardButton:disabled")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("SaveUI/BackFromSave:disabled")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("SaveUI/SaveString:size")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(448, 45)]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("SaveUI/SaveString:position")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(176, 370)]
+}
+tracks/19/type = "value"
+tracks/19/imported = false
+tracks/19/enabled = true
+tracks/19/path = NodePath("SaveUI/SavedText:position")
+tracks/19/interp = 1
+tracks/19/loop_wrap = true
+tracks/19/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(426, 195)]
+}
+tracks/20/type = "value"
+tracks/20/imported = false
+tracks/20/enabled = true
+tracks/20/path = NodePath("SaveUI/SavedText:self_modulate")
+tracks/20/interp = 1
+tracks/20/loop_wrap = true
+tracks/20/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
 
-[node name="PauseMenu" type="Control" node_paths=PackedStringArray("save_button", "respawn_button", "bag_button", "item_list", "item_name_label", "item_icon", "item_description", "interact_button", "items_panel", "details_panel")]
+[sub_resource type="Animation" id="Animation_lae8o"]
+resource_name = "DisplayButton"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Buttons/Close:disabled")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Buttons/Close:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Buttons/Save:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Buttons/Save:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.2),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Buttons/Inventory:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Buttons/Inventory:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("Buttons/Respawn:disabled")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("Buttons/Respawn:visible")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/8/type = "value"
+tracks/8/imported = false
+tracks/8/enabled = true
+tracks/8/path = NodePath("Buttons:visible")
+tracks/8/interp = 1
+tracks/8/loop_wrap = true
+tracks/8/keys = {
+"times": PackedFloat32Array(0, 0.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, true]
+}
+
+[sub_resource type="Animation" id="Animation_mls4s"]
+resource_name = "MoveLeft"
+length = 0.6
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame_coords")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.1, 0.15, 0.2, 0.25, 0.3, 0.35, 0.4, 0.45, 0.5, 0.55, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [Vector2i(3, 1), Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4), Vector2i(3, 1), Vector2i(3, 0), Vector2i(3, 1), Vector2i(3, 2), Vector2i(3, 3), Vector2i(3, 4), Vector2i(3, 1)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Sprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.25, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(320, 251), Vector2(320, 251), Vector2(240, 251), Vector2(240, 251), Vector2(100, 251), Vector2(100, 251)]
+}
+
+[sub_resource type="Animation" id="Animation_hglve"]
+resource_name = "SlideSaveUp"
+length = 1.4
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SaveUI/ClipboardButton:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(206, 32), Vector2(206, 32), Vector2(206, 32), Vector2(206, 32), Vector2(206, 32)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SaveUI/ClipboardButton:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.8, 0.9, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(246, 373), Vector2(246, 373), Vector2(246, 203), Vector2(246, 185), Vector2(246, 203)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SaveUI/BackFromSave:size")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(57, 32), Vector2(57, 32), Vector2(57, 32), Vector2(57, 32), Vector2(57, 32)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SaveUI/BackFromSave:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1, 1.2, 1.3, 1.4),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(502, 370), Vector2(502, 370), Vector2(502, 203), Vector2(502, 182), Vector2(502, 203)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SaveUI/ClipboardButton:disabled")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("SaveUI/BackFromSave:disabled")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 1.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SaveUI/SaveString:size")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(448, 45), Vector2(448, 45), Vector2(448, 45), Vector2(448, 45)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SaveUI/SaveString:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(176, 370), Vector2(176, 82), Vector2(176, 52), Vector2(176, 82)]
+}
+
+[sub_resource type="Animation" id="Animation_w7who"]
+resource_name = "Copied"
+length = 0.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SaveUI/SavedText:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(426, 195), Vector2(426, 152)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SaveUI/SavedText:self_modulate")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.2, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_54l4i"]
+_data = {
+"Copied": SubResource("Animation_w7who"),
+"DisplayButton": SubResource("Animation_lae8o"),
+"JumpUp": SubResource("Animation_fr2o3"),
+"MoveLeft": SubResource("Animation_mls4s"),
+"RESET": SubResource("Animation_vswff"),
+"SlideSaveUp": SubResource("Animation_hglve")
+}
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0abw3"]
+shader = ExtResource("3_ribot")
+shader_parameter/screen_height = 640.0
+shader_parameter/amplitude = 0.075
+shader_parameter/frequency = 10.0
+shader_parameter/speed = 2.0
+shader_parameter/amplitude_vertical = 0.0
+shader_parameter/frequency_vertical = 0.0
+shader_parameter/speed_vertical = 0.0
+shader_parameter/scroll_direction = Vector2(0, 0)
+shader_parameter/scrolling_speed = 0.08
+shader_parameter/enable_palette_cycling = false
+shader_parameter/palette_speed = 0.1
+shader_parameter/enable_scanlines = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_43h3n"]
+font = ExtResource("6_rgki2")
+font_size = 20
+outline_size = 3
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_rlkuf"]
+texture = ExtResource("7_811t4")
+texture_margin_left = 24.0
+texture_margin_top = 16.0
+texture_margin_right = 32.0
+texture_margin_bottom = 20.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pg14l"]
+bg_color = Color(0.83, 0.679908, 0.5395, 1)
+anti_aliasing = false
+
+[sub_resource type="LabelSettings" id="LabelSettings_dts0d"]
+font = ExtResource("6_rgki2")
+font_color = Color(0, 0, 0, 1)
+
+[node name="PauseMenu" type="Control" node_paths=PackedStringArray("item_list", "item_name_label", "item_icon", "item_description", "details_panel")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,85 +628,202 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+theme = ExtResource("1_gpvpw")
 script = ExtResource("1_iexfw")
-save_button = NodePath("PausePanel/VBoxContainer/SaveButton")
-respawn_button = NodePath("PausePanel/VBoxContainer/RespawnButton")
-bag_button = NodePath("PausePanel/VBoxContainer/BagButton")
-item_list = NodePath("ItemsPanel/VBoxContainer/ItemsContainer/ScrollContainer/ItemList")
-item_name_label = NodePath("ItemsDetailPanel/VBoxContainer/DetailsTitleContainer/Title")
-item_icon = NodePath("ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer/TextureRect")
-item_description = NodePath("ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer/Label")
-interact_button = NodePath("ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer/Button")
-items_panel = NodePath("ItemsPanel")
+item_list = NodePath("ItemsPanel/MarginContainer/VBoxContainer/ItemsContainer/ScrollContainer/ItemList")
+item_name_label = NodePath("ItemsDetailPanel/VBoxContainer/Title")
+item_icon = NodePath("ItemsDetailPanel/VBoxContainer/VBoxContainer/TextureRect")
+item_description = NodePath("ItemsDetailPanel/VBoxContainer/VBoxContainer/Label")
 details_panel = NodePath("ItemsDetailPanel")
+metadata/_edit_lock_ = true
 
-[node name="PausePanel" type="Panel" parent="."]
-layout_mode = 1
-anchors_preset = 9
-anchor_bottom = 1.0
-offset_right = 120.0
-grow_vertical = 2
-mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_01uju")
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_54l4i")
+}
 
-[node name="VBoxContainer" type="VBoxContainer" parent="PausePanel"]
-layout_mode = 1
-anchors_preset = 4
-anchor_top = 0.5
-anchor_bottom = 0.5
-offset_left = 15.0
-offset_top = -58.5
-offset_right = 100.0
-offset_bottom = 58.5
-grow_vertical = 2
-theme_override_constants/separation = 12
+[node name="Background" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_0abw3")
+layout_mode = 0
+offset_right = 640.0
+offset_bottom = 360.0
+texture = ExtResource("3_60pih")
+metadata/_edit_lock_ = true
 
-[node name="SaveButton" type="Button" parent="PausePanel/VBoxContainer"]
-layout_mode = 2
-text = "SAVE"
-
-[node name="RespawnButton" type="Button" parent="PausePanel/VBoxContainer"]
-layout_mode = 2
-text = "RESPAWN"
-
-[node name="BagButton" type="Button" parent="PausePanel/VBoxContainer"]
-layout_mode = 2
-text = "BAG"
-
-[node name="ItemsPanel" type="PanelContainer" parent="."]
+[node name="Buttons" type="Control" parent="."]
+unique_name_in_owner = true
 visible = false
 layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Close" type="Button" parent="Buttons"]
+visible = false
+layout_mode = 0
+offset_left = 477.0
+offset_top = 65.0
+offset_right = 546.0
+offset_bottom = 97.0
+text = "Close"
+
+[node name="Polygon2D" type="Polygon2D" parent="Buttons/Close"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(7, 14, -134, 85, -133, 95)
+
+[node name="Save" type="Button" parent="Buttons"]
+visible = false
+layout_mode = 0
+offset_left = 188.0
+offset_top = 137.0
+offset_right = 242.0
+offset_bottom = 169.0
+disabled = true
+text = "Save"
+
+[node name="Polygon2D" type="Polygon2D" parent="Buttons/Save"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(48, 22, 148, 74, 138, 85)
+
+[node name="Inventory" type="Button" parent="Buttons"]
+visible = false
+layout_mode = 0
+offset_left = 423.0
+offset_top = 241.0
+offset_right = 538.0
+offset_bottom = 273.0
+disabled = true
+text = "Inventory"
+
+[node name="Polygon2D" type="Polygon2D" parent="Buttons/Inventory"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(5, 17, -71, 38, -68, 53)
+
+[node name="Respawn" type="Button" parent="Buttons"]
+visible = false
+layout_mode = 0
+offset_left = 101.0
+offset_top = 292.0
+offset_right = 199.0
+offset_bottom = 324.0
+disabled = true
+text = "Respawn"
+
+[node name="Polygon2D" type="Polygon2D" parent="Buttons/Respawn"]
+color = Color(0.67451, 0.196078, 0.196078, 1)
+polygon = PackedVector2Array(89, 7, 216, -7, 218, 4)
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(320, 478)
+scale = Vector2(5, 5)
+texture = ExtResource("3_763oi")
+hframes = 6
+vframes = 5
+frame = 3
+
+[node name="SaveUI" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="SaveString" type="LineEdit" parent="SaveUI"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 176.0
+offset_top = 370.0
+offset_right = 624.0
+offset_bottom = 415.0
+text = "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent id ex aliquam, dapibus orci vel, imperdiet lorem. Nulla ac dignissim orci. Nam eu ligula sapien. Etiam et neque vitae enim feugiat maximus at id erat. Phasellus sit amet elit orci. Pellentesque at odio lacus. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Interdum et malesuada fames ac ante ipsum primis in faucibus. Curabitur pulvinar elementum dolor. Ut urna leo, ultrices quis pellentesque et, dignissim et odio. Ut interdum mauris metus, id vulputate turpis tincidunt eu. Fusce facilisis a magna convallis sodales.Pellentesque id nisi odio. Nulla auctor non augue eget mattis. Maecenas tincidunt elit sit amet cursus suscipit. Mauris sit amet hendrerit enim, et tincidunt erat. Sed efficitur dignissim elit, sed scelerisque arcu luctus sed. Vivamus viverra, ipsum eget tristique ultrices, nisi odio ullamcorper massa, vitae fringilla est nunc ut ante. Aliquam ante lacus, congue sed elit quis, semper volutpat velit. Suspendisse et facilisis arcu, nec dapibus nibh. Phasellus id eros ac purus sagittis commodo. Donec et dolor nisi. Pellentesque porttitor pellentesque congue.Cras quis nulla enim. Aliquam eget metus quis elit iaculis volutpat non nec augue. In eget quam non nibh vulputate fermentum vel in ligula. Curabitur pellentesque dui et nisi pretium, eu dapibus sem pretium. Quisque accumsan felis eu justo eleifend facilisis at at justo. Etiam et placerat ligula. Vestibulum non lorem dolor. Duis eu porttitor urna. Donec consectetur tincidunt enim. In pulvinar dui in nisl vestibulum, vitae dictum nulla congue.Vestibulum condimentum lorem at mi tincidunt, a mollis magna posuere. Proin eu ipsum faucibus, bibendum mi sit amet, fringilla ex. Morbi commodo aliquam lectus, in ornare augue malesuada a. Aenean et nisi aliquam, consectetur erat non, efficitur arcu. Ut magna libero, efficitur eu lectus non, suscipit ultricies risus. Nam sit amet ornare ante. Nunc elit ligula, gravida in volutpat et, pretium et tellus. Ut vitae sodales leo. Duis a suscipit ipsum. Phasellus quis enim quis tellus suscipit feugiat.Vestibulum blandit placerat augue in tempus. Donec euismod ut enim in commodo. Integer elementum auctor venenatis. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Pellentesque quis mauris a arcu sagittis faucibus consectetur sed sapien. In vulputate mi in odio hendrerit, vel faucibus nulla semper. Nam vel hendrerit purus. In dapibus enim imperdiet turpis tempor condimentum."
+editable = false
+context_menu_enabled = false
+virtual_keyboard_enabled = false
+middle_mouse_paste_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+select_all_on_focus = true
+
+[node name="ClipboardButton" type="Button" parent="SaveUI"]
+layout_mode = 0
+offset_left = 246.0
+offset_top = 373.0
+offset_right = 452.0
+offset_bottom = 405.0
+disabled = true
+text = "Copy to Clipboard"
+
+[node name="BackFromSave" type="Button" parent="SaveUI"]
+layout_mode = 0
+offset_left = 502.0
+offset_top = 370.0
+offset_right = 559.0
+offset_bottom = 402.0
+disabled = true
+text = "Back"
+
+[node name="SavedText" type="Label" parent="SaveUI"]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 0
+offset_left = 426.0
+offset_top = 195.0
+offset_right = 471.0
+offset_bottom = 218.0
+rotation = 0.327488
+text = "Saved"
+label_settings = SubResource("LabelSettings_43h3n")
+
+[node name="ItemsPanel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(160, 0)
+layout_mode = 1
 anchors_preset = 9
 anchor_bottom = 1.0
-offset_left = 120.0
-offset_right = 320.0
+offset_right = 245.0
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_01uju")
+theme_override_styles/panel = SubResource("StyleBoxTexture_rlkuf")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="ItemsPanel"]
+[node name="MarginContainer" type="MarginContainer" parent="ItemsPanel"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="ItemsPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vieyj")
-
-[node name="ItemsTitleContainer" type="PanelContainer" parent="ItemsPanel/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemsPanel/MarginContainer"]
 layout_mode = 2
 
-[node name="Title" type="Label" parent="ItemsPanel/VBoxContainer/ItemsTitleContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="ItemsPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "BAG"
+
+[node name="Title" type="Label" parent="ItemsPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+text = "Inventory"
+label_settings = ExtResource("8_6m7np")
 horizontal_alignment = 1
+vertical_alignment = 1
 
-[node name="ItemsContainer" type="PanelContainer" parent="ItemsPanel/VBoxContainer"]
+[node name="CloseInventory" type="Button" parent="ItemsPanel/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+text = "Close"
+
+[node name="ItemsContainer" type="PanelContainer" parent="ItemsPanel/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_pg14l")
 
-[node name="ScrollContainer" type="ScrollContainer" parent="ItemsPanel/VBoxContainer/ItemsContainer"]
+[node name="ScrollContainer" type="ScrollContainer" parent="ItemsPanel/MarginContainer/VBoxContainer/ItemsContainer"]
 layout_mode = 2
 
-[node name="ItemList" type="ItemList" parent="ItemsPanel/VBoxContainer/ItemsContainer/ScrollContainer"]
+[node name="ItemList" type="ItemList" parent="ItemsPanel/MarginContainer/VBoxContainer/ItemsContainer/ScrollContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
@@ -108,42 +832,31 @@ fixed_icon_size = Vector2i(32, 32)
 
 [node name="ItemsDetailPanel" type="PanelContainer" parent="."]
 visible = false
+custom_minimum_size = Vector2(160, 0)
 layout_mode = 1
-anchors_preset = 9
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 320.0
-offset_right = 520.0
+offset_left = -200.0
+grow_horizontal = 0
 grow_vertical = 2
 mouse_filter = 1
-theme_override_styles/panel = SubResource("StyleBoxFlat_01uju")
+theme_override_styles/panel = SubResource("StyleBoxTexture_rlkuf")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="ItemsDetailPanel"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="ItemsDetailPanel/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vieyj")
-
-[node name="DetailsTitleContainer" type="PanelContainer" parent="ItemsDetailPanel/VBoxContainer"]
-layout_mode = 2
-
-[node name="Title" type="Label" parent="ItemsDetailPanel/VBoxContainer/DetailsTitleContainer"]
+[node name="Title" type="Label" parent="ItemsDetailPanel/VBoxContainer"]
 layout_mode = 2
 text = "NAME"
+label_settings = ExtResource("8_6m7np")
 horizontal_alignment = 1
 
-[node name="DetailsContainer" type="PanelContainer" parent="ItemsDetailPanel/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-
-[node name="VBoxContainer" type="VBoxContainer" parent="ItemsDetailPanel/VBoxContainer/DetailsContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="ItemsDetailPanel/VBoxContainer"]
 layout_mode = 2
 
-[node name="HSeparator" type="HSeparator" parent="ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer"]
-layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxEmpty_vieyj")
-
-[node name="TextureRect" type="TextureRect" parent="ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer"]
+[node name="TextureRect" type="TextureRect" parent="ItemsDetailPanel/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(64, 64)
 layout_mode = 2
 size_flags_horizontal = 4
@@ -151,15 +864,20 @@ size_flags_vertical = 4
 texture = ExtResource("2_75nro")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer"]
+[node name="Label" type="Label" parent="ItemsDetailPanel/VBoxContainer/VBoxContainer"]
 custom_minimum_size = Vector2(196, 210)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Description"
+label_settings = SubResource("LabelSettings_dts0d")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 3
 
-[node name="Button" type="Button" parent="ItemsDetailPanel/VBoxContainer/DetailsContainer/VBoxContainer"]
-layout_mode = 2
-text = "OPTIONAL INTERACT"
+[connection signal="pressed" from="Buttons/Close" to="." method="_on_close_pressed"]
+[connection signal="pressed" from="Buttons/Save" to="." method="_on_save_pressed"]
+[connection signal="pressed" from="Buttons/Inventory" to="." method="_on_inventory_pressed"]
+[connection signal="pressed" from="Buttons/Respawn" to="." method="_on_respawn_pressed"]
+[connection signal="pressed" from="SaveUI/ClipboardButton" to="." method="_on_clipboard_button_pressed"]
+[connection signal="pressed" from="SaveUI/BackFromSave" to="." method="_on_back_from_save_pressed"]
+[connection signal="pressed" from="ItemsPanel/MarginContainer/VBoxContainer/HBoxContainer/CloseInventory" to="." method="_on_close_inventory_pressed"]

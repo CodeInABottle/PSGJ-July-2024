@@ -8,6 +8,7 @@
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="6_qm2ju"]
 [ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="7_yehf5"]
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="8_o4g1v"]
+[ext_resource type="LabelSettings" uid="uid://c28j32sw07n2t" path="res://ui/Themes/TitleHeading.tres" id="8_p6ayu"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_iud6o"]
 bg_color = Color(0, 0, 0, 0.27451)
@@ -101,13 +102,6 @@ texture_margin_right = 32.0
 texture_margin_bottom = 20.0
 axis_stretch_horizontal = 2
 axis_stretch_vertical = 2
-
-[sub_resource type="LabelSettings" id="LabelSettings_sxmyy"]
-font = ExtResource("8_o4g1v")
-font_size = 21
-font_color = Color(0, 0, 0, 1)
-outline_size = 3
-outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_15tgb"]
 font = ExtResource("8_o4g1v")
@@ -268,7 +262,7 @@ layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 1
 text = "LORE"
-label_settings = SubResource("LabelSettings_sxmyy")
+label_settings = ExtResource("8_p6ayu")
 horizontal_alignment = 1
 vertical_alignment = 1
 
