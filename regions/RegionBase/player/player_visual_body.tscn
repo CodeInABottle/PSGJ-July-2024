@@ -48,7 +48,7 @@ animations = [{
 }]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ikv"]
-size = Vector2(29, 20)
+size = Vector2(30, 37)
 
 [node name="PlayerVisualBody" type="Node2D"]
 z_index = 1
@@ -69,7 +69,7 @@ unique_name_in_owner = true
 position = Vector2(24, -8)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerPickupArea"]
-position = Vector2(-4.5, 0)
+position = Vector2(-7, -0.5)
 shape = SubResource("RectangleShape2D_j7ikv")
 
 [node name="Sprite2D" type="Sprite2D" parent="PlayerPickupArea"]

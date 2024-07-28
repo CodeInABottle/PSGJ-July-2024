@@ -6,7 +6,7 @@
 
 [node name="Worm" instance=ExtResource("1_gmk1u")]
 npc_name = "Earth Worm"
-notice_radius = 25.0
+notice_radius = 35.0
 wander_x_bound = 40.0
 wander_y_bound = 40.0
 normal_sprite_frames = ExtResource("2_hctio")
