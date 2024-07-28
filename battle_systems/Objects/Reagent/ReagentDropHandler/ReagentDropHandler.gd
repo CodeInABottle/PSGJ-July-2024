@@ -11,6 +11,8 @@ const WIND_REAGENT: PackedScene = preload("res://battle_systems/Objects/Reagent/
 const WIND_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WindOrbStill.png")
 
 signal ability_execute_requested(ability_name: String)
+signal recipe_displayed
+signal recipe_clicked
 
 class Data:
 	var follow_node: PathFollow2D
@@ -115,6 +117,7 @@ func _validate_recipe() -> void:
 	else:
 		# Passed checks
 		recipe_controller.set_data(valid_recipies)
+		recipe_displayed.emit()
 
 func _is_valid_recipe(components: Array[TypeChart.ResonateType]) -> bool:
 	if components.is_empty(): return false
@@ -170,6 +173,7 @@ func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
 	_reagent_data.push_back(data)
 
 func _on_recipe_chosen(ability_name: String) -> void:
+	recipe_clicked.emit()
 	control_shield.show()
 	await text_box_animator.animation_finished
 	_ability_activated = true

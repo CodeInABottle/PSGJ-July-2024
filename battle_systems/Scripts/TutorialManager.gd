@@ -1,7 +1,7 @@
 class_name BattlefieldTutorial
 extends Node
 
-enum State { NONE, TOUR, RECIPE_BOOK, RECIPE_PAGE, CLOSE_BOOK, CREATE_RECIPE, END_TURN, FINISHED }
+enum State { NONE, TOUR, RECIPE_BOOK, FINISHED }
 enum TourState {
 	HELLO_MESSAGE,
 	HP_POTION,
@@ -11,47 +11,61 @@ enum TourState {
 	PAPER_TOWEL,
 	CANDLES,
 	CHEAT_SHEET,
-	CHEAT_SHEET_2,
-	FINISHED
+	CHEAT_SHEET_2
 }
 
+@onready var battlefield: BattlefieldManager = $".."
+@onready var table: BattlefieldTable = %Table
 @onready var tour_screen: Control = %TourScreen
+@onready var recipe_book_tutorial: Control = %RecipeBookTutorial
+@onready var crafting: Control = %Crafting
+@onready var selecting_recipe: Control = %SelectingRecipe
+@onready var recipe_page: Control = %RecipePage
+@onready var sparkles: Control = %Sparkles
+@onready var end: Control = %End
+@onready var battle_blocker: Panel = %BattleBlocker
 
 var _state: State
 var _tour_state: TourState
-var _started_tour: bool = false
 
 func _ready() -> void:
+	recipe_book_tutorial.hide()
+	crafting.hide()
+	selecting_recipe.hide()
+	recipe_page.hide()
+	sparkles.hide()
+	battle_blocker.hide()
+	end.hide()
+	table.recipe_display_closed.connect(
+		func() -> void:
+			if complete(): return
+			if _state == State.RECIPE_BOOK:
+				next_state()
+	)
 	set_process(false)
+
+func complete() -> bool:
+	return _state == State.FINISHED
 
 func activate() -> void:
 	set_process(true)
 	_state = State.TOUR
 	_tour_state = TourState.HELLO_MESSAGE
-	_started_tour = false
+	next_state()
 
-func _physics_process(_delta: float) -> void:
+func next_state() -> void:
+	if complete(): return
+
 	match _state:
-		State.NONE: pass
 		State.TOUR:
-			if not _started_tour:
-				tour_screen.get_child(0).show()
-				_started_tour = true
+			tour_screen.get_child(0).show()
 		State.RECIPE_BOOK:
-			pass
-		State.RECIPE_PAGE:
-			pass
-		State.CLOSE_BOOK:
-			pass
-		State.CREATE_RECIPE:
-			pass
-		State.END_TURN:
-			pass
+			crafting.show()
 		State.FINISHED:
 			set_process(false)
 
 func next_tour_state() -> void:
-	if _state == State.FINISHED: return
+	if complete(): return
 
 	match _tour_state:
 		TourState.HELLO_MESSAGE:
@@ -71,6 +85,43 @@ func next_tour_state() -> void:
 		TourState.CHEAT_SHEET:
 			_tour_state = TourState.CHEAT_SHEET_2
 		TourState.CHEAT_SHEET_2:
-			_tour_state = TourState.FINISHED
-		TourState.FINISHED:
+			recipe_book_tutorial.show()
 			_state = State.RECIPE_BOOK
+
+func _on_tutorial_text_button_pressed() -> void:
+	if complete(): return
+
+	crafting.hide()
+	selecting_recipe.show()
+
+func _on_table_recipe_page_displayed() -> void:
+	if complete(): return
+
+	recipe_page.show()
+
+func _on_enemy_entity_capture_status_animated() -> void:
+	if complete(): return
+
+	battle_blocker.hide()
+	sparkles.show()
+	battlefield.process_mode = Node.PROCESS_MODE_DISABLED
+
+func _on_sparkles_tutorial_button_pressed() -> void:
+	if complete(): return
+
+	sparkles.hide()
+	end.show()
+
+func _on_last_tutorial_button_pressed() -> void:
+	if complete(): return
+
+	end.hide()
+	selecting_recipe.hide()
+	battlefield.process_mode = Node.PROCESS_MODE_INHERIT
+	_state = State.FINISHED
+
+func _on_table_recipe_clicked() -> void:
+	if complete(): return
+
+	recipe_page.hide()
+	battle_blocker.show()

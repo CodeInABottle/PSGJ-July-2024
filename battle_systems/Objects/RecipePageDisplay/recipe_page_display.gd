@@ -1,6 +1,8 @@
 class_name RecipePageDisplay
 extends Panel
 
+signal display_closed
+
 @onready var pages: Array[BattlefieldRecipePage] = [
 	%RecipePage, %RecipePage2, %RecipePage3, %RecipePage4, %RecipePage5,
 	%RecipePage6, %RecipePage7, %RecipePage8, %RecipePage9, %RecipePage10,
@@ -19,6 +21,7 @@ func _ready() -> void:
 			if not _playing_backwards: return
 			_playing_backwards = false
 			hide()
+			display_closed.emit()
 	)
 
 	description_label.text = "Hover over a page for more info."

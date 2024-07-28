@@ -2,9 +2,13 @@ class_name BattlefieldTable
 extends Node2D
 
 signal ability_execute_requested(ability_name: String)
+signal recipe_display_closed
+signal recipe_page_displayed
+signal recipe_clicked
 
 @export var entity_tracker: BattlefieldEntityTracker
 @export var control_shield: Panel
+@export var book_tutorial: Control
 
 @onready var hp_flask_bar: FlaskBar = %HPFlaskBar
 @onready var ap_flask_bar: FlaskBar = %APFlaskBar
@@ -42,4 +46,15 @@ func _on_hp_updated() -> void:
 	hp_flask_bar.update_value(PlayerStats.health)
 
 func _on_book_button_pressed() -> void:
+	if book_tutorial:
+		book_tutorial.hide()
 	recipe_page_display.open()
+
+func _on_recipe_page_display_display_closed() -> void:
+	recipe_display_closed.emit()
+
+func _on_reagent_drop_handler_recipe_displayed() -> void:
+	recipe_page_displayed.emit()
+
+func _on_reagent_drop_handler_recipe_clicked() -> void:
+	recipe_clicked.emit()

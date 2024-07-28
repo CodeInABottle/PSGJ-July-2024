@@ -4,6 +4,7 @@ extends BattlefieldEntity
 signal actions_completed
 signal ability_finished
 signal captured
+signal capture_status_animated
 
 @export var enemy_status_indicator: BattlefieldEnemyStatusIndicator
 @export var player_entity: BattlefieldPlayerEntity
@@ -282,3 +283,6 @@ func _generate_world_states() -> Dictionary:
 		})
 
 	return data
+
+func _on_capture_animation() -> void:
+	capture_status_animated.emit()

@@ -8,11 +8,15 @@ signal pressed
 		text = value
 		%Label.text = value
 
-@export var additional_buttons: Array[Button] = []
+@export var confirm_buttons: Array[Button] = []
 
 func _ready() -> void:
-	for button: Button in additional_buttons:
-		button.pressed.connect(func() -> void: pressed.emit())
+	for button: Button in confirm_buttons:
+		button.pressed.connect(
+			func() -> void:
+				get_parent().hide()
+				pressed.emit()
+		)
 
 func _on_button_pressed() -> void:
 	pressed.emit()
