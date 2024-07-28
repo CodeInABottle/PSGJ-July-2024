@@ -41,38 +41,45 @@ signal game_unpaused
 signal world_disabled
 signal world_enabled
 
+signal world_event_occurred(event_name: String, args: Array)
+
 #region Variables
 # { "level_name" (String) : scene_path (String) }
 # ie. { "level_name": "path to scene" }
 var _levels: Dictionary = {
-"main_menu": "res://ui/main_menu.tscn",
+# UI
+"main_menu": "res://ui/MainMenu/main_menu.tscn",
+
+# Newbert Town
 "Newbert Town": "res://regions/Region1_CentraDivide/area_0_newbert_town.tscn",
+"Cellar": "res://regions/Region1_CentraDivide/NewbertInteriors/player_cellar.tscn",
+"Home": "res://regions/Region1_CentraDivide/NewbertInteriors/player_floor_1.tscn",
+
+# Remembrance Town
 "Remembrance": "res://regions/Region1_CentraDivide/area_1_remembrance.tscn",
 
 # OLD -- Deprecated
 "area_0": "res://old_areas/area_0.tscn",
-"area_1": "res://old_areas/area_1.tscn",
-"area_0_cellar": "res://old_areas/area_0_cellar.tscn",
 "area_0_player_house_F1": "res://old_areas/area_0_player_house_F1.tscn",
 }
 
 # checkpoints
 # checkpoint_name (String) : [area_name (String), entry_id(int)]
 var _checkpoints: Dictionary = {
-	"start" : ["Newbert Town", 0],
-	"home" : ["Newbert Town", 2],
-	"cat_bridge" : ["Newbert Town", 1],
-	"Old Home" : ["area_0", 0],
+	"Home" : ["Home", 0],
+	"Newbert Town" : ["Newbert Town", 2],
+	"Cat Bridge" : ["Newbert Town", 4],
 }
 
 # Set as the first level to be loaded
 # -- Used by `load_entry_point()` only
 # -- entry_id used is 0
-var _entry_point: String = "Newbert Town"
+var _entry_point: String = "Home"
 #var _entry_point: String = "area_0"
 
 # used by is_paused() utility function
 var _is_paused: bool = false
+var is_transitioning: bool = false
 
 # Anchors
 var master_node: Node
@@ -92,7 +99,7 @@ var loaded_menu: Node = null
 # Can be used to check what is the currently loaded level
 var region_name: String
 var current_modifiers: Array = []
-var current_checkpoint: String = "start"
+var current_checkpoint: String = "Home"
 var current_anchor: Node
 
 var pending_load: String = ""
@@ -165,6 +172,7 @@ func load_menu(menu_name: String, _args: Array = []) -> void:
 			_async_load("res://battle_systems/battlefield.tscn", menu_anchor)
 
 func unload_menu() -> void:
+	is_transitioning = false
 	if loaded_menu: loaded_menu.queue_free()
 	loaded_menu = null
 	enable_world_node()
@@ -183,7 +191,8 @@ func disable_world_node() -> void:
 	world_disabled.emit()
 	_is_paused = true
 	# This should be the _process, _physics_process, and the various _input functions
-	world_anchor.process_mode = Node.PROCESS_MODE_DISABLED
+	master_node.remove_child(world_anchor)
+	#world_anchor.process_mode = Node.PROCESS_MODE_DISABLED
 
 func is_paused() -> bool:
 	return _is_paused
@@ -199,12 +208,14 @@ func is_in_world() -> bool:
 func enable_world_node() -> void:
 	for child: Node in world_anchor.get_children():
 		child.show()
+	master_node.add_child(world_anchor)
+	master_node.move_child(world_anchor, 0)
 	if world_anchor.get_child(0) is GameArea:
 		_in_world = true
 	world_enabled.emit()
 	_is_paused = false
 	# This should be the _process, _physics_process, and the various _input functions
-	world_anchor.process_mode = Node.PROCESS_MODE_INHERIT
+	#world_anchor.process_mode = Node.PROCESS_MODE_INHERIT
 
 func _unload_level() -> void:
 	if loaded_level: loaded_level.queue_free()
@@ -302,7 +313,9 @@ func on_translucent_to_black_complete() -> void:
 		load_menu("battle")
 
 func trigger_battle(enemy_name: String, start_translucent: bool = false) -> void:
+	DialogueManager.end_dialogue()
 	pending_load = "battle"
+	is_transitioning = true
 	pending_battle = enemy_name
 	if start_translucent:
 		MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)
@@ -317,6 +330,9 @@ func load_save(save_data: Dictionary) -> void:
 	area_pickup_status = save_data.get("area_pickup_status")
 	load_world(save_data["area"])
 
-# to be use to reset enemy battles if any on checkpoint rest
+# to be use to reset enemy battles if any on checkpoint rest, if needed?
 func reset_world() -> void:
 	pass
+
+func on_world_event(event_name: String, args: Array = []) -> void:
+	world_event_occurred.emit(event_name, args)

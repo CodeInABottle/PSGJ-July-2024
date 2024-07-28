@@ -22,14 +22,14 @@ func _ready() -> void:
 	slot_shadows_button.pressed.connect(on_slot_shadows_pressed)
 	hear_lore_button.pressed.connect(on_hear_lore_pressed)
 	visibility_changed.connect(on_visibility_changed)
-	
+
 	shadow_slots_list.item_selected.connect(on_shadow_slot_selected)
 	shadows_list.item_selected.connect(on_shadow_selected)
 	shadow_details_button.pressed.connect(on_shadow_details_pressed)
 	shadow_confirm_button.pressed.connect(on_shadow_confirm_pressed)
 	shadow_details_close_button.pressed.connect(on_shadow_details_close_pressed)
 	menu_close_button.pressed.connect(on_menu_close_pressed)
-	
+
 	hide_all_parts()
 
 func on_menu_close_pressed() -> void:
@@ -71,12 +71,12 @@ func get_selected_shadow_index() -> int:
 	elif shadow_slots_list.is_anything_selected():
 		var selected_indices: PackedInt32Array = shadow_slots_list.get_selected_items()
 		selected_index = selected_indices[0]
-	
+
 	return selected_index
 
 func on_shadow_details_pressed() -> void:
 	var selected_index: int = get_selected_shadow_index()
-	
+
 	if selected_index != -1:
 		set_shadow_details()
 		shadow_details_panel.show()
@@ -86,7 +86,7 @@ func set_shadow_details() -> void:
 
 func on_shadow_confirm_pressed() -> void:
 	var selected_index: int = get_selected_shadow_index()
-	
+
 	if selected_index != -1:
 		pass
 

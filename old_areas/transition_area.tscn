@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://o0mjq6h1sa3v"]
-
-[ext_resource type="Script" path="res://old_areas/transition_area_controller.gd" id="1_gtsjq"]
-
-[node name="TransitionArea1" type="Area2D"]
-script = ExtResource("1_gtsjq")

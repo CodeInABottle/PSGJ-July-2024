@@ -4,6 +4,7 @@ extends BattlefieldEntity
 signal actions_completed
 signal ability_finished
 signal captured
+signal capture_status_animated
 
 @export var enemy_status_indicator: BattlefieldEnemyStatusIndicator
 @export var player_entity: BattlefieldPlayerEntity
@@ -27,7 +28,9 @@ var _health: int:
 	set(value):
 		if value < _health:
 			hurt_player.play("Hurt")
-			enemy_status_indicator.update_health(_health-value)
+			enemy_status_indicator.damage_health(_health-value)
+		elif value > _health:
+			enemy_status_indicator.heal_health(value-_health)
 		_health = clampi(value, 0, _data.max_health)
 		if _health <= 0:
 			entity_tracker.end_turn()
@@ -35,6 +38,7 @@ var _health: int:
 var _capture_value: int:
 	set(value):
 		_capture_value = value
+		print("HP: ", _health, " | Capture: ", value)
 		if is_captured():
 			captured.emit()
 
@@ -90,12 +94,17 @@ func take_damage(damage_data: Dictionary) -> void:
 	if _data.special_frame_idx != -1:
 		animation_holder.get_child(0).set_shadow_frame(_data.special_frame_idx)
 
+	# Calculate Capture
+	if damage_data["resonate_type"] == _data.resonate:
+		var capture_damage: int = ceili(damage_data["damage"] * damage_data["capture_rate"])
+		print("Capture Damage: ", capture_damage)
+		_capture_value -= capture_damage
+		flash_player.play("Flash")
+
+	# Calculate Damage
 	entity_tracker.damage_taken.emit(false, damage_data)
 	_health -= damage_data["damage"]
 
-	if damage_data["resonate_type"] == _data.resonate:
-		_capture_value -= ceili(damage_data["damage"] * damage_data["capture_rate"])
-		flash_player.play("Flash")
 
 func has_ap() -> bool:
 	return _alchemy_points > 0
@@ -270,7 +279,10 @@ func _generate_world_states() -> Dictionary:
 			"player_ap": PlayerStats.alchemy_points,
 			"can_player_burst": PlayerStats.alchemy_points >= _long_term_memory["ap_cost"]\
 				and _long_term_memory["highest_damage"] > 0,
-			"can_use_stun": _alchemy_points >= _long_term_memory["stun_ap"]
+			"can_use_stun": _long_term_memory.has("stun_ap") and _alchemy_points >= _long_term_memory["stun_ap"]
 		})
 
 	return data
+
+func _on_capture_animation() -> void:
+	capture_status_animated.emit()

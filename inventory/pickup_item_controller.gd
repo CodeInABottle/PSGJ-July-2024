@@ -24,6 +24,8 @@ func update_sprite() -> void:
 	item_sprite.texture = item.item_icon
 
 func on_interaction_started(_interactable: Interactable) -> void:
+	LevelManager.world_event_occurred.emit("item_get:"+item_name, [])
+	DialogueManager.end_dialogue()
 	shiny.stop_shiny()
 	menu_layer.update_info(item_name)
 	menu_layer.reveal()
@@ -36,20 +38,19 @@ func on_interaction_advanced(_interactable: Interactable) -> void:
 func end_interaction() -> void:
 	print("pickup interaction ended")
 	interactable.end_interaction()
-	PlayerStats.add_item(item_name, quantity)
 	_on_interaction_ended()
 
 func on_interaction_quick_closed() -> void:
 	print("pickup interaction quick-closed")
-	PlayerStats.add_item(item_name, quantity)
 	_on_interaction_ended()
 
 func _on_interaction_ended() -> void:
 	menu_layer.disappear()
 	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
+	PlayerStats.add_item(item_name, quantity)
 	pickup_interaction_ended.emit(get_index())
-	item_sprite.hide()
+	get_parent().remove_child(self)
 
 func on_continue_pressed() -> void:
 	end_interaction()

@@ -42,7 +42,7 @@ func on_bag_button_pressed() -> void:
 func on_item_selected(_index: int) -> void:
 	update_details()
 	details_panel.show()
-	
+
 func on_interact_button_pressed() -> void:
 	pass
 
@@ -60,16 +60,16 @@ func update_details() -> void:
 		item_name_label.text = item.item_name
 		item_icon.texture = item.item_icon
 		item_description.text = item.item_description
-		
+
 		if item is LoreItem:
 			#interact_button.show()
 			pass
 
 func populate_item_list() -> void:
 	item_list.clear()
-	for item_name: String in PlayerStats.invetory_items:
+	for item_name: String in PlayerStats.get_inventory_items():
 		var item: InventoryItem = InventoryDatabase.get_item(item_name)
-		for index: int in range(PlayerStats.invetory_items[item_name]):
+		for index: int in range(PlayerStats.inventory_items[item_name]):
 			item_list.add_item(item.item_name, item.item_icon)
 
 

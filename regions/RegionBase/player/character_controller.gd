@@ -7,16 +7,18 @@ extends CharacterBody2D
 @export var player_camera: Camera2D
 @export var player_phantom_camera: PhantomCamera2D
 @export var sprint_scale: float = 2.0
-
+@onready var nav: NavigationAgent2D = %NavAgent
+@onready var hint_manager: HintManager = %HintManager
 
 var in_interaction: bool = false
+var being_redirected: bool = false
 
 var input_direction: Vector2
 
 var current_interactable: Interactable
 var player_interact_area: Area2D
 
-const COLLISION_OFFSET: Vector2 = Vector2(0.0, 0.0)
+const COLLISION_OFFSET: Vector2 = Vector2(0.0, 4.0)
 const PICKUP_OFFSET: float = 24.0
 const VISUAL_BODY_LERP_SCALE: float = 10.0
 
@@ -31,21 +33,23 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventKey:
 		if event.is_action_pressed("interact"):
 			handle_interact_input()
+			hint_manager.advance_hint()
 			get_viewport().set_input_as_handled()
 		if event.is_action_pressed("escape"):
 			if in_interaction:
 				end_interaction()
+				hint_manager.close_hint()
 				get_viewport().set_input_as_handled()
 
 
 func handle_interact_input() -> void:
-	if not in_interaction:
+	if not in_interaction and not hint_manager.is_hint_active():
 		interact()
-	else:
+	elif not hint_manager.is_hint_active():
 		advance_interaction()
 
 func _physics_process(_delta: float) -> void:
-	if not in_interaction:
+	if not in_interaction and not being_redirected:
 		input_direction = Input.get_vector("left", "right", "forward", "backward")
 		if input_direction:
 			if Input.is_action_pressed("sprint"):
@@ -57,6 +61,11 @@ func _physics_process(_delta: float) -> void:
 		else:
 			velocity = Vector2.ZERO
 			player_visual_body.player_sprite.stop()
+	elif being_redirected:
+		var next_path_position: Vector2 = nav.get_next_path_position()
+		var desired_direction: Vector2 = global_position.direction_to(next_path_position)
+		velocity = desired_direction * player_speed
+		player_visual_body.player_sprite.play("walk", 1.0)
 	else:
 		velocity = Vector2.ZERO
 
@@ -72,7 +81,7 @@ func move_sprite(delta: float) -> void:
 	var updated_position: Vector2 = start_position.lerp(desired_position, delta * VISUAL_BODY_LERP_SCALE)
 	player_visual_body.set_global_position(updated_position)
 
-	if input_direction:
+	if input_direction and not being_redirected:
 		var interact_area_position: Vector2 = player_visual_body.get_global_position() + input_direction * PICKUP_OFFSET
 		player_interact_area.set_global_position(interact_area_position + player_visual_body.player_sprite.offset)
 
@@ -83,7 +92,12 @@ func move_sprite(delta: float) -> void:
 			player_visual_body.player_sprite.flip_h = true
 		elif abs(rad_to_deg(input_angle)) > 100.0:
 			player_visual_body.player_sprite.flip_h = false
-
+	elif being_redirected:
+		var walk_angle: float = abs(rad_to_deg(velocity.normalized().angle()))
+		if walk_angle < 90.0:
+			player_visual_body.player_sprite.flip_h = true
+		else:
+			player_visual_body.player_sprite.flip_h = false
 
 func teleport_to(new_position: Vector2) -> void:
 	set_global_position(new_position)
@@ -113,3 +127,18 @@ func on_interaction_ended(_interactable: Interactable) -> void:
 func end_interaction() -> void:
 	var _end_success: bool = current_interactable.quick_close_interaction()
 
+func redirect(redirect_position: Vector2) -> bool:
+	nav.set_target_position(redirect_position)
+	if nav.is_target_reachable():
+		nav.target_reached.connect(on_redirect_complete)
+		being_redirected = true
+		return true
+	return false
+
+func on_redirect_complete() -> void:
+	velocity = Vector2.ZERO
+	nav.target_reached.disconnect(on_redirect_complete)
+	being_redirected = false
+
+func play_hint(hint_dialogue: Dialogue) -> void:
+	hint_manager.play_hint(hint_dialogue)

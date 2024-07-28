@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://wh2jq7m0cm1x"]
+
+[ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_pacxx"]
+[ext_resource type="Script" path="res://npc/hawk/hawk_npc_controller.gd" id="2_1l8bf"]
+[ext_resource type="SpriteFrames" uid="uid://pb6r5aque1dy" path="res://npc/hawk/hawk_sprite_frames.tres" id="2_xuilm"]
+[ext_resource type="SpriteFrames" uid="uid://dqdwr4y54mn6a" path="res://npc/hawk/afflicted_hawk_sprite_frames.tres" id="4_jeopv"]
+
+[node name="Hawk" instance=ExtResource("1_pacxx")]
+script = ExtResource("2_1l8bf")
+npc_speed = 300.0
+npc_name = "Fire Hawk"
+normal_sprite_frames = ExtResource("2_xuilm")
+afflicted_sprite_frames = ExtResource("4_jeopv")
+
+[node name="NPCSprite" parent="." index="1"]
+sprite_frames = ExtResource("2_xuilm")
+animation = &"walk"
+frame_progress = 0.21146
+offset = Vector2(1.7, 0)

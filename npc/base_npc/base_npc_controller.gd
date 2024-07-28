@@ -1,51 +1,80 @@
 class_name BaseNPC
 extends CharacterBody2D
 
+@export var npc_speed: float = 80.0
+@export var npc_name: String
+
+@export var notice_radius: float = 100.0
 @export var wander_x_bound: float = 200.0
 @export var wander_y_bound: float = 200.0
-
-@export var npc_speed: float = 80.0
+@export var normal_sprite_frames: SpriteFrames
+@export var afflicted_sprite_frames: SpriteFrames
+@export var afflicted_material: ShaderMaterial
 
 @onready var detection_area: Area2D = %DetectionArea
 @onready var vision_raycast: RayCast2D = %VisionRaycast
 @onready var npc_sprite: AnimatedSprite2D = %NPCSprite
 @onready var htn_planner: HTNPlanner = %HTNPlanner
+@onready var nav: NavigationAgent2D = %NavAgent
+@onready var shiny: Shiny = %Shiny
 
 @onready var _start_position: Vector2 = get_global_position()
 @onready var _wander_point: Vector2 = get_global_position()
 
+signal battle_finished()
+
 var _delta: float = 0.0
-#var _wait_progress: float = 0.0
 var _has_wander_point: bool = false
+var _can_detect_player: bool = false
+var _has_been_defeated: bool = false
 
 const BATTLE_START_DISTANCE: float = 32.0
-const WANDER_STOP_DISTANCE: float = 2.0
-const LERP_SCALE: float = 10.0
+const WANDER_STOP_DISTANCE: float = 10.0
+const LERP_SCALE: float = 25.0
+const MIN_X_WANDER: float = 50.0
 
 func _ready() -> void:
-	pass
+	detection_area.body_entered.connect(on_body_entered_detect_area)
+	detection_area.body_exited.connect(on_body_exited_detect_area)
+	detection_area.get_child(0).shape.radius = notice_radius
+	LevelManager.world_event_occurred.connect(on_world_event)
+	if SaveManager.load_pending:
+		PlayerStats.save_loaded.connect(init_npc)
+	else:
+		init_npc.call_deferred()
+	
+
+func init_npc() -> void:
+	if has_been_captured():
+		saturate_colors()
+	else:
+		desaturate_colors()
+	
+	if PlayerStats.save_loaded.is_connected(init_npc):
+		PlayerStats.save_loaded.disconnect(init_npc)
 
 func _physics_process(delta: float) -> void:
 	_delta = delta
 	var world_state: Dictionary = generate_world_state()
 	htn_planner.handle_planning(self, world_state)
 
+
 func look_for_player() -> bool:
-	var detected_bodies: Array = detection_area.get_overlapping_bodies()
-	for detected_body: Node2D in detected_bodies:
-		if detected_body is Player:
-			var relative_position: Vector2 = detected_body.get_global_position() - get_global_position()
-			vision_raycast.set_target_position(relative_position)
-			vision_raycast.force_raycast_update()
-			if vision_raycast.is_colliding():
-				var seen_collider: Object = vision_raycast.get_collider()
-				if seen_collider is Player:
-					return true
+	if _can_detect_player:
+		var detected_body: Player = PlayerStats.player
+		var relative_position: Vector2 = detected_body.get_global_position() - get_global_position()
+		vision_raycast.set_target_position(relative_position)
+		vision_raycast.force_raycast_update()
+		if vision_raycast.is_colliding():
+			var seen_collider: Object = vision_raycast.get_collider()
+			if seen_collider is Player:
+				return true
 
 	return false
 
 func is_close_enough_to_player() -> bool:
-	if (get_global_position() - PlayerStats.player.get_global_position()).length() < BATTLE_START_DISTANCE:
+	var distance: float = global_position.distance_to(PlayerStats.player.get_global_position())
+	if distance < BATTLE_START_DISTANCE:
 		return true
 	return false
 
@@ -57,16 +86,22 @@ func is_close_enough_to_point(world_state: Dictionary) -> void:
 
 func pick_point(world_state: Dictionary) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
-	var x_pos: float = rng.randf_range(_start_position.x-wander_x_bound, _start_position.x+wander_x_bound)
-	var y_pos: float = rng.randf_range(_start_position.y-wander_y_bound, _start_position.y+wander_y_bound)
-	_wander_point = Vector2(x_pos, y_pos)
-	world_state["wander_point"] = _wander_point
-	_has_wander_point = true
+	var has_valid_point: bool = false
+	while not has_valid_point:
+		var x_pos: float = rng.randf_range(_start_position.x-wander_x_bound, _start_position.x+wander_x_bound)
+		var y_pos: float = rng.randf_range(_start_position.y-wander_y_bound, _start_position.y+wander_y_bound)
+		_wander_point = Vector2(x_pos, y_pos)
+		nav.set_target_position(_wander_point)
+		if nav.is_target_reachable():
+			has_valid_point = true
+		world_state["wander_point"] = _wander_point
+		_has_wander_point = true
 
 func walk_to_point(world_state: Dictionary) -> void:
 	npc_sprite.play("walk", 1.0)
 	if not world_state["close_enough_to_point"]:
-		var desired_direction: Vector2 = (world_state["wander_point"] - get_global_position()).normalized()
+		var next_path_point: Vector2 = nav.get_next_path_position()
+		var desired_direction: Vector2 = global_position.direction_to(next_path_point)
 		if abs(rad_to_deg(desired_direction.angle())) < 90.0:
 			npc_sprite.flip_h = true
 		else:
@@ -77,14 +112,17 @@ func walk_to_point(world_state: Dictionary) -> void:
 
 	move_and_slide()
 
-func wait_at_point() -> void:
+func wait_at_point(_world_state: Dictionary) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	var wait_time: float = rng.randf_range(0.5, 5.0)
 	npc_sprite.stop()
 	await get_tree().create_timer(wait_time).timeout
 
-func chase_player() -> void:
-	var desired_direction: Vector2 = (PlayerStats.player.get_global_position() - get_global_position()).normalized()
+func chase_player(_world_state: Dictionary) -> void:
+	_has_wander_point = false
+	nav.set_target_position(PlayerStats.player.get_global_position())
+	var next_path_point: Vector2 = nav.get_next_path_position()
+	var desired_direction: Vector2 = global_position.direction_to(next_path_point)
 	if abs(rad_to_deg(desired_direction.angle())) < 90.0:
 			npc_sprite.flip_h = true
 	else:
@@ -95,7 +133,10 @@ func chase_player() -> void:
 	move_and_slide()
 
 func start_battle(_world_state: Dictionary) -> void:
-	pass
+	npc_sprite.stop()
+	if npc_name in EnemyDatabase._enemies:
+		LevelManager.menu_unloaded.connect(on_battle_finished)
+		LevelManager.trigger_battle(npc_name)
 
 func generate_world_state() -> Dictionary:
 	return {
@@ -105,4 +146,44 @@ func generate_world_state() -> Dictionary:
 		"wander_point": _wander_point,
 		"close_enough_to_point": false,
 		"npc_position": get_global_position(),
+		"has_been_captured" : has_been_captured(),
+		"has_been_defeated" : _has_been_defeated,
 	}
+
+func on_body_entered_detect_area(entered_body: Node2D) -> void:
+	if entered_body is Player:
+		_can_detect_player = true
+
+func on_body_exited_detect_area(exited_body: Node2D) -> void:
+	if exited_body is Player:
+		_can_detect_player = false
+
+func has_been_captured() -> bool:
+	var unlocked_shadows: PackedStringArray = PlayerStats.get_all_unlocked_shadows()
+	if unlocked_shadows.has(npc_name):
+		return true
+	return false
+
+func on_battle_finished() -> void:
+	saturate_colors()
+	LevelManager.menu_unloaded.disconnect(on_battle_finished)
+	battle_finished.emit()
+	MenuManager.fader_controller.fade_in()
+
+func saturate_colors() -> void:
+	if shiny != null:
+		shiny.queue_free()
+	_has_been_defeated = true
+	npc_sprite.set_sprite_frames(normal_sprite_frames)
+	npc_sprite.set_material(null)
+
+func desaturate_colors() -> void:
+	npc_sprite.set_sprite_frames(afflicted_sprite_frames)
+	npc_sprite.set_material(afflicted_material)
+
+func on_world_event(event_name: String, args: Array) -> void:
+	if event_name == "battle_finished":
+		var battle_state: Dictionary = args[0]
+		
+		if battle_state["shadow_name"] == npc_name:
+			saturate_colors()

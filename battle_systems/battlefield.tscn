@@ -1,8 +1,9 @@
-[gd_scene load_steps=17 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=25 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EntityTracker.gd" id="2_oep6u"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/CombatStateMachine.gd" id="3_com16"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/TutorialManager.gd" id="3_dg3pn"]
 [ext_resource type="Script" path="res://battle_systems/States/IdleState.gd" id="4_63esm"]
 [ext_resource type="Script" path="res://battle_systems/States/PlayerState.gd" id="4_q2neg"]
 [ext_resource type="Script" path="res://battle_systems/States/EnemyState.gd" id="5_04e5c"]
@@ -15,6 +16,22 @@
 [ext_resource type="PackedScene" uid="uid://cp02k4l0gw3u0" path="res://battle_systems/EntityComponents/BaseAIEntity/ai_entity.tscn" id="11_66ej3"]
 [ext_resource type="PackedScene" uid="uid://dob0l3mbcorkh" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.tscn" id="13_7ttxg"]
 [ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="14_jcqrt"]
+[ext_resource type="Script" path="res://battle_systems/Tutorial/TourScreen.gd" id="16_85n3o"]
+[ext_resource type="PackedScene" uid="uid://dk4e0kp7eg3mv" path="res://battle_systems/Tutorial/TextButton/tutorial_text_button.tscn" id="16_c6840"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="18_qro7g"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_i6ghi"]
+bg_color = Color(0, 0, 0, 0.529412)
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bn4ug"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_xae7o"]
+font = ExtResource("18_qro7g")
+font_size = 21
+outline_size = 3
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wtc82"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_altgx"]
 
@@ -24,6 +41,10 @@ script = ExtResource("1_ubwb4")
 [node name="EntityTracker" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_oep6u")
+
+[node name="TutorialManager" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("3_dg3pn")
 
 [node name="CombatStateMachine" type="Node" parent="."]
 unique_name_in_owner = true
@@ -49,6 +70,7 @@ script = ExtResource("7_hc5bd")
 
 [node name="CombatBackground" parent="." instance=ExtResource("10_ot5yf")]
 offset_right = 640.0
+metadata/_edit_lock_ = true
 
 [node name="PlayerEntity" parent="." node_paths=PackedStringArray("attack_position", "entity_tracker") instance=ExtResource("8_4gulr")]
 unique_name_in_owner = true
@@ -64,10 +86,12 @@ player_entity = NodePath("../PlayerEntity")
 enemy_position = NodePath("../PlayerAttackPosition")
 entity_tracker = NodePath("../EntityTracker")
 
-[node name="Table" parent="." node_paths=PackedStringArray("entity_tracker", "control_shield") instance=ExtResource("9_ou7kj")]
+[node name="Table" parent="." node_paths=PackedStringArray("entity_tracker", "control_shield", "book_tutorial") instance=ExtResource("9_ou7kj")]
 unique_name_in_owner = true
 entity_tracker = NodePath("../EntityTracker")
 control_shield = NodePath("../CanvasLayer/ControlShield")
+book_tutorial = NodePath("../CanvasLayer/Tutorial/RecipeBookTutorial")
+metadata/_edit_lock_ = true
 
 [node name="PlayerAttackPosition" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -77,6 +101,867 @@ position = Vector2(176, 135)
 
 [node name="EnemyStatusIndicator" parent="CanvasLayer" instance=ExtResource("13_7ttxg")]
 unique_name_in_owner = true
+
+[node name="Tutorial" type="Control" parent="CanvasLayer"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="TourScreen" type="Control" parent="CanvasLayer/Tutorial" node_paths=PackedStringArray("buttons")]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("16_85n3o")
+buttons = [NodePath("Hello Message/TutorialTextButton"), NodePath("HPPotion/TutorialTextButton"), NodePath("APPotion/TutorialTextButton"), NodePath("EnemyStatus/TutorialTextButton"), NodePath("Reagents/TutorialTextButton"), NodePath("PaperTowel/TutorialTextButton"), NodePath("Candles/TutorialTextButton"), NodePath("CheatSheet/TutorialTextButton"), NodePath("CheatSheet2/TutorialTextButton2")]
+metadata/_edit_lock_ = true
+
+[node name="Hello Message" type="Control" parent="CanvasLayer/Tutorial/TourScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Hello Message"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/TourScreen/Hello Message" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 217.0
+offset_top = 79.0
+offset_right = 434.0
+offset_bottom = 229.0
+text = "Hello!
+
+Let me teach you how to alchemy battle!"
+
+[node name="HPPotion" type="Control" parent="CanvasLayer/Tutorial/TourScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/HPPotion"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 51.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/HPPotion"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 51.0
+offset_bottom = 160.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/HPPotion"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 51.0
+offset_top = -77.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/HPPotion"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -518.0
+offset_top = -20.0
+offset_bottom = 103.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/TourScreen/HPPotion" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 168.0
+offset_top = 69.0
+offset_right = 387.0
+offset_bottom = 254.0
+
+[node name="APPotion" type="Control" parent="CanvasLayer/Tutorial/TourScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/APPotion"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 25.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/APPotion"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 25.0
+offset_bottom = 202.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/APPotion"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 25.0
+offset_top = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/APPotion"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -563.0
+offset_top = 22.0
+offset_bottom = 147.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/TourScreen/APPotion" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 138.0
+offset_top = 72.0
+offset_right = 412.0
+offset_bottom = 266.0
+text = "This is your AP potion. It gets filled at the start of every battle.
+
+When you end your turn, you regen an AP amount. If you do nothing that round and end the turn early, you gain more AP."
+
+[node name="EnemyStatus" type="Control" parent="CanvasLayer/Tutorial/TourScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/EnemyStatus"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 581.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/EnemyStatus"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 581.0
+offset_top = -176.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/TourScreen/EnemyStatus" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 296.0
+offset_top = 12.0
+offset_right = 572.0
+offset_bottom = 274.0
+text = "The symbol in the circle indicates your opponent's resonance type. When using abilities with the same symbol, you weaken the enemy's resolve to eventually capture it assuming you don't 'unalive' your opponent.
+
+The red bar next to it, is your opponent's health bar."
+
+[node name="Reagents" type="Control" parent="CanvasLayer/Tutorial/TourScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Reagents"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 122.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Reagents"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 122.0
+offset_bottom = 238.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Reagents"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 122.0
+offset_top = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Reagents"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -392.0
+offset_top = 58.0
+offset_bottom = 147.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel5" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Reagents"]
+layout_mode = 0
+offset_left = 122.0
+offset_top = 238.0
+offset_right = 248.0
+offset_bottom = 327.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bn4ug")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/TourScreen/Reagents" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 136.0
+offset_right = 475.0
+offset_bottom = 275.0
+text = "These are your reagents. They are the core/costs of your abilities."
+
+[node name="PaperTowel" type="Control" parent="CanvasLayer/Tutorial/TourScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/PaperTowel"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 521.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/PaperTowel"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 521.0
+offset_bottom = 180.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/PaperTowel"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 521.0
+offset_top = -68.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/PaperTowel"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -52.0
+offset_bottom = 112.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Panel5" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/PaperTowel"]
+layout_mode = 0
+offset_left = 521.0
+offset_top = 180.0
+offset_right = 588.0
+offset_bottom = 292.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bn4ug")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/TourScreen/PaperTowel" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 288.0
+offset_top = 88.0
+offset_right = 507.0
+offset_bottom = 265.0
+text = "This... is a paper towel roll.
+Use it to clean up your mistakes!
+(Resets your ability crafting - more info in a bit :D)"
+
+[node name="Candles" type="Control" parent="CanvasLayer/Tutorial/TourScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Left" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Candles"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 540.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Top" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Candles"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 540.0
+offset_bottom = 256.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Bottom" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Candles"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 540.0
+offset_top = -23.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Right" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Candles"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -15.0
+offset_top = 76.0
+offset_bottom = 157.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Clear" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/Candles"]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 225.0
+offset_right = 624.0
+offset_bottom = 337.0
+theme_override_styles/panel = SubResource("StyleBoxEmpty_bn4ug")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/TourScreen/Candles" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 352.0
+offset_top = 112.0
+offset_right = 530.0
+offset_bottom = 272.0
+text = "Don't forget to \"blow out\" (click) the candles to \"end your turn\"."
+
+[node name="CheatSheet" type="Control" parent="CanvasLayer/Tutorial/TourScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Left" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/CheatSheet"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 236.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Top" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/CheatSheet"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 236.0
+offset_bottom = 256.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Bottom" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/CheatSheet"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 236.0
+offset_top = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Right" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/CheatSheet"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = 76.0
+offset_bottom = 147.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/TourScreen/CheatSheet" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 17.0
+offset_top = 32.0
+offset_right = 215.0
+offset_bottom = 303.0
+text = "I mentioned ability costs earlier.
+You use your alchemy to combine reagents to  reach higher resonances.
+
+Hover your mouse on that note.
+
+The arrows tells you the alchemy path."
+
+[node name="CheatSheet2" type="Control" parent="CanvasLayer/Tutorial/TourScreen"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Left" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/CheatSheet2"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 236.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Top" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/CheatSheet2"]
+layout_mode = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_left = 236.0
+offset_bottom = 255.0
+grow_horizontal = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Bottom" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/CheatSheet2"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 236.0
+offset_top = -33.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Right" type="Panel" parent="CanvasLayer/Tutorial/TourScreen/CheatSheet2"]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -336.0
+offset_top = 75.0
+offset_bottom = 147.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="TutorialTextButton2" parent="CanvasLayer/Tutorial/TourScreen/CheatSheet2" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 443.0
+offset_top = 37.0
+offset_right = 641.0
+offset_bottom = 316.0
+text = "Take a look here.
+(Hover the note)
+
+Earth + Water = Salt
+
+Earth + Water + Air = Celestial
+
+Water + Air + Fire = Niter
+
+All 4 = Metal"
+
+[node name="RecipeBookTutorial" type="Control" parent="CanvasLayer/Tutorial"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_group_ = true
+metadata/_edit_lock_ = true
+
+[node name="Left" type="Panel" parent="CanvasLayer/Tutorial/RecipeBookTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -336.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Top" type="Panel" parent="CanvasLayer/Tutorial/RecipeBookTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 304.0
+offset_bottom = -131.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Right" type="Panel" parent="CanvasLayer/Tutorial/RecipeBookTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 476.0
+offset_top = 229.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Bottom" type="Panel" parent="CanvasLayer/Tutorial/RecipeBookTutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 304.0
+offset_top = 337.0
+offset_right = -164.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/RecipeBookTutorial" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 83.0
+offset_top = 101.0
+offset_right = 300.0
+offset_bottom = 245.0
+text = "Click on your alchemy tome for a list of your equipped abilities."
+
+[node name="Label" parent="CanvasLayer/Tutorial/RecipeBookTutorial/TutorialTextButton/MarginContainer/VBoxContainer" index="0"]
+text = "Click on your alchemy tome for a list of your equipped abilities."
+
+[node name="Label2" parent="CanvasLayer/Tutorial/RecipeBookTutorial/TutorialTextButton/MarginContainer/VBoxContainer" index="2"]
+text = "(Click the book to continue...)"
+
+[node name="Button" parent="CanvasLayer/Tutorial/RecipeBookTutorial/TutorialTextButton" index="2"]
+disabled = true
+
+[node name="Crafting" type="Control" parent="CanvasLayer/Tutorial"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Left" type="Panel" parent="CanvasLayer/Tutorial/Crafting"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/Crafting" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 236.0
+offset_top = 37.0
+offset_right = 453.0
+offset_bottom = 239.0
+text = "Now let's capture  that worm! It's hat is silly and I want it!
+
+Take the reagents on the pillow. Click and drag them onto our blob right above the reagents."
+
+[node name="SelectingRecipe" type="Control" parent="CanvasLayer/Tutorial"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Nope" type="Panel" parent="CanvasLayer/Tutorial/SelectingRecipe"]
+layout_mode = 0
+offset_left = 540.0
+offset_top = 259.0
+offset_right = 624.0
+offset_bottom = 334.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Label" type="Label" parent="CanvasLayer/Tutorial/SelectingRecipe/Nope"]
+layout_mode = 0
+offset_left = 5.0
+offset_top = 17.0
+offset_right = 66.0
+offset_bottom = 80.0
+rotation = -0.261799
+text = "Nope not yet!"
+label_settings = SubResource("LabelSettings_xae7o")
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 3
+
+[node name="RecipePage" type="Control" parent="CanvasLayer/Tutorial/SelectingRecipe"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Left" type="Panel" parent="CanvasLayer/Tutorial/SelectingRecipe/RecipePage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -280.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Top" type="Panel" parent="CanvasLayer/Tutorial/SelectingRecipe/RecipePage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 360.0
+offset_bottom = -252.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Right" type="Panel" parent="CanvasLayer/Tutorial/SelectingRecipe/RecipePage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 466.0
+offset_top = 108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="Right2" type="Panel" parent="CanvasLayer/Tutorial/SelectingRecipe/RecipePage"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 360.0
+offset_top = 229.0
+offset_right = -174.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/SelectingRecipe/RecipePage" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 75.0
+offset_top = 48.0
+offset_right = 292.0
+offset_bottom = 250.0
+text = "ALCHEMY!
+
+When transmutating your reagents correctly, at least one of your equipped abilities will appear."
+
+[node name="Label" parent="CanvasLayer/Tutorial/SelectingRecipe/RecipePage/TutorialTextButton/MarginContainer/VBoxContainer" index="0"]
+text = "ALCHEMY!
+
+When transmutating your reagents correctly, at least one of your equipped abilities will appear."
+
+[node name="Label2" parent="CanvasLayer/Tutorial/SelectingRecipe/RecipePage/TutorialTextButton/MarginContainer/VBoxContainer" index="2"]
+text = "(Click the ability page to continue...)"
+
+[node name="Button" parent="CanvasLayer/Tutorial/SelectingRecipe/RecipePage/TutorialTextButton" index="2"]
+visible = false
+disabled = true
+
+[node name="BattleBlocker" type="Panel" parent="CanvasLayer/Tutorial/SelectingRecipe"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_wtc82")
+
+[node name="Sparkles" type="Control" parent="CanvasLayer/Tutorial"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="Panel" parent="CanvasLayer/Tutorial/Sparkles"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -340.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="SparklesTutorialButton" parent="CanvasLayer/Tutorial/Sparkles" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 23.0
+offset_right = 252.0
+offset_bottom = 268.0
+text = "You see those sparkles!
+Your blob resonated with the shadow.
+Keep at it and you'll capture it.
+
+Using abilities of the same resonance will assure you capture the shadow."
+
+[node name="End" type="Control" parent="CanvasLayer/Tutorial"]
+unique_name_in_owner = true
+process_mode = 3
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Left" type="Panel" parent="CanvasLayer/Tutorial/End"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_i6ghi")
+
+[node name="LastTutorialButton" parent="CanvasLayer/Tutorial/End" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 216.0
+offset_top = 43.0
+offset_right = 433.0
+offset_bottom = 245.0
+text = "Ok ok ok! I get it!
+I'll stop bothering you with my alchemic paper of wisdom.
+
+I'll leave you to get me that hat now. :D"
 
 [node name="ControlShield" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -93,3 +978,13 @@ visible = false
 position = Vector2(512, 61)
 scale = Vector2(0.285, 0.285)
 texture = ExtResource("14_jcqrt")
+
+[connection signal="capture_status_animated" from="EnemyEntity" to="TutorialManager" method="_on_enemy_entity_capture_status_animated"]
+[connection signal="recipe_clicked" from="Table" to="TutorialManager" method="_on_table_recipe_clicked"]
+[connection signal="recipe_page_displayed" from="Table" to="TutorialManager" method="_on_table_recipe_page_displayed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/Crafting/TutorialTextButton" to="TutorialManager" method="_on_tutorial_text_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/Sparkles/SparklesTutorialButton" to="TutorialManager" method="_on_sparkles_tutorial_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/End/LastTutorialButton" to="TutorialManager" method="_on_last_tutorial_button_pressed"]
+
+[editable path="CanvasLayer/Tutorial/RecipeBookTutorial/TutorialTextButton"]
+[editable path="CanvasLayer/Tutorial/SelectingRecipe/RecipePage/TutorialTextButton"]

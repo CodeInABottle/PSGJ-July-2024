@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://qpmf7gwfip30"]
+
+[ext_resource type="Texture2D" uid="uid://lwjrs8x5jfty" path="res://assets/sprites/mobs/overworld_tree.png" id="1_jg7lf"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3cqmq"]
+atlas = ExtResource("1_jg7lf")
+region = Rect2(0, 0, 61, 76)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3cqmq")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

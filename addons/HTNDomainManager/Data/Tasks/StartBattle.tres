@@ -4,4 +4,4 @@
 
 [resource]
 script = ExtResource("1_jyijp")
-requires_awaiting = false
+requires_awaiting = true

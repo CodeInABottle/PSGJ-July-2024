@@ -1,7 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://b644l6iqorxwf"]
 
 [ext_resource type="Script" path="res://dialogue/dialogue_ui_controller.gd" id="1_lt663"]
-[ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="1_xgv21"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e3e0n"]
 bg_color = Color(0.188235, 0.188235, 0.188235, 1)
@@ -16,6 +15,8 @@ corner_radius_bottom_right = 4
 corner_radius_bottom_left = 4
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dhs1d"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_2bdhg"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7mwm2"]
 bg_color = Color(0.188235, 0.188235, 0.188235, 1)
@@ -79,7 +80,6 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-texture = ExtResource("1_xgv21")
 expand_mode = 3
 
 [node name="HBoxContainer" type="HBoxContainer" parent="PanelContainer/MarginContainer/HBoxContainer/SpeakerInfoContainer"]
@@ -92,10 +92,11 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_dhs1d")
 
 [node name="SpeakerName" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SpeakerInfoContainer/HBoxContainer"]
 layout_mode = 2
-text = "<NPC NAME>"
+size_flags_horizontal = 4
+horizontal_alignment = 1
 
 [node name="SpokenWords" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer"]
-custom_minimum_size = Vector2(370, 0)
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_vertical = 1
 autowrap_mode = 3
@@ -105,6 +106,10 @@ text_overrun_behavior = 1
 layout_mode = 2
 size_flags_vertical = 4
 columns = 2
+
+[node name="VSeparator" type="VSeparator" parent="PanelContainer/MarginContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_2bdhg")
 
 [node name="ContinueButton" type="Button" parent="."]
 layout_mode = 2

@@ -1,0 +1,25 @@
+[gd_resource type="SpriteFrames" load_steps=4 format=3 uid="uid://c6keqd17qydn"]
+
+[ext_resource type="Texture2D" uid="uid://daupmk7au0ws8" path="res://assets/sprites/mobs/overworld_worm.png" id="1_n7q32"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nv8u0"]
+atlas = ExtResource("1_n7q32")
+region = Rect2(0, 32, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_p7nad"]
+atlas = ExtResource("1_n7q32")
+region = Rect2(32, 32, 32, 32)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nv8u0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_p7nad")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

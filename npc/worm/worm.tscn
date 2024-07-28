@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7vtqsxy3wb8l"]
+
+[ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_gmk1u"]
+[ext_resource type="SpriteFrames" uid="uid://c6keqd17qydn" path="res://npc/worm/worm_sprite_frames.tres" id="2_hctio"]
+[ext_resource type="SpriteFrames" uid="uid://cgkqe8alnm47x" path="res://npc/worm/afflicted_worm_sprite_frames.tres" id="3_4u24s"]
+
+[node name="Worm" instance=ExtResource("1_gmk1u")]
+npc_name = "Earth Worm"
+notice_radius = 35.0
+wander_x_bound = 40.0
+wander_y_bound = 40.0
+normal_sprite_frames = ExtResource("2_hctio")
+afflicted_sprite_frames = ExtResource("3_4u24s")
+
+[node name="NPCSprite" parent="." index="1"]
+sprite_frames = ExtResource("2_hctio")
+animation = &"walk"
+frame_progress = 0.678705

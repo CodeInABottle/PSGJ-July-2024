@@ -1,0 +1,31 @@
+[gd_scene load_steps=6 format=3 uid="uid://cjbgt3ne5vyjk"]
+
+[ext_resource type="Script" path="res://overworld_stuff/sign_controller.gd" id="1_o35ik"]
+[ext_resource type="PackedScene" uid="uid://dfx4boutf3fkk" path="res://inventory/shiny.tscn" id="4_k256h"]
+[ext_resource type="Texture2D" uid="uid://xhx7esa1oi7d" path="res://assets/sprites/general/sign.png" id="5_wquak"]
+[ext_resource type="Script" path="res://overworld_stuff/interactable_controller.gd" id="6_kht7g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ef2k2"]
+radius = 16.0
+
+[node name="Sign" type="StaticBody2D" node_paths=PackedStringArray("interactable") groups=["navigation"]]
+collision_layer = 2
+script = ExtResource("1_o35ik")
+interactable = NodePath("Area2D")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_ef2k2")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("5_wquak")
+region_enabled = true
+region_rect = Rect2(0, 36.3236, 32, 27.5301)
+
+[node name="Area2D" type="Area2D" parent="." groups=["interactable"]]
+script = ExtResource("6_kht7g")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ef2k2")
+
+[node name="Shiny" parent="." instance=ExtResource("4_k256h")]
+unique_name_in_owner = true

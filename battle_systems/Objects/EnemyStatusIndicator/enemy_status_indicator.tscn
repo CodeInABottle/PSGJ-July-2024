@@ -1,11 +1,7 @@
-[gd_scene load_steps=11 format=3 uid="uid://dob0l3mbcorkh"]
+[gd_scene load_steps=7 format=3 uid="uid://dob0l3mbcorkh"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.gd" id="1_ecu7o"]
 [ext_resource type="PackedScene" uid="uid://c2va6bcydygut" path="res://battle_systems/Objects/ResonateIndicator/resonate_indicator.tscn" id="1_kpuy1"]
-[ext_resource type="PackedScene" uid="uid://bsa0djc5k7pg8" path="res://battle_systems/Objects/EnemyStatusIndicator/Residue/residue.tscn" id="3_2lmv5"]
-[ext_resource type="Texture2D" uid="uid://byl4fstefwbek" path="res://assets/sprites/combat/Reagents/WaterOrbStill.png" id="5_xt41r"]
-[ext_resource type="Texture2D" uid="uid://8qecgxdriegr" path="res://assets/sprites/combat/Reagents/WindOrbStill.png" id="6_kimrx"]
-[ext_resource type="Texture2D" uid="uid://dbfeeyycjg0md" path="res://assets/sprites/combat/Reagents/FireOrbStill.png" id="7_s8nqa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0kao"]
 bg_color = Color(0.270588, 0.156863, 0.235294, 1)
@@ -72,36 +68,6 @@ show_percentage = false
 unique_name_in_owner = true
 position = Vector2(605, 27)
 scale = Vector2(0.75, 0.75)
-
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 1
-anchor_left = 1.0
-anchor_right = 1.0
-offset_left = -35.0
-offset_top = 56.0
-offset_right = -8.0
-offset_bottom = 184.0
-grow_horizontal = 0
-
-[node name="EarthResidue" parent="VBoxContainer" instance=ExtResource("3_2lmv5")]
-unique_name_in_owner = true
-layout_mode = 2
-
-[node name="WaterResidue" parent="VBoxContainer" instance=ExtResource("3_2lmv5")]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("5_xt41r")
-
-[node name="AirResidue" parent="VBoxContainer" instance=ExtResource("3_2lmv5")]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("6_kimrx")
-
-[node name="FireResidue" parent="VBoxContainer" instance=ExtResource("3_2lmv5")]
-unique_name_in_owner = true
-layout_mode = 2
-texture = ExtResource("7_s8nqa")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 

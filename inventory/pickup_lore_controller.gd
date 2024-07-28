@@ -6,6 +6,8 @@ extends PickupItem
 var in_dialogue: bool = false
 
 func on_interaction_started(_interactable: Interactable) -> void:
+	LevelManager.world_event_occurred.emit("item_get:"+item_name, [])
+	DialogueManager.end_dialogue()
 	shiny.stop_shiny()
 	menu_layer.update_info(item_name)
 	menu_layer.reveal()
@@ -28,7 +30,6 @@ func on_interaction_advanced(_interactable: Interactable) -> void:
 
 func on_interaction_quick_closed() -> void:
 	print("pickup interaction quick-closed")
-	PlayerStats.add_item(item_name, quantity)
 	_on_interaction_ended()
 
 func _on_interaction_ended() -> void:
@@ -37,9 +38,9 @@ func _on_interaction_ended() -> void:
 		DialogueManager.end_dialogue()
 	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
+	PlayerStats.add_item(item_name, quantity)
 	pickup_interaction_ended.emit(get_index())
-	pickup_area.hide()
-	item_sprite.hide()
+	get_parent().remove_child(self)
 
 func on_dialogue_ended() -> void:
 	DialogueManager.dialogue_ended.disconnect(on_dialogue_ended)
@@ -48,8 +49,8 @@ func on_dialogue_ended() -> void:
 
 func on_dialogue_timer_timeout() -> void:
 	dialogue_timer.timeout.disconnect(on_dialogue_timer_timeout)
-	var item: InventoryItem = InventoryDatabase.get_item(item_name)
-	DialogueManager.play_dialogue(item.dialogue, "main")
+	var item: LoreItem = InventoryDatabase.get_item(item_name)
+	DialogueManager.play_dialogue(item.dialogue, "main", item.author_name, item.item_icon)
 
 func on_fade_from_translucent_complete() -> void:
 	MenuManager.fader_controller.fade_from_translucent_complete.disconnect(on_fade_from_translucent_complete)

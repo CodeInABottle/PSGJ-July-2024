@@ -1,0 +1,77 @@
+[gd_resource type="SpriteFrames" load_steps=10 format=3 uid="uid://cw3vw5wihnly4"]
+
+[ext_resource type="Texture2D" uid="uid://c6bvgpe7rmx51" path="res://assets/sprites/mobs/afflicted/overworld_ferret_gray.png" id="1_8p2le"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_oioln"]
+atlas = ExtResource("1_8p2le")
+region = Rect2(0, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ln6wj"]
+atlas = ExtResource("1_8p2le")
+region = Rect2(32, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_74fgi"]
+atlas = ExtResource("1_8p2le")
+region = Rect2(128, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_q7ru4"]
+atlas = ExtResource("1_8p2le")
+region = Rect2(160, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8hips"]
+atlas = ExtResource("1_8p2le")
+region = Rect2(192, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_glfhw"]
+atlas = ExtResource("1_8p2le")
+region = Rect2(224, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1kubo"]
+atlas = ExtResource("1_8p2le")
+region = Rect2(64, 32, 32, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_2jscg"]
+atlas = ExtResource("1_8p2le")
+region = Rect2(96, 32, 32, 16)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_oioln")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ln6wj")
+}],
+"loop": true,
+"name": &"head_bob",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_74fgi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_q7ru4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8hips")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_glfhw")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 7.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1kubo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_2jscg")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

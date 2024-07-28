@@ -4,6 +4,7 @@ extends Node
 signal battle_finished(battle_data: Dictionary)
 
 @onready var entity_tracker: BattlefieldEntityTracker = %EntityTracker
+@onready var tutorial_manager: BattlefieldTutorial = %TutorialManager
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
 @onready var table: BattlefieldTable = %Table
 
@@ -48,6 +49,8 @@ func setup_battle(enemy_name_encounter: String) -> void:
 
 	entity_tracker.end_turn()
 	combat_state_machine.start()
+	if enemy_name_encounter == "Earth Worm":
+		tutorial_manager.activate()
 	_finished_setup = true
 
 func _physics_process(delta: float) -> void:
@@ -72,6 +75,8 @@ func lost_battle() -> void:
 	battle_finished.emit(battle_state)
 
 func _on_battle_finished(_final_state: Dictionary) -> void:
+	LevelManager.world_event_occurred.emit("battle_finished", [_final_state])
+
 	if MenuManager.fader_controller == null: return
 	if MenuManager.fader_controller.fade_out_complete == null: return
 

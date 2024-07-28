@@ -1,0 +1,18 @@
+[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bb17rygnm3xo0"]
+
+[ext_resource type="Texture2D" uid="uid://ca3k2trgycohx" path="res://assets/sprites/mobs/afflicted/afflicted_overworld_tree.png" id="1_hesev"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l7wed"]
+atlas = ExtResource("1_hesev")
+region = Rect2(0, 0, 61, 77)
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l7wed")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]
