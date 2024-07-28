@@ -1,0 +1,393 @@
+[gd_scene load_steps=11 format=3 uid="uid://bn4oi0fntaepu"]
+
+[ext_resource type="Script" path="res://ui/MainMenu/main_menu_controller.gd" id="1_bkll6"]
+[ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="1_jnntl"]
+[ext_resource type="Texture2D" uid="uid://ck0ryfpje7uw8" path="res://assets/sprites/general/TitleScreen/title_screen_07.png" id="3_0ou8s"]
+[ext_resource type="Texture2D" uid="uid://dcwu10csipoqc" path="res://assets/sprites/general/TitleScreen/title_screen_06.png" id="4_vs8bo"]
+[ext_resource type="Texture2D" uid="uid://f0ru0ogqwnyy" path="res://assets/sprites/general/TitleScreen/title_screen_04.png" id="5_gtdy7"]
+[ext_resource type="Texture2D" uid="uid://6xtsfoxcykhn" path="res://assets/sprites/general/TitleScreen/title_screen_05.png" id="6_pu805"]
+
+[sub_resource type="Animation" id="Animation_ui3r4"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons/Play:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons/Load:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 64)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuButtons/Credits:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 128)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SaveStringContainer/SaveStringEdit:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(64, 370)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("SaveStringContainer/LoadConfirm:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(256, 368)]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("ControlShield:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
+tracks/6/type = "value"
+tracks/6/imported = false
+tracks/6/enabled = true
+tracks/6/path = NodePath("SaveStringContainer/Back:position")
+tracks/6/interp = 1
+tracks/6/loop_wrap = true
+tracks/6/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(256, 368)]
+}
+tracks/7/type = "value"
+tracks/7/imported = false
+tracks/7/enabled = true
+tracks/7/path = NodePath("SplashArt/Player:position")
+tracks/7/interp = 1
+tracks/7/loop_wrap = true
+tracks/7/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_rpsea"]
+resource_name = "SlideMainButtonsDown"
+length = 0.65
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MenuButtons/Play:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.05, 0.1, 0.15, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, -10), Vector2(0, 0), Vector2(0, 207)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MenuButtons/Load:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.05, 0.25, 0.3, 0.35, 0.45),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 64), Vector2(0, 64), Vector2(0, 54), Vector2(0, 64), Vector2(0, 207)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("MenuButtons/Credits:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.45, 0.5, 0.55, 0.65),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 128), Vector2(0, 128), Vector2(0, 118), Vector2(0, 128), Vector2(0, 207)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("ControlShield:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
+[sub_resource type="Animation" id="Animation_qd3nr"]
+resource_name = "SlideSaveStringUp"
+length = 1.5
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("SaveStringContainer/SaveStringEdit:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.3, 0.5, 0.6, 0.7),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(256, 370), Vector2(256, 128), Vector2(256, 100), Vector2(256, 128)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("SaveStringContainer/LoadConfirm:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.3, 0.7, 0.9, 1, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(365, 368), Vector2(365, 368), Vector2(365, 208), Vector2(365, 176), Vector2(365, 208)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("SaveStringContainer/Back:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.3, 1.1, 1.3, 1.4, 1.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(365, 368), Vector2(365, 368), Vector2(365, 272), Vector2(365, 255), Vector2(365, 272)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("SplashArt/Player:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-300, 0)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("ControlShield:visible")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_q7k5c"]
+_data = {
+"RESET": SubResource("Animation_ui3r4"),
+"SlideMainButtonsDown": SubResource("Animation_rpsea"),
+"SlideSaveStringUp": SubResource("Animation_qd3nr")
+}
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_jnntl")
+script = ExtResource("1_bkll6")
+metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_q7k5c")
+}
+
+[node name="SplashArt" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Background" type="TextureRect" parent="SplashArt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_0ou8s")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="TitleContainer" type="Control" parent="SplashArt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TitleShadows" type="TextureRect" parent="SplashArt/TitleContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_vs8bo")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Title" type="TextureRect" parent="SplashArt/TitleContainer"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_gtdy7")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Player" type="TextureRect" parent="SplashArt"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_pu805")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="MenuButtons" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 96.0
+offset_top = 160.0
+offset_right = -368.0
+offset_bottom = -24.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Play" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+offset_right = 176.0
+offset_bottom = 48.0
+text = "Play"
+
+[node name="Load" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+offset_top = 64.0
+offset_right = 176.0
+offset_bottom = 112.0
+text = "Load"
+
+[node name="Credits" type="Button" parent="MenuButtons"]
+custom_minimum_size = Vector2(0, 48)
+layout_mode = 2
+offset_top = 128.0
+offset_right = 176.0
+offset_bottom = 176.0
+text = "Credits"
+
+[node name="SaveStringContainer" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="SaveStringEdit" type="LineEdit" parent="SaveStringContainer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 64.0
+offset_top = 370.0
+offset_right = 406.0
+offset_bottom = 410.0
+placeholder_text = "Save String..."
+
+[node name="LoadConfirm" type="Button" parent="SaveStringContainer"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 256.0
+offset_top = 368.0
+offset_right = 384.0
+offset_bottom = 408.0
+text = "Confirm"
+
+[node name="Back" type="Button" parent="SaveStringContainer"]
+layout_mode = 0
+offset_left = 256.0
+offset_top = 368.0
+offset_right = 384.0
+offset_bottom = 408.0
+text = "Back"
+
+[node name="ControlShield" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="MenuButtons/Play" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="MenuButtons/Load" to="." method="_on_load_pressed"]
+[connection signal="text_changed" from="SaveStringContainer/SaveStringEdit" to="." method="_on_save_string_edit_text_changed"]
+[connection signal="pressed" from="SaveStringContainer/LoadConfirm" to="." method="_on_load_confirm_pressed"]
+[connection signal="pressed" from="SaveStringContainer/Back" to="." method="_on_back_pressed"]

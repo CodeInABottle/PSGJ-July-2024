@@ -1,47 +1,82 @@
-[gd_scene load_steps=3 format=3 uid="uid://bl3865o4a34u0"]
+[gd_scene load_steps=6 format=3 uid="uid://bl3865o4a34u0"]
 
 [ext_resource type="Script" path="res://ui/intro_layer_controller.gd" id="1_fukdh"]
+[ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="2_bgxuo"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="3_5b7g7"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p62vh"]
-bg_color = Color(0.556863, 0.596078, 0.713726, 0.784314)
-border_width_left = 2
-border_width_top = 2
-border_width_right = 2
-border_width_bottom = 2
-border_color = Color(0.635294, 0.423529, 0.239216, 1)
-corner_radius_top_left = 40
-corner_radius_top_right = 40
-corner_radius_bottom_right = 40
-corner_radius_bottom_left = 40
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_vok47"]
+texture = ExtResource("2_bgxuo")
+texture_margin_left = 24.0
+texture_margin_top = 16.0
+texture_margin_right = 29.0
+texture_margin_bottom = 20.0
+axis_stretch_horizontal = 2
+
+[sub_resource type="LabelSettings" id="LabelSettings_bjnbu"]
+font = ExtResource("3_5b7g7")
+font_size = 36
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="IntroLayer" type="CanvasLayer"]
 script = ExtResource("1_fukdh")
 
-[node name="NameContainer" type="PanelContainer" parent="."]
+[node name="Map" type="Control" parent="."]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_lock_ = true
+
+[node name="Background" type="PanelContainer" parent="Map"]
+self_modulate = Color(0.270588, 0.156863, 0.235294, 1)
+layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -137.5
-offset_top = -131.0
-offset_right = 137.5
-offset_bottom = -59.0
+offset_left = -259.0
+offset_top = -102.0
+offset_right = 253.0
+offset_bottom = 2.0
 grow_horizontal = 2
 grow_vertical = 0
-size_flags_horizontal = 4
-size_flags_vertical = 4
 mouse_filter = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_p62vh")
+theme_override_styles/panel = SubResource("StyleBoxTexture_vok47")
 
-[node name="NameLabel" type="Label" parent="NameContainer"]
+[node name="NameContainer" type="PanelContainer" parent="Map"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -256.0
+offset_top = -104.0
+offset_right = 256.0
+grow_horizontal = 2
+grow_vertical = 0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_vok47")
+
+[node name="MarginContainer" type="MarginContainer" parent="Map/NameContainer"]
+layout_mode = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="NameLabel" type="Label" parent="Map/NameContainer/MarginContainer"]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_font_sizes/font_size = 20
 text = "Area Name"
+label_settings = SubResource("LabelSettings_bjnbu")
 
 [node name="IntroTimer" type="Timer" parent="."]
 unique_name_in_owner = true

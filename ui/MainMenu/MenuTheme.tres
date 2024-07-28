@@ -1,0 +1,81 @@
+[gd_resource type="Theme" load_steps=10 format=3 uid="uid://c2ppqoj6pfm85"]
+
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="1_pfn0u"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h40tw"]
+bg_color = Color(0.45, 0.1305, 0.1305, 1)
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.270588, 0.156863, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1sguu"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_22f4b"]
+bg_color = Color(0.85098, 0.341176, 0.388235, 1)
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.67451, 0.196078, 0.196078, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uumir"]
+bg_color = Color(0.67451, 0.196078, 0.196078, 1)
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.270588, 0.156863, 0.235294, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m2ll8"]
+bg_color = Color(0.270588, 0.156863, 0.235294, 1)
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.196078, 0.235294, 0.223529, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lt7m6"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lxi3q"]
+bg_color = Color(0.270588, 0.156863, 0.235294, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(0.67451, 0.196078, 0.196078, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+anti_aliasing = false
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_3gmp2"]
+
+[resource]
+Button/constants/outline_size = 2
+Button/font_sizes/font_size = 28
+Button/fonts/font = ExtResource("1_pfn0u")
+Button/styles/disabled = SubResource("StyleBoxFlat_h40tw")
+Button/styles/focus = SubResource("StyleBoxEmpty_1sguu")
+Button/styles/hover = SubResource("StyleBoxFlat_22f4b")
+Button/styles/normal = SubResource("StyleBoxFlat_uumir")
+Button/styles/pressed = SubResource("StyleBoxFlat_m2ll8")
+LineEdit/styles/focus = SubResource("StyleBoxEmpty_lt7m6")
+LineEdit/styles/normal = SubResource("StyleBoxFlat_lxi3q")
+LineEdit/styles/read_only = SubResource("StyleBoxEmpty_3gmp2")

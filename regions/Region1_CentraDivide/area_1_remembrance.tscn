@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://wlkqf1ypp0ik"]
+[gd_scene load_steps=11 format=3 uid="uid://wlkqf1ypp0ik"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_rhbow"]
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://overworld_stuff/transition_area.tscn" id="2_6uu8j"]
@@ -17,6 +17,15 @@ size = Vector2(162, 2)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dwel3"]
 size = Vector2(162, 2)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_kuvdu"]
+size = Vector2(280, 93)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jh7a0"]
+size = Vector2(88, 97)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fnwcv"]
+size = Vector2(184, 98)
 
 [node name="area_1_remembrance" instance=ExtResource("1_rhbow")]
 
@@ -67,3 +76,27 @@ polygon = PackedVector2Array(1200, 120, 1208, 128, 1208, 152, 1200, 160, 1200, 4
 
 [node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="TileMap/StaticBody2D" index="6"]
 polygon = PackedVector2Array(-280, 544, -280, 472, -312, 448, -312, 384, -344, 352, -344, 320, -376, 280, -376, 240, -408, 208, -440, 160, -440, 120, -536, 24, -536, 16, -1008, 16, -1008, 1264, -744, 1264, -736, 1272, -704, 1272, -696, 1264, -56, 1264, -56, 1152, -88, 1112, -88, 1048, -112, 1024, -112, 920, -144, 888, -144, 816, -176, 784, -176, 752, -208, 728, -208, 672, -248, 640, -248, 576, -224, 648, -64, 840, -40, 1280, -1024, 1280, -1024, 0, -536, 0, -392, 152, -256, 464)
+
+[node name="CollisionShape2D5" type="CollisionShape2D" parent="TileMap/StaticBody2D" index="7"]
+position = Vector2(752, 1071.5)
+shape = SubResource("RectangleShape2D_kuvdu")
+
+[node name="CollisionShape2D6" type="CollisionShape2D" parent="TileMap/StaticBody2D" index="8"]
+position = Vector2(176, 205.5)
+shape = SubResource("RectangleShape2D_jh7a0")
+
+[node name="CollisionShape2D8" type="CollisionShape2D" parent="TileMap/StaticBody2D" index="9"]
+position = Vector2(-848, 365)
+shape = SubResource("RectangleShape2D_jh7a0")
+
+[node name="CollisionShape2D9" type="CollisionShape2D" parent="TileMap/StaticBody2D" index="10"]
+position = Vector2(-816, 845)
+shape = SubResource("RectangleShape2D_jh7a0")
+
+[node name="CollisionShape2D10" type="CollisionShape2D" parent="TileMap/StaticBody2D" index="11"]
+position = Vector2(-528, 1006)
+shape = SubResource("RectangleShape2D_jh7a0")
+
+[node name="CollisionShape2D7" type="CollisionShape2D" parent="TileMap/StaticBody2D" index="12"]
+position = Vector2(1088, 1069)
+shape = SubResource("RectangleShape2D_fnwcv")
