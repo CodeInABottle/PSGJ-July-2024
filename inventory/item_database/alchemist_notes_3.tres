@@ -8,6 +8,6 @@
 script = ExtResource("5_2ufbk")
 dialogue = ExtResource("1_a3k32")
 author_name = "Novice Alchemist"
-item_name = "Alchemist's Notes: 3"
+item_name = "Novice Alchemist's Notes: 1"
 item_description = "Slightly neater notes by some fledgling alchemist."
 item_icon = ExtResource("4_siy1a")

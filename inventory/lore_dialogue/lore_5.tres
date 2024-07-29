@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=8 format=3 uid="uid://butjpvcchpk7w"]
+
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="1_7itl3"]
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_ky065"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_ffybc"]
+
+[sub_resource type="Resource" id="Resource_woatu"]
+script = ExtResource("1_ky065")
+line_text = "Maybe they wont see me in the trees..."
+
+[sub_resource type="Resource" id="Resource_wx56p"]
+script = ExtResource("1_ky065")
+line_text = "Yeah, yeah... I'm one of them"
+
+[sub_resource type="Resource" id="Resource_nn25e"]
+script = ExtResource("1_ky065")
+line_text = "If you are reading this, DON'T try to find me... I fear it is too late for me..."
+
+[sub_resource type="Resource" id="Resource_7ar11"]
+script = ExtResource("2_ffybc")
+block_lines = Array[ExtResource("1_ky065")]([SubResource("Resource_woatu"), SubResource("Resource_wx56p"), SubResource("Resource_nn25e")])
+
+[resource]
+script = ExtResource("1_7itl3")
+contents = Array[ExtResource("2_ffybc")]([SubResource("Resource_7ar11")])
+content_keys = Array[String](["main"])
