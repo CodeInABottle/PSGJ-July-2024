@@ -18,6 +18,7 @@ const FIRST_COMPOUND: Array[String] = [
 @onready var end: Control = %End
 @onready var residue_1: Control = %Residue1
 @onready var resonating_residues: Control = %ResonatingResidues
+@onready var resonating_residues_b: Control = %ResonatingResiduesB
 
 var _fighting_first_compound_opponent: bool = false
 
@@ -26,7 +27,10 @@ func activate() -> void:
 		hello_message.show()
 
 	if battlefield.enemy_name in FIRST_COMPOUND and not _get_tutorial_state("first_compound"):
-		resonating_residues.show()
+		if _get_tutorial_state("first_residue"):
+			resonating_residues.show()
+		else:
+			resonating_residues_b.show()
 
 func _get_tutorial_state(state_name: String) -> bool:
 	return SaveManager.tutorial_save_dictionary.get("tutorial_" + state_name, false)

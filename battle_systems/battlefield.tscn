@@ -1215,6 +1215,7 @@ disabled = true
 [node name="Sparkles" type="Control" parent="CanvasLayer/Tutorial"]
 unique_name_in_owner = true
 process_mode = 3
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1589,6 +1590,54 @@ offset_top = 243.0
 offset_right = 179.0
 offset_bottom = 275.0
 text = "Review"
+
+[node name="ResonatingResiduesB" type="Control" parent="CanvasLayer/Tutorial"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/ResonatingResiduesB"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/ResonatingResiduesB"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 380.0
+offset_top = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/ResonatingResiduesB" node_paths=PackedStringArray("tutorial_link") instance=ExtResource("16_c6840")]
+offset_left = 8.0
+offset_top = 81.0
+offset_right = 380.0
+offset_bottom = 283.0
+text = "Ohh Look! Look!
+It's one of those higher beings!
+
+Remember those residues-
+Wait.... HMM ._.
+Seems you never implanted a residue before now...
+
+Time for some wisdom! :D
+"
+tutorial_link = NodePath("../../Residues/Residue1")
 
 [node name="ControlShield" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
