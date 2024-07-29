@@ -22,6 +22,8 @@ const COLLISION_OFFSET: Vector2 = Vector2(0.0, 4.0)
 const PICKUP_OFFSET: float = 24.0
 const VISUAL_BODY_LERP_SCALE: float = 10.0
 
+signal redirect_complete()
+
 func _ready() -> void:
 	PlayerStats.player = self
 	init_pickup_area.call_deferred()
@@ -142,6 +144,7 @@ func on_redirect_complete() -> void:
 	velocity = Vector2.ZERO
 	nav.target_reached.disconnect(on_redirect_complete)
 	being_redirected = false
+	redirect_complete.emit()
 
 func play_hint(hint_dialogue: Dialogue) -> void:
 	hint_manager.play_hint(hint_dialogue)

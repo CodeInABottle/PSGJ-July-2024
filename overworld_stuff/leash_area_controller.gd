@@ -9,6 +9,8 @@ extends Area2D
 @export var disable_leash_name: String
 @export var disable_event_name: String
 
+var _is_redirecting: bool = false
+
 func _ready() -> void:
 	LevelManager.world_event_occurred.connect(on_world_event)
 	is_disabled()
@@ -49,9 +51,12 @@ func leash_body(exited_body: Node2D) -> void:
 		redirect_player()
 
 func redirect_player() -> void:
-	if hint_dialogue != null:
-		PlayerStats.player.play_hint(hint_dialogue)
-	PlayerStats.player.redirect(redirect_marker.get_global_position())
+	if not _is_redirecting:
+		_is_redirecting = true
+		PlayerStats.player.redirect_complete.connect(on_redirect_complete)
+		if hint_dialogue != null:
+			PlayerStats.player.play_hint(hint_dialogue)
+		PlayerStats.player.redirect(redirect_marker.get_global_position())
 
 func on_world_event(event_name:String, args: Array) -> void:
 	if event_name == "battle_finished" and disable_type == "ShadowDefeat":
@@ -64,3 +69,7 @@ func on_world_event(event_name:String, args: Array) -> void:
 		queue_free()
 	elif event_name == disable_event_name:
 		queue_free()
+
+func on_redirect_complete() -> void:
+	PlayerStats.player.redirect_complete.disconnect(on_redirect_complete)
+	_is_redirecting = false

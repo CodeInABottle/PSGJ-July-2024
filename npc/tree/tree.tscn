@@ -6,7 +6,6 @@
 [ext_resource type="SpriteFrames" uid="uid://bb17rygnm3xo0" path="res://npc/tree/afflicted_tree_sprite_frames.tres" id="3_r30ly"]
 
 [node name="Tree" instance=ExtResource("1_ypbbb")]
-wall_min_slide_angle = 0.0
 script = ExtResource("2_lqgui")
 npc_name = "Living Tree"
 normal_sprite_frames = ExtResource("2_iwfej")
