@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=26 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EntityTracker.gd" id="2_oep6u"]
@@ -17,11 +17,45 @@
 [ext_resource type="PackedScene" uid="uid://dob0l3mbcorkh" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.tscn" id="13_7ttxg"]
 [ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="14_jcqrt"]
 [ext_resource type="PackedScene" uid="uid://dk4e0kp7eg3mv" path="res://battle_systems/Tutorial/TextButton/tutorial_text_button.tscn" id="16_c6840"]
+[ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="18_7m3r4"]
 [ext_resource type="StyleBox" uid="uid://dyh061gar4cni" path="res://battle_systems/Tutorial/BlackOutShield.tres" id="18_8fc80"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bn4ug"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wtc82"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uukmy"]
+bg_color = Color(0.415686, 0.745098, 0.188235, 1)
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.215686, 0.580392, 0.431373, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_1vrtr"]
+bg_color = Color(0.6, 0.898039, 0.313726, 1)
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.415686, 0.745098, 0.188235, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mc5ek"]
+bg_color = Color(0.6, 0.898039, 0.313726, 1)
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.415686, 0.745098, 0.188235, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_altgx"]
 
@@ -1298,6 +1332,96 @@ Now go forth with your new knowledge."
 [node name="Label2" parent="CanvasLayer/Tutorial/Residues/Residue3/TutorialTextButton/MarginContainer/VBoxContainer" index="2"]
 text = "(Click this to end...)"
 
+[node name="ResonatingResidues" type="Control" parent="CanvasLayer/Tutorial"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/ResonatingResidues"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/ResonatingResidues"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 380.0
+offset_top = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/ResonatingResidues" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 81.0
+offset_right = 380.0
+offset_bottom = 283.0
+text = "Ohh Look! Look!
+It's one of those higher beings!
+
+Remember those residues we talked about a while back?
+The way you use resides to resonate with opponents you have no compatible abilities with?"
+
+[node name="Label" parent="CanvasLayer/Tutorial/ResonatingResidues/TutorialTextButton/MarginContainer/VBoxContainer" index="0"]
+text = "Ohh Look! Look!
+It's one of those higher beings!
+
+Remember those residues we talked about a while back?
+The way you use resides to resonate with opponents you have no compatible abilities with?"
+
+[node name="HSeparator" parent="CanvasLayer/Tutorial/ResonatingResidues/TutorialTextButton/MarginContainer/VBoxContainer" index="1"]
+visible = false
+
+[node name="Label2" parent="CanvasLayer/Tutorial/ResonatingResidues/TutorialTextButton/MarginContainer/VBoxContainer" index="2"]
+visible = false
+
+[node name="Button" parent="CanvasLayer/Tutorial/ResonatingResidues/TutorialTextButton" index="2"]
+visible = false
+
+[node name="Prompt" type="Control" parent="CanvasLayer/Tutorial/ResonatingResidues"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme = ExtResource("18_7m3r4")
+
+[node name="Win" type="Button" parent="CanvasLayer/Tutorial/ResonatingResidues/Prompt"]
+layout_mode = 0
+offset_left = 206.0
+offset_top = 243.0
+offset_right = 336.0
+offset_bottom = 275.0
+theme_override_styles/normal = SubResource("StyleBoxFlat_uukmy")
+theme_override_styles/hover = SubResource("StyleBoxFlat_1vrtr")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_mc5ek")
+text = "Nah, I'd Win"
+
+[node name="Review" type="Button" parent="CanvasLayer/Tutorial/ResonatingResidues/Prompt"]
+layout_mode = 0
+offset_left = 49.0
+offset_top = 243.0
+offset_right = 179.0
+offset_bottom = 275.0
+text = "Review"
+
 [node name="ControlShield" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 15
@@ -1323,6 +1447,8 @@ texture = ExtResource("14_jcqrt")
 [connection signal="pressed" from="CanvasLayer/Tutorial/Sparkles/SparklesTutorialButton" to="TutorialManager" method="_on_sparkles_tutorial_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/End/LastTutorialButton" to="TutorialManager" method="_on_last_tutorial_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/Residues/Residue3/TutorialTextButton" to="TutorialManager" method="_on_tutorial_text_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/ResonatingResidues/Prompt/Win" to="TutorialManager" method="_on_win_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/ResonatingResidues/Prompt/Review" to="TutorialManager" method="_on_review_pressed"]
 
 [editable path="CanvasLayer/Tutorial/Crafting/RecipeBookTutorial/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/Crafting/DragAndDrop/TutorialTextButton"]
@@ -1330,3 +1456,4 @@ texture = ExtResource("14_jcqrt")
 [editable path="CanvasLayer/Tutorial/Crafting/SelectingRecipe/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/End/LastTutorialButton"]
 [editable path="CanvasLayer/Tutorial/Residues/Residue3/TutorialTextButton"]
+[editable path="CanvasLayer/Tutorial/ResonatingResidues/TutorialTextButton"]
