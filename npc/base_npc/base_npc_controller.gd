@@ -172,12 +172,15 @@ func on_battle_finished() -> void:
 
 func saturate_colors() -> void:
 	if shiny != null:
-		shiny.queue_free()
+		remove_child(shiny)
 	_has_been_defeated = true
 	npc_sprite.set_sprite_frames(normal_sprite_frames)
 	npc_sprite.set_material(null)
 
 func desaturate_colors() -> void:
+	_has_been_defeated = false
+	if shiny == null:
+		add_child(shiny)
 	npc_sprite.set_sprite_frames(afflicted_sprite_frames)
 	npc_sprite.set_material(afflicted_material)
 
@@ -187,3 +190,6 @@ func on_world_event(event_name: String, args: Array) -> void:
 		
 		if battle_state["shadow_name"] == npc_name and (LevelManager.last_battle_index == get_index() or battle_state["captured"]):
 			saturate_colors()
+		
+	elif event_name == "world_reset":
+		init_npc()
