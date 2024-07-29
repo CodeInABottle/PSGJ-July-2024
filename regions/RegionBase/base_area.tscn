@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://d4hid5fnkoiqy"]
+[gd_scene load_steps=9 format=3 uid="uid://d4hid5fnkoiqy"]
 
 [ext_resource type="Script" path="res://regions/RegionBase/area_controller.gd" id="1_m5i3c"]
+[ext_resource type="Script" path="res://regions/RegionBase/pickups_container_controller.gd" id="2_4qxbd"]
 [ext_resource type="PackedScene" uid="uid://bfqw64oerqxlo" path="res://regions/RegionBase/player/player_physics_body.tscn" id="2_358nu"]
 [ext_resource type="TileSet" uid="uid://bqfc86kpg6r7b" path="res://assets/sprites/tiles/global_tile_set.tres" id="2_blk6m"]
 [ext_resource type="PackedScene" uid="uid://kh822nqv02xs" path="res://regions/RegionBase/player/player_visual_body.tscn" id="3_bn01o"]
@@ -33,6 +34,7 @@ unique_name_in_owner = true
 
 [node name="Pickups" type="Node2D" parent="."]
 unique_name_in_owner = true
+script = ExtResource("2_4qxbd")
 
 [node name="Shadows" type="Node2D" parent="."]
 unique_name_in_owner = true

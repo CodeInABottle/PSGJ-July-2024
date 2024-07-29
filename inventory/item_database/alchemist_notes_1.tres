@@ -8,15 +8,15 @@
 
 [sub_resource type="Resource" id="Resource_imlnh"]
 script = ExtResource("1_jqmv0")
-line_text = "Oh no..."
+line_text = "I think I saw something on the edge of the trees..."
 
 [sub_resource type="Resource" id="Resource_mm200"]
 script = ExtResource("1_jqmv0")
-line_text = "OH NOOOOOOOOOOOOOOOOOOOOOOO"
+line_text = "Maybe it was just a reflection off one of the windows... but I could have sworn..."
 
 [sub_resource type="Resource" id="Resource_4tvkh"]
 script = ExtResource("1_jqmv0")
-line_text = "What have I done... the shadows..."
+line_text = "No I am sure of it now. That shadow was moving on its own."
 
 [sub_resource type="Resource" id="Resource_b63fh"]
 script = ExtResource("2_iu7np")
