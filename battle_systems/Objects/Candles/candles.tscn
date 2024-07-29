@@ -1,25 +1,29 @@
-[gd_scene load_steps=12 format=3 uid="uid://ddfc3cc4500hi"]
+[gd_scene load_steps=13 format=3 uid="uid://ddfc3cc4500hi"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/Candles/candles.gd" id="1_q30p7"]
 [ext_resource type="Texture2D" uid="uid://dpl0p6h15rlb2" path="res://assets/sprites/combat/Candles.png" id="2_02ldm"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_kovgd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_arpsb"]
 atlas = ExtResource("2_02ldm")
-region = Rect2(256, 0, 128, 128)
+region = Rect2(384, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_2a38e"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_t2nq6"]
 atlas = ExtResource("2_02ldm")
 region = Rect2(0, 0, 128, 128)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jb445"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_k85o0"]
 atlas = ExtResource("2_02ldm")
 region = Rect2(128, 0, 128, 128)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_x6vhr"]
+atlas = ExtResource("2_02ldm")
+region = Rect2(256, 0, 128, 128)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_mo1bw"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_kovgd")
+"texture": SubResource("AtlasTexture_arpsb")
 }],
 "loop": true,
 "name": &"BurntOut",
@@ -27,10 +31,13 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_2a38e")
+"texture": SubResource("AtlasTexture_t2nq6")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_jb445")
+"texture": SubResource("AtlasTexture_k85o0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_x6vhr")
 }],
 "loop": true,
 "name": &"default",
@@ -54,6 +61,7 @@ script = ExtResource("1_q30p7")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_mo1bw")
+animation = &"BurntOut"
 
 [node name="Button" type="Button" parent="."]
 layout_mode = 0

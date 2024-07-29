@@ -21,6 +21,8 @@ func heal(value: int) -> void:
 
 func regen_ap() -> void:
 	PlayerStats.regen_alchemy_points(ap_penality)
+	if ap_penality > 0:
+		_play_ap_effect()
 	ap_penality = 0
 
 func attack(ability_name: String) -> void:

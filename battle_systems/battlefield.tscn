@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=38 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EntityTracker.gd" id="2_oep6u"]
@@ -8,17 +8,60 @@
 [ext_resource type="Script" path="res://battle_systems/States/PlayerState.gd" id="4_q2neg"]
 [ext_resource type="Script" path="res://battle_systems/States/EnemyState.gd" id="5_04e5c"]
 [ext_resource type="Script" path="res://battle_systems/States/RewardState.gd" id="6_28yvg"]
+[ext_resource type="Script" path="res://battle_systems/States/SkippingState.gd" id="6_no17q"]
 [ext_resource type="Script" path="res://battle_systems/States/GameOverState.gd" id="7_hc5bd"]
 [ext_resource type="PackedScene" uid="uid://bw5wgs3tjxkp1" path="res://battle_systems/EntityComponents/PlayerEntity/player_entity.tscn" id="8_4gulr"]
 [ext_resource type="Script" path="res://battle_systems/States/CaptureState.gd" id="8_ibtg5"]
 [ext_resource type="PackedScene" uid="uid://1vrxk6abwdej" path="res://battle_systems/Objects/Table/table.tscn" id="9_ou7kj"]
 [ext_resource type="PackedScene" uid="uid://cg2nofxbexpme" path="res://assets/shaders/combat_background.tscn" id="10_ot5yf"]
 [ext_resource type="PackedScene" uid="uid://cp02k4l0gw3u0" path="res://battle_systems/EntityComponents/BaseAIEntity/ai_entity.tscn" id="11_66ej3"]
-[ext_resource type="PackedScene" uid="uid://dob0l3mbcorkh" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.tscn" id="13_7ttxg"]
+[ext_resource type="PackedScene" uid="uid://dob0l3mbcorkh" path="res://battle_systems/UI/EnemyStatusIndicator/enemy_status_indicator.tscn" id="13_7ttxg"]
 [ext_resource type="Texture2D" uid="uid://diq3hmgkesfuk" path="res://icon.svg" id="14_jcqrt"]
 [ext_resource type="PackedScene" uid="uid://dk4e0kp7eg3mv" path="res://battle_systems/Tutorial/TextButton/tutorial_text_button.tscn" id="16_c6840"]
+[ext_resource type="PackedScene" uid="uid://c4k4rqcj2337f" path="res://battle_systems/UI/TurnSkip/turn_skip.tscn" id="17_yk07i"]
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="18_7m3r4"]
 [ext_resource type="StyleBox" uid="uid://dyh061gar4cni" path="res://battle_systems/Tutorial/BlackOutShield.tres" id="18_8fc80"]
+[ext_resource type="PackedScene" uid="uid://bsa0djc5k7pg8" path="res://battle_systems/UI/EnemyStatusIndicator/Residue/residue.tscn" id="20_uh4xj"]
+[ext_resource type="Texture2D" uid="uid://c3flj6yj5ha7f" path="res://assets/sprites/combat/capture.png" id="21_y5vbx"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="22_hxut8"]
+
+[sub_resource type="Animation" id="Animation_4tlvq"]
+resource_name = "FadeOut"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.521141, 0.521141, 0.521141, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_s5huo"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_equ6c"]
+_data = {
+"FadeOut": SubResource("Animation_4tlvq"),
+"RESET": SubResource("Animation_s5huo")
+}
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_bn4ug"]
 
@@ -59,6 +102,99 @@ anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_altgx"]
 
+[sub_resource type="Animation" id="Animation_i8j6b"]
+resource_name = "Display"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.05, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(228, -155), Vector2(228, -5), Vector2(228, -2), Vector2(228, -5)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3k7s0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(228, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yknj7"]
+_data = {
+"Display": SubResource("Animation_i8j6b"),
+"RESET": SubResource("Animation_3k7s0")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_emx5h"]
+font = ExtResource("22_hxut8")
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
+
 [node name="Battlefield" type="Node"]
 script = ExtResource("1_ubwb4")
 
@@ -77,6 +213,9 @@ script = ExtResource("3_com16")
 
 [node name="IdleState" type="Node" parent="CombatStateMachine"]
 script = ExtResource("4_63esm")
+
+[node name="SkippingState" type="Node" parent="CombatStateMachine"]
+script = ExtResource("6_no17q")
 
 [node name="PlayerState" type="Node" parent="CombatStateMachine"]
 script = ExtResource("4_q2neg")
@@ -97,25 +236,54 @@ script = ExtResource("7_hc5bd")
 offset_right = 640.0
 metadata/_edit_lock_ = true
 
-[node name="PlayerEntity" parent="." node_paths=PackedStringArray("attack_position", "entity_tracker") instance=ExtResource("8_4gulr")]
-unique_name_in_owner = true
-position = Vector2(39, 0)
-attack_position = NodePath("../PlayerAttackPosition")
-entity_tracker = NodePath("../EntityTracker")
-
-[node name="EnemyEntity" parent="." node_paths=PackedStringArray("enemy_status_indicator", "player_entity", "enemy_position", "entity_tracker") instance=ExtResource("11_66ej3")]
+[node name="EnemyEntity" parent="." node_paths=PackedStringArray("enemy_status_indicator", "player_entity", "enemy_position", "entity_tracker", "effect_marker") instance=ExtResource("11_66ej3")]
 unique_name_in_owner = true
 position = Vector2(288, 120)
 enemy_status_indicator = NodePath("../CanvasLayer/EnemyStatusIndicator")
 player_entity = NodePath("../PlayerEntity")
 enemy_position = NodePath("../PlayerAttackPosition")
 entity_tracker = NodePath("../EntityTracker")
+effect_marker = NodePath("EnemyEffects")
+
+[node name="EnemyTurnSkip" parent="EnemyEntity" instance=ExtResource("17_yk07i")]
+unique_name_in_owner = true
+offset_left = 130.0
+offset_top = -23.0
+offset_right = 130.0
+offset_bottom = -23.0
+
+[node name="EnemyEffects" type="Marker2D" parent="EnemyEntity"]
+position = Vector2(192, -51)
+
+[node name="PlayerEntity" parent="." node_paths=PackedStringArray("attack_position", "entity_tracker", "effect_marker") instance=ExtResource("8_4gulr")]
+unique_name_in_owner = true
+position = Vector2(39, 0)
+attack_position = NodePath("../PlayerAttackPosition")
+entity_tracker = NodePath("../EntityTracker")
+effect_marker = NodePath("PlayerEffects")
+
+[node name="PlayerSkipTurn" parent="PlayerEntity" instance=ExtResource("17_yk07i")]
+unique_name_in_owner = true
+offset_left = 144.0
+offset_top = 163.0
+offset_right = 184.0
+offset_bottom = 163.0
+
+[node name="PlayerEffects" type="Marker2D" parent="PlayerEntity"]
+unique_name_in_owner = true
+position = Vector2(144, 163)
 
 [node name="Table" parent="." node_paths=PackedStringArray("entity_tracker", "control_shield") instance=ExtResource("9_ou7kj")]
 unique_name_in_owner = true
 entity_tracker = NodePath("../EntityTracker")
 control_shield = NodePath("../CanvasLayer/ControlShield")
 metadata/_edit_lock_ = true
+
+[node name="TableAnimationPlayer" type="AnimationPlayer" parent="Table"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_equ6c")
+}
 
 [node name="PlayerAttackPosition" type="Marker2D" parent="."]
 unique_name_in_owner = true
@@ -1084,9 +1252,10 @@ offset_right = 252.0
 offset_bottom = 268.0
 text = "You see those sparkles!
 Your blob resonated with the shadow.
-Keep at it and you'll capture it.
 
-Using abilities of the same resonance will assure you capture the shadow."
+The grey border around its resonate symbol was reduced!
+
+Get that bar to deplete and you'll capture its shadow!"
 
 [node name="End" type="Control" parent="CanvasLayer/Tutorial"]
 unique_name_in_owner = true
@@ -1198,6 +1367,81 @@ text = "Hello again! :D
 Looks like you implanted a \"residue\" on your opponent.
 The problems with novice alchemy... ahem..."
 tutorial_link = NodePath("../../Residue2")
+
+[node name="Residue1b" type="Control" parent="CanvasLayer/Tutorial/Residues"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1b"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 603.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1b"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 603.0
+offset_right = 640.0
+offset_bottom = -307.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1b"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 603.0
+offset_top = 83.0
+offset_right = 640.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1b"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 632.0
+offset_top = 53.0
+offset_right = 640.0
+offset_bottom = -277.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/Residues/Residue1b" node_paths=PackedStringArray("tutorial_link") instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 43.0
+offset_right = 526.0
+offset_bottom = 288.0
+text = "Now... ahem...
+
+Look here! I added a fake Earth residue for you to visualize what it would look like.
+
+Using your abilities that don't resonate with the opponent will leave behind these residues.
+(max of 3 per reagent lasting 2 turns)"
+tutorial_link = NodePath("../../Residue2")
+
+[node name="Residue" parent="CanvasLayer/Tutorial/Residues/Residue1b" instance=ExtResource("20_uh4xj")]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 54.0
+offset_right = 630.0
+offset_bottom = 81.0
+treat_as_dummy = true
+
+[node name="Label" parent="CanvasLayer/Tutorial/Residues/Residue1b/Residue" index="0"]
+text = "0x"
 
 [node name="Residue2" type="Control" parent="CanvasLayer/Tutorial/Residues"]
 visible = false
@@ -1334,6 +1578,7 @@ text = "(Click this to end...)"
 
 [node name="ResonatingResidues" type="Control" parent="CanvasLayer/Tutorial"]
 unique_name_in_owner = true
+visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1422,6 +1667,55 @@ offset_right = 179.0
 offset_bottom = 275.0
 text = "Review"
 
+[node name="ResonatingResiduesB" type="Control" parent="CanvasLayer/Tutorial"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/ResonatingResiduesB"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -260.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/ResonatingResiduesB"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 380.0
+offset_top = 180.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/ResonatingResiduesB" node_paths=PackedStringArray("tutorial_link") instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 81.0
+offset_right = 380.0
+offset_bottom = 283.0
+text = "Ohh Look! Look!
+It's one of those higher beings!
+
+Remember those residues-
+Wait.... HMM ._.
+Seems you never implanted a residue before now...
+
+Time for some wisdom! :D
+"
+tutorial_link = NodePath("../../Residues/Residue1b")
+
 [node name="ControlShield" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 15
@@ -1432,6 +1726,42 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_altgx")
 metadata/_edit_lock_ = true
 
+[node name="CaptureUI" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="CaptureSign" type="TextureRect" parent="CanvasLayer/CaptureUI"]
+layout_mode = 0
+offset_left = 228.0
+offset_right = 528.0
+offset_bottom = 150.0
+texture = ExtResource("21_y5vbx")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="CaptureAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CaptureUI/CaptureSign"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_yknj7")
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/CaptureUI/CaptureSign"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 70.0
+offset_right = 248.0
+offset_bottom = 126.0
+rotation = -0.058319
+text = "Captured!"
+label_settings = SubResource("LabelSettings_emx5h")
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false
 position = Vector2(512, 61)
@@ -1439,6 +1769,8 @@ scale = Vector2(0.285, 0.285)
 texture = ExtResource("14_jcqrt")
 
 [connection signal="capture_status_animated" from="EnemyEntity" to="TutorialManager" method="_on_enemy_entity_capture_status_animated"]
+[connection signal="finished" from="EnemyEntity/EnemyTurnSkip" to="CombatStateMachine/SkippingState" method="_on_enemy_turn_skip_finished"]
+[connection signal="finished" from="PlayerEntity/PlayerSkipTurn" to="CombatStateMachine/SkippingState" method="_on_player_skip_turn_finished"]
 [connection signal="reagent_added" from="Table" to="TutorialManager" method="_on_table_reagent_added"]
 [connection signal="recipe_clicked" from="Table" to="TutorialManager" method="_on_table_recipe_clicked"]
 [connection signal="recipe_display_closed" from="Table" to="TutorialManager" method="_on_table_recipe_display_closed"]
@@ -1455,5 +1787,6 @@ texture = ExtResource("14_jcqrt")
 [editable path="CanvasLayer/Tutorial/Crafting/FailedDragAndDrop/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/Crafting/SelectingRecipe/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/End/LastTutorialButton"]
+[editable path="CanvasLayer/Tutorial/Residues/Residue1b/Residue"]
 [editable path="CanvasLayer/Tutorial/Residues/Residue3/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/ResonatingResidues/TutorialTextButton"]

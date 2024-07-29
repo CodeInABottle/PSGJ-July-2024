@@ -9,6 +9,7 @@ You can use the shader on multiple TextureRects and obtain a double-buffer effec
 */
 shader_type canvas_item;
 
+uniform float override_alpha: hint_range(0.0, 1.0, 0.1) = 1.0;
 uniform float screen_height = 640.0;
 uniform float amplitude = 0.075;
 uniform float frequency = 10.0;
@@ -42,6 +43,9 @@ void fragment()
         COLOR = vec4(texture(palette, vec2(palette_swap, 0)).rgb, tex.a);
     } else {
         COLOR = tex;
+		if (COLOR.a > 0.0) {
+			COLOR.a = override_alpha;
+		}
     }
 
     if (enable_scanlines) {

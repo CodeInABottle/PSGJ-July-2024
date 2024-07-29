@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://dob0l3mbcorkh"]
+[gd_scene load_steps=13 format=3 uid="uid://dob0l3mbcorkh"]
 
-[ext_resource type="Script" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.gd" id="1_ecu7o"]
-[ext_resource type="PackedScene" uid="uid://c2va6bcydygut" path="res://battle_systems/Objects/ResonateIndicator/resonate_indicator.tscn" id="1_kpuy1"]
-[ext_resource type="PackedScene" uid="uid://bsa0djc5k7pg8" path="res://battle_systems/Objects/EnemyStatusIndicator/Residue/residue.tscn" id="3_2jw4e"]
+[ext_resource type="Script" path="res://battle_systems/UI/EnemyStatusIndicator/enemy_status_indicator.gd" id="1_ecu7o"]
+[ext_resource type="Texture2D" uid="uid://cq4p6ygh6dt8f" path="res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0012.png" id="2_ksl81"]
+[ext_resource type="PackedScene" uid="uid://bsa0djc5k7pg8" path="res://battle_systems/UI/EnemyStatusIndicator/Residue/residue.tscn" id="3_2jw4e"]
+[ext_resource type="Texture2D" uid="uid://c16724dp22hw8" path="res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0001.png" id="3_prx8s"]
+[ext_resource type="Texture2D" uid="uid://broohh8xx2ivm" path="res://assets/sprites/shadow_alchemybench/Symbols/Symbols_0011.png" id="4_m3xv5"]
 [ext_resource type="Texture2D" uid="uid://byl4fstefwbek" path="res://assets/sprites/combat/Reagents/WaterOrbStill.png" id="4_s7ao2"]
 [ext_resource type="Texture2D" uid="uid://8qecgxdriegr" path="res://assets/sprites/combat/Reagents/WindOrbStill.png" id="5_8xkdw"]
 [ext_resource type="Texture2D" uid="uid://dbfeeyycjg0md" path="res://assets/sprites/combat/Reagents/FireOrbStill.png" id="6_ce1xa"]
@@ -70,10 +72,25 @@ rounded = true
 fill_mode = 2
 show_percentage = false
 
-[node name="ResonateIndicator" parent="." instance=ExtResource("1_kpuy1")]
+[node name="ResonateIndicator" type="TextureProgressBar" parent="."]
 unique_name_in_owner = true
-position = Vector2(605, 27)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -59.0
+offset_top = 3.0
+offset_right = 5.0
+offset_bottom = 67.0
+grow_horizontal = 0
 scale = Vector2(0.75, 0.75)
+value = 40.0
+fill_mode = 5
+texture_under = ExtResource("2_ksl81")
+texture_over = ExtResource("3_prx8s")
+texture_progress = ExtResource("4_m3xv5")
+tint_under = Color(0.113725, 0.168627, 0.196078, 1)
+tint_progress = Color(0.607843, 0.658824, 0.635294, 1)
 
 [node name="Residues" type="VBoxContainer" parent="."]
 unique_name_in_owner = true
