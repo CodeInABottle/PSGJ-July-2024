@@ -1085,6 +1085,219 @@ I'll stop bothering you with my alchemic paper of wisdom.
 
 I'll leave you to get me that hat now. :D"
 
+[node name="Label" parent="CanvasLayer/Tutorial/End/LastTutorialButton/MarginContainer/VBoxContainer" index="0"]
+text = "Ok ok ok! I get it!
+I'll stop bothering you with my alchemic paper of wisdom.
+
+I'll leave you to get me that hat now. :D"
+
+[node name="Label2" parent="CanvasLayer/Tutorial/End/LastTutorialButton/MarginContainer/VBoxContainer" index="2"]
+text = "(Click this to end...)"
+
+[node name="Residues" type="Control" parent="CanvasLayer/Tutorial"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Residue1" type="Control" parent="CanvasLayer/Tutorial/Residues"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 603.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 603.0
+offset_right = 640.0
+offset_bottom = -307.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 603.0
+offset_top = 176.0
+offset_right = 640.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 632.0
+offset_top = 53.0
+offset_right = 640.0
+offset_bottom = -184.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/Residues/Residue1" node_paths=PackedStringArray("tutorial_link") instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 43.0
+offset_right = 526.0
+offset_bottom = 245.0
+text = "Hello again! :D
+
+Looks like you implanted a \"residue\" on your opponent.
+The problems with novice alchemy... ahem..."
+tutorial_link = NodePath("../../Residue2")
+
+[node name="Residue2" type="Control" parent="CanvasLayer/Tutorial/Residues"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue2"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 603.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue2"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 603.0
+offset_right = 640.0
+offset_bottom = -307.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue2"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 603.0
+offset_top = 176.0
+offset_right = 640.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue2"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 632.0
+offset_top = 53.0
+offset_right = 640.0
+offset_bottom = -184.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/Residues/Residue2" node_paths=PackedStringArray("tutorial_link") instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 43.0
+offset_right = 526.0
+offset_bottom = 245.0
+text = "Residues are the building blocks of advance alchemy.
+When you want to resonate with higher beings, you combine the reagents on your pillow with residues.
+(At least until you learn abilities from these higher beings.)"
+tutorial_link = NodePath("../../Residue3")
+
+[node name="Residue3" type="Control" parent="CanvasLayer/Tutorial/Residues"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue3"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 603.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue3"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 603.0
+offset_right = 640.0
+offset_bottom = -307.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue3"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 603.0
+offset_top = 176.0
+offset_right = 640.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue3"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 632.0
+offset_top = 53.0
+offset_right = 640.0
+offset_bottom = -184.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/Residues/Residue3" instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 195.0
+offset_top = 43.0
+offset_right = 526.0
+offset_bottom = 245.0
+text = "For example, taming a beast of Salt!
+You must combine a Water residue with an Earth reagent (or the other way around).
+
+These will combine and poof alchemy, you have the fabled SALT resonance!
+
+Now go forth with your new knowledge."
+
+[node name="Label" parent="CanvasLayer/Tutorial/Residues/Residue3/TutorialTextButton/MarginContainer/VBoxContainer" index="0"]
+text = "For example, taming a beast of Salt!
+You must combine a Water residue with an Earth reagent (or the other way around).
+
+These will combine and poof alchemy, you have the fabled SALT resonance!
+
+Now go forth with your new knowledge."
+
+[node name="Label2" parent="CanvasLayer/Tutorial/Residues/Residue3/TutorialTextButton/MarginContainer/VBoxContainer" index="2"]
+text = "(Click this to end...)"
+
 [node name="ControlShield" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
 anchors_preset = 15
@@ -1106,11 +1319,14 @@ texture = ExtResource("14_jcqrt")
 [connection signal="recipe_clicked" from="Table" to="TutorialManager" method="_on_table_recipe_clicked"]
 [connection signal="recipe_display_closed" from="Table" to="TutorialManager" method="_on_table_recipe_display_closed"]
 [connection signal="recipe_display_opened" from="Table" to="TutorialManager" method="_on_table_recipe_display_opened"]
-[connection signal="pressed" from="CanvasLayer/Tutorial/Tour/CheatSheet2/CheatSheetP2Tutorial" to="TutorialManager" method="_on_cheat_sheet_p_2_tutorial_pressed"]
+[connection signal="residue_added" from="CanvasLayer/EnemyStatusIndicator" to="TutorialManager" method="_on_enemy_status_indicator_residue_added"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/Sparkles/SparklesTutorialButton" to="TutorialManager" method="_on_sparkles_tutorial_button_pressed"]
 [connection signal="pressed" from="CanvasLayer/Tutorial/End/LastTutorialButton" to="TutorialManager" method="_on_last_tutorial_button_pressed"]
+[connection signal="pressed" from="CanvasLayer/Tutorial/Residues/Residue3/TutorialTextButton" to="TutorialManager" method="_on_tutorial_text_button_pressed"]
 
 [editable path="CanvasLayer/Tutorial/Crafting/RecipeBookTutorial/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/Crafting/DragAndDrop/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/Crafting/FailedDragAndDrop/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/Crafting/SelectingRecipe/TutorialTextButton"]
+[editable path="CanvasLayer/Tutorial/End/LastTutorialButton"]
+[editable path="CanvasLayer/Tutorial/Residues/Residue3/TutorialTextButton"]

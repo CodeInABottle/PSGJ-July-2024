@@ -20,13 +20,14 @@ var battle_state: Dictionary = {
 func _ready() -> void:
 	LevelManager.menu_loaded.emit(self)
 	battle_finished.connect(_on_battle_finished)
-	setup_battle("Earth Worm")
+	#setup_battle("Earth Worm")
 	#setup_battle("Living Tree")
 	#setup_battle("Mailbox")
 	#setup_battle("Bombardier Beetle")
 	#setup_battle("Armored Snail")
 	#setup_battle("Niter Tiger")
-	#setup_battle("Fighting Fish")
+	tutorial_manager._set_tutorial_state("first_combat_wisdom_complete", true)
+	setup_battle("Fighting Fish")
 	#setup_battle("Celestial Canine")
 
 func setup_battle(enemy_name_encounter: String) -> void:
@@ -49,8 +50,7 @@ func setup_battle(enemy_name_encounter: String) -> void:
 
 	entity_tracker.end_turn()
 	combat_state_machine.start()
-	if enemy_name_encounter == "Earth Worm":
-		tutorial_manager.activate()
+	tutorial_manager.activate()
 	_finished_setup = true
 
 func _physics_process(delta: float) -> void:
