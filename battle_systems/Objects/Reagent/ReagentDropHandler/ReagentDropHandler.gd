@@ -11,6 +11,7 @@ const WIND_REAGENT: PackedScene = preload("res://battle_systems/Objects/Reagent/
 const WIND_ORB_STILL: Texture = preload("res://assets/sprites/combat/Reagents/WindOrbStill.png")
 
 signal ability_execute_requested(ability_name: String)
+signal reagent_added(type: TypeChart.ResonateType)
 signal recipe_displayed
 signal recipe_clicked
 
@@ -171,6 +172,7 @@ func _create_floating_reagent(reagent: TypeChart.ResonateType) -> void:
 	data.animated_sprite = animated_reagent
 	data.reagent = reagent
 	_reagent_data.push_back(data)
+	reagent_added.emit(reagent)
 
 func _on_recipe_chosen(ability_name: String) -> void:
 	recipe_clicked.emit()
