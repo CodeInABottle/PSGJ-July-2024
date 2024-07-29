@@ -20,6 +20,8 @@ const SHADOW_COLOR: Dictionary = {
 }
 const CAPTURE_RATE_EFFICENCY: float = 1.25
 
+enum SpecialFrameState { NONE, ON_HURT, ON_ATTACK }
+
 # { enemy_name (String) : enemy_data (BattlefieldEnemyData) }
 var _enemies: Dictionary = {}
 # { ability_name (String) : ability_data (BattlefieldEnemyData) }

@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1_w3ip8")
 damage = 0
-capture_efficiency = 1.1
 description = "Do 70 damage to the enemy if attacked during your defending turn."
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_60cod")])
 moving_attack = false

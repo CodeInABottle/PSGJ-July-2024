@@ -64,7 +64,13 @@ func _ready() -> void:
 	)
 
 func load_AI(data: BattlefieldEnemyData) -> void:
-	htn_planner.finished.connect( func() -> void: actions_completed.emit() )
+	htn_planner.finished.connect(
+		func() -> void:
+			if animation_holder.get_child(0).is_set():
+				await get_tree().create_timer(0.25).timeout
+				animation_holder.get_child(0).reset()
+			actions_completed.emit()
+	)
 	_data = data
 	_health = data.max_health
 	_capture_value = data.max_health
@@ -106,8 +112,8 @@ func take_damage(damage_data: Dictionary) -> void:
 	if damage_data["damage"] == 0: return
 	print("enemy taken damage: ", damage_data["damage"])
 
-	# Check for special frame data
-	if _data.special_frame_idx != -1:
+	# Check for special frame data -- On hurt
+	if _data.special_frame_behavior == EnemyDatabase.SpecialFrameState.ON_HURT:
 		animation_holder.get_child(0).set_shadow_frame(_data.special_frame_idx)
 
 	var trigger_capture_damage: bool = damage_data["resonate_type"] == _data.resonate
@@ -339,6 +345,10 @@ func _check_if_self_can_stun() -> void:
 
 func _internal_attack_logic(ability_data: BattlefieldAbility) -> void:
 	if ability_data["damage"] > 0:
+		# Check for special frame data -- On Attack
+		if _data.special_frame_behavior == EnemyDatabase.SpecialFrameState.ON_ATTACK:
+			animation_holder.get_child(0).set_shadow_frame(_data.special_frame_idx)
+
 		player_entity.take_damage({ "damage": ability_data["damage"] })
 	print("Enemy used ", ability_data["name"], " to do ", ability_data["damage"])
 

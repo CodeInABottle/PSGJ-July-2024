@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="BattlefieldHealOverTimeMod" load_steps=2 format=3 uid="uid://cdnv1k23kwki"]
+
+[ext_resource type="Script" path="res://battle_resources/ModifierScripts/HealOverTime.gd" id="1_khj4m"]
+
+[resource]
+script = ExtResource("1_khj4m")
+healing = 10
+apply_to_self = true
+is_attacked_triggered = false
+immediate = true
+turns = 1

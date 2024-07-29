@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=2 format=3 uid="uid://bj8515yh02mdi"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_vlu2v"]
+
+[resource]
+script = ExtResource("1_vlu2v")
+damage = 30
+description = "Go Fis- Go FLY!"
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 2
+reagent_a = 2
+reagent_b = 0
+reagent_c = 0
+reagent_d = 0
