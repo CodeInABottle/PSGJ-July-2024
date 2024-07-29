@@ -549,7 +549,7 @@ reagent_type = 1
 shape = SubResource("CircleShape2D_cugga")
 
 [node name="Earth" parent="Pillow" node_paths=PackedStringArray("reagent_drop_location") instance=ExtResource("3_p5eso")]
-position = Vector2(32, 0)
+position = Vector2(35, 0)
 reagent_drop_location = NodePath("../../ReagentDropHandler")
 reagent_type = 8
 
@@ -582,6 +582,7 @@ shape = SubResource("RectangleShape2D_hidn5")
 
 [node name="ReagentDropHandler" parent="." node_paths=PackedStringArray("reagents") instance=ExtResource("3_ppdie")]
 unique_name_in_owner = true
+visible = false
 position = Vector2(176, 192)
 speed = 0.5
 reagents = [NodePath("../Pillow/Water"), NodePath("../Pillow/Fire"), NodePath("../Pillow/Earth"), NodePath("../Pillow/Air"), NodePath("../PaperTowel")]
@@ -646,6 +647,7 @@ libraries = {
 }
 
 [connection signal="pressed" from="Book/BookButton" to="." method="_on_book_button_pressed"]
+[connection signal="reagent_added" from="ReagentDropHandler" to="." method="_on_reagent_drop_handler_reagent_added"]
 [connection signal="recipe_clicked" from="ReagentDropHandler" to="." method="_on_reagent_drop_handler_recipe_clicked"]
 [connection signal="recipe_displayed" from="ReagentDropHandler" to="." method="_on_reagent_drop_handler_recipe_displayed"]
 [connection signal="display_closed" from="CanvasLayer/RecipePageDisplay" to="." method="_on_recipe_page_display_display_closed"]
