@@ -1,6 +1,8 @@
 class_name BattlefieldEnemyStatusIndicator
 extends Control
 
+signal residue_added
+
 @onready var resonate_indicator: BattlefieldResonateBar = %ResonateIndicator
 @onready var primary: ProgressBar = %Primary
 @onready var secondary: ProgressBar = %Secondary
@@ -46,6 +48,8 @@ func update_residues(type: TypeChart.ResonateType, amount: int, blink: bool) -> 
 			air_residue.set_amount(amount, blink)
 		TypeChart.ResonateType.FIRE:
 			fire_residue.set_amount(amount, blink)
+	if amount > 0:
+		residue_added.emit()
 
 func _on_hp_timer_timeout() -> void:
 	if _tween:

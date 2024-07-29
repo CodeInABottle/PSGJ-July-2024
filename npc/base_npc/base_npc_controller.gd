@@ -171,8 +171,8 @@ func on_battle_finished() -> void:
 	MenuManager.fader_controller.fade_in()
 
 func saturate_colors() -> void:
-	if shiny != null:
-		remove_child(shiny)
+	if shiny.get_parent() != null:
+		shiny.get_parent().remove_child(shiny)
 	_has_been_defeated = true
 	npc_sprite.set_sprite_frames(normal_sprite_frames)
 	npc_sprite.set_material(null)
