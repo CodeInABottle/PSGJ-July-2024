@@ -67,8 +67,7 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 	htn_planner.finished.connect( func() -> void: actions_completed.emit() )
 	_data = data
 	_health = data.max_health
-	#_capture_value = data.max_health
-	_capture_value = 40
+	_capture_value = data.max_health
 	htn_planner.domain_name = data.domain
 	_sprite_handler = _data.combat_animation.instantiate()
 	animation_holder.add_child(_sprite_handler)
@@ -93,6 +92,8 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 
 func regen_ap() -> void:
 	_alchemy_points = clampi(_alchemy_points + _alchemy_regen - ap_penality, 0, _max_alchemy_points)
+	if ap_penality > 0:
+		_play_ap_effect()
 	ap_penality = 0
 
 func heal(health: int) -> void:

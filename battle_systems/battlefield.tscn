@@ -140,13 +140,14 @@ script = ExtResource("7_hc5bd")
 offset_right = 640.0
 metadata/_edit_lock_ = true
 
-[node name="EnemyEntity" parent="." node_paths=PackedStringArray("enemy_status_indicator", "player_entity", "enemy_position", "entity_tracker") instance=ExtResource("11_66ej3")]
+[node name="EnemyEntity" parent="." node_paths=PackedStringArray("enemy_status_indicator", "player_entity", "enemy_position", "entity_tracker", "effect_marker") instance=ExtResource("11_66ej3")]
 unique_name_in_owner = true
 position = Vector2(288, 120)
 enemy_status_indicator = NodePath("../CanvasLayer/EnemyStatusIndicator")
 player_entity = NodePath("../PlayerEntity")
 enemy_position = NodePath("../PlayerAttackPosition")
 entity_tracker = NodePath("../EntityTracker")
+effect_marker = NodePath("EnemyEffects")
 
 [node name="EnemyTurnSkip" parent="EnemyEntity" instance=ExtResource("17_yk07i")]
 unique_name_in_owner = true
@@ -155,11 +156,15 @@ offset_top = -23.0
 offset_right = 130.0
 offset_bottom = -23.0
 
-[node name="PlayerEntity" parent="." node_paths=PackedStringArray("attack_position", "entity_tracker") instance=ExtResource("8_4gulr")]
+[node name="EnemyEffects" type="Marker2D" parent="EnemyEntity"]
+position = Vector2(192, -51)
+
+[node name="PlayerEntity" parent="." node_paths=PackedStringArray("attack_position", "entity_tracker", "effect_marker") instance=ExtResource("8_4gulr")]
 unique_name_in_owner = true
 position = Vector2(39, 0)
 attack_position = NodePath("../PlayerAttackPosition")
 entity_tracker = NodePath("../EntityTracker")
+effect_marker = NodePath("PlayerEffects")
 
 [node name="PlayerSkipTurn" parent="PlayerEntity" instance=ExtResource("17_yk07i")]
 unique_name_in_owner = true
@@ -167,6 +172,10 @@ offset_left = 144.0
 offset_top = 163.0
 offset_right = 184.0
 offset_bottom = 163.0
+
+[node name="PlayerEffects" type="Marker2D" parent="PlayerEntity"]
+unique_name_in_owner = true
+position = Vector2(144, 163)
 
 [node name="Table" parent="." node_paths=PackedStringArray("entity_tracker", "control_shield") instance=ExtResource("9_ou7kj")]
 unique_name_in_owner = true
