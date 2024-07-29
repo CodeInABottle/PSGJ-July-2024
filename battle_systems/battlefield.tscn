@@ -1215,7 +1215,6 @@ disabled = true
 [node name="Sparkles" type="Control" parent="CanvasLayer/Tutorial"]
 unique_name_in_owner = true
 process_mode = 3
-visible = false
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -1251,9 +1250,10 @@ offset_right = 252.0
 offset_bottom = 268.0
 text = "You see those sparkles!
 Your blob resonated with the shadow.
-Keep at it and you'll capture it.
 
-Using abilities of the same resonance will assure you capture the shadow."
+The grey border around its resonate symbol was reduced!
+
+Get that bar to deplete and you'll capture its shadow!"
 
 [node name="End" type="Control" parent="CanvasLayer/Tutorial"]
 unique_name_in_owner = true
