@@ -2,11 +2,14 @@ class_name HintArea
 extends Area2D
 
 @export_enum("None", "Item", "Shadow") var delete_mode: String = "None"
+@export_enum("Create", "Delete") var event_behavior: String = "Delete"
 @export var hint_dialogue: Dialogue
 @export var delete_name: String
+@export var event_name: String
 
 func _ready() -> void:
-	body_entered.connect(on_body_entered)
+	if event_behavior == "Delete":
+		body_entered.connect(on_body_entered)
 	LevelManager.world_event_occurred.connect(on_world_event)
 
 	if SaveManager.load_pending:
@@ -33,8 +36,13 @@ func check_for_delete() -> void:
 		PlayerStats.save_loaded.disconnect(check_for_delete)
 
 func on_world_event(event_name:String, args:Array) -> void:
-	if event_name == "battle_finished" and delete_mode == "Shadow":
-		if args[0]["shadow_name"] == delete_name:
+	if event_name == "battle_finished" and delete_mode == "Shadow" and event_behavior == "Delete":
+		if args[0]["shadow_name"] == delete_name and args[0]["captured"]:
 			queue_free()
 	elif event_name == "item_get:"+delete_name and delete_mode == "Item":
 		queue_free()
+	elif event_name == event_name:
+		if event_behavior == "Delete":
+			queue_free()
+		else:
+			body_entered.connect(on_body_entered)

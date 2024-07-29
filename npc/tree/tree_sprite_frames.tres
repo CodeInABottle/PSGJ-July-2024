@@ -1,16 +1,49 @@
-[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://qpmf7gwfip30"]
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://qpmf7gwfip30"]
 
 [ext_resource type="Texture2D" uid="uid://lwjrs8x5jfty" path="res://assets/sprites/mobs/overworld_tree.png" id="1_jg7lf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_3cqmq"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jiujr"]
 atlas = ExtResource("1_jg7lf")
-region = Rect2(0, 0, 61, 76)
+region = Rect2(0, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_56mjx"]
+atlas = ExtResource("1_jg7lf")
+region = Rect2(0, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_krerg"]
+atlas = ExtResource("1_jg7lf")
+region = Rect2(0, 192, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e0dq6"]
+atlas = ExtResource("1_jg7lf")
+region = Rect2(0, 288, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_kb3f0"]
+atlas = ExtResource("1_jg7lf")
+region = Rect2(0, 384, 64, 96)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_3cqmq")
+"texture": SubResource("AtlasTexture_jiujr")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_56mjx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_krerg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e0dq6")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kb3f0")
 }],
 "loop": true,
 "name": &"walk",

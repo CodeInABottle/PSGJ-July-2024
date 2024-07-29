@@ -24,6 +24,7 @@ func on_interaction_started(_interactable: Interactable) -> void:
 	MenuManager.fader_controller.fade_to_translucent()
 	PlayerStats.refill_health()
 	LevelManager.reset_world()
+	LevelManager.world_event_occurred.emit("checkpoint_touched", [])
 
 func on_interaction_advanced(_interactable: Interactable) -> void:
 	print("advanced checkpoint interaction")
