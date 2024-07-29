@@ -75,7 +75,7 @@ var _checkpoints: Dictionary = {
 # -- Used by `load_entry_point()` only
 # -- entry_id used is 0
 var _entry_point: String = "Home"
-#var _entry_point: String = "area_0"
+#var _entry_point: String = "Remembrance"
 
 # used by is_paused() utility function
 var _is_paused: bool = false
