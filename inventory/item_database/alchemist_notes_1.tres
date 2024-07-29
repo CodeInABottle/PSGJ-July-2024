@@ -1,36 +1,13 @@
-[gd_resource type="Resource" script_class="LoreItem" load_steps=11 format=3 uid="uid://cdrts0lq4kyj1"]
+[gd_resource type="Resource" script_class="LoreItem" load_steps=4 format=3 uid="uid://cdrts0lq4kyj1"]
 
-[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_jqmv0"]
-[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_iu7np"]
-[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_sac7b"]
-[ext_resource type="Texture2D" uid="uid://bwn0ci27bid4w" path="res://assets/sprites/general/Books/books04.png" id="4_utixv"]
+[ext_resource type="Resource" uid="uid://cws5g7pyvnrwo" path="res://inventory/lore_dialogue/lore_1.tres" id="1_fl2me"]
+[ext_resource type="Texture2D" uid="uid://dcis74080ybrb" path="res://assets/sprites/general/Books/books11.png" id="4_dslsh"]
 [ext_resource type="Script" path="res://inventory/lore_item.gd" id="5_q2ygw"]
-
-[sub_resource type="Resource" id="Resource_imlnh"]
-script = ExtResource("1_jqmv0")
-line_text = "I think I saw something on the edge of the trees..."
-
-[sub_resource type="Resource" id="Resource_mm200"]
-script = ExtResource("1_jqmv0")
-line_text = "Maybe it was just a reflection off one of the windows... but I could have sworn..."
-
-[sub_resource type="Resource" id="Resource_4tvkh"]
-script = ExtResource("1_jqmv0")
-line_text = "No I am sure of it now. That shadow was moving on its own."
-
-[sub_resource type="Resource" id="Resource_b63fh"]
-script = ExtResource("2_iu7np")
-block_lines = Array[ExtResource("1_jqmv0")]([SubResource("Resource_imlnh"), SubResource("Resource_mm200"), SubResource("Resource_4tvkh")])
-
-[sub_resource type="Resource" id="Resource_ocjym"]
-script = ExtResource("3_sac7b")
-contents = Array[ExtResource("2_iu7np")]([SubResource("Resource_b63fh")])
-content_keys = Array[String](["main"])
 
 [resource]
 script = ExtResource("5_q2ygw")
-dialogue = SubResource("Resource_ocjym")
+dialogue = ExtResource("1_fl2me")
 author_name = "Unknown Alchemist"
 item_name = "Alchemist's Notes: 1"
 item_description = "Scrawled notes left in a journal by an alchemist"
-item_icon = ExtResource("4_utixv")
+item_icon = ExtResource("4_dslsh")

@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://cptl4ers7v60h"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_qmls0"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_herya"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_sfdr4"]
+
+[sub_resource type="Resource" id="Resource_ln48p"]
+script = ExtResource("1_qmls0")
+line_text = "It seems like the shadows only stay away if you capture them..."
+
+[sub_resource type="Resource" id="Resource_263oi"]
+script = ExtResource("1_qmls0")
+line_text = "I need to go back to the obelisk and imbue some different shadows. This Earth type just isnt cutting it..."
+
+[sub_resource type="Resource" id="Resource_r0dp0"]
+script = ExtResource("2_herya")
+block_lines = Array[ExtResource("1_qmls0")]([SubResource("Resource_ln48p"), SubResource("Resource_263oi")])
+
+[resource]
+script = ExtResource("3_sfdr4")
+contents = Array[ExtResource("2_herya")]([SubResource("Resource_r0dp0")])
+content_keys = Array[String](["main"])

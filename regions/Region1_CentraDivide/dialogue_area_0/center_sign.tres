@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://cbbs0ucmwbxen"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_ai6v1"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_vsrg8"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_hir82"]
+
+[sub_resource type="Resource" id="Resource_f01vg"]
+script = ExtResource("1_ai6v1")
+line_text = "ATTENTION!"
+
+[sub_resource type="Resource" id="Resource_sm87n"]
+script = ExtResource("1_ai6v1")
+line_text = "Mail delivery temporarily suspended due to unusual activity."
+
+[sub_resource type="Resource" id="Resource_r32eo"]
+script = ExtResource("2_vsrg8")
+block_lines = Array[ExtResource("1_ai6v1")]([SubResource("Resource_f01vg"), SubResource("Resource_sm87n")])
+
+[resource]
+script = ExtResource("3_hir82")
+contents = Array[ExtResource("2_vsrg8")]([SubResource("Resource_r32eo")])
+content_keys = Array[String](["main"])

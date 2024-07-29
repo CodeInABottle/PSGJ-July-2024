@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=8 format=3 uid="uid://dosxp1q2j3g87"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_sl3au"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_5dvi6"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_js56u"]
+
+[sub_resource type="Resource" id="Resource_hr5ga"]
+script = ExtResource("1_sl3au")
+line_text = "Everything... anything anyone does... it all leaves something behind..."
+
+[sub_resource type="Resource" id="Resource_e5oq2"]
+script = ExtResource("1_sl3au")
+line_text = "Yes that must be it! Everything leaves a Residue... Even alchemy..."
+
+[sub_resource type="Resource" id="Resource_l6vjs"]
+script = ExtResource("1_sl3au")
+line_text = "It must be the key to resonance."
+
+[sub_resource type="Resource" id="Resource_5cwr2"]
+script = ExtResource("2_5dvi6")
+block_lines = Array[ExtResource("1_sl3au")]([SubResource("Resource_hr5ga"), SubResource("Resource_e5oq2"), SubResource("Resource_l6vjs")])
+
+[resource]
+script = ExtResource("3_js56u")
+contents = Array[ExtResource("2_5dvi6")]([SubResource("Resource_5cwr2")])
+content_keys = Array[String](["main"])
