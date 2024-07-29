@@ -1,4 +1,4 @@
-[gd_scene load_steps=37 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=38 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EntityTracker.gd" id="2_oep6u"]
@@ -21,6 +21,7 @@
 [ext_resource type="PackedScene" uid="uid://c4k4rqcj2337f" path="res://battle_systems/UI/TurnSkip/turn_skip.tscn" id="17_yk07i"]
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="18_7m3r4"]
 [ext_resource type="StyleBox" uid="uid://dyh061gar4cni" path="res://battle_systems/Tutorial/BlackOutShield.tres" id="18_8fc80"]
+[ext_resource type="PackedScene" uid="uid://bsa0djc5k7pg8" path="res://battle_systems/UI/EnemyStatusIndicator/Residue/residue.tscn" id="20_uh4xj"]
 [ext_resource type="Texture2D" uid="uid://c3flj6yj5ha7f" path="res://assets/sprites/combat/capture.png" id="21_y5vbx"]
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="22_hxut8"]
 
@@ -112,10 +113,10 @@ tracks/0/path = NodePath(".:position")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.05, 0.3),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0.05, 0.2, 0.25, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(228, -155), Vector2(228, 0)]
+"values": [Vector2(228, -155), Vector2(228, -5), Vector2(228, -2), Vector2(228, -5)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -1367,6 +1368,81 @@ Looks like you implanted a \"residue\" on your opponent.
 The problems with novice alchemy... ahem..."
 tutorial_link = NodePath("../../Residue2")
 
+[node name="Residue1b" type="Control" parent="CanvasLayer/Tutorial/Residues"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1b"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 603.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel2" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1b"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 603.0
+offset_right = 640.0
+offset_bottom = -307.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel3" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1b"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 603.0
+offset_top = 83.0
+offset_right = 640.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="Panel4" type="Panel" parent="CanvasLayer/Tutorial/Residues/Residue1b"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 632.0
+offset_top = 53.0
+offset_right = 640.0
+offset_bottom = -277.0
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="TutorialTextButton" parent="CanvasLayer/Tutorial/Residues/Residue1b" node_paths=PackedStringArray("tutorial_link") instance=ExtResource("16_c6840")]
+layout_mode = 0
+offset_left = 205.0
+offset_top = 43.0
+offset_right = 526.0
+offset_bottom = 288.0
+text = "Now... ahem...
+
+Look here! I added a fake Earth residue for you to visualize what it would look like.
+
+Using your abilities that don't resonate with the opponent will leave behind these residues.
+(max of 3 per reagent lasting 2 turns)"
+tutorial_link = NodePath("../../Residue2")
+
+[node name="Residue" parent="CanvasLayer/Tutorial/Residues/Residue1b" instance=ExtResource("20_uh4xj")]
+layout_mode = 0
+offset_left = 603.0
+offset_top = 54.0
+offset_right = 630.0
+offset_bottom = 81.0
+treat_as_dummy = true
+
+[node name="Label" parent="CanvasLayer/Tutorial/Residues/Residue1b/Residue" index="0"]
+text = "0x"
+
 [node name="Residue2" type="Control" parent="CanvasLayer/Tutorial/Residues"]
 visible = false
 layout_mode = 1
@@ -1624,6 +1700,7 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("18_8fc80")
 
 [node name="TutorialTextButton" parent="CanvasLayer/Tutorial/ResonatingResiduesB" node_paths=PackedStringArray("tutorial_link") instance=ExtResource("16_c6840")]
+layout_mode = 0
 offset_left = 8.0
 offset_top = 81.0
 offset_right = 380.0
@@ -1637,7 +1714,7 @@ Seems you never implanted a residue before now...
 
 Time for some wisdom! :D
 "
-tutorial_link = NodePath("../../Residues/Residue1")
+tutorial_link = NodePath("../../Residues/Residue1b")
 
 [node name="ControlShield" type="Panel" parent="CanvasLayer"]
 unique_name_in_owner = true
@@ -1710,5 +1787,6 @@ texture = ExtResource("14_jcqrt")
 [editable path="CanvasLayer/Tutorial/Crafting/FailedDragAndDrop/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/Crafting/SelectingRecipe/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/End/LastTutorialButton"]
+[editable path="CanvasLayer/Tutorial/Residues/Residue1b/Residue"]
 [editable path="CanvasLayer/Tutorial/Residues/Residue3/TutorialTextButton"]
 [editable path="CanvasLayer/Tutorial/ResonatingResidues/TutorialTextButton"]
