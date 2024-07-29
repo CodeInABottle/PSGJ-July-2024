@@ -179,7 +179,7 @@ func saturate_colors() -> void:
 
 func desaturate_colors() -> void:
 	_has_been_defeated = false
-	if shiny == null:
+	if shiny.get_parent() == null:
 		add_child(shiny)
 	npc_sprite.set_sprite_frames(afflicted_sprite_frames)
 	npc_sprite.set_material(afflicted_material)
