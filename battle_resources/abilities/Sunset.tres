@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=4 format=3 uid="uid://cj1iu4g2usmck"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_bw7om"]
+[ext_resource type="Resource" uid="uid://c5i0a6jgdyx6m" path="res://battle_resources/Modifiers/ReduceAPBy_1.tres" id="1_gwfkc"]
+[ext_resource type="Resource" uid="uid://ctghntiocb10i" path="res://battle_resources/Modifiers/20_3_turn_DoTMod.tres" id="2_siojy"]
+
+[resource]
+script = ExtResource("1_bw7om")
+damage = 60
+description = "Causes enemy to gain 1 less AP on their next turn; Opponent takes 20 damage for 3 turns."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_gwfkc"), ExtResource("2_siojy")])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 7
+reagent_a = 1
+reagent_b = 2
+reagent_c = 4
+reagent_d = 0

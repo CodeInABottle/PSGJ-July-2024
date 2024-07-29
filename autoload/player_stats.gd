@@ -48,7 +48,7 @@ var _current_unlocked_shadows: Dictionary = {
 		#"Purify", "Retaliate",
 	#],
 	#"Earth Worm": [
-		#"Whip", "Dig", "Sodium Spike", "Salt Cure"
+		#"Whip", "Dig", "Phoenix Fly", "Empower", "Sunset", "Philospher Stone"
 	#]
 }
 # TEMP: Waiting for inventory system; Hard coding "insertion" for now
@@ -126,7 +126,7 @@ func get_all_unlocked_shadows() -> PackedStringArray:
 func get_all_equipped_abilities() -> PackedStringArray:
 	var data: PackedStringArray = []
 	if _equipped_shadows.is_empty():
-		return ["Branch"]
+		return ["Stick"]
 
 	for shadow_name: String in _equipped_shadows:
 		for ability_name: String in _current_unlocked_shadows[shadow_name]:

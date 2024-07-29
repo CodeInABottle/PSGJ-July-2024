@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://6gor4akwxsoo"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_a2e7n"]
+[ext_resource type="Resource" uid="uid://cdnv1k23kwki" path="res://battle_resources/Modifiers/10_HP_Immediate.tres" id="1_cf5l4"]
+
+[resource]
+script = ExtResource("1_a2e7n")
+damage = 50
+description = "Heal 10HP on use."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_cf5l4")])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 1
+reagent_a = 1
+reagent_b = 1
+reagent_c = 0
+reagent_d = 0

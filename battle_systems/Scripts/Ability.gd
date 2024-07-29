@@ -2,6 +2,7 @@ class_name BattlefieldAbility
 extends Resource
 
 @export var damage: int = 0
+@export_range(0, 100, 1) var precentage_damage: float = 0.0
 @export_multiline var description: String
 @export var modifiers: Array[BattlefieldAttackModifier] = []
 

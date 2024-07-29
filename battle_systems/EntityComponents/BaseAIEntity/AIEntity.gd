@@ -59,12 +59,20 @@ var short_term_memory: Array[Dictionary] = []
 func _ready() -> void:
 	hurt_player.animation_finished.connect(
 		func(_animation_name: String) -> void:
-			if _data.special_frame_idx == -1: return
-			animation_holder.get_child(0).reset()
+			if animation_holder.get_child(0).is_set()\
+					and _data.special_frame_behavior == EnemyDatabase.SpecialFrameState.ON_HURT:
+				animation_holder.get_child(0).reset()
 	)
 
 func load_AI(data: BattlefieldEnemyData) -> void:
-	htn_planner.finished.connect( func() -> void: actions_completed.emit() )
+	htn_planner.finished.connect(
+		func() -> void:
+			if animation_holder.get_child(0).is_set()\
+					and _data.special_frame_behavior == EnemyDatabase.SpecialFrameState.ON_ATTACK:
+				await get_tree().create_timer(0.25).timeout
+				animation_holder.get_child(0).reset()
+			actions_completed.emit()
+	)
 	_data = data
 	_health = data.max_health
 	_capture_value = data.max_health
@@ -106,9 +114,13 @@ func take_damage(damage_data: Dictionary) -> void:
 	if damage_data["damage"] == 0: return
 	print("enemy taken damage: ", damage_data["damage"])
 
-	# Check for special frame data
-	if _data.special_frame_idx != -1:
+	# Check for special frame data -- On hurt
+	if _data.special_frame_behavior == EnemyDatabase.SpecialFrameState.ON_HURT:
 		animation_holder.get_child(0).set_shadow_frame(_data.special_frame_idx)
+	# Check for special frame data -- Last 30% HP
+	elif _data.special_frame_behavior == EnemyDatabase.SpecialFrameState.LAST_30_PRECENT:
+		if _health <= ceili(float(_data.max_health) * 0.3):
+			animation_holder.get_child(0).set_shadow_frame(_data.special_frame_idx)
 
 	var trigger_capture_damage: bool = damage_data["resonate_type"] == _data.resonate
 	# Check for residue capture
@@ -220,8 +232,9 @@ func get_most_damaging_ability_within_AP_cost() -> int:
 
 	var idx: int = 0
 	for ability: BattlefieldAbility in _data.abilities:
-		if ability.damage > damage and _alchemy_points >= ability.ap_cost:
-			damage = ability.damage
+		var ability_damage: int = EnemyDatabase.get_ability_damage(ability.name)
+		if ability_damage > damage and _alchemy_points >= ability.ap_cost:
+			damage = ability_damage
 			ability_idx = idx
 		idx += 1
 
@@ -339,6 +352,10 @@ func _check_if_self_can_stun() -> void:
 
 func _internal_attack_logic(ability_data: BattlefieldAbility) -> void:
 	if ability_data["damage"] > 0:
+		# Check for special frame data -- On Attack
+		if _data.special_frame_behavior == EnemyDatabase.SpecialFrameState.ON_ATTACK:
+			animation_holder.get_child(0).set_shadow_frame(_data.special_frame_idx)
+
 		player_entity.take_damage({ "damage": ability_data["damage"] })
 	print("Enemy used ", ability_data["name"], " to do ", ability_data["damage"])
 

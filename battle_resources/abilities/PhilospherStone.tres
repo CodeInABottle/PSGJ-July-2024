@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=2 format=3 uid="uid://1imp4xr2oooy"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_8xh6f"]
+
+[resource]
+script = ExtResource("1_8xh6f")
+damage = 0
+precentage_damage = 20.0
+description = "Does 20% damage of opponent's max health."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 15
+reagent_a = 8
+reagent_b = 4
+reagent_c = 2
+reagent_d = 1

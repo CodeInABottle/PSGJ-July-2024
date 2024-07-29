@@ -66,7 +66,7 @@ func get_resonance_breakdown(resonance: ResonateType) -> Array[ResonateType]:
 		ResonateType.NITER:
 			return [ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
 		ResonateType.METAL:
-			return PRIMARY_REAGENTS
+			return [ResonateType.EARTH, ResonateType.WATER, ResonateType.AIR, ResonateType.FIRE]
 		_: return []
 
 func get_texture(resonance: ResonateType) -> Texture:
