@@ -9,8 +9,6 @@ extends Area2D
 @export var disable_leash_name: String
 @export var disable_event_name: String
 
-var _being_deleted: bool = false
-
 func _ready() -> void:
 	LevelManager.world_event_occurred.connect(on_world_event)
 	is_disabled()

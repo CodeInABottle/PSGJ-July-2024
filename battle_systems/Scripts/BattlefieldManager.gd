@@ -80,7 +80,8 @@ func _on_battle_finished(_final_state: Dictionary) -> void:
 	if MenuManager.fader_controller == null: return
 	if MenuManager.fader_controller.fade_out_complete == null: return
 
-	MenuManager.fader_controller.fade_out_complete.connect(_on_fade_out_complete)
+	if not MenuManager.fader_controller.fade_out_complete.is_connected(_on_fade_out_complete):
+		MenuManager.fader_controller.fade_out_complete.connect(_on_fade_out_complete)
 	MenuManager.fader_controller.fade_out()
 
 func _on_fade_out_complete() -> void:
