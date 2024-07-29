@@ -9,6 +9,7 @@
 script = ExtResource("2_1l8bf")
 npc_speed = 300.0
 npc_name = "Fire Hawk"
+notice_radius = 150.0
 normal_sprite_frames = ExtResource("2_xuilm")
 afflicted_sprite_frames = ExtResource("4_jeopv")
 
