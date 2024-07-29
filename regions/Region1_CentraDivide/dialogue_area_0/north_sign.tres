@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=8 format=3 uid="uid://15ee7kuvt2ey"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_ph0xq"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_xba6j"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_jdyy4"]
+
+[sub_resource type="Resource" id="Resource_w7sw2"]
+script = ExtResource("1_ph0xq")
+line_text = "ATTENTION!"
+
+[sub_resource type="Resource" id="Resource_2kkyk"]
+script = ExtResource("1_ph0xq")
+line_text = "Level under construction."
+
+[sub_resource type="Resource" id="Resource_qv8mj"]
+script = ExtResource("1_ph0xq")
+line_text = "No travel allowed."
+
+[sub_resource type="Resource" id="Resource_6ls1y"]
+script = ExtResource("2_xba6j")
+block_lines = Array[ExtResource("1_ph0xq")]([SubResource("Resource_w7sw2"), SubResource("Resource_2kkyk"), SubResource("Resource_qv8mj")])
+
+[resource]
+script = ExtResource("3_jdyy4")
+contents = Array[ExtResource("2_xba6j")]([SubResource("Resource_6ls1y")])
+content_keys = Array[String](["main"])

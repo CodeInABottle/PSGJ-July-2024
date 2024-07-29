@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=6 format=3 uid="uid://kkvsqewrydss"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_2dfym"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_4l67x"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_k325w"]
+
+[sub_resource type="Resource" id="Resource_175m7"]
+script = ExtResource("1_2dfym")
+line_text = "Try pressing SHIFT to sprint!"
+
+[sub_resource type="Resource" id="Resource_k0e5k"]
+script = ExtResource("2_4l67x")
+block_lines = Array[ExtResource("1_2dfym")]([SubResource("Resource_175m7")])
+
+[resource]
+script = ExtResource("3_k325w")
+contents = Array[ExtResource("2_4l67x")]([SubResource("Resource_k0e5k")])
+content_keys = Array[String](["main"])

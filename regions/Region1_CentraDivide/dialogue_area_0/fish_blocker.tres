@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=6 format=3 uid="uid://bp1f1fctmlach"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_cj7nt"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_h0e2c"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_2mmd6"]
+
+[sub_resource type="Resource" id="Resource_2yxf0"]
+script = ExtResource("1_cj7nt")
+line_text = "We can't leave yet, what about the fish?!"
+
+[sub_resource type="Resource" id="Resource_fqbsn"]
+script = ExtResource("2_h0e2c")
+block_lines = Array[ExtResource("1_cj7nt")]([SubResource("Resource_2yxf0")])
+
+[resource]
+script = ExtResource("3_2mmd6")
+contents = Array[ExtResource("2_h0e2c")]([SubResource("Resource_fqbsn")])
+content_keys = Array[String](["main"])

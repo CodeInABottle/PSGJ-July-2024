@@ -335,7 +335,4 @@ func load_save(save_data: Dictionary) -> void:
 
 # to be use to reset enemy battles if any on checkpoint rest, if needed?
 func reset_world() -> void:
-	pass
-
-func on_world_event(event_name: String, args: Array = []) -> void:
-	world_event_occurred.emit(event_name, args)
+	world_event_occurred.emit("world_reset")

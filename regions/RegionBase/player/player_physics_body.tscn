@@ -1,10 +1,30 @@
-[gd_scene load_steps=4 format=3 uid="uid://bfqw64oerqxlo"]
+[gd_scene load_steps=11 format=3 uid="uid://bfqw64oerqxlo"]
 
 [ext_resource type="Script" path="res://regions/RegionBase/player/character_controller.gd" id="1_hau7n"]
 [ext_resource type="Script" path="res://regions/RegionBase/player/hint_manager_controller.gd" id="2_a8ggn"]
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="3_xvv05"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="4_4nnpj"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="5_hipod"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_lhcgd"]
 radius = 8.0
+
+[sub_resource type="Resource" id="Resource_dyw5y"]
+script = ExtResource("3_xvv05")
+line_text = "This must be why the mail man stopped delivering our mail!"
+
+[sub_resource type="Resource" id="Resource_7lp1i"]
+script = ExtResource("3_xvv05")
+line_text = "Mom seemed really sad about that for some reason..."
+
+[sub_resource type="Resource" id="Resource_0n462"]
+script = ExtResource("4_4nnpj")
+block_lines = Array[ExtResource("3_xvv05")]([SubResource("Resource_dyw5y"), SubResource("Resource_7lp1i")])
+
+[sub_resource type="Resource" id="Resource_eyxk4"]
+script = ExtResource("5_hipod")
+contents = Array[ExtResource("4_4nnpj")]([SubResource("Resource_0n462")])
+content_keys = Array[String](["mailbox"])
 
 [node name="PlayerPhysicsBody" type="CharacterBody2D" groups=["player"]]
 y_sort_enabled = true
@@ -24,3 +44,4 @@ target_desired_distance = 20.0
 [node name="HintManager" type="Node" parent="."]
 unique_name_in_owner = true
 script = ExtResource("2_a8ggn")
+quips = SubResource("Resource_eyxk4")

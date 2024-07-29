@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=6 format=3 uid="uid://c6q7ep2ikt3gh"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_aae8s"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_1mgg0"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_hqsgy"]
+
+[sub_resource type="Resource" id="Resource_ujb5e"]
+script = ExtResource("1_aae8s")
+line_text = "I should at least capture of of those snails back there. Who knows what will happen if we leave now."
+
+[sub_resource type="Resource" id="Resource_wy14p"]
+script = ExtResource("2_1mgg0")
+block_lines = Array[ExtResource("1_aae8s")]([SubResource("Resource_ujb5e")])
+
+[resource]
+script = ExtResource("3_hqsgy")
+contents = Array[ExtResource("2_1mgg0")]([SubResource("Resource_wy14p")])
+content_keys = Array[String](["main"])

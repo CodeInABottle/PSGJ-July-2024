@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://clr525feg07vq"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_blk4j"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_2evj2"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_xvfk4"]
+
+[sub_resource type="Resource" id="Resource_x8n8h"]
+script = ExtResource("1_blk4j")
+line_text = "We should head up the beach first!"
+
+[sub_resource type="Resource" id="Resource_irxyd"]
+script = ExtResource("1_blk4j")
+line_text = "There's always nifty stuff washing up there."
+
+[sub_resource type="Resource" id="Resource_cupa8"]
+script = ExtResource("2_2evj2")
+block_lines = Array[ExtResource("1_blk4j")]([SubResource("Resource_x8n8h"), SubResource("Resource_irxyd")])
+
+[resource]
+script = ExtResource("3_xvfk4")
+contents = Array[ExtResource("2_2evj2")]([SubResource("Resource_cupa8")])
+content_keys = Array[String](["main"])

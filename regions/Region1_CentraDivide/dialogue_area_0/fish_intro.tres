@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://vdd7a2d8l73h"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_8vycr"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_wj8fu"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_6ucxw"]
+
+[sub_resource type="Resource" id="Resource_m2x0j"]
+script = ExtResource("1_8vycr")
+line_text = "Look at those fish up there!"
+
+[sub_resource type="Resource" id="Resource_2f5ub"]
+script = ExtResource("1_8vycr")
+line_text = "It looks like they might come right up out of the water!"
+
+[sub_resource type="Resource" id="Resource_l6sc3"]
+script = ExtResource("2_wj8fu")
+block_lines = Array[ExtResource("1_8vycr")]([SubResource("Resource_m2x0j"), SubResource("Resource_2f5ub")])
+
+[resource]
+script = ExtResource("3_6ucxw")
+contents = Array[ExtResource("2_wj8fu")]([SubResource("Resource_l6sc3")])
+content_keys = Array[String](["main"])

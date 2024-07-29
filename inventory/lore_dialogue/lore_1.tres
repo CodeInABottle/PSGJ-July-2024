@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=8 format=3 uid="uid://cws5g7pyvnrwo"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_a8cpq"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_0mymt"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_eyk4c"]
+
+[sub_resource type="Resource" id="Resource_imlnh"]
+script = ExtResource("1_a8cpq")
+line_text = "I think I saw something on the edge of the trees..."
+
+[sub_resource type="Resource" id="Resource_mm200"]
+script = ExtResource("1_a8cpq")
+line_text = "Maybe it was just a reflection off one of the windows... but I could have sworn..."
+
+[sub_resource type="Resource" id="Resource_4tvkh"]
+script = ExtResource("1_a8cpq")
+line_text = "No I am sure of it now. That shadow was moving on its own."
+
+[sub_resource type="Resource" id="Resource_b63fh"]
+script = ExtResource("2_0mymt")
+block_lines = Array[ExtResource("1_a8cpq")]([SubResource("Resource_imlnh"), SubResource("Resource_mm200"), SubResource("Resource_4tvkh")])
+
+[resource]
+script = ExtResource("3_eyk4c")
+contents = Array[ExtResource("2_0mymt")]([SubResource("Resource_b63fh")])
+content_keys = Array[String](["main"])
