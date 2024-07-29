@@ -6,6 +6,9 @@
 
 [node name="Snail" instance=ExtResource("1_12ct1")]
 npc_name = "Armored Snail"
+notice_radius = 150.0
+wander_x_bound = 75.0
+wander_y_bound = 75.0
 normal_sprite_frames = ExtResource("2_8b60g")
 afflicted_sprite_frames = ExtResource("3_6f854")
 

@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LoreItem" load_steps=4 format=3 uid="uid://dbjm4fj8u4rmq"]
+
+[ext_resource type="Resource" uid="uid://c27clks8oqmj4" path="res://inventory/lore_dialogue/lore_2.tres" id="1_ilf1m"]
+[ext_resource type="Script" path="res://inventory/lore_item.gd" id="1_jfwsj"]
+[ext_resource type="Texture2D" uid="uid://dcis74080ybrb" path="res://assets/sprites/general/Books/books11.png" id="2_bn7cr"]
+
+[resource]
+script = ExtResource("1_jfwsj")
+dialogue = ExtResource("1_ilf1m")
+author_name = "Unknown Alchemist"
+item_name = "Alchemist's Notes: 2"
+item_description = "Scrawled notes left in a journal by an alchemist"
+item_icon = ExtResource("2_bn7cr")

@@ -9,10 +9,16 @@ func play_dialogue(dialogue: Dialogue, content_key: String, speaker_name: String
 	if player_dialogue_ui:
 		if speaker_name != "":
 			player_dialogue_ui.speaker_name_label.text = speaker_name
-
+			player_dialogue_ui.speaker_name_label.show()
+		else:
+			player_dialogue_ui.speaker_name_label.hide()
+		
 		if speaker_icon != null:
 			player_dialogue_ui.speaker_icon.texture = speaker_icon
-
+			player_dialogue_ui.speaker_icon.get_parent().show()
+		else:
+			player_dialogue_ui.speaker_icon.get_parent().hide()
+		
 		dialogue_started.emit()
 		player_dialogue_ui.show_dialogue(dialogue, content_key)
 

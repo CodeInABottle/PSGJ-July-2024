@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://c5bxa0intm24i"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_7uf88"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_ip3tv"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_njspx"]
+
+[sub_resource type="Resource" id="Resource_n5jvo"]
+script = ExtResource("1_7uf88")
+line_text = "So many creatures running amok! Good thing we, Clint the Alchemist, are here!"
+
+[sub_resource type="Resource" id="Resource_bqhg7"]
+script = ExtResource("1_7uf88")
+line_text = "En garde, snail!"
+
+[sub_resource type="Resource" id="Resource_ky70i"]
+script = ExtResource("2_ip3tv")
+block_lines = Array[ExtResource("1_7uf88")]([SubResource("Resource_n5jvo"), SubResource("Resource_bqhg7")])
+
+[resource]
+script = ExtResource("3_njspx")
+contents = Array[ExtResource("2_ip3tv")]([SubResource("Resource_ky70i")])
+content_keys = Array[String](["main"])

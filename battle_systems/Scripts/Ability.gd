@@ -2,7 +2,6 @@ class_name BattlefieldAbility
 extends Resource
 
 @export var damage: int = 0
-@export_range(1.1, 3.0, 0.05) var capture_efficiency: float = 1.1
 @export_multiline var description: String
 @export var modifiers: Array[BattlefieldAttackModifier] = []
 
@@ -39,3 +38,15 @@ func get_world_states(idx: int) -> Dictionary:
 		"ap_required_"+str(idx): ap_cost,
 		"damage_"+str(idx): damage,
 	}
+
+func get_components() -> Array[TypeChart.ResonateType]:
+	var components: Array[TypeChart.ResonateType] = []
+	if reagent_a in TypeChart.PRIMARY_REAGENTS:
+		components.push_back(reagent_a)
+	if reagent_b in TypeChart.PRIMARY_REAGENTS:
+		components.push_back(reagent_b)
+	if reagent_c in TypeChart.PRIMARY_REAGENTS:
+		components.push_back(reagent_c)
+	if reagent_d in TypeChart.PRIMARY_REAGENTS:
+		components.push_back(reagent_d)
+	return components

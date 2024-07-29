@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=6 format=3 uid="uid://bo4v8si64wfpo"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_7rp0c"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_ceur3"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_tp1sh"]
+
+[sub_resource type="Resource" id="Resource_5neqr"]
+script = ExtResource("1_7rp0c")
+line_text = "First things first, we gotta stop that tree!"
+
+[sub_resource type="Resource" id="Resource_uiq0t"]
+script = ExtResource("2_ceur3")
+block_lines = Array[ExtResource("1_7rp0c")]([SubResource("Resource_5neqr")])
+
+[resource]
+script = ExtResource("3_tp1sh")
+contents = Array[ExtResource("2_ceur3")]([SubResource("Resource_uiq0t")])
+content_keys = Array[String](["main"])

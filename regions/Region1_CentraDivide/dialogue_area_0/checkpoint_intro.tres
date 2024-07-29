@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=6 format=3 uid="uid://d3gc0j2apmgoh"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_n21ug"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_3w4og"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_dakgl"]
+
+[sub_resource type="Resource" id="Resource_d3yva"]
+script = ExtResource("1_n21ug")
+line_text = "Is that some sort of obelisk? We should check it out."
+
+[sub_resource type="Resource" id="Resource_74pke"]
+script = ExtResource("2_3w4og")
+block_lines = Array[ExtResource("1_n21ug")]([SubResource("Resource_d3yva")])
+
+[resource]
+script = ExtResource("3_dakgl")
+contents = Array[ExtResource("2_3w4og")]([SubResource("Resource_74pke")])
+content_keys = Array[String](["main"])

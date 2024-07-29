@@ -75,11 +75,12 @@ var _checkpoints: Dictionary = {
 # -- Used by `load_entry_point()` only
 # -- entry_id used is 0
 var _entry_point: String = "Home"
-#var _entry_point: String = "area_0"
+#var _entry_point: String = "Remembrance"
 
 # used by is_paused() utility function
 var _is_paused: bool = false
 var is_transitioning: bool = false
+var last_battle_index: int = -1
 
 # Anchors
 var master_node: Node
@@ -260,6 +261,7 @@ func _async_update(path: String) -> void:
 # Called on Handshake signal from level
 func _on_level_loaded(level: Node) -> void:
 	loaded_level = level
+	is_transitioning = false
 
 	if level is GameArea:
 		_in_world = true
@@ -312,10 +314,11 @@ func on_translucent_to_black_complete() -> void:
 	if pending_load == "battle":
 		load_menu("battle")
 
-func trigger_battle(enemy_name: String, start_translucent: bool = false) -> void:
+func trigger_battle(enemy_name: String, area_index: int, start_translucent: bool = false) -> void:
 	DialogueManager.end_dialogue()
 	pending_load = "battle"
 	is_transitioning = true
+	last_battle_index = area_index
 	pending_battle = enemy_name
 	if start_translucent:
 		MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)
@@ -332,7 +335,4 @@ func load_save(save_data: Dictionary) -> void:
 
 # to be use to reset enemy battles if any on checkpoint rest, if needed?
 func reset_world() -> void:
-	pass
-
-func on_world_event(event_name: String, args: Array = []) -> void:
-	world_event_occurred.emit(event_name, args)
+	world_event_occurred.emit("world_reset")

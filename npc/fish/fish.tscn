@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_rvlp8"]
 [ext_resource type="SpriteFrames" uid="uid://xpg3imla857i" path="res://npc/fish/fish_sprite_frames.tres" id="2_c1yhp"]
 [ext_resource type="Script" path="res://npc/fish/fish_npc_controller.gd" id="2_sxrfo"]
-[ext_resource type="SpriteFrames" uid="uid://u1sc2olninhs" path="res://npc/fish/afflicted_fish_sprite_frames.tres" id="4_uvnwe"]
+[ext_resource type="SpriteFrames" uid="uid://cv1y2qnl60rle" path="res://npc/fish/afflicted_fish_sprite_frames.tres" id="4_uvnwe"]
 
 [node name="Fish" instance=ExtResource("1_rvlp8")]
 script = ExtResource("2_sxrfo")

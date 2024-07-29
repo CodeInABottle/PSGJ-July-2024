@@ -13,11 +13,11 @@ func on_interaction_started(_interactable: Interactable) -> void:
 
 func on_interaction_advanced(_interactable: Interactable) -> void:
 	DialogueManager.advance_dialogue()
-	
+
 func end_interaction() -> void:
 	interactable.end_interaction()
 	_on_interaction_ended()
-	
+
 func on_interaction_quick_closed() -> void:
 	DialogueManager.end_dialogue()
 

@@ -17,6 +17,7 @@ y_sort_enabled = true
 collision_layer = 16
 collision_mask = 19
 motion_mode = 1
+wall_min_slide_angle = 0.0
 script = ExtResource("1_a6oxw")
 wander_x_bound = 100.0
 wander_y_bound = 100.0

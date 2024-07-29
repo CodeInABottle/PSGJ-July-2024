@@ -582,7 +582,6 @@ shape = SubResource("RectangleShape2D_hidn5")
 
 [node name="ReagentDropHandler" parent="." node_paths=PackedStringArray("reagents") instance=ExtResource("3_ppdie")]
 unique_name_in_owner = true
-visible = false
 position = Vector2(176, 192)
 speed = 0.5
 reagents = [NodePath("../Pillow/Water"), NodePath("../Pillow/Fire"), NodePath("../Pillow/Earth"), NodePath("../Pillow/Air"), NodePath("../PaperTowel")]

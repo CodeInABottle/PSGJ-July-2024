@@ -1,8 +1,8 @@
-[gd_scene load_steps=11 format=3 uid="uid://kh822nqv02xs"]
+[gd_scene load_steps=14 format=3 uid="uid://kh822nqv02xs"]
 
 [ext_resource type="Texture2D" uid="uid://8h714of42bsy" path="res://assets/sprites/player/player.png" id="1_k4knx"]
 [ext_resource type="Script" path="res://regions/RegionBase/player/player_visual_controller.gd" id="1_mr7a6"]
-[ext_resource type="Texture2D" uid="uid://cte4mtlosaofi" path="res://assets/sprites/general/direction_arrow.png" id="2_1d1oc"]
+[ext_resource type="Texture2D" uid="uid://b6ukbsrs6vcdq" path="res://assets/sprites/player/UI/MovementArrow.png" id="4_itfab"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_tlcrj"]
 atlas = ExtResource("1_k4knx")
@@ -50,6 +50,28 @@ animations = [{
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ikv"]
 size = Vector2(30, 37)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_j0gy0"]
+atlas = ExtResource("4_itfab")
+region = Rect2(0, 0, 32, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsuh4"]
+atlas = ExtResource("4_itfab")
+region = Rect2(32, 0, 32, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_78kn1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_j0gy0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_jsuh4")
+}],
+"loop": true,
+"name": &"sprint",
+"speed": 5.0
+}]
+
 [node name="PlayerVisualBody" type="Node2D"]
 z_index = 1
 y_sort_enabled = true
@@ -72,7 +94,10 @@ position = Vector2(24, -8)
 position = Vector2(-7, -0.5)
 shape = SubResource("RectangleShape2D_j7ikv")
 
-[node name="Sprite2D" type="Sprite2D" parent="PlayerPickupArea"]
+[node name="ArrowIndicator" type="AnimatedSprite2D" parent="PlayerPickupArea"]
+unique_name_in_owner = true
 z_index = 1
-texture_filter = 1
-texture = ExtResource("2_1d1oc")
+scale = Vector2(0.5, 0.5)
+sprite_frames = SubResource("SpriteFrames_78kn1")
+animation = &"sprint"
+frame_progress = 0.500207

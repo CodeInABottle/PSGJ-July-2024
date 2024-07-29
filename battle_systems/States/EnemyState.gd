@@ -14,6 +14,7 @@ func enter() -> void:
 	entity_tracker.enemy_entity.issue_actions()
 
 func exit() -> void:
+	entity_tracker.enemy_entity.reduce_residues()
 	entity_tracker.enemy_entity.reset_costs()
 
 func update(_delta: float) -> void:

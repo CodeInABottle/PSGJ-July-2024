@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=6 format=3 uid="uid://mevuuf5g5l7f"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_sx7dt"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_x3aos"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_3kk10"]
+
+[sub_resource type="Resource" id="Resource_x42jr"]
+script = ExtResource("1_sx7dt")
+line_text = "I can't forget, Mom said to clean the worms out of the cellar."
+
+[sub_resource type="Resource" id="Resource_h2u01"]
+script = ExtResource("2_x3aos")
+block_lines = Array[ExtResource("1_sx7dt")]([SubResource("Resource_x42jr")])
+
+[resource]
+script = ExtResource("3_3kk10")
+contents = Array[ExtResource("2_x3aos")]([SubResource("Resource_h2u01")])
+content_keys = Array[String](["main"])

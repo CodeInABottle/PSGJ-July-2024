@@ -6,10 +6,9 @@ var unique_saves: Dictionary = {}
 # save string : custom save dictionary
 var modifier_saves: Dictionary = {}
 
+var tutorial_save_dictionary: Dictionary = {}
 var current_save_dictionary: Dictionary = {}
 var load_pending: bool = false
-
-
 
 func _ready() -> void:
 	create_unique_saves()
@@ -28,10 +27,7 @@ func is_save_string_unique(save_string: String) -> bool:
 		return false
 
 func is_save_string_modifier(save_string: String) -> bool:
-	if modifier_saves.keys().has(save_string):
-		return true
-	else:
-		return false
+	return modifier_saves.keys().has(save_string)
 
 func load_overworld_database() -> void:
 	pass
@@ -56,14 +52,21 @@ func generate_scene_from_string(save_string: String) -> void:
 		current_save_dictionary = save_dictionary
 		load_pending = true
 		LevelManager.load_save(current_save_dictionary)
+		load_tutorial_data(current_save_dictionary)
 	else:
 		LevelManager.load_entry_point()
+
+func load_tutorial_data(loaded_save_dictionary: Dictionary) -> void:
+	for key: String in loaded_save_dictionary.keys():
+		if key.begins_with("tutorial_"):
+			tutorial_save_dictionary[key] = loaded_save_dictionary[key]
 
 func get_save_data() -> Dictionary:
 	var save_dictionary: Dictionary = PlayerStats.get_save_data() # initialize w/ player saves
 	var level_save_dictionary: Dictionary = LevelManager.get_save_data()
 
-	save_dictionary.merge(level_save_dictionary)
+	save_dictionary.merge(level_save_dictionary, true)
+	save_dictionary.merge(tutorial_save_dictionary, true)
 
 	return save_dictionary
 
