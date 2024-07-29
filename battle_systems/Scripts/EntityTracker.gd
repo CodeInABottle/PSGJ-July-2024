@@ -41,6 +41,7 @@ var _enemy_signal_effects: Array[ModData] = []
 var _player_effects: Array[ModData] = []
 var _player_signal_effects: Array[ModData] = []
 
+var _battle_over: bool = false
 var is_players_turn: bool = false	# False -> Player first
 
 static func do_apply_to_player(is_current_player: bool, apply_to_self: bool) -> bool:
@@ -60,14 +61,19 @@ func initialize(enemy_name_encounter: String) -> void:
 	enemy_entity.actions_completed.connect(end_turn)
 
 func end_turn() -> void:
+	if _battle_over: return
+
 	# Check if we need to end battle
 	if PlayerStats.health <= 0:
+		_battle_over = true
 		combat_state_machine.switch_state("GameOverState")
 		return
 	elif enemy_entity.is_captured():
+		_battle_over = true
 		combat_state_machine.switch_state("CaptureState")
 		return
 	elif enemy_entity.is_dead():
+		_battle_over = true
 		combat_state_machine.switch_state("RewardState")
 		return
 
@@ -113,7 +119,7 @@ func add_modification_stacks(ability: BattlefieldAbility) -> void:
 				if mod_data not in _enemy_effects:
 					_enemy_effects.push_back(mod_data)
 	if skip_turn:
-		end_turn()
+		combat_state_machine.switch_state("SkippingState")
 
 func add_modification(resonate: TypeChart.ResonateType, efficiency_capture_rate: float,
 		modification: BattlefieldAttackModifier, is_player: bool) -> void:
@@ -125,7 +131,7 @@ func add_modification(resonate: TypeChart.ResonateType, efficiency_capture_rate:
 
 	# Check to see if the modification is immediate
 	if modification["immediate"]:
-		if _execute({}, mod_data): end_turn()
+		if _execute({}, mod_data): combat_state_machine.switch_state("SkippingState")
 		return
 
 	if apply_to_player:
@@ -146,7 +152,7 @@ func add_modification(resonate: TypeChart.ResonateType, efficiency_capture_rate:
 # Returns true on state switch
 func handle_enemy_effects() -> bool:
 	if _handle_effects(_enemy_effects):
-		end_turn()
+		combat_state_machine.switch_state("SkippingState")
 		return true
 	if enemy_entity.is_dead():
 		combat_state_machine.switch_state("RewardState")
@@ -156,7 +162,7 @@ func handle_enemy_effects() -> bool:
 # Returns true on state switch
 func handle_player_effects() -> bool:
 	if _handle_effects(_player_effects):
-		end_turn()
+		combat_state_machine.switch_state("SkippingState")
 		return true
 	if PlayerStats.health <= 0:
 		combat_state_machine.switch_state("GameOverState")

@@ -1,10 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccuo8cx5bw5ge"]
+[gd_scene load_steps=7 format=3 uid="uid://ccuo8cx5bw5ge"]
 
 [ext_resource type="Script" path="res://battle_systems/EntityComponents/base_enemy_sprite_handler.gd" id="1_d6s3b"]
 [ext_resource type="Shader" path="res://assets/shaders/battle_background.gdshader" id="1_li2kh"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nt8cd"]
 shader = ExtResource("1_li2kh")
+shader_parameter/override_alpha = 1.0
 shader_parameter/screen_height = 640.0
 shader_parameter/amplitude = 0.01
 shader_parameter/frequency = 10.0
@@ -18,6 +19,42 @@ shader_parameter/enable_palette_cycling = false
 shader_parameter/palette_speed = 0.1
 shader_parameter/enable_scanlines = false
 
+[sub_resource type="Animation" id="Animation_imcyj"]
+resource_name = "Capture"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/override_alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_bn4hh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:material:shader_parameter/override_alpha")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [1.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1t7el"]
+_data = {
+"Capture": SubResource("Animation_imcyj"),
+"RESET": SubResource("Animation_bn4hh")
+}
+
 [node name="EnemySpriteHandler" type="Node2D"]
 script = ExtResource("1_d6s3b")
 
@@ -26,6 +63,12 @@ unique_name_in_owner = true
 material = SubResource("ShaderMaterial_nt8cd")
 vframes = 5
 frame = 2
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Shadow"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_1t7el")
+}
 
 [node name="Object" type="Sprite2D" parent="."]
 vframes = 5

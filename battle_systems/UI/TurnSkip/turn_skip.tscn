@@ -1,0 +1,165 @@
+[gd_scene load_steps=14 format=3 uid="uid://c4k4rqcj2337f"]
+
+[ext_resource type="Texture2D" uid="uid://ccyax18ylvbsj" path="res://assets/sprites/combat/Effects/Hourglass.png" id="1_tl5bl"]
+[ext_resource type="Script" path="res://battle_systems/UI/TurnSkip/turn_skip.gd" id="1_uqghb"]
+[ext_resource type="StyleBox" uid="uid://djticqr5bm1ud" path="res://ui/Themes/PagePanel.tres" id="2_8ws3u"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="3_2alkh"]
+
+[sub_resource type="Animation" id="Animation_lhbcn"]
+resource_name = "Display"
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.05, 0.75, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1), Color(1, 1, 1, 1), Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -60)]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"_finished"
+}]
+}
+
+[sub_resource type="Animation" id="Animation_ajpnr"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath(".:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_plg23"]
+_data = {
+"Display": SubResource("Animation_lhbcn"),
+"RESET": SubResource("Animation_ajpnr")
+}
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ogjj4"]
+atlas = ExtResource("1_tl5bl")
+region = Rect2(0, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_37ca2"]
+atlas = ExtResource("1_tl5bl")
+region = Rect2(64, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_np371"]
+atlas = ExtResource("1_tl5bl")
+region = Rect2(128, 0, 64, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pr8an"]
+atlas = ExtResource("1_tl5bl")
+region = Rect2(192, 0, 64, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_svwa8"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ogjj4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_37ca2")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_np371")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pr8an")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="LabelSettings" id="LabelSettings_m5jvl"]
+font = ExtResource("3_2alkh")
+font_color = Color(0, 0, 0, 1)
+outline_color = Color(0, 0, 0, 1)
+
+[node name="TurnSkip" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_uqghb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+unique_name_in_owner = true
+root_node = NodePath("../Anchor")
+libraries = {
+"": SubResource("AnimationLibrary_plg23")
+}
+
+[node name="Anchor" type="Control" parent="."]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 3
+anchors_preset = 0
+metadata/_edit_group_ = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Anchor"]
+sprite_frames = SubResource("SpriteFrames_svwa8")
+autoplay = "default"
+frame = 2
+frame_progress = 0.249995
+
+[node name="Panel" type="PanelContainer" parent="Anchor"]
+layout_mode = 0
+offset_left = 9.0
+offset_top = -24.0
+offset_right = 145.0
+offset_bottom = 26.0
+theme_override_styles/panel = ExtResource("2_8ws3u")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Anchor/Panel"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Anchor/Panel/MarginContainer"]
+layout_mode = 2
+text = "Turn Skipped!"
+label_settings = SubResource("LabelSettings_m5jvl")

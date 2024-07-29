@@ -3,7 +3,7 @@ extends Control
 
 signal residue_added
 
-@onready var resonate_indicator: BattlefieldResonateBar = %ResonateIndicator
+@onready var resonate_indicator: TextureProgressBar = %ResonateIndicator
 @onready var primary: ProgressBar = %Primary
 @onready var secondary: ProgressBar = %Secondary
 @onready var hp_timer: Timer = %HPTimer
@@ -35,8 +35,13 @@ func heal_health(amount: int) -> void:
 	primary.value += amount
 	secondary.value += amount
 
-func set_resonate(type: TypeChart.ResonateType) -> void:
-	resonate_indicator.set_data(type)
+func set_resonate(type: TypeChart.ResonateType, capture_amount: int) -> void:
+	resonate_indicator.texture_over = TypeChart.get_symbol_texture(type)
+	resonate_indicator.max_value = capture_amount
+	resonate_indicator.value = capture_amount
+
+func update_capture_rate(current_capture_amount: int) -> void:
+	resonate_indicator.value = current_capture_amount
 
 func update_residues(type: TypeChart.ResonateType, amount: int, blink: bool) -> void:
 	match type:

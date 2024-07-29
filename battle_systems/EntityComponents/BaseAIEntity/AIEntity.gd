@@ -4,6 +4,7 @@ extends BattlefieldEntity
 signal actions_completed
 signal ability_finished
 signal captured
+signal capture_animated
 signal capture_status_animated
 
 const MAX_RESIDUE_STACKS: int = 3
@@ -19,6 +20,7 @@ const MAX_RESIDUE_TURNS: int = 2
 @onready var animation_holder: Marker2D = %AnimationHolder
 
 var _data: BattlefieldEnemyData
+var _sprite_handler: BattlefieldEnemySpriteHandler
 var _residues: Dictionary = {
 	TypeChart.ResonateType.EARTH: [],
 	TypeChart.ResonateType.WATER: [],
@@ -47,9 +49,10 @@ var _health: int:
 var _capture_value: int:
 	set(value):
 		_capture_value = value
-		print("HP: ", _health, " | Capture: ", value)
+		enemy_status_indicator.update_capture_rate(_capture_value)
 		if is_captured():
 			captured.emit()
+
 
 var short_term_memory: Array[Dictionary] = []
 
@@ -64,17 +67,19 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 	htn_planner.finished.connect( func() -> void: actions_completed.emit() )
 	_data = data
 	_health = data.max_health
-	_capture_value = data.max_health
+	#_capture_value = data.max_health
+	_capture_value = 40
 	htn_planner.domain_name = data.domain
-	var sprite_handler: Node2D = _data.combat_animation.instantiate()
-	animation_holder.add_child(sprite_handler)
+	_sprite_handler = _data.combat_animation.instantiate()
+	animation_holder.add_child(_sprite_handler)
+	_sprite_handler.captured.connect( func() -> void: capture_animated.emit() )
 
 	var alchemy_data: Dictionary = EnemyDatabase.get_alchemy_data(_data.name)
 	_max_alchemy_points = alchemy_data["ap"]
 	_alchemy_regen = alchemy_data["regen"]
 	_alchemy_points = _max_alchemy_points
 
-	enemy_status_indicator.set_resonate(data.resonate)
+	enemy_status_indicator.set_resonate(data.resonate, _capture_value)
 	enemy_status_indicator.set_health_data(data.max_health)
 
 	if _data.domain == "Clever":
@@ -142,6 +147,9 @@ func is_dead() -> bool:
 
 func is_captured() -> bool:
 	return _capture_value <= 0
+
+func play_capture_animation() -> void:
+	_sprite_handler.capture()
 
 func get_attack_position() -> Vector2:
 	return _data.attack_position

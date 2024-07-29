@@ -4,12 +4,11 @@ extends Node
 @onready var entity_tracker: BattlefieldEntityTracker = %EntityTracker
 @onready var control_shield: Panel = %ControlShield
 @onready var table: BattlefieldTable = %Table
+@onready var table_animation_player: AnimationPlayer = %TableAnimationPlayer
 
 func enter() -> void:
 	# End battle if died of effects/Check for turn skipping
-	if entity_tracker.handle_player_effects():
-		print("Skipping Player turn")
-		return
+	if entity_tracker.handle_player_effects():return
 
 	entity_tracker.player_entity.reset_action_counter()
 	entity_tracker.player_entity.regen_ap()
