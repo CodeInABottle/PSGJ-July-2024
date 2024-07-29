@@ -262,7 +262,7 @@ func _async_update(path: String) -> void:
 func _on_level_loaded(level: Node) -> void:
 	loaded_level = level
 	is_transitioning = false
-	
+
 	if level is GameArea:
 		_in_world = true
 
