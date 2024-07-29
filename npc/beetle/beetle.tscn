@@ -7,7 +7,9 @@
 
 [node name="Beetle" instance=ExtResource("1_yoryc")]
 script = ExtResource("2_1400h")
+npc_speed = 120.0
 npc_name = "Bombardier Beetle"
+notice_radius = 150.0
 normal_sprite_frames = ExtResource("2_tlm8c")
 afflicted_sprite_frames = ExtResource("3_8kxkd")
 

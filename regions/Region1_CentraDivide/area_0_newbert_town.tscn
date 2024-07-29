@@ -1,4 +1,4 @@
-[gd_scene load_steps=60 format=3 uid="uid://bhmtk1d3c4s68"]
+[gd_scene load_steps=61 format=3 uid="uid://bhmtk1d3c4s68"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_y57qd"]
 [ext_resource type="PackedScene" uid="uid://cm5val12sno1d" path="res://overworld_stuff/checkpoint.tscn" id="2_dyflh"]
@@ -33,6 +33,7 @@
 [ext_resource type="Resource" uid="uid://15ee7kuvt2ey" path="res://regions/Region1_CentraDivide/dialogue_area_0/north_sign.tres" id="24_qijur"]
 [ext_resource type="Resource" uid="uid://kkvsqewrydss" path="res://regions/Region1_CentraDivide/dialogue_area_0/sprint_sign.tres" id="25_48e15"]
 [ext_resource type="Resource" uid="uid://dq2metb7yt7rm" path="res://regions/Region1_CentraDivide/dialogue_area_0/checkpoint_sign.tres" id="26_flxfm"]
+[ext_resource type="PackedScene" uid="uid://bppvi54ifn5rs" path="res://npc/cat/cat.tscn" id="34_uhjnb"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gf41"]
 size = Vector2(20, 48)
@@ -544,3 +545,8 @@ limit_bottom = 1424
 
 [node name="IntroLayer" parent="." index="14"]
 visible = false
+
+[node name="Cat" parent="." index="15" instance=ExtResource("34_uhjnb")]
+position = Vector2(337, 104)
+wander_x_bound = 50.0
+wander_y_bound = 50.0
