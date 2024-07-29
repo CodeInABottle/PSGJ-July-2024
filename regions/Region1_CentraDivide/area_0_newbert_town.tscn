@@ -1,4 +1,4 @@
-[gd_scene load_steps=80 format=3 uid="uid://bhmtk1d3c4s68"]
+[gd_scene load_steps=82 format=3 uid="uid://bhmtk1d3c4s68"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_y57qd"]
 [ext_resource type="PackedScene" uid="uid://cm5val12sno1d" path="res://overworld_stuff/checkpoint.tscn" id="2_dyflh"]
@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cmgjwfs2ucnt7" path="res://inventory/pickup_item.tscn" id="6_fug8w"]
 [ext_resource type="PackedScene" uid="uid://7g63ugqd7du3" path="res://inventory/pickup_lore.tscn" id="7_qddya"]
 [ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="8_6t6fv"]
-[ext_resource type="PackedScene" uid="uid://0lkpdbn1f0j4" path="res://overworld_stuff/hint_area.tscn" id="8_txonc"]
+[ext_resource type="PackedScene" path="res://overworld_stuff/hint_area.tscn" id="8_txonc"]
 [ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="9_47026"]
 [ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="10_330ul"]
 [ext_resource type="PackedScene" uid="uid://binja76g82dw2" path="res://npc/tree/tree.tscn" id="15_1tjfm"]
@@ -275,8 +275,13 @@ size = Vector2(87, 90)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_d0ftd"]
 size = Vector2(87, 93)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_k0jn0"]
+size = Vector2(159, 3)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gtucw"]
+size = Vector2(99, 48)
+
 [node name="Area_0_NewbertTown" instance=ExtResource("1_y57qd")]
-y_sort_enabled = true
 
 [node name="Start" parent="WarpPoints" index="0"]
 position = Vector2(321, 879)
@@ -353,11 +358,9 @@ position = Vector2(618, 632)
 rotation = 1.07695
 script = ExtResource("16_2tg1f")
 disable_type = "ShadowCapture"
-trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_a6ijo")
 redirect_marker = NodePath("../CheckpopintBlocker/CheckpointRedirectMarker")
 disable_leash_name = "Living Tree"
-disable_event_name = "checkpoint_touched"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeashAreas/CheckpointIntro" index="0"]
 scale = Vector2(1.2164, 0.696753)
@@ -370,7 +373,6 @@ disable_type = "ShadowCapture"
 hint_dialogue = SubResource("Resource_1812p")
 redirect_marker = NodePath("CheckpointRedirectMarker")
 disable_leash_name = "Living Tree"
-disable_event_name = "checkpoint_touched"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeashAreas/CheckpopintBlocker" index="0"]
 position = Vector2(2.5, 62.5)
@@ -398,7 +400,6 @@ position = Vector2(17, -80)
 position = Vector2(837, 573)
 script = ExtResource("16_2tg1f")
 disable_type = "ShadowCapture"
-trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_f6h3e")
 redirect_marker = NodePath("../TreeBlocker/TreeRedirectMarker")
 disable_leash_name = "Living Tree"
@@ -411,7 +412,6 @@ shape = SubResource("RectangleShape2D_34bhl")
 position = Vector2(1124, 349)
 script = ExtResource("16_2tg1f")
 disable_type = "ShadowDefeat"
-trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_8uklj")
 redirect_marker = NodePath("../FishBlocker/FishRedirectMarker")
 disable_leash_name = "Fighting Fish"
@@ -439,7 +439,6 @@ position = Vector2(0, -1)
 position = Vector2(848, 512)
 script = ExtResource("16_2tg1f")
 disable_type = "ShadowDefeat"
-trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_in0ax")
 redirect_marker = NodePath("../FishStairsBlocker2/FishStairsRedirectmarker")
 disable_leash_name = "Fighting Fish"
@@ -452,7 +451,6 @@ shape = SubResource("RectangleShape2D_tk4bv")
 position = Vector2(849, 480)
 script = ExtResource("16_2tg1f")
 disable_type = "ShadowCapture"
-trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_pocaf")
 redirect_marker = NodePath("FishStairsRedirectmarker")
 disable_leash_name = "Fighting Fish"
@@ -557,7 +555,7 @@ collision_layer = 2
 collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap/Border" index="0"]
-polygon = PackedVector2Array(480, 80, 592, 80, 640, 48, 640, 8, 672, 8, 672, 48, 688, 88, 1040, 88, 1088, 32, 1384, 32, 1384, 0, 480, 0)
+polygon = PackedVector2Array(480, 80, 592, 80, 640, 48, 640, 8, 672, 8, 672, 48, 688, 88, 1040, 88, 1088, 32, 1384, 32, 1384, 0, 0, 0, 0, 353, 9, 281, 2, 275, 2, 225, 13, 220, 13, 195, 4, 180, 4, 128, 122, 8, 250, 9, 271, 21, 406, 27, 428, 54)
 
 [node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="TileMap/Border" index="1"]
 polygon = PackedVector2Array(320, 1104, 320, 1312, 224, 1312, 224, 1248, 64, 1248, 64, 1216, 224, 1216, 224, 1184, 288, 1184, 288, 1104, 272, 1105, 269, 1174, 216, 1176, 16, 1176, 16, 1040, 112, 1008, 144, 976, 152, 704, 16, 672, 16, 584, 0, 576, 0, 546.655, 16, 536, 16, 352, -55, 352, -53, 1264, 216, 1320, 328, 1320, 891, 1230, 1304, 996, 1352, 575, 1489, 360, 1476, 0, 1374, 0, 1378, 32, 1457, 48, 1450, 225, 1376, 344, 1272, 344, 1272, 568, 1208, 568, 1165, 893, 965, 968, 856, 1056, 856, 1176, 338, 1172, 333, 1105)
@@ -576,6 +574,20 @@ shape = SubResource("RectangleShape2D_h8i7d")
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="TileMap/House" index="2"]
 position = Vector2(560.5, 430.5)
 shape = SubResource("RectangleShape2D_d0ftd")
+
+[node name="CatBridge" type="StaticBody2D" parent="TileMap" index="2"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/CatBridge" index="0"]
+position = Vector2(240.5, 98.5)
+shape = SubResource("RectangleShape2D_k0jn0")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="TileMap/CatBridge" index="1"]
+position = Vector2(240.5, 127)
+shape = SubResource("RectangleShape2D_k0jn0")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="TileMap/CatBridge" index="2"]
+position = Vector2(241.5, 152)
+shape = SubResource("RectangleShape2D_gtucw")
 
 [node name="PlayerPhysicsBody" parent="." index="10"]
 collision_mask = 18

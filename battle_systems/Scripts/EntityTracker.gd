@@ -9,6 +9,7 @@ class ModData:
 	var turns: int = 0
 	var resonate: TypeChart.ResonateType
 	var efficiency_capture_rate: float
+	var ability_name: String
 
 	func _init(ability: BattlefieldAbility, modifier: BattlefieldAttackModifier, whois: bool) -> void:
 		mod = modifier
@@ -16,12 +17,17 @@ class ModData:
 		created_by_player = whois
 		if ability:
 			resonate = ability["resonate_type"]
-			efficiency_capture_rate = ability["capture_efficiency"]
+			efficiency_capture_rate = EnemyDatabase.CAPTURE_RATE_EFFICENCY
+			ability_name = ability.name
 
 	func get_data() -> Dictionary:
+		var components: Array[TypeChart.ResonateType] = []
+		if not ability_name.is_empty():
+			components.assign(EnemyDatabase.get_ability_recipe(ability_name))
 		return {
 			"resonate_type": resonate,
-			"efficiency_capture_rate": efficiency_capture_rate
+			"efficiency_capture_rate": efficiency_capture_rate,
+			"components": components
 		}
 
 @onready var enemy_status_indicator: BattlefieldEnemyStatusIndicator = %EnemyStatusIndicator

@@ -10,6 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://bl3865o4a34u0" path="res://ui/intro_layer.tscn" id="7_sq3o1"]
 
 [node name="BaseArea" type="Node2D"]
+y_sort_enabled = true
 script = ExtResource("1_m5i3c")
 
 [node name="WarpPoints" type="Node" parent="."]

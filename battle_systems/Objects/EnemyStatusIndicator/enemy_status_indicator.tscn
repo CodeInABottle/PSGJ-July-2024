@@ -1,7 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://dob0l3mbcorkh"]
+[gd_scene load_steps=11 format=3 uid="uid://dob0l3mbcorkh"]
 
 [ext_resource type="Script" path="res://battle_systems/Objects/EnemyStatusIndicator/enemy_status_indicator.gd" id="1_ecu7o"]
 [ext_resource type="PackedScene" uid="uid://c2va6bcydygut" path="res://battle_systems/Objects/ResonateIndicator/resonate_indicator.tscn" id="1_kpuy1"]
+[ext_resource type="PackedScene" uid="uid://bsa0djc5k7pg8" path="res://battle_systems/Objects/EnemyStatusIndicator/Residue/residue.tscn" id="3_2jw4e"]
+[ext_resource type="Texture2D" uid="uid://byl4fstefwbek" path="res://assets/sprites/combat/Reagents/WaterOrbStill.png" id="4_s7ao2"]
+[ext_resource type="Texture2D" uid="uid://8qecgxdriegr" path="res://assets/sprites/combat/Reagents/WindOrbStill.png" id="5_8xkdw"]
+[ext_resource type="Texture2D" uid="uid://dbfeeyycjg0md" path="res://assets/sprites/combat/Reagents/FireOrbStill.png" id="6_ce1xa"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p0kao"]
 bg_color = Color(0.270588, 0.156863, 0.235294, 1)
@@ -25,6 +29,8 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_ecu7o")
 metadata/_edit_lock_ = true
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 
 [node name="HPTimer" type="Timer" parent="."]
 unique_name_in_owner = true
@@ -69,6 +75,31 @@ unique_name_in_owner = true
 position = Vector2(605, 27)
 scale = Vector2(0.75, 0.75)
 
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+[node name="Residues" type="VBoxContainer" parent="."]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 603.0
+offset_top = 54.0
+offset_right = 630.0
+offset_bottom = 174.0
+
+[node name="EarthResidue" parent="Residues" instance=ExtResource("3_2jw4e")]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="WaterResidue" parent="Residues" instance=ExtResource("3_2jw4e")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("4_s7ao2")
+
+[node name="AirResidue" parent="Residues" instance=ExtResource("3_2jw4e")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("5_8xkdw")
+
+[node name="FireResidue" parent="Residues" instance=ExtResource("3_2jw4e")]
+unique_name_in_owner = true
+layout_mode = 2
+texture = ExtResource("6_ce1xa")
 
 [connection signal="timeout" from="HPTimer" to="." method="_on_hp_timer_timeout"]

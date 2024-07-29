@@ -75,7 +75,7 @@ var _checkpoints: Dictionary = {
 # -- Used by `load_entry_point()` only
 # -- entry_id used is 0
 var _entry_point: String = "Home"
-#var _entry_point: String = "area_0"
+#var _entry_point: String = "Remembrance"
 
 # used by is_paused() utility function
 var _is_paused: bool = false
@@ -262,7 +262,7 @@ func _async_update(path: String) -> void:
 func _on_level_loaded(level: Node) -> void:
 	loaded_level = level
 	is_transitioning = false
-	
+
 	if level is GameArea:
 		_in_world = true
 

@@ -18,6 +18,7 @@ const SHADOW_COLOR: Dictionary = {
 	TypeChart.ResonateType.NITER: Color("323c39"),
 	TypeChart.ResonateType.METAL: Color("696a6a"),
 }
+const CAPTURE_RATE_EFFICENCY: float = 1.25
 
 # { enemy_name (String) : enemy_data (BattlefieldEnemyData) }
 var _enemies: Dictionary = {}
@@ -101,21 +102,7 @@ func get_ability_attack(ability_name: String) -> Dictionary:
 func get_ability_recipe(ability_name: String) -> Array[TypeChart.ResonateType]:
 	if ability_name not in _abilities: return []
 
-	var data: Array[TypeChart.ResonateType] = []
-	var reagent: TypeChart.ResonateType = (_abilities[ability_name] as BattlefieldAbility).reagent_a
-	if reagent != TypeChart.ResonateType.NONE:
-		data.push_back(reagent)
-	reagent = (_abilities[ability_name] as BattlefieldAbility).reagent_b
-	if reagent != TypeChart.ResonateType.NONE:
-		data.push_back(reagent)
-	reagent = (_abilities[ability_name] as BattlefieldAbility).reagent_c
-	if reagent != TypeChart.ResonateType.NONE:
-		data.push_back(reagent)
-	reagent = (_abilities[ability_name] as BattlefieldAbility).reagent_d
-	if reagent != TypeChart.ResonateType.NONE:
-		data.push_back(reagent)
-
-	return data
+	return (_abilities[ability_name] as BattlefieldAbility).get_components()
 
 func get_ability_damage_data(ability_name: String) -> Dictionary:
 	if ability_name not in _abilities: return {}
@@ -124,7 +111,7 @@ func get_ability_damage_data(ability_name: String) -> Dictionary:
 	return {
 		"damage": ability.damage,
 		"resonate_type": ability.resonate_type,
-		"capture_rate": ability.capture_efficiency
+		"components": ability.get_components()
 	}
 
 func get_ability_resonance(ability_name: String) -> TypeChart.ResonateType:
@@ -139,7 +126,6 @@ func get_ability_info(ability_name: String) -> Dictionary:
 		"damage": _abilities[ability_name]["damage"],
 		"description": _abilities[ability_name]["description"],
 		"resonate": _abilities[ability_name]["resonate_type"],
-		"efficiency": _abilities[ability_name]["capture_efficiency"],
 		"cost": get_ability_recipe(ability_name)
 	}
 
