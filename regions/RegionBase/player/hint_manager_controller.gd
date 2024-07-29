@@ -6,6 +6,9 @@ var _hint_active: bool = false
 @export var hint_icon: Texture2D
 @export var quips: Dialogue
 
+func _ready() -> void:
+	LevelManager.world_event_occurred.connect(on_world_event)
+
 func close_hint() -> void:
 	if _hint_active:
 		DialogueManager.end_dialogue()
