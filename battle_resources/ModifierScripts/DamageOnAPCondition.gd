@@ -12,6 +12,7 @@ func execute(tracker: BattlefieldEntityTracker, additional_data: Dictionary) -> 
 	var damage_data: Dictionary = {
 		"damage": damage,
 		"resonate_type": additional_data["resonate_type"],
+		"components": additional_data["components"]
 	}
 
 	# This is flipped to apply immediate damage on opponent
