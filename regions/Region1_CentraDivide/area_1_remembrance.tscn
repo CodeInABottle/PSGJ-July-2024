@@ -196,6 +196,10 @@ shape = SubResource("RectangleShape2D_jh7a0")
 position = Vector2(1088, 1069)
 shape = SubResource("RectangleShape2D_fnwcv")
 
+[node name="PlayerPhysicsBody" parent="." index="10"]
+player_speed = 65.0
+sprint_scale = 2.0
+
 [node name="Camera2D" parent="." index="12"]
 position = Vector2(0, 181)
 limit_left = -1023

@@ -35,13 +35,13 @@ func check_for_delete() -> void:
 	if PlayerStats.save_loaded.is_connected(check_for_delete):
 		PlayerStats.save_loaded.disconnect(check_for_delete)
 
-func on_world_event(event_name:String, args:Array) -> void:
-	if event_name == "battle_finished" and delete_mode == "Shadow" and event_behavior == "Delete":
+func on_world_event(world_event_name:String, args:Array) -> void:
+	if world_event_name == "battle_finished" and delete_mode == "Shadow" and event_behavior == "Delete":
 		if args[0]["shadow_name"] == delete_name and args[0]["captured"]:
 			queue_free()
-	elif event_name == "item_get:"+delete_name and delete_mode == "Item":
+	elif world_event_name == "item_get:"+delete_name and delete_mode == "Item":
 		queue_free()
-	elif event_name == event_name:
+	elif world_event_name == event_name:
 		if event_behavior == "Delete":
 			queue_free()
 		else:

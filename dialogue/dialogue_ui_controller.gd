@@ -21,9 +21,9 @@ var current_dialogue_string: String
 var letter_index: int = 0
 
 const SPEAKING_DISTANCE_THRESHOLD: float = 5.0
-const LETTER_TIME: float = 0.05
-const SPACE_TIME: float = 0.08
-const PUNCTUATION_TIME: float = 0.2
+const LETTER_TIME: float = 0.03
+const SPACE_TIME: float = 0.05
+const PUNCTUATION_TIME: float = 0.1
 
 signal dialogue_ui_closed()
 

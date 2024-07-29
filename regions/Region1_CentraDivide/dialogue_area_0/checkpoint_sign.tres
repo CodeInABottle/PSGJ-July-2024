@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=10 format=3 uid="uid://dq2metb7yt7rm"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_ea77q"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_joqk1"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_i1j1a"]
+
+[sub_resource type="Resource" id="Resource_y330a"]
+script = ExtResource("1_ea77q")
+line_text = "Legend says the obelisk has the capacity to imbue power. Alchemists journey here from far and wide."
+
+[sub_resource type="Resource" id="Resource_q5hbo"]
+script = ExtResource("1_ea77q")
+line_text = "Some say they allow them to teleport vast distances to other obelisks."
+
+[sub_resource type="Resource" id="Resource_1mu6b"]
+script = ExtResource("1_ea77q")
+line_text = "Some claim the can animate their own shadow with reagents."
+
+[sub_resource type="Resource" id="Resource_welmc"]
+script = ExtResource("1_ea77q")
+line_text = "You can see some of the legends scrawled into the surface of the stone. Stories and legends overlapping and faded. "
+
+[sub_resource type="Resource" id="Resource_japaw"]
+script = ExtResource("1_ea77q")
+line_text = "But of course, these are just legends."
+
+[sub_resource type="Resource" id="Resource_v4yin"]
+script = ExtResource("2_joqk1")
+block_lines = Array[ExtResource("1_ea77q")]([SubResource("Resource_y330a"), SubResource("Resource_q5hbo"), SubResource("Resource_1mu6b"), SubResource("Resource_welmc"), SubResource("Resource_japaw")])
+
+[resource]
+script = ExtResource("3_i1j1a")
+contents = Array[ExtResource("2_joqk1")]([SubResource("Resource_v4yin")])
+content_keys = Array[String](["main"])

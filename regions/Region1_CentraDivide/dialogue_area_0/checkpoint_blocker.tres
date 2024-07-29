@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=6 format=3 uid="uid://mkciwd2nh2fb"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_p3xvd"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_f36ew"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_0ps7n"]
+
+[sub_resource type="Resource" id="Resource_rwb0c"]
+script = ExtResource("1_p3xvd")
+line_text = "We aren't just going to NOT interact with the obelisk."
+
+[sub_resource type="Resource" id="Resource_ykffn"]
+script = ExtResource("2_f36ew")
+block_lines = Array[ExtResource("1_p3xvd")]([SubResource("Resource_rwb0c")])
+
+[resource]
+script = ExtResource("3_0ps7n")
+contents = Array[ExtResource("2_f36ew")]([SubResource("Resource_ykffn")])
+content_keys = Array[String](["main"])

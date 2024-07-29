@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=6 format=3 uid="uid://dsmi7x3gcbveh"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_00hh8"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_nqkq0"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_gxj2m"]
+
+[sub_resource type="Resource" id="Resource_oq3yd"]
+script = ExtResource("1_00hh8")
+line_text = "We gotta catch one of those fish shadows before it gets away!"
+
+[sub_resource type="Resource" id="Resource_kvqge"]
+script = ExtResource("2_nqkq0")
+block_lines = Array[ExtResource("1_00hh8")]([SubResource("Resource_oq3yd")])
+
+[resource]
+script = ExtResource("3_gxj2m")
+contents = Array[ExtResource("2_nqkq0")]([SubResource("Resource_kvqge")])
+content_keys = Array[String](["main"])
