@@ -20,7 +20,7 @@ const SHADOW_COLOR: Dictionary = {
 }
 const CAPTURE_RATE_EFFICENCY: float = 1.25
 
-enum SpecialFrameState { NONE, ON_HURT, ON_ATTACK }
+enum SpecialFrameState { NONE, ON_HURT, ON_ATTACK, LAST_30_PRECENT }
 
 # { enemy_name (String) : enemy_data (BattlefieldEnemyData) }
 var _enemies: Dictionary = {}
@@ -106,12 +106,24 @@ func get_ability_recipe(ability_name: String) -> Array[TypeChart.ResonateType]:
 
 	return (_abilities[ability_name] as BattlefieldAbility).get_components()
 
+func get_ability_damage(ability_name: String) -> int:
+	if ability_name not in _abilities: return 0
+
+	var ability: BattlefieldAbility = _abilities[ability_name]
+	var damage: int = ability.damage
+	if ability.precentage_damage > 0:
+		damage = floori(float(PlayerStats.max_health) * (float(ability.precentage_damage) / 100.0))
+	return damage
+
 func get_ability_damage_data(ability_name: String) -> Dictionary:
 	if ability_name not in _abilities: return {}
 
 	var ability: BattlefieldAbility = _abilities[ability_name]
+	var damage: int = ability.damage
+	if ability.precentage_damage > 0:
+		damage = floori(float(PlayerStats.max_health) * (float(ability.precentage_damage) / 100.0))
 	return {
-		"damage": ability.damage,
+		"damage": damage,
 		"resonate_type": ability.resonate_type,
 		"components": ability.get_components()
 	}
@@ -125,7 +137,7 @@ func get_ability_info(ability_name: String) -> Dictionary:
 	if ability_name not in _abilities: return {}
 
 	return  {
-		"damage": _abilities[ability_name]["damage"],
+		"damage": get_ability_damage(ability_name),
 		"description": _abilities[ability_name]["description"],
 		"resonate": _abilities[ability_name]["resonate_type"],
 		"cost": get_ability_recipe(ability_name)

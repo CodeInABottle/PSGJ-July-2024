@@ -1,0 +1,15 @@
+[gd_scene load_steps=3 format=3 uid="uid://f2k5if78l2h2"]
+
+[ext_resource type="PackedScene" uid="uid://ccuo8cx5bw5ge" path="res://battle_systems/EntityComponents/base_enemy_sprite_handler.tscn" id="1_ccb8e"]
+[ext_resource type="Texture2D" uid="uid://mwium6iwko3r" path="res://assets/sprites/mobs/combat_shadow.png" id="2_72ab8"]
+
+[node name="ShadowSpriteHandler" instance=ExtResource("1_ccb8e")]
+
+[node name="Shadow" parent="." index="0"]
+texture = ExtResource("2_72ab8")
+vframes = 6
+frame = 5
+
+[node name="Object" parent="." index="1"]
+texture = ExtResource("2_72ab8")
+vframes = 6

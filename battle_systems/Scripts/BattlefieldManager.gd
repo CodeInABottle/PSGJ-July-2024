@@ -30,7 +30,8 @@ func _ready() -> void:
 	#setup_battle("Niter Tiger")
 	#setup_battle("Fighting Fish")
 	#setup_battle("Celestial Canine")
-	setup_battle("Chicken")
+	#setup_battle("Chicken")
+	setup_battle("Shadow")
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	table.ability_execute_requested.connect(entity_tracker.player_entity.attack)

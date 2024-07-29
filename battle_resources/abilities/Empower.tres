@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://df288wrornvv5"]
+
+[ext_resource type="Resource" uid="uid://ctghntiocb10i" path="res://battle_resources/Modifiers/20_3_turn_DoTMod.tres" id="1_op63n"]
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_qfo18"]
+
+[resource]
+script = ExtResource("1_qfo18")
+damage = 60
+description = "Opponent takes 20 damage for 3 turns."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_op63n")])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 14
+reagent_a = 8
+reagent_b = 4
+reagent_c = 2
+reagent_d = 0

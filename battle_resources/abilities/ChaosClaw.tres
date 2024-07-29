@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://wlw4on3mwfru"]
+
+[ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_1ge6g"]
+[ext_resource type="Resource" uid="uid://c1vb5y62w6ehy" path="res://battle_resources/Modifiers/50_SkipOpponentTurn.tres" id="1_kl7oj"]
+
+[resource]
+script = ExtResource("1_1ge6g")
+damage = 30
+description = "There's a 50% chance to skip your opponent's turn."
+modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_kl7oj")])
+moving_attack = false
+attack_movement_speed = 0.5
+attack_life_time = 0.5
+resonate_type = 6
+reagent_a = 1
+reagent_b = 2
+reagent_c = 1
+reagent_d = 2
