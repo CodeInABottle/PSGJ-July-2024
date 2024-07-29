@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="LoreItem" load_steps=10 format=3 uid="uid://cvnrav8n17faj"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_23i21"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_l8ht8"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_gfj3k"]
+[ext_resource type="Texture2D" uid="uid://dy56fpbwk2jyi" path="res://assets/sprites/general/Books/books05.png" id="4_siy1a"]
+[ext_resource type="Script" path="res://inventory/lore_item.gd" id="5_2ufbk"]
+
+[sub_resource type="Resource" id="Resource_ln48p"]
+script = ExtResource("1_23i21")
+line_text = "It seems like the shadows only stay away if you capture them..."
+
+[sub_resource type="Resource" id="Resource_263oi"]
+script = ExtResource("1_23i21")
+line_text = "I need to go back to the obelisk and imbue some different shadows. This Earth type just isnt cutting it..."
+
+[sub_resource type="Resource" id="Resource_r0dp0"]
+script = ExtResource("2_l8ht8")
+block_lines = Array[ExtResource("1_23i21")]([SubResource("Resource_ln48p"), SubResource("Resource_263oi")])
+
+[sub_resource type="Resource" id="Resource_cvtgu"]
+script = ExtResource("3_gfj3k")
+contents = Array[ExtResource("2_l8ht8")]([SubResource("Resource_r0dp0")])
+content_keys = Array[String](["main"])
+
+[resource]
+script = ExtResource("5_2ufbk")
+dialogue = SubResource("Resource_cvtgu")
+author_name = "Novice Alchemist"
+item_name = "Alchemist's Notes: 3"
+item_description = "Slightly neater notes by some fledgling alchemist."
+item_icon = ExtResource("4_siy1a")

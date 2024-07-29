@@ -10,6 +10,8 @@ signal pickup_interaction_ended(index: int)
 @export var shiny: Shiny
 @export var pickup_area: Area2D
 
+var index: int = -1
+
 func _ready() -> void:
 	interactable.interaction_started.connect(on_interaction_started)
 	interactable.interaction_advanced.connect(on_interaction_advanced)
@@ -49,7 +51,7 @@ func _on_interaction_ended() -> void:
 	MenuManager.fader_controller.fade_from_translucent_complete.connect(on_fade_from_translucent_complete)
 	MenuManager.fader_controller.fade_from_translucent()
 	PlayerStats.add_item(item_name, quantity)
-	pickup_interaction_ended.emit(get_index())
+	pickup_interaction_ended.emit(index)
 	get_parent().remove_child(self)
 
 func on_continue_pressed() -> void:

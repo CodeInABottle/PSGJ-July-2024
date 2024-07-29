@@ -1,12 +1,30 @@
-[gd_resource type="Resource" script_class="LoreItem" load_steps=5 format=3 uid="uid://dbjm4fj8u4rmq"]
+[gd_resource type="Resource" script_class="LoreItem" load_steps=11 format=3 uid="uid://dbjm4fj8u4rmq"]
 
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_aqarc"]
 [ext_resource type="Script" path="res://inventory/lore_item.gd" id="1_jfwsj"]
 [ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="1_q7txb"]
 [ext_resource type="Texture2D" uid="uid://dcis74080ybrb" path="res://assets/sprites/general/Books/books11.png" id="2_bn7cr"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_rwivc"]
+
+[sub_resource type="Resource" id="Resource_ylwgl"]
+script = ExtResource("1_aqarc")
+line_text = "This always happens when no one is around..."
+
+[sub_resource type="Resource" id="Resource_2bw22"]
+script = ExtResource("1_aqarc")
+line_text = "The shadows come out... they, they just want to play I think"
+
+[sub_resource type="Resource" id="Resource_nbncw"]
+script = ExtResource("1_aqarc")
+line_text = "But it FREAKS ME OUT. I don't like it. And its going to be dark soon...."
+
+[sub_resource type="Resource" id="Resource_pnglu"]
+script = ExtResource("2_rwivc")
+block_lines = Array[ExtResource("1_aqarc")]([SubResource("Resource_ylwgl"), SubResource("Resource_2bw22"), SubResource("Resource_nbncw")])
 
 [sub_resource type="Resource" id="Resource_epq2w"]
 script = ExtResource("1_q7txb")
-contents = Array[Resource("res://dialogue/DialogueBlock.gd")]([null])
+contents = Array[ExtResource("2_rwivc")]([SubResource("Resource_pnglu")])
 content_keys = Array[String](["main"])
 
 [resource]

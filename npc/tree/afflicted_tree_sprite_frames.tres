@@ -1,16 +1,49 @@
-[gd_resource type="SpriteFrames" load_steps=3 format=3 uid="uid://bb17rygnm3xo0"]
+[gd_resource type="SpriteFrames" load_steps=7 format=3 uid="uid://bb17rygnm3xo0"]
 
-[ext_resource type="Texture2D" uid="uid://ca3k2trgycohx" path="res://assets/sprites/mobs/afflicted/afflicted_overworld_tree.png" id="1_hesev"]
+[ext_resource type="Texture2D" uid="uid://csr5aofdkl12l" path="res://assets/sprites/mobs/afflicted/overworld_tree_gray.png" id="1_h7x4m"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l7wed"]
-atlas = ExtResource("1_hesev")
-region = Rect2(0, 0, 61, 77)
+[sub_resource type="AtlasTexture" id="AtlasTexture_joqkc"]
+atlas = ExtResource("1_h7x4m")
+region = Rect2(0, 0, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yffu1"]
+atlas = ExtResource("1_h7x4m")
+region = Rect2(0, 96, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yp1wj"]
+atlas = ExtResource("1_h7x4m")
+region = Rect2(0, 192, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_etihm"]
+atlas = ExtResource("1_h7x4m")
+region = Rect2(0, 288, 64, 96)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uxp22"]
+atlas = ExtResource("1_h7x4m")
+region = Rect2(0, 384, 64, 96)
 
 [resource]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l7wed")
+"texture": SubResource("AtlasTexture_joqkc")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yffu1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yp1wj")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_etihm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uxp22")
 }],
 "loop": true,
 "name": &"walk",

@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgjn5turmelbw"]
+[gd_scene load_steps=18 format=3 uid="uid://bgjn5turmelbw"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_o8y3d"]
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://overworld_stuff/transition_area.tscn" id="2_lhn3e"]
@@ -33,6 +33,22 @@ content_keys = Array[String](["main"])
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qtv62"]
 size = Vector2(90, 17)
 
+[sub_resource type="Resource" id="Resource_rdsqo"]
+script = ExtResource("4_xmhrx")
+line_text = "Huh, I guess that branch came in handy. A good stick makes anyone feel powerful."
+
+[sub_resource type="Resource" id="Resource_fucck"]
+script = ExtResource("5_6ai67")
+block_lines = Array[ExtResource("4_xmhrx")]([SubResource("Resource_rdsqo")])
+
+[sub_resource type="Resource" id="Resource_gxptv"]
+script = ExtResource("6_hq1ii")
+contents = Array[ExtResource("5_6ai67")]([SubResource("Resource_fucck")])
+content_keys = Array[String](["main"])
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8saw3"]
+size = Vector2(86.4864, 20)
+
 [node name="PlayerCellar" instance=ExtResource("1_o8y3d")]
 
 [node name="Start" parent="WarpPoints" index="0"]
@@ -50,15 +66,28 @@ shape = SubResource("RectangleShape2D_qk7u0")
 [node name="NavigationRegion2D" type="NavigationRegion2D" parent="NavigationRegions" index="0"]
 navigation_polygon = SubResource("NavigationPolygon_chk21")
 
-[node name="HintArea" parent="HintAreas" index="0" instance=ExtResource("3_ea7my")]
+[node name="EwWormsHint" parent="HintAreas" index="0" instance=ExtResource("3_ea7my")]
 position = Vector2(133, 94)
 delete_mode = "Shadow"
 hint_dialogue = SubResource("Resource_e1h7g")
 delete_name = "Earth Worm"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HintAreas/HintArea" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HintAreas/EwWormsHint" index="0"]
 position = Vector2(13, -9)
 shape = SubResource("RectangleShape2D_qtv62")
+
+[node name="BranchHint" parent="HintAreas" index="1" instance=ExtResource("3_ea7my")]
+position = Vector2(67, 134)
+rotation = 0.80613
+delete_mode = "Shadow"
+event_behavior = "Create"
+hint_dialogue = SubResource("Resource_gxptv")
+delete_name = "Earth Worm"
+event_name = "battle_finished"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HintAreas/BranchHint" index="0"]
+position = Vector2(33.2432, 3.8147e-06)
+shape = SubResource("RectangleShape2D_8saw3")
 
 [node name="Background" type="ColorRect" parent="." index="7"]
 offset_left = -21.0
