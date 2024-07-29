@@ -10,7 +10,7 @@
 [ext_resource type="PackedScene" uid="uid://cmgjwfs2ucnt7" path="res://inventory/pickup_item.tscn" id="6_fug8w"]
 [ext_resource type="PackedScene" uid="uid://7g63ugqd7du3" path="res://inventory/pickup_lore.tscn" id="7_qddya"]
 [ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="8_6t6fv"]
-[ext_resource type="PackedScene" path="res://overworld_stuff/hint_area.tscn" id="8_txonc"]
+[ext_resource type="PackedScene" uid="uid://0lkpdbn1f0j4" path="res://overworld_stuff/hint_area.tscn" id="8_txonc"]
 [ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="9_47026"]
 [ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="10_330ul"]
 [ext_resource type="PackedScene" uid="uid://binja76g82dw2" path="res://npc/tree/tree.tscn" id="15_1tjfm"]
@@ -358,9 +358,11 @@ position = Vector2(618, 632)
 rotation = 1.07695
 script = ExtResource("16_2tg1f")
 disable_type = "ShadowCapture"
+trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_a6ijo")
 redirect_marker = NodePath("../CheckpopintBlocker/CheckpointRedirectMarker")
 disable_leash_name = "Living Tree"
+disable_event_name = "checkpoint_touched"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeashAreas/CheckpointIntro" index="0"]
 scale = Vector2(1.2164, 0.696753)
@@ -373,6 +375,7 @@ disable_type = "ShadowCapture"
 hint_dialogue = SubResource("Resource_1812p")
 redirect_marker = NodePath("CheckpointRedirectMarker")
 disable_leash_name = "Living Tree"
+disable_event_name = "checkpoint_touched"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeashAreas/CheckpopintBlocker" index="0"]
 position = Vector2(2.5, 62.5)
@@ -400,6 +403,7 @@ position = Vector2(17, -80)
 position = Vector2(837, 573)
 script = ExtResource("16_2tg1f")
 disable_type = "ShadowCapture"
+trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_f6h3e")
 redirect_marker = NodePath("../TreeBlocker/TreeRedirectMarker")
 disable_leash_name = "Living Tree"
@@ -412,6 +416,7 @@ shape = SubResource("RectangleShape2D_34bhl")
 position = Vector2(1124, 349)
 script = ExtResource("16_2tg1f")
 disable_type = "ShadowDefeat"
+trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_8uklj")
 redirect_marker = NodePath("../FishBlocker/FishRedirectMarker")
 disable_leash_name = "Fighting Fish"
@@ -439,6 +444,7 @@ position = Vector2(0, -1)
 position = Vector2(848, 512)
 script = ExtResource("16_2tg1f")
 disable_type = "ShadowDefeat"
+trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_in0ax")
 redirect_marker = NodePath("../FishStairsBlocker2/FishStairsRedirectmarker")
 disable_leash_name = "Fighting Fish"
@@ -451,6 +457,7 @@ shape = SubResource("RectangleShape2D_tk4bv")
 position = Vector2(849, 480)
 script = ExtResource("16_2tg1f")
 disable_type = "ShadowCapture"
+trigger_type = "Enter"
 hint_dialogue = SubResource("Resource_pocaf")
 redirect_marker = NodePath("FishStairsRedirectmarker")
 disable_leash_name = "Fighting Fish"

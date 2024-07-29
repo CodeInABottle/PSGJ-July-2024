@@ -61,7 +61,7 @@ func generate_scene_from_string(save_string: String) -> void:
 	else:
 		LevelManager.load_entry_point()
 
-func load_tutorial_data(current_save_dictionary: Dictionary) -> void:
+func load_tutorial_data(_loaded_save_dictionary: Dictionary) -> void:
 	pass
 
 func get_save_data() -> Dictionary:
