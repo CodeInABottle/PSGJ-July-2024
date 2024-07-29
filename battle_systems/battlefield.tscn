@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=37 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EntityTracker.gd" id="2_oep6u"]
@@ -21,6 +21,8 @@
 [ext_resource type="PackedScene" uid="uid://c4k4rqcj2337f" path="res://battle_systems/UI/TurnSkip/turn_skip.tscn" id="17_yk07i"]
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="18_7m3r4"]
 [ext_resource type="StyleBox" uid="uid://dyh061gar4cni" path="res://battle_systems/Tutorial/BlackOutShield.tres" id="18_8fc80"]
+[ext_resource type="Texture2D" uid="uid://c3flj6yj5ha7f" path="res://assets/sprites/combat/capture.png" id="21_y5vbx"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="22_hxut8"]
 
 [sub_resource type="Animation" id="Animation_4tlvq"]
 resource_name = "FadeOut"
@@ -98,6 +100,99 @@ corner_radius_bottom_left = 5
 anti_aliasing = false
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_altgx"]
+
+[sub_resource type="Animation" id="Animation_i8j6b"]
+resource_name = "Display"
+length = 0.3
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(228, -155), Vector2(228, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.05, 0.3),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 0), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_3k7s0"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(228, 0)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("..:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("..:self_modulate")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_yknj7"]
+_data = {
+"Display": SubResource("Animation_i8j6b"),
+"RESET": SubResource("Animation_3k7s0")
+}
+
+[sub_resource type="LabelSettings" id="LabelSettings_emx5h"]
+font = ExtResource("22_hxut8")
+font_size = 48
+font_color = Color(0, 0, 0, 1)
+outline_size = 3
+outline_color = Color(0, 0, 0, 1)
 
 [node name="Battlefield" type="Node"]
 script = ExtResource("1_ubwb4")
@@ -1504,6 +1599,42 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxEmpty_altgx")
 metadata/_edit_lock_ = true
+
+[node name="CaptureUI" type="Panel" parent="CanvasLayer"]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = ExtResource("18_8fc80")
+
+[node name="CaptureSign" type="TextureRect" parent="CanvasLayer/CaptureUI"]
+layout_mode = 0
+offset_left = 228.0
+offset_right = 528.0
+offset_bottom = 150.0
+texture = ExtResource("21_y5vbx")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="CaptureAnimationPlayer" type="AnimationPlayer" parent="CanvasLayer/CaptureUI/CaptureSign"]
+unique_name_in_owner = true
+libraries = {
+"": SubResource("AnimationLibrary_yknj7")
+}
+
+[node name="Label" type="Label" parent="CanvasLayer/CaptureUI/CaptureSign"]
+layout_mode = 0
+offset_left = 44.0
+offset_top = 70.0
+offset_right = 248.0
+offset_bottom = 126.0
+rotation = -0.058319
+text = "Captured!"
+label_settings = SubResource("LabelSettings_emx5h")
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

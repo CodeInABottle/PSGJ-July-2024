@@ -67,7 +67,8 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 	htn_planner.finished.connect( func() -> void: actions_completed.emit() )
 	_data = data
 	_health = data.max_health
-	_capture_value = data.max_health
+	#_capture_value = data.max_health
+	_capture_value = 49
 	htn_planner.domain_name = data.domain
 	_sprite_handler = _data.combat_animation.instantiate()
 	animation_holder.add_child(_sprite_handler)
