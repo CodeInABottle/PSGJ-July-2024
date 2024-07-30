@@ -291,6 +291,7 @@ func get_save_data() -> Dictionary:
 		"checkpoint": current_checkpoint,
 		"area_pickup_status": area_pickup_status,
 		"unlocked_checkpoints": unlocked_checkpoints,
+		"temp_statuses": temp_statuses,
 	}
 
 func respawn() -> void:
@@ -331,9 +332,10 @@ func trigger_battle(enemy_name: String, area_index: int, start_translucent: bool
 
 func load_save(save_data: Dictionary) -> void:
 	current_checkpoint = save_data.get("checkpoint", "start")
-	current_modifiers = save_data.get("modifiers", [])
+	current_modifiers.assign(save_data.get("modifiers", []))
 	area_pickup_status = save_data.get("area_pickup_status", {})
-	unlocked_checkpoints = save_data.get("unlocked_checkpoints", [])
+	unlocked_checkpoints.assign(save_data.get("unlocked_checkpoints", []))
+	temp_statuses.assign(save_data.get("temp_statuses", []))
 	load_world(save_data["area"])
 
 # to be use to reset enemy battles if any on checkpoint rest, if needed?

@@ -1,0 +1,18 @@
+[gd_scene load_steps=5 format=3 uid="uid://ctebwae2j0lq0"]
+
+[ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_pgejw"]
+[ext_resource type="Script" path="res://npc/chimkin/chimkin_npc_controller.gd" id="2_4k0ic"]
+[ext_resource type="SpriteFrames" uid="uid://ii3aru6j8qcr" path="res://npc/chimkin/chimkin_sprite_frames.tres" id="2_m56t8"]
+[ext_resource type="SpriteFrames" uid="uid://djp7sedr5rxid" path="res://npc/chimkin/afflicted_chimkin_sprite_frames.tres" id="3_8eh8h"]
+
+[node name="Chimkin" instance=ExtResource("1_pgejw")]
+script = ExtResource("2_4k0ic")
+npc_speed = 100.0
+npc_name = "Chicken"
+normal_sprite_frames = ExtResource("2_m56t8")
+afflicted_sprite_frames = ExtResource("3_8eh8h")
+
+[node name="NPCSprite" parent="." index="1"]
+position = Vector2(-6, 0)
+sprite_frames = ExtResource("2_m56t8")
+animation = &"walk"

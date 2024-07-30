@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_pacxx"]
 [ext_resource type="Script" path="res://npc/hawk/hawk_npc_controller.gd" id="2_1l8bf"]
 [ext_resource type="SpriteFrames" uid="uid://pb6r5aque1dy" path="res://npc/hawk/hawk_sprite_frames.tres" id="2_xuilm"]
-[ext_resource type="SpriteFrames" uid="uid://dqdwr4y54mn6a" path="res://npc/hawk/afflicted_hawk_sprite_frames.tres" id="4_jeopv"]
+[ext_resource type="SpriteFrames" uid="uid://cx2klqe7getnh" path="res://npc/hawk/afflicted_hawk_sprite_frames.tres" id="4_jeopv"]
 
 [node name="Hawk" instance=ExtResource("1_pacxx")]
 script = ExtResource("2_1l8bf")

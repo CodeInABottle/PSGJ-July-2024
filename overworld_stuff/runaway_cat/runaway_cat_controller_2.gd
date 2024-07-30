@@ -1,7 +1,7 @@
 extends Path2D
 
-@onready var path_follow = %PathFollow
-@onready var cat_sprite = %RunawayCat
+@onready var path_follow: PathFollow2D = %PathFollow
+@onready var cat_sprite: AnimatedSprite2D = %RunawayCat
 
 const FLIP_THRESHOLD: float = 0.536
 
