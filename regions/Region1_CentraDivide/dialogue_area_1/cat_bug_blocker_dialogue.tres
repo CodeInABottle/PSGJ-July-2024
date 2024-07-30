@@ -1,8 +1,18 @@
-[gd_resource type="Resource" script_class="Dialogue" load_steps=2 format=3 uid="uid://c0tursmn53il0"]
+[gd_resource type="Resource" script_class="Dialogue" load_steps=6 format=3 uid="uid://c0tursmn53il0"]
 
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_j4j7b"]
 [ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="1_nkkuv"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_bi1yc"]
+
+[sub_resource type="Resource" id="Resource_bonom"]
+script = ExtResource("1_j4j7b")
+line_text = "We get the overwhelming urge to look for bugs and turn back."
+
+[sub_resource type="Resource" id="Resource_2hr4k"]
+script = ExtResource("2_bi1yc")
+block_lines = Array[ExtResource("1_j4j7b")]([SubResource("Resource_bonom")])
 
 [resource]
 script = ExtResource("1_nkkuv")
-contents = Array[Resource("res://dialogue/DialogueBlock.gd")]([])
-content_keys = Array[String]([])
+contents = Array[ExtResource("2_bi1yc")]([SubResource("Resource_2hr4k")])
+content_keys = Array[String](["main"])

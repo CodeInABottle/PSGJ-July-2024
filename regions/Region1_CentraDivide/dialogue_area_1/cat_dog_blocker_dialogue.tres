@@ -1,8 +1,22 @@
-[gd_resource type="Resource" script_class="Dialogue" load_steps=2 format=3 uid="uid://jude4j68bb6d"]
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://jude4j68bb6d"]
 
 [ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="1_77pjd"]
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_j510s"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_lwfqg"]
+
+[sub_resource type="Resource" id="Resource_gqkbe"]
+script = ExtResource("1_j510s")
+line_text = "Wait!"
+
+[sub_resource type="Resource" id="Resource_xw413"]
+script = ExtResource("1_j510s")
+line_text = "We gotta help the puppies!"
+
+[sub_resource type="Resource" id="Resource_ejoio"]
+script = ExtResource("2_lwfqg")
+block_lines = Array[ExtResource("1_j510s")]([SubResource("Resource_gqkbe"), SubResource("Resource_xw413")])
 
 [resource]
 script = ExtResource("1_77pjd")
-contents = Array[Resource("res://dialogue/DialogueBlock.gd")]([])
-content_keys = Array[String]([])
+contents = Array[ExtResource("2_lwfqg")]([SubResource("Resource_ejoio")])
+content_keys = Array[String](["main"])
