@@ -59,6 +59,9 @@ func update_residues(type: TypeChart.ResonateType, amount: int, blink: bool) -> 
 func _on_hp_timer_timeout() -> void:
 	if _tween:
 		_tween.kill()
+	if _damage_pooled == 0:
+		secondary.value = primary.value
+		return
 	_tween = create_tween()
 	_tween.tween_property(secondary, "value", secondary.value - _damage_pooled, 0.25)\
 		.set_trans(Tween.TRANS_CUBIC)\
