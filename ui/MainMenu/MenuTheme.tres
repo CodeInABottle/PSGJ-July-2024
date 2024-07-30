@@ -1,6 +1,7 @@
-[gd_resource type="Theme" load_steps=25 format=3 uid="uid://c2ppqoj6pfm85"]
+[gd_resource type="Theme" load_steps=29 format=3 uid="uid://c2ppqoj6pfm85"]
 
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="1_pfn0u"]
+[ext_resource type="Texture2D" uid="uid://bxs7awmra57cv" path="res://assets/sprites/general/SliderIcon.png" id="2_xfv8y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_h40tw"]
 content_margin_top = 4.0
@@ -69,6 +70,17 @@ bg_color = Color(0.180392, 0.180392, 0.180392, 1)
 content_margin_left = 2.0
 content_margin_right = 2.0
 bg_color = Color(0.435294, 0.435294, 0.435294, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0h0oy"]
+bg_color = Color(0.67451, 0.196078, 0.196078, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_uqqop"]
+bg_color = Color(0.85098, 0.341176, 0.388235, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4vyqi"]
+content_margin_top = 2.0
+content_margin_bottom = 2.0
+bg_color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fnh2"]
 bg_color = Color(0.25098, 0.121569, 0.141176, 0.14902)
@@ -161,6 +173,12 @@ HScrollBar/styles/grabber_highlight = SubResource("StyleBoxFlat_vyfk5")
 HScrollBar/styles/grabber_pressed = SubResource("StyleBoxFlat_vrryu")
 HScrollBar/styles/scroll = SubResource("StyleBoxFlat_afpgw")
 HScrollBar/styles/scroll_focus = SubResource("StyleBoxFlat_14htg")
+HSlider/icons/grabber = ExtResource("2_xfv8y")
+HSlider/icons/grabber_disabled = ExtResource("2_xfv8y")
+HSlider/icons/grabber_highlight = ExtResource("2_xfv8y")
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_0h0oy")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_uqqop")
+HSlider/styles/slider = SubResource("StyleBoxFlat_4vyqi")
 ItemList/colors/font_color = Color(0, 0, 0, 1)
 ItemList/colors/font_hovered_color = Color(0, 0, 0, 1)
 ItemList/colors/font_selected_color = Color(0.144063, 0.144063, 0.144063, 1)

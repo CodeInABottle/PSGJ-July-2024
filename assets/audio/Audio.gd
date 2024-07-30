@@ -28,7 +28,7 @@ func crossfade_to_battle() -> void:
 	else:
 		isBattleMusic = true
 		crossfader.play("FadeToBattle")
-		
+
 func crossfade_to_overworld() -> void:
 	if isBattleMusic:
 		isBattleMusic = false
@@ -57,4 +57,4 @@ func play_sfx(soundName : String) -> void:
 		_:
 			return
 	SFX.play()
-	
+
