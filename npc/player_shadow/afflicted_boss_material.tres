@@ -11,6 +11,7 @@ gradient = SubResource("Gradient_3iu1m")
 
 [resource]
 shader = ExtResource("1_8bphp")
+shader_parameter/override_alpha = 1.0
 shader_parameter/screen_height = 640.0
 shader_parameter/amplitude = 0.005
 shader_parameter/frequency = 10.0
