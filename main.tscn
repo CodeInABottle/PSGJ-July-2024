@@ -1,8 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://dyelqemredawb"]
+[gd_scene load_steps=18 format=3 uid="uid://dyelqemredawb"]
 
 [ext_resource type="Script" path="res://ui/fader_layer_controller.gd" id="1_ng1aa"]
 [ext_resource type="PackedScene" uid="uid://b644l6iqorxwf" path="res://dialogue/dialogue_ui.tscn" id="2_l2msi"]
 [ext_resource type="PackedScene" uid="uid://c4fqfvleyq3nd" path="res://ui/pause_menu.tscn" id="3_xclbu"]
+[ext_resource type="Script" path="res://assets/audio/Audio.gd" id="4_135u6"]
+[ext_resource type="AudioStream" uid="uid://baiiqtqfwl6u5" path="res://assets/audio/Celestial Salt.mp3" id="5_gaevf"]
+[ext_resource type="AudioStream" uid="uid://byur6gg4lplsq" path="res://assets/audio/Niter.mp3" id="6_rvj08"]
 
 [sub_resource type="Animation" id="Animation_vnk6h"]
 length = 0.001
@@ -126,6 +129,68 @@ _data = {
 "translucent_to_black": SubResource("Animation_68ky2")
 }
 
+[sub_resource type="Animation" id="Animation_av8aw"]
+resource_name = "FadeToBattle"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicOverworld:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(4.43827, 2.82843, 5.85634),
+"update": 0,
+"values": [0.0, -9.0, -80.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MusicBattle:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(4.92457, 2.14355, 5.65686),
+"update": 0,
+"values": [-80.0, -9.0, 0.0]
+}
+
+[sub_resource type="Animation" id="Animation_wg4n3"]
+resource_name = "FadeToOverworld"
+length = 2.0
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("MusicOverworld:volume_db")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 2),
+"transitions": PackedFloat32Array(4.43827, 2.82843, 5.85634),
+"update": 0,
+"values": [-80.0, -9.0, 0.0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("MusicBattle:volume_db")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1.5, 2),
+"transitions": PackedFloat32Array(4.92457, 2.46229, 5.65686),
+"update": 0,
+"values": [0.0, -9.0, -80.0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6t1n1"]
+_data = {
+"FadeToBattle": SubResource("Animation_av8aw"),
+"FadeToOverworld": SubResource("Animation_wg4n3")
+}
+
 [node name="Main" type="Node"]
 
 [node name="World" type="Node" parent="."]
@@ -159,3 +224,23 @@ visible = false
 
 [node name="PauseMenu" parent="PauseLayer" instance=ExtResource("3_xclbu")]
 visible = false
+
+[node name="Audio" type="Node" parent="."]
+script = ExtResource("4_135u6")
+
+[node name="MusicOverworld" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("5_gaevf")
+volume_db = -8.59752
+autoplay = true
+
+[node name="MusicBattle" type="AudioStreamPlayer" parent="Audio"]
+stream = ExtResource("6_rvj08")
+volume_db = -1.22199
+autoplay = true
+
+[node name="SFX" type="AudioStreamPlayer" parent="Audio"]
+
+[node name="Crossfade" type="AnimationPlayer" parent="Audio"]
+libraries = {
+"": SubResource("AnimationLibrary_6t1n1")
+}
