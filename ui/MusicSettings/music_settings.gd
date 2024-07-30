@@ -1,5 +1,7 @@
 extends Control
 
+signal closed
+
 @onready var master_slider: HSlider = %MasterSlider
 @onready var music_slider: HSlider = %MusicSlider
 @onready var sfx_slider: HSlider = %SFXSlider
@@ -41,3 +43,6 @@ func _on_music_slider_value_changed(value: float) -> void:
 func _on_sfx_slider_value_changed(value: float) -> void:
 	AudioServer.set_bus_volume_db(1, remap(value, 0.0, 100.0, -40.0, 0.0))
 	sfx_precentage.text = _get_volume_str(value)
+
+func _on_close_pressed() -> void:
+	closed.emit()

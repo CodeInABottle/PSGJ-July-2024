@@ -210,7 +210,7 @@ vertical_alignment = 2
 layout_mode = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_n2enn")
 
-[node name="Button" type="Button" parent="."]
+[node name="Close" type="Button" parent="."]
 layout_mode = 0
 offset_left = 550.0
 offset_top = 15.0
@@ -222,3 +222,4 @@ text = "Close"
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MusicSlider" to="." method="_on_music_slider_value_changed"]
 [connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
 [connection signal="visibility_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SFXSlider" to="." method="_on_sfx_slider_visibility_changed"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://bn4oi0fntaepu"]
+[gd_scene load_steps=19 format=3 uid="uid://bn4oi0fntaepu"]
 
 [ext_resource type="Script" path="res://ui/MainMenu/main_menu_controller.gd" id="1_bkll6"]
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="1_jnntl"]
@@ -235,6 +235,66 @@ tracks/12/keys = {
 "update": 0,
 "values": [Vector2(640, 360)]
 }
+tracks/13/type = "value"
+tracks/13/imported = false
+tracks/13/enabled = true
+tracks/13/path = NodePath("MenuButtons/Settings:position")
+tracks/13/interp = 1
+tracks/13/loop_wrap = true
+tracks/13/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(-78, 128)]
+}
+tracks/14/type = "value"
+tracks/14/imported = false
+tracks/14/enabled = true
+tracks/14/path = NodePath("Control/MusicClipping:size")
+tracks/14/interp = 1
+tracks/14/loop_wrap = true
+tracks/14/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 360)]
+}
+tracks/15/type = "value"
+tracks/15/imported = false
+tracks/15/enabled = true
+tracks/15/path = NodePath("Control/MusicClipping:position")
+tracks/15/interp = 1
+tracks/15/loop_wrap = true
+tracks/15/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+tracks/16/type = "value"
+tracks/16/imported = false
+tracks/16/enabled = true
+tracks/16/path = NodePath("Control/MusicClipping/MusicSettings:position")
+tracks/16/interp = 1
+tracks/16/loop_wrap = true
+tracks/16/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(320, 0)]
+}
+tracks/17/type = "value"
+tracks/17/imported = false
+tracks/17/enabled = true
+tracks/17/path = NodePath("Control/MusicClipping/MusicSettings:visible")
+tracks/17/interp = 1
+tracks/17/loop_wrap = true
+tracks/17/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
 
 [sub_resource type="Animation" id="Animation_rpsea"]
 resource_name = "SlideMainButtonsDown"
@@ -287,6 +347,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("MenuButtons/Settings:position")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0.05, 0.1, 0.15, 0.25),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(-78, 128), Vector2(-56, 128), Vector2(-78, 128), Vector2(-153, 128)]
 }
 
 [sub_resource type="Animation" id="Animation_qd3nr"]
@@ -354,12 +426,66 @@ tracks/4/keys = {
 "values": [true, false]
 }
 
+[sub_resource type="Animation" id="Animation_42xv3"]
+resource_name = "VolumeSettings"
+length = 0.25
+step = 0.05
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Control/MusicClipping:size")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 360), Vector2(640, 360)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Control/MusicClipping:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("Control/MusicClipping/MusicSettings:position")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(320, 0), Vector2(0, 0)]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Control/MusicClipping/MusicSettings:visible")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.05),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
+}
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q7k5c"]
 _data = {
 "Credits": SubResource("Animation_55hd2"),
 "RESET": SubResource("Animation_ui3r4"),
 "SlideMainButtonsDown": SubResource("Animation_rpsea"),
-"SlideSaveStringUp": SubResource("Animation_qd3nr")
+"SlideSaveStringUp": SubResource("Animation_qd3nr"),
+"VolumeSettings": SubResource("Animation_42xv3")
 }
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_6mvx8"]
@@ -485,6 +611,14 @@ offset_right = 176.0
 offset_bottom = 176.0
 text = "Credits"
 
+[node name="Settings" type="TextureButton" parent="MenuButtons"]
+layout_mode = 0
+offset_left = -78.0
+offset_top = 128.0
+offset_right = -32.0
+offset_bottom = 176.0
+stretch_mode = 5
+
 [node name="SaveStringContainer" type="Control" parent="."]
 unique_name_in_owner = true
 visible = false
@@ -518,23 +652,14 @@ offset_right = 384.0
 offset_bottom = 408.0
 text = "Back"
 
-[node name="ControlShield" type="Control" parent="."]
-unique_name_in_owner = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
 [node name="CreditsScroll" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 366.0
-offset_right = 1280.0
-offset_bottom = 1086.0
+offset_right = 2560.0
+offset_bottom = 1806.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -638,12 +763,45 @@ Yolodude"
 label_settings = ExtResource("9_3tvrg")
 horizontal_alignment = 1
 
-[node name="MusicSettings" parent="." instance=ExtResource("11_xfg0b")]
+[node name="Control" type="Control" parent="."]
 layout_mode = 1
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+
+[node name="MusicClipping" type="ColorRect" parent="Control"]
+clip_children = 1
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -40.0
+offset_bottom = 320.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MusicSettings" parent="Control/MusicClipping" instance=ExtResource("11_xfg0b")]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+offset_left = 320.0
+offset_right = 320.0
+
+[node name="ControlShield" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [connection signal="pressed" from="MenuButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MenuButtons/Load" to="." method="_on_load_pressed"]
 [connection signal="pressed" from="MenuButtons/Credits" to="." method="_on_credits_pressed"]
+[connection signal="pressed" from="MenuButtons/Settings" to="." method="_on_settings_pressed"]
 [connection signal="text_changed" from="SaveStringContainer/SaveStringEdit" to="." method="_on_save_string_edit_text_changed"]
 [connection signal="pressed" from="SaveStringContainer/LoadConfirm" to="." method="_on_load_confirm_pressed"]
 [connection signal="pressed" from="SaveStringContainer/Back" to="." method="_on_back_pressed"]
+[connection signal="closed" from="Control/MusicClipping/MusicSettings" to="." method="_on_music_settings_closed"]
