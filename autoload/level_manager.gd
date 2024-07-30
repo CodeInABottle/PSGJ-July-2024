@@ -127,6 +127,7 @@ func _ready() -> void:
 
 	level_loaded.connect(_on_level_loaded)
 	menu_loaded.connect(on_menu_loaded)
+	world_event_occurred.connect(on_world_event)
 
 	init_pickups()
 	load_world("main_menu")
@@ -146,6 +147,7 @@ func _process(_delta: float) -> void:
 # -- Shortcut version of load_world
 # -- Assumes there's a fixed entry point to spawn a player, if applicable
 func load_entry_point() -> void:
+	audio_anchor.crossfade_to_overworld()
 	load_world(_entry_point)
 
 # You want to fade to black before using this
@@ -323,6 +325,7 @@ func on_translucent_to_black_complete() -> void:
 
 func trigger_battle(enemy_name: String, area_index: int, start_translucent: bool = false) -> void:
 	DialogueManager.end_dialogue()
+	play_sfx("enter_combat")
 	pending_load = "battle"
 	is_transitioning = true
 	last_battle_index = area_index
@@ -347,3 +350,15 @@ func load_save(save_data: Dictionary) -> void:
 # to be use to reset enemy battles if any on checkpoint rest, if needed?
 func reset_world() -> void:
 	world_event_occurred.emit("world_reset", [])
+
+func on_world_event(world_event_name: String, args: Array) -> void:
+	if world_event_name == "battle_finished":
+		if args[0]["won_battle"]:
+			audio_anchor.crossfade_to_overworld()
+	elif world_event_name.begins_with("item_get"):
+		play_sfx("item_pickup")
+	elif world_event_name == "checkpoint_touched":
+		play_sfx("activate_obelisk")
+
+func play_sfx(sound_name: String) -> void:
+	audio_anchor.play_sfx(sound_name)

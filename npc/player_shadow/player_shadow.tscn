@@ -7,7 +7,7 @@
 
 [node name="PlayerShadow" instance=ExtResource("1_i4moq")]
 npc_speed = 200.0
-npc_name = "Player Shadow"
+npc_name = "Shadow"
 normal_sprite_frames = ExtResource("3_63fdk")
 afflicted_sprite_frames = ExtResource("3_lslg3")
 
