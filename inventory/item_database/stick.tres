@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="KeyItem" load_steps=3 format=3 uid="uid://cj2cghythmrpt"]
+
+[ext_resource type="Texture2D" uid="uid://b7qc06ujh2vhd" path="res://assets/sprites/general/branch.png" id="1_npsvp"]
+[ext_resource type="Script" path="res://inventory/key_item.gd" id="2_72ubn"]
+
+[resource]
+script = ExtResource("2_72ubn")
+pickup_event_name = ""
+item_name = "Stick"
+item_description = "This stick was in the way of the cellar! It has a weird looking shadow..."
+item_icon = ExtResource("1_npsvp")
