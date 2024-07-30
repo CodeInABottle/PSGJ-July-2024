@@ -29,7 +29,8 @@ class ModData:
 		return {
 			"resonate_type": resonate,
 			"efficiency_capture_rate": efficiency_capture_rate,
-			"components": components
+			"components": components,
+			"created_by_player": created_by_player
 		}
 
 @onready var enemy_status_indicator: BattlefieldEnemyStatusIndicator = %EnemyStatusIndicator

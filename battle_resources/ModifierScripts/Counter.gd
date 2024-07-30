@@ -15,9 +15,9 @@ func execute(tracker: BattlefieldEntityTracker, additional_data: Dictionary) -> 
 		"components": additional_data["components"]
 	}
 	# The entity that has the attack phase takes the damage
-	if additional_data["is_players_turn"]:
-		tracker.player_entity.take_damage(damage_data)
-	else:
+	if additional_data["created_by_player"]:
 		tracker.enemy_entity.take_damage(damage_data)
+	else:
+		tracker.player_entity.take_damage(damage_data)
 
 	return false

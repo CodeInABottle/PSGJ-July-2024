@@ -8,6 +8,7 @@ const BATTLE_NUMBERS: PackedScene = preload("res://battle_systems/UI/BattleNumbe
 @export var effect_marker: Marker2D
 
 @onready var attack_node: Marker2D = %AttackNode
+@onready var effect_timer: Timer = %EffectTimer
 
 var _was_cost_changed: bool = false
 var _costs: Dictionary = {
@@ -16,6 +17,7 @@ var _costs: Dictionary = {
 	"Fire": 1,
 	"Water": 1,
 }
+var _effects_queued: Array[Dictionary] = []
 var actions_done: int = 0
 var ap_penality: int = 0
 
@@ -82,14 +84,27 @@ func attack(ability_name: String) -> void:
 	pass
 
 func _play_ap_effect() -> void:
-	var effect_instance: Control = AP_EFFECT.instantiate()
-	effect_marker.add_child(effect_instance)
-	effect_instance.global_position = effect_marker.global_position
-	effect_instance.play(-ap_penality)
+	_effects_queued.push_back({
+		"effect": AP_EFFECT.instantiate(),
+		"data": -ap_penality
+	})
+	effect_timer.start()
 
 func _spawn_damage_number(amount: int, is_damage: bool) -> void:
-	var damage_instance: Control = BATTLE_NUMBERS.instantiate()
-	effect_marker.add_child(damage_instance)
 	var value: int = amount
 	if is_damage: value *= -1
-	damage_instance.play(value)
+	_effects_queued.push_back({
+		"effect": BATTLE_NUMBERS.instantiate(),
+		"data": value
+	})
+	effect_timer.start()
+
+func _on_effect_timer_timeout() -> void:
+	var effect_data: Dictionary = _effects_queued.pop_front()
+	effect_marker.add_child(effect_data["effect"])
+	effect_data["effect"].global_position = effect_marker.global_position
+	if effect_data.has("data"):
+		effect_data["effect"].play(effect_data["data"])
+
+	if _effects_queued.is_empty(): return
+	effect_timer.start()

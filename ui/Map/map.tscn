@@ -58,5 +58,21 @@ offset_bottom = 114.0
 location = "Cat Bridge"
 checkpoint_tag = "Cat Bridge"
 
+[node name="EastBank" parent="Pins" instance=ExtResource("2_r26xo")]
+offset_left = 277.0
+offset_top = 189.0
+offset_right = 277.0
+offset_bottom = 189.0
+location = "East Bank"
+checkpoint_tag = "East Bank"
+
+[node name="WestBank" parent="Pins" instance=ExtResource("2_r26xo")]
+offset_left = 231.0
+offset_top = 168.0
+offset_right = 231.0
+offset_bottom = 168.0
+location = "West Bank"
+checkpoint_tag = "WestBank"
+
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

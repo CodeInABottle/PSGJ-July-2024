@@ -7,3 +7,10 @@ script = ExtResource("1_xm4a2")
 
 [node name="AttackNode" type="Marker2D" parent="."]
 unique_name_in_owner = true
+
+[node name="EffectTimer" type="Timer" parent="."]
+unique_name_in_owner = true
+wait_time = 0.5
+one_shot = true
+
+[connection signal="timeout" from="EffectTimer" to="." method="_on_effect_timer_timeout"]
