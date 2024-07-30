@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_c3b5w")
 damage = 0
+precentage_damage = 0.0
 description = "Do 70 damage on next turn."
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_gways")])
 moving_attack = false

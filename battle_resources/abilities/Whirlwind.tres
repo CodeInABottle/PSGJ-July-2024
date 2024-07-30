@@ -1,19 +1,17 @@
-[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=4 format=3 uid="uid://dd1eqwsw6fqw7"]
+[gd_resource type="Resource" script_class="BattlefieldAbility" load_steps=3 format=3 uid="uid://dd1eqwsw6fqw7"]
 
-[ext_resource type="PackedScene" uid="uid://dq7fce7qsgmym" path="res://battle_resources/AttackAnimations/whirlwind.tscn" id="1_jffwl"]
 [ext_resource type="Resource" uid="uid://bhpjbj0eamqst" path="res://battle_resources/Modifiers/20_1_turn_DoTMod.tres" id="1_s44ec"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/Ability.gd" id="1_yq38l"]
 
 [resource]
 script = ExtResource("1_yq38l")
 damage = 20
-capture_efficiency = 1.1
+precentage_damage = 0.0
 description = "Opponent takes 20 damage next turn."
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_s44ec")])
 moving_attack = true
 attack_movement_speed = 0.5
 attack_life_time = 0.5
-attack = ExtResource("1_jffwl")
 resonate_type = 2
 reagent_a = 2
 reagent_b = 0
