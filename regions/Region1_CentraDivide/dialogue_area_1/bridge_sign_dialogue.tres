@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://dnffebq4m265m"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_o53rv"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_csr7q"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_w1211"]
+
+[sub_resource type="Resource" id="Resource_rhhi6"]
+script = ExtResource("1_o53rv")
+line_text = "ATTENTION!"
+
+[sub_resource type="Resource" id="Resource_a8ci5"]
+script = ExtResource("1_o53rv")
+line_text = "Bridge Ahead! -->"
+
+[sub_resource type="Resource" id="Resource_jee1i"]
+script = ExtResource("2_csr7q")
+block_lines = Array[ExtResource("1_o53rv")]([SubResource("Resource_rhhi6"), SubResource("Resource_a8ci5")])
+
+[resource]
+script = ExtResource("3_w1211")
+contents = Array[ExtResource("2_csr7q")]([SubResource("Resource_jee1i")])
+content_keys = Array[String](["main"])

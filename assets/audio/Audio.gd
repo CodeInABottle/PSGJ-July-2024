@@ -13,9 +13,6 @@ func _ready() -> void:
 	SFX = $SFX
 	crossfader = $Crossfade
 
-
-
-
 func crossfade_to_battle() -> void:
 	if isBattleMusic:
 		return

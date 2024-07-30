@@ -85,6 +85,7 @@ var master_node: Node
 var world_anchor: Node
 var menu_anchor: Node
 var canvas_layer: CanvasLayer
+var audio_anchor: Node
 
 ## Tracking Data
 # Intended to be where to spawn at in the level, if applicable
@@ -118,6 +119,7 @@ func _ready() -> void:
 	world_anchor = get_node_or_null("/root/Main/World")
 	canvas_layer = get_node_or_null("/root/Main/CanvasLayer")
 	menu_anchor = get_node_or_null("/root/Main/Menu")
+	audio_anchor = get_node_or_null("/root/Main/Audio")
 
 	# Check if using F5 or F6 to play scene
 	# -- On F6, nope out
@@ -325,6 +327,8 @@ func trigger_battle(enemy_name: String, area_index: int, start_translucent: bool
 	is_transitioning = true
 	last_battle_index = area_index
 	pending_battle = enemy_name
+	audio_anchor.crossfade_to_battle()
+	
 	if start_translucent:
 		MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)
 		MenuManager.fader_controller.translucent_to_black()

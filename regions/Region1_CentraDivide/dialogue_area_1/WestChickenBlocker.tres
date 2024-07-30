@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://c64xctg3tja21"]
+
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="1_axshf"]
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_uqex1"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_irrjx"]
+
+[sub_resource type="Resource" id="Resource_6tlff"]
+script = ExtResource("1_uqex1")
+line_text = "Why did the Chicken cross the bridge?"
+
+[sub_resource type="Resource" id="Resource_hk1pl"]
+script = ExtResource("1_uqex1")
+line_text = "We'll never know if we dont capture a Chicken shadow first!"
+
+[sub_resource type="Resource" id="Resource_mgi6b"]
+script = ExtResource("2_irrjx")
+block_lines = Array[ExtResource("1_uqex1")]([SubResource("Resource_6tlff"), SubResource("Resource_hk1pl")])
+
+[resource]
+script = ExtResource("1_axshf")
+contents = Array[ExtResource("2_irrjx")]([SubResource("Resource_mgi6b")])
+content_keys = Array[String](["main"])
