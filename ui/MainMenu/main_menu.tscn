@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bn4oi0fntaepu"]
+[gd_scene load_steps=18 format=3 uid="uid://bn4oi0fntaepu"]
 
 [ext_resource type="Script" path="res://ui/MainMenu/main_menu_controller.gd" id="1_bkll6"]
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="1_jnntl"]
@@ -10,6 +10,7 @@
 [ext_resource type="LabelSettings" uid="uid://b7wbvyv6hscv8" path="res://ui/MainMenu/CreditsSectionHeading.tres" id="8_20hhm"]
 [ext_resource type="LabelSettings" uid="uid://bma7jbl4pk13n" path="res://ui/MainMenu/CreditsNormal.tres" id="9_3tvrg"]
 [ext_resource type="Texture2D" uid="uid://pvumv3xswurv" path="res://assets/sprites/general/gamejam.png" id="10_u6b21"]
+[ext_resource type="PackedScene" uid="uid://d23ny1xrs52p5" path="res://ui/MusicSettings/music_settings.tscn" id="11_xfg0b"]
 
 [sub_resource type="Animation" id="Animation_55hd2"]
 resource_name = "Credits"
@@ -532,8 +533,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 366.0
-offset_right = 640.0
-offset_bottom = 726.0
+offset_right = 1280.0
+offset_bottom = 1086.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -636,6 +637,9 @@ Ryan
 Yolodude"
 label_settings = ExtResource("9_3tvrg")
 horizontal_alignment = 1
+
+[node name="MusicSettings" parent="." instance=ExtResource("11_xfg0b")]
+layout_mode = 1
 
 [connection signal="pressed" from="MenuButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MenuButtons/Load" to="." method="_on_load_pressed"]

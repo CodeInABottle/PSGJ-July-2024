@@ -36,18 +36,15 @@ anti_aliasing = false
 font = ExtResource("4_2bp50")
 font_size = 23
 outline_size = 7
-outline_color = Color(0.67451, 0.196078, 0.196078, 1)
+outline_color = Color(0.270588, 0.156863, 0.235294, 1)
 
 [sub_resource type="StyleBoxLine" id="StyleBoxLine_1umaq"]
-color = Color(0.270588, 0.156863, 0.235294, 1)
+color = Color(0.67451, 0.196078, 0.196078, 1)
 thickness = 3
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_n2enn"]
 
-[sub_resource type="StyleBoxLine" id="StyleBoxLine_wtpqk"]
-color = Color(0.270588, 0.156863, 0.235294, 1)
-thickness = 3
-vertical = true
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pm2qq"]
 
 [node name="MusicSettings" type="Control"]
 layout_mode = 3
@@ -149,7 +146,7 @@ theme_override_styles/separator = SubResource("StyleBoxEmpty_n2enn")
 
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_styles/separator = SubResource("StyleBoxLine_wtpqk")
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pm2qq")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
@@ -170,6 +167,49 @@ layout_mode = 2
 unique_name_in_owner = true
 layout_mode = 2
 
+[node name="VSeparator3" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_pm2qq")
+
+[node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_n2enn")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_constants/separation = 25
+
+[node name="MasterPrecentage" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100%"
+label_settings = SubResource("LabelSettings_0trqc")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="MusicPrecentage" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100%"
+label_settings = SubResource("LabelSettings_0trqc")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="SFXPrecentage" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4/VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "100%"
+label_settings = SubResource("LabelSettings_0trqc")
+horizontal_alignment = 1
+vertical_alignment = 2
+
+[node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
+layout_mode = 2
+theme_override_styles/separator = SubResource("StyleBoxEmpty_n2enn")
+
 [node name="Button" type="Button" parent="."]
 layout_mode = 0
 offset_left = 550.0
@@ -177,3 +217,8 @@ offset_top = 15.0
 offset_right = 619.0
 offset_bottom = 47.0
 text = "Close"
+
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MasterSlider" to="." method="_on_master_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/MusicSlider" to="." method="_on_music_slider_value_changed"]
+[connection signal="value_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SFXSlider" to="." method="_on_sfx_slider_value_changed"]
+[connection signal="visibility_changed" from="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2/SFXSlider" to="." method="_on_sfx_slider_visibility_changed"]
