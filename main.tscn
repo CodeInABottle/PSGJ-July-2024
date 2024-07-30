@@ -241,6 +241,7 @@ autoplay = true
 bus = &"Music"
 
 [node name="SFX" type="AudioStreamPlayer" parent="Audio"]
+volume_db = -5.0
 bus = &"Sound"
 
 [node name="Crossfade" type="AnimationPlayer" parent="Audio"]
