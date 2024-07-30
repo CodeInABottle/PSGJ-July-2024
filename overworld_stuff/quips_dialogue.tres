@@ -34,7 +34,7 @@ line_text = "We hope you enjoyed playing as much as we did making it."
 
 [sub_resource type="Resource" id="Resource_08dq6"]
 script = ExtResource("1_st8rm")
-line_text = "Keep making games."
+line_text = "Oh by the way, I think our mom might be home..."
 
 [sub_resource type="Resource" id="Resource_h041m"]
 script = ExtResource("2_jh4py")

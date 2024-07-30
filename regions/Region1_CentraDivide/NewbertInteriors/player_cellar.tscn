@@ -123,6 +123,7 @@ limit_right = 320
 limit_bottom = 223
 
 [node name="FinalBossSpawner" type="Node2D" parent="." index="16"]
+position = Vector2(165, 31)
 script = ExtResource("8_o6q03")
 npc_scene = ExtResource("9_n26k5")
 spawn_name = "Niter Tiger"

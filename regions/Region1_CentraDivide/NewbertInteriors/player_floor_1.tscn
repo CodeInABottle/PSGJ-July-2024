@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://ds4vibf7tkvds"]
+[gd_scene load_steps=12 format=3 uid="uid://ds4vibf7tkvds"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_21exl"]
 [ext_resource type="Texture2D" uid="uid://dkqveu4j6mms0" path="res://assets/sprites/tiles/overworld_interior_01.png" id="2_4wey2"]
@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://7g63ugqd7du3" path="res://inventory/pickup_lore.tscn" id="3_eojow"]
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="5_1gpcv"]
 [ext_resource type="Texture2D" uid="uid://b6ukbsrs6vcdq" path="res://assets/sprites/player/UI/MovementArrow.png" id="6_pmjjn"]
+[ext_resource type="Script" path="res://overworld_stuff/final_boss/conditional_spawner.gd" id="7_42aiy"]
+[ext_resource type="PackedScene" uid="uid://8sdh883bab1r" path="res://overworld_stuff/mom/mom.tscn" id="8_hh4x5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_pbp6l"]
 size = Vector2(42, 26)
@@ -164,3 +166,10 @@ theme_override_fonts/font = ExtResource("5_1gpcv")
 theme_override_font_sizes/font_size = 15
 text = "ESC to pause"
 vertical_alignment = 1
+
+[node name="ConditionalSpawner" type="Node2D" parent="." index="20"]
+position = Vector2(326, 25)
+script = ExtResource("7_42aiy")
+npc_scene = ExtResource("8_hh4x5")
+spawn_name = "beat_game"
+spawn_type = "TempStatus"

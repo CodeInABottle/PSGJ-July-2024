@@ -1,0 +1,46 @@
+[gd_scene load_steps=14 format=3 uid="uid://8sdh883bab1r"]
+
+[ext_resource type="PackedScene" uid="uid://cjbgt3ne5vyjk" path="res://overworld_stuff/sign.tscn" id="1_p3md5"]
+[ext_resource type="Script" path="res://overworld_stuff/mom/mom_controller.gd" id="2_cas7r"]
+[ext_resource type="Texture2D" uid="uid://bw5iuh6qwywpm" path="res://assets/sprites/general/mom_cropped.png" id="2_dw6uy"]
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="3_7k1ki"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="4_4oofi"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="5_83pba"]
+
+[sub_resource type="Resource" id="Resource_hsser"]
+script = ExtResource("3_7k1ki")
+line_text = "Clint, there you are!"
+
+[sub_resource type="Resource" id="Resource_ygb50"]
+script = ExtResource("3_7k1ki")
+line_text = "Were you down in that cellar the whole time?"
+
+[sub_resource type="Resource" id="Resource_g4mxu"]
+script = ExtResource("3_7k1ki")
+line_text = "Well thanks for cleaning that up, but it is time for bed!"
+
+[sub_resource type="Resource" id="Resource_8fh5e"]
+script = ExtResource("3_7k1ki")
+line_text = "We have a long trip in the morning. We are going to see your grandma and grandpa."
+
+[sub_resource type="Resource" id="Resource_e0upq"]
+script = ExtResource("3_7k1ki")
+line_text = "The eclipse is going to be so exciting..."
+
+[sub_resource type="Resource" id="Resource_n60md"]
+script = ExtResource("4_4oofi")
+block_lines = Array[ExtResource("3_7k1ki")]([SubResource("Resource_hsser"), SubResource("Resource_ygb50"), SubResource("Resource_g4mxu"), SubResource("Resource_8fh5e"), SubResource("Resource_e0upq")])
+
+[sub_resource type="Resource" id="Resource_2km7i"]
+script = ExtResource("5_83pba")
+contents = Array[ExtResource("4_4oofi")]([SubResource("Resource_n60md")])
+content_keys = Array[String](["main"])
+
+[node name="Mom" instance=ExtResource("1_p3md5")]
+script = ExtResource("2_cas7r")
+dialogue = SubResource("Resource_2km7i")
+
+[node name="Sprite2D" parent="." index="1"]
+texture = ExtResource("2_dw6uy")
+offset = Vector2(0, -5.865)
+region_enabled = false
