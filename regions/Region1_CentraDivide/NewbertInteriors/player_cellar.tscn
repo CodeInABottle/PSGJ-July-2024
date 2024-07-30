@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bgjn5turmelbw"]
+[gd_scene load_steps=15 format=3 uid="uid://bgjn5turmelbw"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_o8y3d"]
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://overworld_stuff/transition_area.tscn" id="2_lhn3e"]
@@ -9,6 +9,7 @@
 [ext_resource type="Resource" uid="uid://qtnxtdsyatan" path="res://regions/Region1_CentraDivide/NewbertInteriors/dialogue_player_cellar/branch_hint.tres" id="6_4mgck"]
 [ext_resource type="Script" path="res://overworld_stuff/final_boss/conditional_spawner.gd" id="8_o6q03"]
 [ext_resource type="PackedScene" uid="uid://k4sypw8x8rw2" path="res://npc/player_shadow/player_shadow.tscn" id="9_n26k5"]
+[ext_resource type="Script" path="res://overworld_stuff/final_boss/outro_manager.gd" id="10_7q3f7"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_qk7u0"]
 size = Vector2(32, 26)
@@ -125,3 +126,6 @@ limit_bottom = 223
 script = ExtResource("8_o6q03")
 npc_scene = ExtResource("9_n26k5")
 spawn_name = "Niter Tiger"
+
+[node name="OutroManager" type="Node" parent="." index="17"]
+script = ExtResource("10_7q3f7")
