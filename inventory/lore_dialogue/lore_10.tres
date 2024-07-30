@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=9 format=3 uid="uid://dxc13ugmmcipi"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_vymmk"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_ueodc"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_yo3nk"]
+
+[sub_resource type="Resource" id="Resource_on0or"]
+script = ExtResource("1_vymmk")
+line_text = "Oh no... The reports are true."
+
+[sub_resource type="Resource" id="Resource_2nfc5"]
+script = ExtResource("1_vymmk")
+line_text = "Something wicked is afflicting these creatures with shadow."
+
+[sub_resource type="Resource" id="Resource_loqw6"]
+script = ExtResource("1_vymmk")
+line_text = "Not only that, these shadows resonate at the highest levels. There are celestials in this very area."
+
+[sub_resource type="Resource" id="Resource_okrko"]
+script = ExtResource("1_vymmk")
+line_text = "I'm starting to think this is not the work of a homunculus..."
+
+[sub_resource type="Resource" id="Resource_eep8b"]
+script = ExtResource("2_ueodc")
+block_lines = Array[ExtResource("1_vymmk")]([SubResource("Resource_on0or"), SubResource("Resource_2nfc5"), SubResource("Resource_loqw6"), SubResource("Resource_okrko")])
+
+[resource]
+script = ExtResource("3_yo3nk")
+contents = Array[ExtResource("2_ueodc")]([SubResource("Resource_eep8b")])
+content_keys = Array[String](["main"])

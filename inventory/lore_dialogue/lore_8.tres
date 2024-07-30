@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=8 format=3 uid="uid://ct3l4ovc5wkvx"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_8ms8g"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_b6ifo"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_4ndk0"]
+
+[sub_resource type="Resource" id="Resource_qwao7"]
+script = ExtResource("1_8ms8g")
+line_text = "The key to successful alchemy is not only the reagents, but also the preparation!"
+
+[sub_resource type="Resource" id="Resource_btkg2"]
+script = ExtResource("1_8ms8g")
+line_text = "When imbuing your homunculus, take care to review the abilities that will provide."
+
+[sub_resource type="Resource" id="Resource_05ujd"]
+script = ExtResource("1_8ms8g")
+line_text = "Remember, alchemy is about resonance, not power."
+
+[sub_resource type="Resource" id="Resource_5tt8s"]
+script = ExtResource("2_b6ifo")
+block_lines = Array[ExtResource("1_8ms8g")]([SubResource("Resource_qwao7"), SubResource("Resource_btkg2"), SubResource("Resource_05ujd")])
+
+[resource]
+script = ExtResource("3_4ndk0")
+contents = Array[ExtResource("2_b6ifo")]([SubResource("Resource_5tt8s")])
+content_keys = Array[String](["main"])
