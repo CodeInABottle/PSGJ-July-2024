@@ -232,13 +232,16 @@ script = ExtResource("4_135u6")
 stream = ExtResource("5_gaevf")
 volume_db = -8.59752
 autoplay = true
+bus = &"Music"
 
 [node name="MusicBattle" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("6_rvj08")
 volume_db = -1.22199
 autoplay = true
+bus = &"Music"
 
 [node name="SFX" type="AudioStreamPlayer" parent="Audio"]
+bus = &"Sound"
 
 [node name="Crossfade" type="AnimationPlayer" parent="Audio"]
 libraries = {

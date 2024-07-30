@@ -53,7 +53,6 @@ var _capture_value: int:
 		if is_captured():
 			captured.emit()
 
-
 var short_term_memory: Array[Dictionary] = []
 
 func _ready() -> void:
@@ -144,6 +143,10 @@ func take_damage(damage_data: Dictionary) -> void:
 			if _residues[type].size() >= MAX_RESIDUE_STACKS: continue
 
 			_residues[type].push_back(MAX_RESIDUE_TURNS)
+
+	if is_captured():
+		captured.emit()
+		return
 
 	# Update status residues
 	_update_residues()
