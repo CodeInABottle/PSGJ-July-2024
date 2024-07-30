@@ -13,9 +13,9 @@ func _ready() -> void:
 	_update_volume_sliders()
 
 func _update_volume_sliders() -> void:
-	master_slider.value = db_to_linear(remap(AudioServer.get_bus_volume_db(0), -40.0, 0.0, 0.0, 100.0))
-	sfx_slider.value = db_to_linear(remap(AudioServer.get_bus_volume_db(1), -40.0, 0.0, 0.0, 100.0))
-	music_slider.value = db_to_linear(remap(AudioServer.get_bus_volume_db(2), -40.0, 0.0, 0.0, 100.0))
+	master_slider.value = remap(AudioServer.get_bus_volume_db(0), -40.0, 0.0, 0.0, 100.0)
+	sfx_slider.value = remap(AudioServer.get_bus_volume_db(1), -40.0, 0.0, 0.0, 100.0)
+	music_slider.value = remap(AudioServer.get_bus_volume_db(2), -40.0, 0.0, 0.0, 100.0)
 	master_precentage.text = _get_volume_str(master_slider.value)
 	sfx_precentage.text = _get_volume_str(sfx_slider.value)
 	music_precentage.text = _get_volume_str(music_slider.value)

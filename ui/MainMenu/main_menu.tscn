@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://bn4oi0fntaepu"]
+[gd_scene load_steps=20 format=3 uid="uid://bn4oi0fntaepu"]
 
 [ext_resource type="Script" path="res://ui/MainMenu/main_menu_controller.gd" id="1_bkll6"]
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="1_jnntl"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://dcwu10csipoqc" path="res://assets/sprites/general/TitleScreen/title_screen_06.png" id="4_vs8bo"]
 [ext_resource type="Texture2D" uid="uid://f0ru0ogqwnyy" path="res://assets/sprites/general/TitleScreen/title_screen_04.png" id="5_gtdy7"]
 [ext_resource type="Texture2D" uid="uid://6xtsfoxcykhn" path="res://assets/sprites/general/TitleScreen/title_screen_05.png" id="6_pu805"]
+[ext_resource type="Texture2D" uid="uid://f7r7w8ddw8ee" path="res://assets/sprites/general/cog_0001.png" id="7_4pir3"]
 [ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="7_c0dkd"]
 [ext_resource type="LabelSettings" uid="uid://b7wbvyv6hscv8" path="res://ui/MainMenu/CreditsSectionHeading.tres" id="8_20hhm"]
 [ext_resource type="LabelSettings" uid="uid://bma7jbl4pk13n" path="res://ui/MainMenu/CreditsNormal.tres" id="9_3tvrg"]
@@ -245,7 +246,7 @@ tracks/13/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
 "update": 0,
-"values": [Vector2(-78, 128)]
+"values": [Vector2(-84, 128)]
 }
 tracks/14/type = "value"
 tracks/14/imported = false
@@ -294,6 +295,18 @@ tracks/17/keys = {
 "transitions": PackedFloat32Array(1),
 "update": 1,
 "values": [false]
+}
+tracks/18/type = "value"
+tracks/18/imported = false
+tracks/18/enabled = true
+tracks/18/path = NodePath("Control/MusicClipping/MusicSettings:size")
+tracks/18/interp = 1
+tracks/18/loop_wrap = true
+tracks/18/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(640, 360)]
 }
 
 [sub_resource type="Animation" id="Animation_rpsea"]
@@ -358,7 +371,7 @@ tracks/4/keys = {
 "times": PackedFloat32Array(0.05, 0.1, 0.15, 0.25),
 "transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [Vector2(-78, 128), Vector2(-56, 128), Vector2(-78, 128), Vector2(-153, 128)]
+"values": [Vector2(-84, 128), Vector2(-56, 128), Vector2(-84, 128), Vector2(-166, 128)]
 }
 
 [sub_resource type="Animation" id="Animation_qd3nr"]
@@ -477,6 +490,18 @@ tracks/3/keys = {
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
 "values": [false, true]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Control/MusicClipping/MusicSettings:size")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.25),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(640, 360), Vector2(640, 360)]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_q7k5c"]
@@ -613,10 +638,11 @@ text = "Credits"
 
 [node name="Settings" type="TextureButton" parent="MenuButtons"]
 layout_mode = 0
-offset_left = -78.0
+offset_left = -84.0
 offset_top = 128.0
-offset_right = -32.0
-offset_bottom = 176.0
+offset_right = -20.0
+offset_bottom = 192.0
+texture_normal = ExtResource("7_4pir3")
 stretch_mode = 5
 
 [node name="SaveStringContainer" type="Control" parent="."]
@@ -658,8 +684,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 366.0
-offset_right = 3200.0
-offset_bottom = 2166.0
+offset_right = 5120.0
+offset_bottom = 3246.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -779,13 +805,14 @@ anchor_bottom = 1.0
 offset_bottom = 360.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="MusicSettings" parent="Control/MusicClipping" instance=ExtResource("11_xfg0b")]
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
 offset_left = 320.0
-offset_right = 320.0
+offset_right = 960.0
 offset_bottom = 360.0
 
 [node name="ControlShield" type="Control" parent="."]

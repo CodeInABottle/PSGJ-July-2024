@@ -53,6 +53,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme = ExtResource("1_8rlmn")
 script = ExtResource("2_xo8gf")
 metadata/_edit_lock_ = true
@@ -65,6 +66,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("1_qvlgp")
 metadata/_edit_lock_ = true
 
@@ -75,6 +77,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 75
 theme_override_constants/margin_top = 50
 theme_override_constants/margin_right = 75
@@ -82,10 +85,12 @@ theme_override_constants/margin_bottom = 50
 
 [node name="PanelContainer" type="PanelContainer" parent="MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_fhvan")
 
 [node name="MarginContainer" type="MarginContainer" parent="MarginContainer/PanelContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/margin_left = 30
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 30
@@ -93,6 +98,7 @@ theme_override_constants/margin_bottom = 20
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -102,21 +108,26 @@ horizontal_alignment = 1
 
 [node name="VSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxLine_1umaq")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
+mouse_filter = 2
 
 [node name="VBoxContainer3" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_n2enn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 25
 
 [node name="Label" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3/VBoxContainer"]
@@ -142,15 +153,18 @@ vertical_alignment = 2
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer3"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_n2enn")
 
 [node name="VSeparator2" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pm2qq")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+mouse_filter = 2
 theme_override_constants/separation = 14
 
 [node name="MasterSlider" type="HSlider" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer2"]
@@ -169,17 +183,21 @@ layout_mode = 2
 
 [node name="VSeparator3" type="VSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_pm2qq")
 
 [node name="VBoxContainer4" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer"]
 layout_mode = 2
+mouse_filter = 2
 
 [node name="HSeparator" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_n2enn")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_constants/separation = 25
 
 [node name="MasterPrecentage" type="Label" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4/VBoxContainer"]
@@ -208,6 +226,7 @@ vertical_alignment = 2
 
 [node name="HSeparator2" type="HSeparator" parent="MarginContainer/PanelContainer/MarginContainer/VBoxContainer/HBoxContainer/VBoxContainer4"]
 layout_mode = 2
+mouse_filter = 2
 theme_override_styles/separator = SubResource("StyleBoxEmpty_n2enn")
 
 [node name="Close" type="Button" parent="."]

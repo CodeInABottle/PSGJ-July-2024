@@ -11,6 +11,7 @@ extends Control
 @onready var save_string: LineEdit = %SaveString
 @onready var items_panel: PanelContainer = %ItemsPanel
 @onready var buttons: Control = %Buttons
+@onready var music_settings: Control = %MusicSettings
 
 var _is_opened: bool = false
 var can_close: bool = false
@@ -20,6 +21,7 @@ func _ready() -> void:
 	item_list.item_selected.connect(_on_item_selected)
 	background.visibility_changed.connect(_open)
 	hide_all()
+	music_settings.hide()
 
 func hide_all() -> void:
 	item_list.deselect_all()
@@ -105,3 +107,9 @@ func _on_clipboard_button_pressed() -> void:
 
 func _on_close_inventory_pressed() -> void:
 	_on_inventory_pressed()
+
+func _on_settings_pressed() -> void:
+	music_settings.show()
+
+func _on_music_settings_closed() -> void:
+	music_settings.hide()
