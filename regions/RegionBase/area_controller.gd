@@ -43,7 +43,8 @@ func _on_setup_timeout() -> void:
 
 func on_fade_in_complete() -> void:
 	MenuManager.fader_controller.fade_in_complete.disconnect(on_fade_in_complete)
-	intro_layer.trigger()
+	if intro_layer != null:
+		intro_layer.trigger()
 
 func refresh_pickups() -> void:
 	for index: int in LevelManager.area_pickup_status[LevelManager.region_name]:

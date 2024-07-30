@@ -90,6 +90,16 @@ connections = Array[Dictionary]([{
 "from_port": 0,
 "to_node": &"Sandwich_12",
 "to_port": 0
+}, {
+"from_node": &"Sandwich_0",
+"from_port": 0,
+"to_node": &"Sandwich_4",
+"to_port": 0
+}, {
+"from_node": &"Sandwich_4",
+"from_port": 0,
+"to_node": &"Sandwich_7",
+"to_port": 0
 }])
 node_types = {
 "Sandwich_0": "Root",
@@ -108,8 +118,10 @@ node_types = {
 "Sandwich_21": "Task",
 "Sandwich_23": "Task",
 "Sandwich_3": "Always True Method",
+"Sandwich_4": "Method",
 "Sandwich_5": "Method",
-"Sandwich_6": "Method"
+"Sandwich_6": "Method",
+"Sandwich_7": "Task"
 }
 node_positions = {
 "Sandwich_0": Vector2(60, 20),
@@ -128,8 +140,10 @@ node_positions = {
 "Sandwich_21": Vector2(1320, -400),
 "Sandwich_23": Vector2(2200, -320),
 "Sandwich_3": Vector2(860, 80),
+"Sandwich_4": Vector2(300, 280),
 "Sandwich_5": Vector2(300, 120),
-"Sandwich_6": Vector2(860, 200)
+"Sandwich_6": Vector2(860, 200),
+"Sandwich_7": Vector2(580, 340)
 }
 node_data = {
 "Sandwich_0": {},
@@ -214,6 +228,19 @@ node_data = {
 "nickname": "",
 "priority": -9223372036854775808
 },
+"Sandwich_4": {
+"condition_data": {
+"is_being_pet": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"nickname": "being pet?",
+"priority": 0
+},
 "Sandwich_5": {
 "condition_data": {
 "can_see_player": {
@@ -239,7 +266,7 @@ node_data = {
 }
 },
 "nickname": "can see player",
-"priority": 0
+"priority": 1
 },
 "Sandwich_6": {
 "condition_data": {
@@ -253,5 +280,8 @@ node_data = {
 },
 "nickname": "close enough to player",
 "priority": 0
+},
+"Sandwich_7": {
+"task": "GetPet"
 }
 }
