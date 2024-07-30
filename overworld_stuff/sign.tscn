@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://overworld_stuff/interactable_controller.gd" id="6_kht7g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ef2k2"]
-radius = 16.0
+radius = 8.0
 
 [node name="Sign" type="StaticBody2D" node_paths=PackedStringArray("interactable")]
 collision_layer = 2
@@ -14,6 +14,7 @@ script = ExtResource("1_o35ik")
 interactable = NodePath("Area2D")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_ef2k2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

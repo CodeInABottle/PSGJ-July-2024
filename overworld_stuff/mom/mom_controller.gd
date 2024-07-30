@@ -1,13 +1,11 @@
-class_name Sign
-extends InteractableHost
+class_name Mom
+extends Sign
 
-@export var dialogue: Dialogue
-
-@onready var shiny: Shiny = %Shiny
+@onready var mom_sprite: Sprite2D = %Sprite2D
 
 func on_interaction_started(_interactable: Interactable) -> void:
 	shiny.stop_shiny()
-	DialogueManager.play_dialogue(dialogue, "main")
+	DialogueManager.play_dialogue(dialogue, "main", "Mom", mom_sprite.texture)
 	DialogueManager.dialogue_ended.connect(end_interaction)
 
 func on_interaction_advanced(_interactable: Interactable) -> void:
@@ -23,3 +21,9 @@ func on_interaction_quick_closed() -> void:
 func _on_interaction_ended() -> void:
 	shiny.show_shiny()
 	DialogueManager.dialogue_ended.disconnect(end_interaction)
+	MenuManager.fader_controller.fade_out_complete.connect(on_fade_out_complete)
+	MenuManager.fader_controller.fade_out()
+
+func on_fade_out_complete() -> void:
+	MenuManager.fader_controller.fade_out_complete.disconnect(on_fade_out_complete)
+	LevelManager.load_world("main_menu")
