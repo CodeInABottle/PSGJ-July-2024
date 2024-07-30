@@ -39,7 +39,6 @@ const PICK_POINT_LIMIT: int = 10
 func _ready() -> void:
 	detection_area.body_entered.connect(on_body_entered_detect_area)
 	detection_area.body_exited.connect(on_body_exited_detect_area)
-	detection_area.get_child(0).shape.radius = notice_radius
 	LevelManager.world_event_occurred.connect(on_world_event)
 	if SaveManager.load_pending:
 		PlayerStats.save_loaded.connect(init_npc)
@@ -48,6 +47,10 @@ func _ready() -> void:
 	
 
 func init_npc() -> void:
+	var collision_shape: CollisionShape2D = detection_area.get_child(0)
+	var shape: CircleShape2D = CircleShape2D.new()
+	shape.set_radius(notice_radius)
+	collision_shape.set_shape(shape)
 	if has_been_captured():
 		saturate_colors()
 	else:
