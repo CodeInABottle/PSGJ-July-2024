@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://1g3ear1sa0tj"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=6 format=3 uid="uid://1g3ear1sa0tj"]
 
 [ext_resource type="Resource" uid="uid://bj8515yh02mdi" path="res://battle_resources/abilities/Fly.tres" id="1_cy4jg"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_t6edk"]
 [ext_resource type="PackedScene" uid="uid://0vtea6tgp3xb" path="res://battle_resources/CombatAnimations/chicken_sprite_handler.tscn" id="1_yu3pr"]
 [ext_resource type="Resource" uid="uid://6gor4akwxsoo" path="res://battle_resources/abilities/PhoenixFly.tres" id="2_31unh"]
+[ext_resource type="Texture2D" uid="uid://doa6goxusvj5" path="res://assets/sprites/mobs/overworld_chicken.png" id="4_ka32h"]
 
 [resource]
 script = ExtResource("1_t6edk")
@@ -13,6 +14,9 @@ max_health = 200
 resonate = 2
 domain = &"Dumb"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_cy4jg"), ExtResource("2_31unh")])
+icon = ExtResource("4_ka32h")
+frame_size = Vector2i(9, 1)
+frame_index = 0
 combat_animation = ExtResource("1_yu3pr")
 special_frame_behavior = 1
 special_frame_idx = 2

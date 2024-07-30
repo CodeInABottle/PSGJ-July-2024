@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://b4prswpggurdw"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=6 format=3 uid="uid://b4prswpggurdw"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_1q26j"]
 [ext_resource type="PackedScene" uid="uid://b8igowxe8opd5" path="res://battle_resources/CombatAnimations/worm_sprite_handler.tscn" id="1_n2jek"]
 [ext_resource type="Resource" uid="uid://yjkw6ipw3nek" path="res://battle_resources/abilities/Whip.tres" id="1_ttj33"]
 [ext_resource type="Resource" uid="uid://2er0j7lqn6li" path="res://battle_resources/abilities/Dig.tres" id="2_i34pp"]
+[ext_resource type="Texture2D" uid="uid://daupmk7au0ws8" path="res://assets/sprites/mobs/overworld_worm.png" id="4_lasij"]
 
 [resource]
 script = ExtResource("1_1q26j")
@@ -13,6 +14,9 @@ max_health = 150
 resonate = 8
 domain = &"Dumb"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_ttj33"), ExtResource("2_i34pp")])
+icon = ExtResource("4_lasij")
+frame_size = Vector2i(2, 1)
+frame_index = 0
 combat_animation = ExtResource("1_n2jek")
 special_frame_behavior = 1
 special_frame_idx = 4

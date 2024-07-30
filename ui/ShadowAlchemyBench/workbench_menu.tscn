@@ -200,6 +200,9 @@ collision_mask = 0
 [node name="Marker2D" type="Marker2D" parent="ShadowSlots/ShadowSlot1"]
 position = Vector2(31, -21)
 
+[node name="Sprite2D" type="Sprite2D" parent="ShadowSlots/ShadowSlot1"]
+position = Vector2(31, -21)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShadowSlots/ShadowSlot1"]
 polygon = PackedVector2Array(53, -30, 58, -17, 56, -1, 49, 5, 31, 7, 9, 2, 4, -11, 5, -23, 13, -41, 36, -55, 54, -54)
 
@@ -212,6 +215,9 @@ collision_mask = 0
 [node name="Marker2D2" type="Marker2D" parent="ShadowSlots/ShadowSlot2"]
 position = Vector2(28, -8)
 
+[node name="Sprite2D" type="Sprite2D" parent="ShadowSlots/ShadowSlot2"]
+position = Vector2(28, -8)
+
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShadowSlots/ShadowSlot2"]
 polygon = PackedVector2Array(17, -35, 27, -40, 37, -35, 46, -27, 49, -19, 49, -10, 33, 22, 22, 22, 6, -10, 6, -20, 11, -29)
 
@@ -222,6 +228,9 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="Marker2D3" type="Marker2D" parent="ShadowSlots/ShadowSlot3"]
+position = Vector2(-94, -20)
+
+[node name="Sprite2D" type="Sprite2D" parent="ShadowSlots/ShadowSlot3"]
 position = Vector2(-94, -20)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot3"]
@@ -237,6 +246,9 @@ collision_mask = 0
 [node name="Marker2D4" type="Marker2D" parent="ShadowSlots/ShadowSlot4"]
 position = Vector2(31, -18)
 
+[node name="Sprite2D" type="Sprite2D" parent="ShadowSlots/ShadowSlot4"]
+position = Vector2(31, -18)
+
 [node name="CollisionShape2D" type="CollisionShape2D" parent="ShadowSlots/ShadowSlot4"]
 position = Vector2(31, -18)
 shape = SubResource("CircleShape2D_r618o")
@@ -248,6 +260,9 @@ collision_layer = 4
 collision_mask = 0
 
 [node name="Marker2D5" type="Marker2D" parent="ShadowSlots/ShadowSlot5"]
+position = Vector2(25, -17)
+
+[node name="Sprite2D" type="Sprite2D" parent="ShadowSlots/ShadowSlot5"]
 position = Vector2(25, -17)
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="ShadowSlots/ShadowSlot5"]

@@ -15,6 +15,8 @@ extends Resource
 
 @export_category("Misc")
 @export var icon: CompressedTexture2D
+@export var frame_size: Vector2i
+@export var frame_index: int
 @export var combat_animation: PackedScene
 @export var special_frame_behavior: EnemyDatabase.SpecialFrameState = EnemyDatabase.SpecialFrameState.NONE
 @export var special_frame_idx: int = -1

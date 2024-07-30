@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=7 format=3 uid="uid://cfbplmonv2tek"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=8 format=3 uid="uid://cfbplmonv2tek"]
 
 [ext_resource type="Resource" uid="uid://wlw4on3mwfru" path="res://battle_resources/abilities/ChaosClaw.tres" id="1_6lyg5"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_cxxv0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Resource" uid="uid://df288wrornvv5" path="res://battle_resources/abilities/Empower.tres" id="2_uwelg"]
 [ext_resource type="Resource" uid="uid://cj1iu4g2usmck" path="res://battle_resources/abilities/Sunset.tres" id="3_bbne0"]
 [ext_resource type="Resource" uid="uid://1imp4xr2oooy" path="res://battle_resources/abilities/PhilospherStone.tres" id="4_aq52l"]
+[ext_resource type="Texture2D" uid="uid://bxrpbimim2ipp" path="res://assets/sprites/mobs/afflicted/overworld_shadow2_gray.png" id="6_pc1rd"]
 
 [resource]
 script = ExtResource("1_cxxv0")
@@ -15,6 +16,9 @@ max_health = 1000
 resonate = 15
 domain = &"Clever"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_6lyg5"), ExtResource("2_uwelg"), ExtResource("3_bbne0"), ExtResource("4_aq52l")])
+icon = ExtResource("6_pc1rd")
+frame_size = Vector2i(6, 5)
+frame_index = 3
 combat_animation = ExtResource("1_yukvy")
 special_frame_behavior = 0
 special_frame_idx = -1

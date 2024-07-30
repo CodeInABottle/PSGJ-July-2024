@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://cppb84hivhuqs"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=6 format=3 uid="uid://cppb84hivhuqs"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_j0imo"]
 [ext_resource type="Resource" uid="uid://dd1eqwsw6fqw7" path="res://battle_resources/abilities/Whirlwind.tres" id="1_pd6yr"]
 [ext_resource type="Resource" uid="uid://bqkku7qqux053" path="res://battle_resources/abilities/Delivery.tres" id="2_y2lll"]
 [ext_resource type="PackedScene" uid="uid://bl1eb82cqjfie" path="res://battle_resources/CombatAnimations/mailbox_sprite_handler.tscn" id="3_y3nqp"]
+[ext_resource type="Texture2D" uid="uid://p6ho2500x4wi" path="res://assets/sprites/mobs/overworld_mailbox.png" id="4_i1evi"]
 
 [resource]
 script = ExtResource("1_j0imo")
@@ -13,6 +14,10 @@ max_health = 320
 resonate = 2
 domain = &"Dumb"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_pd6yr"), ExtResource("2_y2lll")])
+icon = ExtResource("4_i1evi")
+frame_size = Vector2i(6, 4)
+frame_index = 1
 combat_animation = ExtResource("3_y3nqp")
+special_frame_behavior = 0
 special_frame_idx = -1
 attack_position = Vector2(445, 40)
