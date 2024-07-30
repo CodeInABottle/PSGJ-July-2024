@@ -16,10 +16,8 @@ var battle_state: Dictionary = {
 	"won_battle": false
 }
 
-# TEMP -- Remove on Integration
-func _ready() -> void:
-	LevelManager.menu_loaded.emit(self)
-	battle_finished.connect(_on_battle_finished)
+# Used for testing combat, delete when done testing everything
+func _unit_testing() -> void:
 	tutorial_manager._set_tutorial_state("first_combat_wisdom_complete", true)
 	tutorial_manager._set_tutorial_state("first_residue", true)
 	#setup_battle("Earth Worm")
@@ -30,8 +28,16 @@ func _ready() -> void:
 	#setup_battle("Niter Tiger")
 	#setup_battle("Fighting Fish")
 	#setup_battle("Celestial Canine")
-	#setup_battle("Chicken")
-	setup_battle("Shadow")
+	setup_battle("Chicken")
+	#setup_battle("Shadow")
+	pass
+
+func _ready() -> void:
+	LevelManager.menu_loaded.emit(self)
+	battle_finished.connect(_on_battle_finished)
+	# TEMP -- Remove on Integration
+	if LevelManager.master_node: return
+	_unit_testing()
 
 func setup_battle(enemy_name_encounter: String) -> void:
 	table.ability_execute_requested.connect(entity_tracker.player_entity.attack)
