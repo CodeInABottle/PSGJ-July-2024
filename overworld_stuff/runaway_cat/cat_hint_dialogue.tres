@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://d3w72lta1ao2w"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_cdqjh"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_8rjrs"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_h5rss"]
+
+[sub_resource type="Resource" id="Resource_pws67"]
+script = ExtResource("1_cdqjh")
+line_text = "The cat must have gone in the cellar!"
+
+[sub_resource type="Resource" id="Resource_g6ntq"]
+script = ExtResource("1_cdqjh")
+line_text = "Why did we leave the door open..."
+
+[sub_resource type="Resource" id="Resource_t8pqx"]
+script = ExtResource("2_8rjrs")
+block_lines = Array[ExtResource("1_cdqjh")]([SubResource("Resource_pws67"), SubResource("Resource_g6ntq")])
+
+[resource]
+script = ExtResource("3_h5rss")
+contents = Array[ExtResource("2_8rjrs")]([SubResource("Resource_t8pqx")])
+content_keys = Array[String](["main"])
