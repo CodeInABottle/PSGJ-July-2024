@@ -49,7 +49,7 @@ var _current_unlocked_shadows: Dictionary = {
 	#],
 	#"Earth Worm": [
 		#"Whip", "Dig", "Phoenix Fly", "Empower", "Sunset", "Philospher Stone"
-	#]
+	#],
 }
 # TEMP: Waiting for inventory system; Hard coding "insertion" for now
 var _equipped_shadows: Array[String] = [

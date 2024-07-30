@@ -12,8 +12,9 @@ func _ready() -> void:
 		run_away()
 
 func _process(_delta: float) -> void:
-	if path_follow.progress_ratio >= FLIP_THRESHOLD:
-		cat_sprite.flip_h = false
+	if path_follow != null:
+		if path_follow.progress_ratio >= FLIP_THRESHOLD:
+			cat_sprite.flip_h = false
 
 func run_away() -> void:
 	show()

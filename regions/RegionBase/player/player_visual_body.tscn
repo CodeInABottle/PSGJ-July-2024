@@ -1,51 +1,8 @@
-[gd_scene load_steps=14 format=3 uid="uid://kh822nqv02xs"]
+[gd_scene load_steps=8 format=3 uid="uid://kh822nqv02xs"]
 
-[ext_resource type="Texture2D" uid="uid://8h714of42bsy" path="res://assets/sprites/player/player.png" id="1_k4knx"]
 [ext_resource type="Script" path="res://regions/RegionBase/player/player_visual_controller.gd" id="1_mr7a6"]
+[ext_resource type="SpriteFrames" uid="uid://c46juuxwuxtx7" path="res://regions/RegionBase/player/player_sprite_frames.tres" id="2_o8hef"]
 [ext_resource type="Texture2D" uid="uid://b6ukbsrs6vcdq" path="res://assets/sprites/player/UI/MovementArrow.png" id="4_itfab"]
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tlcrj"]
-atlas = ExtResource("1_k4knx")
-region = Rect2(96, 0, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_peat6"]
-atlas = ExtResource("1_k4knx")
-region = Rect2(96, 64, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_aju6l"]
-atlas = ExtResource("1_k4knx")
-region = Rect2(96, 128, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_l2tg1"]
-atlas = ExtResource("1_k4knx")
-region = Rect2(96, 192, 32, 64)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_16xt1"]
-atlas = ExtResource("1_k4knx")
-region = Rect2(96, 256, 32, 64)
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tsjyv"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_tlcrj")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_peat6")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_aju6l")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_l2tg1")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_16xt1")
-}],
-"loop": true,
-"name": &"walk",
-"speed": 6.0
-}]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j7ikv"]
 size = Vector2(30, 37)
@@ -80,10 +37,8 @@ script = ExtResource("1_mr7a6")
 [node name="PlayerSprite" type="AnimatedSprite2D" parent="."]
 unique_name_in_owner = true
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_tsjyv")
+sprite_frames = ExtResource("2_o8hef")
 animation = &"walk"
-frame = 4
-frame_progress = 0.200334
 offset = Vector2(0, -20)
 
 [node name="PlayerPickupArea" type="Area2D" parent="."]

@@ -11,12 +11,13 @@ task_map = {
 "Sandwich_15": "IsCloseEnoughtToPoint",
 "Sandwich_19": "WaitAtPoint",
 "Sandwich_21": "PickWanderPoint",
-"Sandwich_23": "WalkToPoint"
+"Sandwich_23": "WalkToPoint",
+"Sandwich_7": "GetPet"
 }
 domain_map = {}
 quits = Array[StringName]([])
 splits = {
-"Sandwich_0": Array[StringName]([&"Sandwich_5", &"Sandwich_1"]),
+"Sandwich_0": Array[StringName]([&"Sandwich_5", &"Sandwich_4", &"Sandwich_1"]),
 "Sandwich_12": Array[StringName]([&"Sandwich_14", &"Sandwich_13"]),
 "Sandwich_16": Array[StringName]([&"Sandwich_18", &"Sandwich_17"]),
 "Sandwich_2": Array[StringName]([&"Sandwich_6", &"Sandwich_3"])
@@ -69,6 +70,18 @@ methods = {
 "AlwaysTrue": true
 },
 "task_chain": Array[StringName]([&"Sandwich_11"])
+},
+"Sandwich_4": {
+"method_data": {
+"is_being_pet": {
+"CompareID": 2,
+"RangeID": -1,
+"RangeInclusivity": [false, false],
+"SingleID": 0,
+"Value": true
+}
+},
+"task_chain": Array[StringName]([&"Sandwich_7"])
 },
 "Sandwich_5": {
 "method_data": {
