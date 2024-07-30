@@ -81,6 +81,7 @@ animations = [{
 }]
 
 [node name="Checkpoint" type="StaticBody2D" node_paths=PackedStringArray("menu_layer", "interactable") groups=["navigation"]]
+y_sort_enabled = true
 collision_layer = 2
 script = ExtResource("1_0n6m0")
 menu_layer = NodePath("CheckpointMenuLayer")
@@ -98,6 +99,7 @@ shape = SubResource("RectangleShape2D_e5ag6")
 
 [node name="ObeliskSprite" type="AnimatedSprite2D" parent="Interactable"]
 unique_name_in_owner = true
+texture_filter = 1
 sprite_frames = SubResource("SpriteFrames_avt6b")
 frame = 1
 frame_progress = 0.405235

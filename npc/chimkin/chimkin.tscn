@@ -16,3 +16,4 @@ afflicted_sprite_frames = ExtResource("3_8eh8h")
 position = Vector2(-6, 0)
 sprite_frames = ExtResource("2_m56t8")
 animation = &"walk"
+offset = Vector2(5.01, 0)
