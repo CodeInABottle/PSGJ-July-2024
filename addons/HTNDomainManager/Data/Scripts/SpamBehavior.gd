@@ -10,7 +10,6 @@ func run_operation(HTN_finished_op_callback: Callable, agent: Node, world_state:
 		await enemy.activate_ability(ability_idx)
 		await enemy.ability_finished
 		ability_idx = enemy.get_cheapest_ability()
-		print(enemy._alchemy_points)
 	HTN_finished_op_callback.call()
 
 func apply_effects(world_state: Dictionary) -> void:

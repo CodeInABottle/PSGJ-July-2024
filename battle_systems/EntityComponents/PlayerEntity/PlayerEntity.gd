@@ -12,12 +12,11 @@ func take_damage(damage_data: Dictionary) -> void:
 
 	animation_player.play("Hurt")
 	entity_tracker.damage_taken.emit(true, damage_data)
-	print("Player taken damage: ", damage_data["damage"])
-	PlayerStats.health -= damage_data["damage"]
+	_spawn_damage_number(damage_data["damage"], true)
 
 func heal(value: int) -> void:
-	print("Player healed: ", value)
 	PlayerStats.health += value
+	_spawn_damage_number(value, false)
 
 func regen_ap() -> void:
 	PlayerStats.regen_alchemy_points(ap_penality)
@@ -29,6 +28,8 @@ func attack(ability_name: String) -> void:
 	# Visual Attack Logic
 	var ability_data: Dictionary = EnemyDatabase.get_ability_attack(ability_name)
 	var enemy_position: Vector2 = entity_tracker.enemy_entity.get_attack_position()
+
+	entity_tracker.attack_prompt.set_data("Blob", ability_name)
 
 	if ability_data["attack"] == null:
 		if _tween:
@@ -46,7 +47,6 @@ func attack(ability_name: String) -> void:
 			if _tween:
 				_tween.kill()
 			_tween = create_tween()
-			print("Enemy position: ", enemy_position)
 			_tween.tween_property(attack_node, "global_position", enemy_position, ability_data["movement_speed"])
 			_tween.tween_callback(
 				func() -> void:

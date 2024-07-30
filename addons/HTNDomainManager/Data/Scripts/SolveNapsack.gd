@@ -9,7 +9,6 @@ func run_operation(HTN_finished_op_callback: Callable, agent: Node, world_state:
 
 	# Check if any abilities can be used
 	if ability_chain.is_empty():
-		print("No other abilities can be used. Remaining AP: ", battle_agent._alchemy_points)
 		HTN_finished_op_callback.call()
 		return
 
