@@ -1,4 +1,4 @@
-[gd_scene load_steps=30 format=3 uid="uid://wlkqf1ypp0ik"]
+[gd_scene load_steps=33 format=3 uid="uid://wlkqf1ypp0ik"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_rhbow"]
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://overworld_stuff/transition_area.tscn" id="2_6uu8j"]
@@ -10,6 +10,8 @@
 [ext_resource type="PackedScene" uid="uid://bjvdu0glstg11" path="res://npc/dog/dog.tscn" id="8_ct1gg"]
 [ext_resource type="PackedScene" uid="uid://wh2jq7m0cm1x" path="res://npc/hawk/hawk.tscn" id="9_kk1qv"]
 [ext_resource type="PackedScene" uid="uid://cmaa2ks7kv277" path="res://npc/beetle/beetle.tscn" id="10_052td"]
+[ext_resource type="Script" path="res://overworld_stuff/runaway_cat/runaway_cat_controller_2.gd" id="11_g5dcr"]
+[ext_resource type="SpriteFrames" uid="uid://dptdm3kr70q8a" path="res://npc/cat/cat_sprite_frames.tres" id="12_ipf24"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dd83q"]
 size = Vector2(39, 406)
@@ -97,6 +99,12 @@ size = Vector2(88, 97)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fnwcv"]
 size = Vector2(184, 98)
+
+[sub_resource type="Curve2D" id="Curve2D_uqtna"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 338, 116, 46.8167, -56.1998, -46.8167, 56.1998, 275, 186, 45.8799, -62.4791, -45.8799, 62.4791, 232, 386, 34.3256, 3.30737, -34.3256, -3.30737, -33, 269, 17.9081, -11.028, -17.9081, 11.028, -96, 277, -18.7288, -33.7119, 18.7288, 33.7119, -78, 475, -17.9797, -14.9831, 17.9797, 14.9831, 135, 632, 0, 0, 0, 0, 400, 724)
+}
+point_count = 8
 
 [node name="area_1_remembrance" instance=ExtResource("1_rhbow")]
 
@@ -266,3 +274,24 @@ limit_left = -1023
 limit_top = 1
 limit_right = 1215
 limit_bottom = 1279
+
+[node name="RunawaySequence" type="Path2D" parent="." index="15"]
+visible = false
+position = Vector2(816, 31)
+curve = SubResource("Curve2D_uqtna")
+script = ExtResource("11_g5dcr")
+
+[node name="PathFollow" type="PathFollow2D" parent="RunawaySequence" index="0"]
+unique_name_in_owner = true
+position = Vector2(338, 116)
+rotation = -3.1166
+rotates = false
+
+[node name="RunawayCat" type="AnimatedSprite2D" parent="RunawaySequence/PathFollow" index="0"]
+unique_name_in_owner = true
+z_index = 3
+position = Vector2(0, 17.66)
+rotation = 3.14159
+sprite_frames = ExtResource("12_ipf24")
+animation = &"walk"
+autoplay = "walk"

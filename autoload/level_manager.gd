@@ -105,6 +105,7 @@ var pending_battle: String = ""
 # area name: String : pickup indices: Array[int]
 var area_pickup_status: Dictionary = {}
 var unlocked_checkpoints: Array[String] = []
+var temp_statuses: Array[String] = []
 
 var _in_world: bool = false
 
