@@ -1,0 +1,141 @@
+[gd_scene load_steps=12 format=3 uid="uid://uiy4ieql284t"]
+
+[ext_resource type="Texture2D" uid="uid://75kx32k5jyjf" path="res://assets/sprites/general/Map/MapPin.png" id="1_577ry"]
+[ext_resource type="Script" path="res://ui/Map/MapPin/map_pin.gd" id="1_nky4q"]
+[ext_resource type="StyleBox" uid="uid://djticqr5bm1ud" path="res://ui/Themes/PagePanel.tres" id="3_dnx3f"]
+[ext_resource type="Texture2D" uid="uid://bm161sscjf0g0" path="res://assets/sprites/general/Map/MapPinOutline.png" id="3_ux6t2"]
+[ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="4_ko1xu"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_abum8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_sf1n8"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_lgdwe"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_nej77"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1p7kg"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_ljuoy"]
+font = ExtResource("4_ko1xu")
+font_color = Color(0, 0, 0, 1)
+
+[node name="MapPin" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+mouse_filter = 2
+script = ExtResource("1_nky4q")
+
+[node name="NormalTexture" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("1_577ry")
+expand_mode = 3
+stretch_mode = 4
+metadata/_edit_group_ = true
+
+[node name="Outline" type="TextureRect" parent="NormalTexture"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("3_ux6t2")
+expand_mode = 3
+stretch_mode = 5
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -2.0
+offset_top = -17.0
+offset_right = 17.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxEmpty_abum8")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_sf1n8")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_lgdwe")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_nej77")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_1p7kg")
+
+[node name="Labels" type="Control" parent="."]
+layout_mode = 2
+anchors_preset = 0
+mouse_filter = 2
+
+[node name="LabelContainerShadow" type="PanelContainer" parent="Labels"]
+unique_name_in_owner = true
+self_modulate = Color(0.270588, 0.156863, 0.235294, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -47.0
+offset_top = -69.0
+offset_right = 64.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_dnx3f")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Labels/LabelContainerShadow"]
+layout_mode = 2
+
+[node name="LabelFake" type="Label" parent="Labels/LabelContainerShadow/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Location"
+label_settings = SubResource("LabelSettings_ljuoy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="LabelContainer" type="PanelContainer" parent="Labels"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.0
+offset_top = -71.0
+offset_right = 66.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_dnx3f")
+metadata/_edit_group_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="Labels/LabelContainer"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="Labels/LabelContainer/MarginContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+text = "Location"
+label_settings = SubResource("LabelSettings_ljuoy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
+[connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]

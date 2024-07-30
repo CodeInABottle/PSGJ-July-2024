@@ -1,0 +1,54 @@
+[gd_scene load_steps=4 format=3 uid="uid://ifxjltqf61pd"]
+
+[ext_resource type="Script" path="res://ui/Map/map.gd" id="1_d608j"]
+[ext_resource type="Texture2D" uid="uid://dimelb3opapwh" path="res://assets/sprites/general/Map/Map.png" id="1_t0e3j"]
+[ext_resource type="PackedScene" uid="uid://uiy4ieql284t" path="res://ui/Map/MapPin/map_pin.tscn" id="2_r26xo"]
+
+[node name="Map" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_d608j")
+metadata/_edit_lock_ = true
+
+[node name="MapTexture" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_t0e3j")
+metadata/_edit_lock_ = true
+
+[node name="Pins" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="Newbert" parent="Pins" instance=ExtResource("2_r26xo")]
+offset_left = 386.0
+offset_top = 195.0
+offset_right = 386.0
+offset_bottom = 195.0
+location = "Newbert Town"
+
+[node name="CatBridge" parent="Pins" instance=ExtResource("2_r26xo")]
+offset_left = 346.0
+offset_top = 114.0
+offset_right = 346.0
+offset_bottom = 114.0
+location = "Cat Bridge"
+
+[node name="Remembrance" parent="Pins" instance=ExtResource("2_r26xo")]
+offset_left = 313.0
+offset_top = 172.0
+offset_right = 313.0
+offset_bottom = 172.0
+location = "Remembrance"
