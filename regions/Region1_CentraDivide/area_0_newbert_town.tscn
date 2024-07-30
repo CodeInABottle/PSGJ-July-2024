@@ -501,14 +501,14 @@ wander_y_bound = 50.0
 [node name="Fish" parent="Shadows" index="1" instance=ExtResource("16_p22ct")]
 position = Vector2(1432, 131)
 npc_speed = 120.0
-notice_radius = 150.0
+notice_radius = 200.0
 wander_x_bound = 50.0
 wander_y_bound = 50.0
 
 [node name="Fish2" parent="Shadows" index="2" instance=ExtResource("16_p22ct")]
 position = Vector2(1385, 218)
 npc_speed = 120.0
-notice_radius = 150.0
+notice_radius = 200.0
 wander_x_bound = 50.0
 wander_y_bound = 50.0
 
@@ -517,7 +517,6 @@ position = Vector2(319, 468)
 
 [node name="Mailbox2" parent="Shadows" index="4" instance=ExtResource("16_b268g")]
 position = Vector2(418, 543)
-notice_radius = 150.0
 
 [node name="Snail" parent="Shadows" index="5" instance=ExtResource("18_7giqy")]
 position = Vector2(779, 248)
@@ -530,6 +529,7 @@ position = Vector2(865, 283)
 
 [node name="Cat" parent="Shadows" index="8" instance=ExtResource("34_uhjnb")]
 position = Vector2(337, 104)
+notice_radius = 40.0
 wander_x_bound = 50.0
 wander_y_bound = 50.0
 

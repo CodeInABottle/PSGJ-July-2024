@@ -1,10 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://b644l6iqorxwf"]
+[gd_scene load_steps=9 format=3 uid="uid://b644l6iqorxwf"]
 
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="1_argdh"]
 [ext_resource type="Script" path="res://dialogue/dialogue_ui_controller.gd" id="1_lt663"]
 [ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="3_ku0d2"]
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="4_df6hx"]
-[ext_resource type="Texture2D" uid="uid://cdc6rlxnyvxdm" path="res://assets/sprites/general/overworld_note.png" id="4_jqb5n"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_ythgd"]
 texture = ExtResource("3_ku0d2")
@@ -95,8 +94,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
-texture = ExtResource("4_jqb5n")
-expand_mode = 5
+expand_mode = 2
 stretch_mode = 5
 
 [node name="SpeakerName" type="Label" parent="PanelContainer/MarginContainer/HBoxContainer/SpeakerInfoContainer"]

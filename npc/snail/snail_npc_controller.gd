@@ -1,4 +1,4 @@
-class_name FishNPC
+class_name SnailNPC
 extends BaseNPC
 
 func wait_at_point(_world_state: Dictionary) -> void:

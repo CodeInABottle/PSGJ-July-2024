@@ -6,6 +6,7 @@ extends TransitionArea
 
 var _is_unlocked: bool = false
 
+
 func _ready() -> void:
 	body_entered.connect(_on_player_entered)
 	LevelManager.world_event_occurred.connect(on_world_event)
