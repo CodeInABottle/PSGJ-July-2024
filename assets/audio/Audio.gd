@@ -18,21 +18,21 @@ func _ready():
 func _process(delta):
 	pass
 	
-func crossfadeToBattle():
+func crossfade_to_battle():
 	if isBattleMusic:
 		return
 	else:
 		isBattleMusic = true
 		crossfader.play("FadeToBattle")
 		
-func crossfadeToOverworld():
+func crossfade_to_overworld():
 	if isBattleMusic:
 		isBattleMusic = false
 		crossfader.play("FadeToOverworld")
 	else:
 		return
 
-func playSFX(sound : AudioStream):
+func play_sfx(sound : AudioStream):
 	SFX.steam = sound
 	SFX.play()
 	
