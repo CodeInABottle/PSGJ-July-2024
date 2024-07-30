@@ -45,4 +45,5 @@ func _on_sfx_slider_value_changed(value: float) -> void:
 	sfx_precentage.text = _get_volume_str(value)
 
 func _on_close_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	closed.emit()

@@ -18,6 +18,7 @@ func _ready() -> void:
 		button.pressed.connect(_on_button_pressed)
 
 func _on_button_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	get_parent().hide()
 	pressed.emit()
 	if tutorial_link:

@@ -25,16 +25,19 @@ func _on_fade_out_complete() -> void:
 	SaveManager.generate_scene_from_string(_save_string)
 
 func _on_play_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	_save_string = ""
 	_fader_controller.fade_out()
 
 func _on_load_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	animation_player.play("SlideMainButtonsDown")
 	await animation_player.animation_finished
 	animation_player.play("SlideSaveStringUp")
 	_on_save_string_edit_text_changed(save_string_edit.text)
 
 func _on_load_confirm_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	_save_string = save_string_edit.text
 	_fader_controller.fade_out()
 
@@ -45,6 +48,7 @@ func _on_save_string_edit_text_changed(new_text: String) -> void:
 		load_confirm.disabled = false
 
 func _on_back_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	animation_player.play_backwards("SlideSaveStringUp")
 	await animation_player.animation_finished
 	animation_player.play_backwards("SlideMainButtonsDown")
@@ -52,6 +56,7 @@ func _on_back_pressed() -> void:
 	control_shield.hide()
 
 func _on_credits_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	animation_player.play("SlideMainButtonsDown")
 	await animation_player.animation_finished
 	animation_player.play("Credits")
@@ -61,12 +66,14 @@ func _on_credits_pressed() -> void:
 	control_shield.hide()
 
 func _on_settings_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	control_shield.show()
 	animation_player.play("VolumeSettings")
 	await animation_player.animation_finished
 	control_shield.hide()
 
 func _on_music_settings_closed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	control_shield.show()
 	animation_player.play_backwards("VolumeSettings")
 	await animation_player.animation_finished

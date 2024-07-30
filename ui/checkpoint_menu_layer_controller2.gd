@@ -50,10 +50,12 @@ func on_menu_unloaded() -> void:
 	pending_load = ""
 
 func _on_close_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	checkpoint.end_interaction()
 	hide_all_parts()
 
 func _on_lore_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	if lore_panel.is_visible_in_tree():
 		hide_all_parts()
 	else:
@@ -62,6 +64,7 @@ func _on_lore_pressed() -> void:
 		lore_panel_shield.show()
 
 func _on_shadows_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	hide_all_parts()
 	hide()
 	pending_load = "workbench"
@@ -71,9 +74,11 @@ func _on_shadows_pressed() -> void:
 
 func _on_fast_travel_pressed() -> void:
 	if map.visible: return
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	map.show()
 
 func _on_close_lore_button_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	_on_lore_pressed()
 
 func _on_map_fast_travel_started(_checkpoint_tag: String) -> void:
