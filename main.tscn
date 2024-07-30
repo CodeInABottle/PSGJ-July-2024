@@ -230,13 +230,12 @@ script = ExtResource("4_135u6")
 
 [node name="MusicOverworld" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("5_gaevf")
-volume_db = -8.59752
 autoplay = true
 bus = &"Music"
 
 [node name="MusicBattle" type="AudioStreamPlayer" parent="Audio"]
 stream = ExtResource("6_rvj08")
-volume_db = -1.22199
+volume_db = -80.0
 autoplay = true
 bus = &"Music"
 

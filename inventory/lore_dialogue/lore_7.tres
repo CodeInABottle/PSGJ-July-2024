@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://cytijdooeue3d"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_ux6ia"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_lgtu5"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_t37hc"]
+
+[sub_resource type="Resource" id="Resource_kxror"]
+script = ExtResource("1_ux6ia")
+line_text = "Sulphur... Mercury... Salt..."
+
+[sub_resource type="Resource" id="Resource_6apo7"]
+script = ExtResource("1_ux6ia")
+line_text = "I'm not picky... I know what I need to do now.... I want them ALL"
+
+[sub_resource type="Resource" id="Resource_w5arw"]
+script = ExtResource("2_lgtu5")
+block_lines = Array[ExtResource("1_ux6ia")]([SubResource("Resource_kxror"), SubResource("Resource_6apo7")])
+
+[resource]
+script = ExtResource("3_t37hc")
+contents = Array[ExtResource("2_lgtu5")]([SubResource("Resource_w5arw")])
+content_keys = Array[String](["main"])

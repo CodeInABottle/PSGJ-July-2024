@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=8 format=3 uid="uid://cqctv1ttne3cp"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_28q0f"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_row7a"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_iq847"]
+
+[sub_resource type="Resource" id="Resource_51e5f"]
+script = ExtResource("1_28q0f")
+line_text = "It appears resonance scales beyond what I had imagined."
+
+[sub_resource type="Resource" id="Resource_ygnxl"]
+script = ExtResource("1_28q0f")
+line_text = "Could there really be beasts out there with three-reagent resonance?"
+
+[sub_resource type="Resource" id="Resource_k60bv"]
+script = ExtResource("1_28q0f")
+line_text = "I must report this back at camp."
+
+[sub_resource type="Resource" id="Resource_o0epk"]
+script = ExtResource("2_row7a")
+block_lines = Array[ExtResource("1_28q0f")]([SubResource("Resource_51e5f"), SubResource("Resource_ygnxl"), SubResource("Resource_k60bv")])
+
+[resource]
+script = ExtResource("3_iq847")
+contents = Array[ExtResource("2_row7a")]([SubResource("Resource_o0epk")])
+content_keys = Array[String](["main"])
