@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=8 format=3 uid="uid://dfw4ojbkociwk"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_tp4xw"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="1_wi1sw"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_sq6g1"]
+
+[sub_resource type="Resource" id="Resource_5l16m"]
+script = ExtResource("1_tp4xw")
+line_text = "ATTENTION!"
+
+[sub_resource type="Resource" id="Resource_38dwq"]
+script = ExtResource("1_tp4xw")
+line_text = "Logging in progress!"
+
+[sub_resource type="Resource" id="Resource_oyqbv"]
+script = ExtResource("1_tp4xw")
+line_text = "In case you couldn't already tell..."
+
+[sub_resource type="Resource" id="Resource_2qj13"]
+script = ExtResource("2_sq6g1")
+block_lines = Array[ExtResource("1_tp4xw")]([SubResource("Resource_5l16m"), SubResource("Resource_38dwq"), SubResource("Resource_oyqbv")])
+
+[resource]
+script = ExtResource("1_wi1sw")
+contents = Array[ExtResource("2_sq6g1")]([SubResource("Resource_2qj13")])
+content_keys = Array[String](["main"])

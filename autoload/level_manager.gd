@@ -327,6 +327,7 @@ func trigger_battle(enemy_name: String, area_index: int, start_translucent: bool
 	is_transitioning = true
 	last_battle_index = area_index
 	pending_battle = enemy_name
+	audio_anchor.crossfade_to_battle()
 	
 	if start_translucent:
 		MenuManager.fader_controller.translucent_to_black_complete.connect(on_translucent_to_black_complete)

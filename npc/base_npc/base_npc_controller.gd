@@ -32,6 +32,7 @@ const BATTLE_START_DISTANCE: float = 32.0
 const WANDER_STOP_DISTANCE: float = 10.0
 const LERP_SCALE: float = 25.0
 const MIN_X_WANDER: float = 50.0
+const PICK_POINT_LIMIT: int = 10
 
 func _ready() -> void:
 	detection_area.body_entered.connect(on_body_entered_detect_area)
@@ -87,6 +88,7 @@ func is_close_enough_to_point(world_state: Dictionary) -> void:
 func pick_point(world_state: Dictionary) -> void:
 	var rng: RandomNumberGenerator = RandomNumberGenerator.new()
 	var has_valid_point: bool = false
+	var pick_index: int = 0
 	while not has_valid_point:
 		var x_pos: float = rng.randf_range(_start_position.x-wander_x_bound, _start_position.x+wander_x_bound)
 		var y_pos: float = rng.randf_range(_start_position.y-wander_y_bound, _start_position.y+wander_y_bound)
@@ -96,6 +98,10 @@ func pick_point(world_state: Dictionary) -> void:
 			has_valid_point = true
 		world_state["wander_point"] = _wander_point
 		_has_wander_point = true
+		pick_index += 1
+		if pick_index > PICK_POINT_LIMIT:
+			_wander_point = _start_position
+			break
 
 func walk_to_point(world_state: Dictionary) -> void:
 	npc_sprite.play("walk", 1.0)
