@@ -18,6 +18,7 @@ func play_dialogue(dialogue: Dialogue, content_key: String, speaker_name: String
 			player_dialogue_ui.speaker_icon.get_parent().show()
 		else:
 			player_dialogue_ui.speaker_icon.get_parent().hide()
+			player_dialogue_ui.speaker_icon.texture = null
 		
 		dialogue_started.emit()
 		player_dialogue_ui.show_dialogue(dialogue, content_key)
