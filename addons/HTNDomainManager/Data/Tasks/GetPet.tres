@@ -1,0 +1,7 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://xwjtmpu0t1ae"]
+
+[ext_resource type="Script" path="res://addons/HTNDomainManager/Data/Scripts/GetPet.gd" id="1_j8m02"]
+
+[resource]
+script = ExtResource("1_j8m02")
+requires_awaiting = true

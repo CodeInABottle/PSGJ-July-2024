@@ -1,12 +1,18 @@
-[gd_scene load_steps=5 format=3 uid="uid://bjvdu0glstg11"]
+[gd_scene load_steps=8 format=3 uid="uid://bjvdu0glstg11"]
 
 [ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_3mnbp"]
 [ext_resource type="Script" path="res://npc/dog/dog_npc_controller.gd" id="2_8brgj"]
 [ext_resource type="SpriteFrames" uid="uid://cqflvl52smsff" path="res://npc/dog/dog_sprite_frames.tres" id="3_ljd24"]
 [ext_resource type="SpriteFrames" uid="uid://32w1f33m7r0t" path="res://npc/dog/afflicted_dog_sprite_frames.tres" id="4_ws8kk"]
+[ext_resource type="Script" path="res://npc/dog/petter_controller.gd" id="5_mfahn"]
+[ext_resource type="Script" path="res://overworld_stuff/failable_interaction_area.gd" id="6_y3yjw"]
 
-[node name="Dog" instance=ExtResource("1_3mnbp")]
+[sub_resource type="CircleShape2D" id="CircleShape2D_eg66r"]
+radius = 8.0
+
+[node name="Dog" node_paths=PackedStringArray("pet_manager") instance=ExtResource("1_3mnbp")]
 script = ExtResource("2_8brgj")
+pet_manager = NodePath("NPCSprite/PetMarker")
 npc_speed = 225.0
 npc_name = "Celestial Canine"
 wander_x_bound = 200.0
@@ -18,3 +24,15 @@ afflicted_sprite_frames = ExtResource("4_ws8kk")
 sprite_frames = ExtResource("3_ljd24")
 animation = &"idle"
 offset = Vector2(0, -15.49)
+
+[node name="PetMarker" type="Marker2D" parent="NPCSprite" index="0" node_paths=PackedStringArray("interactable")]
+position = Vector2(-16, -13)
+script = ExtResource("5_mfahn")
+interactable = NodePath("../../PetArea")
+
+[node name="PetArea" type="Area2D" parent="." index="7" node_paths=PackedStringArray("interaction_host") groups=["failable", "interactable"]]
+script = ExtResource("6_y3yjw")
+interaction_host = NodePath("../NPCSprite/PetMarker")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PetArea" index="0"]
+shape = SubResource("CircleShape2D_eg66r")

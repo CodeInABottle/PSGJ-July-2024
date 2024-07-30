@@ -9,6 +9,7 @@ extends CharacterBody2D
 @export var sprint_scale: float = 2.0
 @onready var nav: NavigationAgent2D = %NavAgent
 @onready var hint_manager: HintManager = %HintManager
+@onready var redirect_timer: Timer = %RedirectTimer
 
 var in_interaction: bool = false
 var being_redirected: bool = false
@@ -110,16 +111,19 @@ func teleport_to(new_position: Vector2) -> void:
 	player_camera.set_global_position(new_position + Vector2(100.0, 100.0))
 
 func interact() -> void:
-	if player_interact_area:
+	if player_interact_area != null:
 		var overlapping_areas: Array[Area2D] = player_interact_area.get_overlapping_areas()
 		for overlap: Area2D in overlapping_areas:
 			if overlap.is_in_group("interactable"):
+				if overlap.is_in_group("failable"):
+					if not await overlap.is_valid():
+						return
 				player_visual_body.player_sprite.stop()
 				current_interactable = overlap
 				current_interactable.interaction_ended.connect(on_interaction_ended)
 				current_interactable.on_interacted_with()
 				in_interaction = true
-				break
+				return
 
 func advance_interaction() -> void:
 	current_interactable.advance_interaction()
@@ -132,16 +136,28 @@ func on_interaction_ended(_interactable: Interactable) -> void:
 func end_interaction() -> void:
 	var _end_success: bool = current_interactable.quick_close_interaction()
 
-func redirect(redirect_position: Vector2) -> bool:
+func redirect(redirect_position: Vector2, timeout: float = -1.0) -> bool:
 	nav.set_target_position(redirect_position)
 	if nav.is_target_reachable():
 		nav.target_reached.connect(on_redirect_complete)
 		being_redirected = true
+		
+		if timeout != -1.0:
+			redirect_timer.timeout.connect(on_redirect_timeout)
+			redirect_timer.start(timeout)
 		return true
 	return false
 
+func on_redirect_timeout() -> void:
+	redirect_timer.timeout.disconnect(on_redirect_timeout)
+	on_redirect_complete()
+
 func on_redirect_complete() -> void:
+	if redirect_timer.timeout.is_connected(on_redirect_timeout):
+		redirect_timer.timeout.disconnect(on_redirect_timeout)
+	redirect_timer.stop()
 	velocity = Vector2.ZERO
+	player_visual_body.player_sprite.stop()
 	nav.target_reached.disconnect(on_redirect_complete)
 	being_redirected = false
 	redirect_complete.emit()

@@ -22,11 +22,13 @@ extends CharacterBody2D
 @onready var _wander_point: Vector2 = get_global_position()
 
 signal battle_finished()
+signal petting_finished()
 
 var _delta: float = 0.0
 var _has_wander_point: bool = false
 var _can_detect_player: bool = false
 var _has_been_defeated: bool = false
+var _is_being_pet: bool = false
 
 const BATTLE_START_DISTANCE: float = 32.0
 const WANDER_STOP_DISTANCE: float = 10.0
@@ -154,6 +156,7 @@ func generate_world_state() -> Dictionary:
 		"npc_position": get_global_position(),
 		"has_been_captured" : has_been_captured(),
 		"has_been_defeated" : _has_been_defeated,
+		"is_being_pet" : _is_being_pet,
 	}
 
 func on_body_entered_detect_area(entered_body: Node2D) -> void:
@@ -199,3 +202,9 @@ func on_world_event(event_name: String, args: Array) -> void:
 		
 	elif event_name == "world_reset":
 		init_npc()
+
+func get_pet(_world_state: Dictionary) -> void:
+	move_and_slide()
+
+func on_petting_finished() -> void:
+	petting_finished.emit()

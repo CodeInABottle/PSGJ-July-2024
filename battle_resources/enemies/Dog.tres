@@ -15,5 +15,6 @@ resonate = 14
 domain = &"Clever"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_vh2it"), ExtResource("1_r021g"), ExtResource("3_bpdgw")])
 combat_animation = ExtResource("1_br0sl")
+special_frame_behavior = 0
 special_frame_idx = -1
 attack_position = Vector2(0, 0)

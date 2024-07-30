@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Dialogue" load_steps=7 format=3 uid="uid://3m3qjdybit00"]
+[gd_resource type="Resource" script_class="Dialogue" load_steps=9 format=3 uid="uid://3m3qjdybit00"]
 
 [ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_st8rm"]
 [ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_jh4py"]
@@ -16,7 +16,15 @@ line_text = "Mom seemed really sad about that for some reason..."
 script = ExtResource("2_jh4py")
 block_lines = Array[ExtResource("1_st8rm")]([SubResource("Resource_dyw5y"), SubResource("Resource_7lp1i")])
 
+[sub_resource type="Resource" id="Resource_le1wy"]
+script = ExtResource("1_st8rm")
+line_text = "Good boy."
+
+[sub_resource type="Resource" id="Resource_nthua"]
+script = ExtResource("2_jh4py")
+block_lines = Array[ExtResource("1_st8rm")]([SubResource("Resource_le1wy")])
+
 [resource]
 script = ExtResource("3_sh2x3")
-contents = Array[ExtResource("2_jh4py")]([SubResource("Resource_0n462")])
-content_keys = Array[String](["mailbox"])
+contents = Array[ExtResource("2_jh4py")]([SubResource("Resource_0n462"), SubResource("Resource_nthua")])
+content_keys = Array[String](["mailbox", "good_boy"])

@@ -29,7 +29,7 @@ func _unit_testing() -> void:
 	#setup_battle("Niter Tiger")
 	#setup_battle("Fighting Fish")
 	#setup_battle("Celestial Canine")
-	setup_battle("Chicken")
+	#setup_battle("Chicken")
 	#setup_battle("Shadow")
 	pass
 
