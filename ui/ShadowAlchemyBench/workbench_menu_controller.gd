@@ -73,6 +73,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 	if event is InputEventMouseButton and event.is_pressed()\
 			and (event as InputEventMouseButton).button_index == MOUSE_BUTTON_LEFT:
+		LevelManager.audio_anchor.play_sfx("pickup_component")
 		_slot_data[_area_entered]["full"] = false
 		slotted_shadows.erase(_slot_data[_area_entered]["test_tube"].shadow_name)
 		_slot_data[_area_entered]["test_tube"].drop()
@@ -135,6 +136,7 @@ func _on_area_mouse_exited() -> void:
 func _on_slot_requested(area: Area2D, test_tube: TestTube) -> void:
 	assert(area in _slot_data, "Uhh what happened?")
 	if not _slot_data[area]["full"]:
+		LevelManager.audio_anchor.play_sfx("apply_component")
 		test_tube.hide()
 		slotted_shadows.push_back(test_tube.shadow_name)
 		slotted_moves_container.refresh_slotted_moves()

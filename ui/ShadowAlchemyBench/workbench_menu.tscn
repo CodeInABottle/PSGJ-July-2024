@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://b3jitrn2a5kek"]
+[gd_scene load_steps=22 format=3 uid="uid://b3jitrn2a5kek"]
 
 [ext_resource type="Script" path="res://ui/ShadowAlchemyBench/workbench_menu_controller.gd" id="1_r45yu"]
 [ext_resource type="Texture2D" uid="uid://b8mugkkmdn7he" path="res://assets/sprites/shadow_alchemybench/AlchemyWorkbench.png" id="2_f36yw"]
@@ -9,7 +9,30 @@
 [ext_resource type="Texture2D" uid="uid://byhb5wp1sl8l7" path="res://assets/sprites/shadow_alchemybench/BeakerBackgrounds/BeakerBGs_0003.png" id="5_l11ax"]
 [ext_resource type="Texture2D" uid="uid://qmarow2u0421" path="res://assets/sprites/shadow_alchemybench/BeakerBackgrounds/BeakerBGs_0004.png" id="6_0dnid"]
 [ext_resource type="Texture2D" uid="uid://ds2h1nmaxexun" path="res://assets/sprites/shadow_alchemybench/BeakerBackgrounds/BeakerBGs_0005.png" id="7_g5ll2"]
+[ext_resource type="Shader" path="res://battle_systems/EntityComponents/PlayerEntity/frankenshader.gdshader" id="8_grm02"]
 [ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="8_jbeli"]
+[ext_resource type="Texture2D" uid="uid://b4x05bp5aoap6" path="res://assets/sprites/shadow_alchemybench/BeakerBackgrounds/Main.png" id="9_0jmnk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4j2p6"]
+shader = ExtResource("8_grm02")
+shader_parameter/screen_height = 640.0
+shader_parameter/amplitude = 0.0
+shader_parameter/frequency = 10.0
+shader_parameter/speed = 2.0
+shader_parameter/amplitude_vertical = 0.0
+shader_parameter/frequency_vertical = 0.0
+shader_parameter/speed_vertical = 0.0
+shader_parameter/scroll_direction = Vector2(0, 0)
+shader_parameter/scrolling_speed = 0.08
+shader_parameter/enable_palette_cycling = false
+shader_parameter/palette_speed = 0.1
+shader_parameter/enable_scanlines = false
+shader_parameter/enable_hue_shift = true
+shader_parameter/shift_speed = 0.1
+shader_parameter/saturation_aplitude = 0.2
+shader_parameter/saturation_shift = 0.3
+shader_parameter/value_aplitude = 1.0
+shader_parameter/value_shift = -0.1
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qumqv"]
 resource_local_to_scene = true
@@ -108,6 +131,15 @@ offset_bottom = 336.0
 texture = ExtResource("7_g5ll2")
 expand_mode = 1
 stretch_mode = 5
+
+[node name="MainBeaker" type="TextureRect" parent="."]
+material = SubResource("ShaderMaterial_4j2p6")
+layout_mode = 0
+offset_left = 231.0
+offset_top = 217.0
+offset_right = 359.0
+offset_bottom = 345.0
+texture = ExtResource("9_0jmnk")
 
 [node name="Page" type="Panel" parent="."]
 self_modulate = Color(0.194349, 0.194349, 0.194349, 1)

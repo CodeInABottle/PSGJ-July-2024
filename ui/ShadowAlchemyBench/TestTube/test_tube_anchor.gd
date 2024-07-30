@@ -28,6 +28,7 @@ func _process(_delta: float) -> void:
 	if _state == State.IDLE: return
 
 	if _state == State.HOVERING and Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
+		LevelManager.audio_anchor.play_sfx("pickup_component")
 		_state = State.HOLDING
 		_alchemy_bench.hands_full = true
 		test_tube.z_index = 1
