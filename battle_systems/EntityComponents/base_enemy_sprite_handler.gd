@@ -10,6 +10,7 @@ var _original_shadow_frame_idx: int
 var _was_set: bool = false
 
 func _ready() -> void:
+	animation_player.play("RESET")
 	_original_shadow_frame_idx = shadow.frame
 	animation_player.animation_finished.connect( func(__: String) -> void: captured.emit() )
 
