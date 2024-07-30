@@ -1,4 +1,4 @@
-[gd_scene load_steps=39 format=3 uid="uid://wlkqf1ypp0ik"]
+[gd_scene load_steps=40 format=3 uid="uid://wlkqf1ypp0ik"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_rhbow"]
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://overworld_stuff/transition_area.tscn" id="2_6uu8j"]
@@ -13,6 +13,7 @@
 [ext_resource type="PackedScene" uid="uid://bjvdu0glstg11" path="res://npc/dog/dog.tscn" id="8_ct1gg"]
 [ext_resource type="PackedScene" uid="uid://wh2jq7m0cm1x" path="res://npc/hawk/hawk.tscn" id="9_kk1qv"]
 [ext_resource type="PackedScene" uid="uid://cmaa2ks7kv277" path="res://npc/beetle/beetle.tscn" id="10_052td"]
+[ext_resource type="PackedScene" uid="uid://cm5val12sno1d" path="res://overworld_stuff/checkpoint.tscn" id="10_74xfd"]
 [ext_resource type="Script" path="res://overworld_stuff/runaway_cat/runaway_cat_controller_2.gd" id="11_g5dcr"]
 [ext_resource type="SpriteFrames" uid="uid://dptdm3kr70q8a" path="res://npc/cat/cat_sprite_frames.tres" id="12_ipf24"]
 [ext_resource type="PackedScene" uid="uid://ctebwae2j0lq0" path="res://npc/chimkin/chimkin.tscn" id="14_hl43u"]
@@ -127,6 +128,12 @@ position = Vector2(1195, 141)
 [node name="NewbertUnderTop" type="Marker2D" parent="WarpPoints" index="2"]
 position = Vector2(1174, 461)
 
+[node name="EastBank" type="Marker2D" parent="WarpPoints" index="3"]
+position = Vector2(217, 790)
+
+[node name="WestBank" type="Marker2D" parent="WarpPoints" index="4"]
+position = Vector2(-445, 465)
+
 [node name="NewbertTransition" parent="TransitionAreas" index="0" instance=ExtResource("2_6uu8j")]
 position = Vector2(1196, 752)
 transition_scene_name = "Newbert Town"
@@ -204,6 +211,14 @@ position = Vector2(-38, 1)
 [node name="Sign" parent="Interactables" index="0" instance=ExtResource("3_ubt60")]
 position = Vector2(1155, 181)
 dialogue = SubResource("Resource_jv8vy")
+
+[node name="CheckpointWestBank" parent="Interactables" index="1" instance=ExtResource("10_74xfd")]
+position = Vector2(-445, 410)
+checkpoint_name = "WestBank"
+
+[node name="CheckpointEastBank" parent="Interactables" index="2" instance=ExtResource("10_74xfd")]
+position = Vector2(221, 731)
+checkpoint_name = "East Bank"
 
 [node name="Ferret" parent="Shadows" index="0" instance=ExtResource("7_pguk8")]
 position = Vector2(323, 257)

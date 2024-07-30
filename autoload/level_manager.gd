@@ -65,6 +65,8 @@ var _checkpoints: Dictionary = {
 	"Home" : ["Home", 0],
 	"Newbert Town" : ["Newbert Town", 2],
 	"Cat Bridge" : ["Newbert Town", 4],
+	"East Bank" : ["Remembrance", 3],
+	"West Bank" : ["Remembrance", 4],
 }
 
 # Set as the first level to be loaded
