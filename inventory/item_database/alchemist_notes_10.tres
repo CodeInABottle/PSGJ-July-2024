@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="LoreItem" load_steps=4 format=3 uid="uid://clbndf46r21t0"]
+
+[ext_resource type="Resource" uid="uid://dxc13ugmmcipi" path="res://inventory/lore_dialogue/lore_10.tres" id="1_4mlmk"]
+[ext_resource type="Texture2D" uid="uid://by8fjfvenwwl0" path="res://assets/sprites/general/Books/books10.png" id="1_8hbwy"]
+[ext_resource type="Script" path="res://inventory/lore_item.gd" id="3_ic12i"]
+
+[resource]
+script = ExtResource("3_ic12i")
+dialogue = ExtResource("1_4mlmk")
+author_name = "Master Alchemist"
+item_name = "Master Alchemist's Notes"
+item_description = "An immaculate bound book of alchemical genius. Who would leave this behind?"
+item_icon = ExtResource("1_8hbwy")

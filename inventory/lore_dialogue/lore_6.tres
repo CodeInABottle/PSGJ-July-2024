@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=8 format=3 uid="uid://ck7qrsilk0qsh"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_0xp5s"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="1_vqdi4"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_6xvjk"]
+
+[sub_resource type="Resource" id="Resource_q0h2l"]
+script = ExtResource("1_0xp5s")
+line_text = "All of the creatures are so picky!"
+
+[sub_resource type="Resource" id="Resource_aatoj"]
+script = ExtResource("1_0xp5s")
+line_text = "Fire this, water that... At least the snail kinda has the right idea!  Salt is still only 2..."
+
+[sub_resource type="Resource" id="Resource_cyvj8"]
+script = ExtResource("1_0xp5s")
+line_text = "I need more..."
+
+[sub_resource type="Resource" id="Resource_adsdb"]
+script = ExtResource("2_6xvjk")
+block_lines = Array[ExtResource("1_0xp5s")]([SubResource("Resource_q0h2l"), SubResource("Resource_aatoj"), SubResource("Resource_cyvj8")])
+
+[resource]
+script = ExtResource("1_vqdi4")
+contents = Array[ExtResource("2_6xvjk")]([SubResource("Resource_adsdb")])
+content_keys = Array[String](["main"])

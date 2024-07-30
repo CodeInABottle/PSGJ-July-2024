@@ -1,0 +1,34 @@
+[gd_resource type="Resource" script_class="Dialogue" load_steps=10 format=3 uid="uid://dy68ktly58baq"]
+
+[ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="1_iyvrq"]
+[ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="2_cao0y"]
+[ext_resource type="Script" path="res://dialogue/Dialogue.gd" id="3_wpb07"]
+
+[sub_resource type="Resource" id="Resource_hsser"]
+script = ExtResource("1_iyvrq")
+line_text = "Clint, there you are!"
+
+[sub_resource type="Resource" id="Resource_ygb50"]
+script = ExtResource("1_iyvrq")
+line_text = "Were you down in that cellar the whole time?"
+
+[sub_resource type="Resource" id="Resource_g4mxu"]
+script = ExtResource("1_iyvrq")
+line_text = "Well thanks for cleaning that up, but it is time for bed!"
+
+[sub_resource type="Resource" id="Resource_8fh5e"]
+script = ExtResource("1_iyvrq")
+line_text = "We have a long trip in the morning. We are going to see your grandma and grandpa."
+
+[sub_resource type="Resource" id="Resource_e0upq"]
+script = ExtResource("1_iyvrq")
+line_text = "The eclipse is going to be so exciting..."
+
+[sub_resource type="Resource" id="Resource_n60md"]
+script = ExtResource("2_cao0y")
+block_lines = Array[ExtResource("1_iyvrq")]([SubResource("Resource_hsser"), SubResource("Resource_ygb50"), SubResource("Resource_g4mxu"), SubResource("Resource_8fh5e"), SubResource("Resource_e0upq")])
+
+[resource]
+script = ExtResource("3_wpb07")
+contents = Array[ExtResource("2_cao0y")]([SubResource("Resource_n60md")])
+content_keys = Array[String](["main"])

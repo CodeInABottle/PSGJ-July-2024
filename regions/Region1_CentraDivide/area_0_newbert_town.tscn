@@ -483,6 +483,10 @@ item_name = "Novice Alchemist's Notes: 2"
 position = Vector2(537, 128)
 item_name = "Unknown Alchemist's Notes: 3"
 
+[node name="Lore10" parent="Pickups" index="7" instance=ExtResource("7_qddya")]
+position = Vector2(237, 8)
+item_name = "Master Alchemist's Notes"
+
 [node name="Shadows" parent="." index="7"]
 z_index = 1
 y_sort_enabled = true
