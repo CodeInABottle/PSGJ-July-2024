@@ -2,6 +2,7 @@ class_name BattlefieldEntity
 extends Node2D
 
 const AP_EFFECT: PackedScene = preload("res://battle_systems/UI/APEffect/ap_effect.tscn")
+const BATTLE_NUMBERS: PackedScene = preload("res://battle_systems/UI/BattleNumbers/battle_numbers.tscn")
 
 @export var entity_tracker: BattlefieldEntityTracker
 @export var effect_marker: Marker2D
@@ -85,3 +86,10 @@ func _play_ap_effect() -> void:
 	effect_marker.add_child(effect_instance)
 	effect_instance.global_position = effect_marker.global_position
 	effect_instance.play(-ap_penality)
+
+func _spawn_damage_number(amount: int, is_damage: bool) -> void:
+	var damage_instance: Control = BATTLE_NUMBERS.instantiate()
+	add_child(damage_instance)
+	var value: int = amount
+	if is_damage: value *= -1
+	damage_instance.play(value)

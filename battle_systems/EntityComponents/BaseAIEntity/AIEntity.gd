@@ -106,13 +106,12 @@ func regen_ap() -> void:
 	ap_penality = 0
 
 func heal(health: int) -> void:
-	print("Enemy healed: ", health)
 	_health += health
+	_spawn_damage_number(health, false)
 
 func take_damage(damage_data: Dictionary) -> void:
 	# Skip is its an ability that does no damage
 	if damage_data["damage"] == 0: return
-	print("enemy taken damage: ", damage_data["damage"])
 
 	# Check for special frame data -- On hurt
 	if _data.special_frame_behavior == EnemyDatabase.SpecialFrameState.ON_HURT:
@@ -135,7 +134,6 @@ func take_damage(damage_data: Dictionary) -> void:
 	# Calculate Capture
 	if trigger_capture_damage:
 		var capture_damage: int = ceili(damage_data["damage"] * EnemyDatabase.CAPTURE_RATE_EFFICENCY)
-		print("Capture Damage: ", capture_damage)
 		_capture_value -= capture_damage
 		flash_player.play("Flash")
 	# Didnt do capture damage, leave residues
@@ -152,6 +150,7 @@ func take_damage(damage_data: Dictionary) -> void:
 	# Calculate Damage
 	entity_tracker.damage_taken.emit(false, damage_data)
 	_health -= damage_data["damage"]
+	_spawn_damage_number(damage_data["damage"], true)
 
 func has_ap() -> bool:
 	return _alchemy_points > 0
@@ -357,7 +356,6 @@ func _internal_attack_logic(ability_data: BattlefieldAbility) -> void:
 			animation_holder.get_child(0).set_shadow_frame(_data.special_frame_idx)
 
 		player_entity.take_damage({ "damage": ability_data["damage"] })
-	print("Enemy used ", ability_data["name"], " to do ", ability_data["damage"])
 
 	entity_tracker.add_modification_stacks(ability_data)
 	ability_finished.emit()
