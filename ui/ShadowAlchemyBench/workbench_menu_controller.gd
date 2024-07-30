@@ -147,6 +147,7 @@ func _on_slot_requested(area: Area2D, test_tube: TestTube) -> void:
 		test_tube.reset_placement()
 
 func _on_close_button_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	PlayerStats.set_equipped_shadows(slotted_shadows)
 	MenuManager.fader_controller.fade_out_complete.connect(on_fade_out_complete)
 	MenuManager.fader_controller.fade_out()

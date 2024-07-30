@@ -28,8 +28,7 @@ func set_data(recipe_name: String, resonate_type: TypeChart.ResonateType,
 			reagents[idx].hide()
 
 	resonance.frame = TypeChart.TEXTURE_LOOK_UP_TABLE[resonate_type]
-	if wiggle_on_set:
-		animation_player.play("Wiggle")
+	if wiggle_on_set: wiggle()
 
 func wiggle() -> void:
 	animation_player.play("Wiggle")
@@ -52,6 +51,7 @@ func _on_button_pressed() -> void:
 
 func _on_button_mouse_entered() -> void:
 	mouse_hovered.emit()
+	LevelManager.audio_anchor.play_sfx("page")
 
 func _on_button_mouse_exited() -> void:
 	mouse_left.emit()

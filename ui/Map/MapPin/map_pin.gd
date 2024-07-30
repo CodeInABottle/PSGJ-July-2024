@@ -38,6 +38,7 @@ func _on_button_mouse_exited() -> void:
 	hide_all()
 
 func _on_button_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	pressed.emit()
 
 func _on_hidden() -> void:

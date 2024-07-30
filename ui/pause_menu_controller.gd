@@ -64,11 +64,13 @@ func _on_translucent_to_black_complete() -> void:
 	LevelManager.respawn()
 
 func _on_close_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	if not _is_opened or not can_close: return
 	hide_all()
 	MenuManager.toggle_pause()
 
 func _on_save_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	animation_player.play_backwards("DisplayButton")
 	await animation_player.animation_finished
 	animation_player.play("MoveLeft")
@@ -77,10 +79,12 @@ func _on_save_pressed() -> void:
 	save_string.text = SaveManager.generate_save_string()
 
 func _on_respawn_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	MenuManager.fader_controller.translucent_to_black_complete.connect(_on_translucent_to_black_complete)
 	MenuManager.fader_controller.translucent_to_black()
 
 func _on_inventory_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	if items_panel.is_visible_in_tree():
 		hide_all()
 		animation_player.play("DisplayButton")
@@ -95,6 +99,7 @@ func _on_inventory_pressed() -> void:
 		items_panel.show()
 
 func _on_back_from_save_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	animation_player.play_backwards("SlideSaveUp")
 	await animation_player.animation_finished
 	animation_player.play_backwards("MoveLeft")
@@ -102,14 +107,18 @@ func _on_back_from_save_pressed() -> void:
 	animation_player.play("DisplayButton")
 
 func _on_clipboard_button_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	DisplayServer.clipboard_set(save_string.text)
 	animation_player.play("Copied")
 
 func _on_close_inventory_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	_on_inventory_pressed()
 
 func _on_settings_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	music_settings.show()
 
 func _on_music_settings_closed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	music_settings.hide()

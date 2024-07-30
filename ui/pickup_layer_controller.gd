@@ -20,9 +20,11 @@ func _ready() -> void:
 	hide_timer.timeout.connect(on_hide_timer_timeout)
 
 func on_continue_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	continue_pressed.emit()
 
 func on_interact_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	interact_pressed.emit()
 
 func update_info(item_name: String) -> void:

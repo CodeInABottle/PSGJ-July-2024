@@ -85,7 +85,7 @@ var master_node: Node
 var world_anchor: Node
 var menu_anchor: Node
 var canvas_layer: CanvasLayer
-var audio_anchor: Node
+var audio_anchor: AudioManager
 
 ## Tracking Data
 # Intended to be where to spawn at in the level, if applicable

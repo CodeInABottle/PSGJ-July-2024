@@ -34,7 +34,6 @@ func _ready() -> void:
 	DialogueManager.player_dialogue_ui = self
 	make_ui_connections()
 
-
 func make_ui_connections() -> void:
 	next_button.pressed.connect(_on_next_button_pressed)
 	close_button.pressed.connect(_on_close_button_pressed)
@@ -97,9 +96,11 @@ func advance_dialogue() -> void:
 				next_button.show()
 
 func _on_next_button_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	continue_dialogue()
 
 func _on_close_button_pressed() -> void:
+	LevelManager.audio_anchor.play_sfx("accept_button")
 	end_dialogue()
 
 func end_dialogue() -> void:
