@@ -501,14 +501,12 @@ wander_y_bound = 50.0
 [node name="Fish" parent="Shadows" index="1" instance=ExtResource("16_p22ct")]
 position = Vector2(1432, 131)
 npc_speed = 120.0
-notice_radius = 200.0
 wander_x_bound = 50.0
 wander_y_bound = 50.0
 
 [node name="Fish2" parent="Shadows" index="2" instance=ExtResource("16_p22ct")]
 position = Vector2(1385, 218)
 npc_speed = 120.0
-notice_radius = 200.0
 wander_x_bound = 50.0
 wander_y_bound = 50.0
 
