@@ -1,38 +1,36 @@
 extends Node
 
-var crossfader
-var overworldTheme
-var battleTheme
-var SFX
-var isBattleMusic = false
+var crossfader : AnimationPlayer
+var overworldTheme : AudioStreamPlayer
+var battleTheme : AudioStreamPlayer
+var SFX : AudioStreamPlayer
+var isBattleMusic : bool = false
 
 # Called when the node enters the scene tree for the first time.
-func _ready():
+func _ready() -> void:
 	overworldTheme = $MusicOverworld
 	battleTheme = $MusicBattle
 	SFX = $SFX
 	crossfader = $Crossfade
 
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
+
 	
-func crossfadeToBattle():
+func crossfade_to_battle() -> void:
 	if isBattleMusic:
 		return
 	else:
 		isBattleMusic = true
 		crossfader.play("FadeToBattle")
 		
-func crossfadeToOverworld():
+func crossfade_to_overworld() -> void:
 	if isBattleMusic:
 		isBattleMusic = false
 		crossfader.play("FadeToOverworld")
 	else:
 		return
 
-func playSFX(sound : AudioStream):
+func play_sfx(sound : AudioStream) -> void:
 	SFX.steam = sound
 	SFX.play()
 	
