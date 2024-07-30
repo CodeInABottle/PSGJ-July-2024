@@ -15,14 +15,14 @@ func _ready() -> void:
 
 
 
-	
+
 func crossfade_to_battle() -> void:
 	if isBattleMusic:
 		return
 	else:
 		isBattleMusic = true
 		crossfader.play("FadeToBattle")
-		
+
 func crossfade_to_overworld() -> void:
 	if isBattleMusic:
 		isBattleMusic = false
@@ -33,4 +33,4 @@ func crossfade_to_overworld() -> void:
 func play_sfx(sound : AudioStream) -> void:
 	SFX.steam = sound
 	SFX.play()
-	
+
