@@ -297,7 +297,7 @@ position = Vector2(-692, 1203)
 position = Vector2(-839, 129)
 
 [node name="Chimkin" parent="Shadows" index="11" instance=ExtResource("14_hl43u")]
-position = Vector2(407, 535)
+position = Vector2(603, 488)
 
 [node name="Chimkin2" parent="Shadows" index="12" instance=ExtResource("14_hl43u")]
 position = Vector2(677, 677)

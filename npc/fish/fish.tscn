@@ -8,6 +8,7 @@
 [node name="Fish" instance=ExtResource("1_rvlp8")]
 script = ExtResource("2_sxrfo")
 npc_name = "Fighting Fish"
+notice_radius = 200.0
 normal_sprite_frames = ExtResource("2_c1yhp")
 afflicted_sprite_frames = ExtResource("4_uvnwe")
 

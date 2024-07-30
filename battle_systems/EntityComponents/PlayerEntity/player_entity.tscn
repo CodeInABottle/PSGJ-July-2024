@@ -1,9 +1,16 @@
-[gd_scene load_steps=9 format=3 uid="uid://bw5wgs3tjxkp1"]
+[gd_scene load_steps=11 format=3 uid="uid://bw5wgs3tjxkp1"]
 
 [ext_resource type="PackedScene" uid="uid://dq8pw0fxci53d" path="res://battle_systems/EntityComponents/BaseEntity/entity.tscn" id="1_bj848"]
 [ext_resource type="Script" path="res://battle_systems/EntityComponents/PlayerEntity/PlayerEntity.gd" id="2_f6smv"]
 [ext_resource type="Texture2D" uid="uid://d2jwwks81rdy4" path="res://assets/sprites/player/combat_blob.png" id="3_b2g42"]
 [ext_resource type="Shader" path="res://battle_systems/EntityComponents/PlayerEntity/frankenshader.gdshader" id="3_d7vv6"]
+
+[sub_resource type="Gradient" id="Gradient_ure0j"]
+offsets = PackedFloat32Array(0, 0.183623, 0.382134, 0.538462, 0.707196, 0.853598, 1)
+colors = PackedColorArray(0.368627, 0.619608, 0.67451, 1, 0.700981, 0.620941, 0.87783, 1, 0.505854, 0.459541, 0.43944, 1, 0.606292, 0.520753, 0.371428, 1, 0.479895, 0.484541, 0.421332, 1, 0.775961, 0.770001, 0.890544, 1, 0.368627, 0.619608, 0.67451, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_787nr"]
+gradient = SubResource("Gradient_ure0j")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_865r5"]
 shader = ExtResource("3_d7vv6")
@@ -16,15 +23,16 @@ shader_parameter/frequency_vertical = 0.0
 shader_parameter/speed_vertical = 0.0
 shader_parameter/scroll_direction = Vector2(0, 0)
 shader_parameter/scrolling_speed = 0.08
-shader_parameter/enable_palette_cycling = false
+shader_parameter/enable_palette_cycling = true
 shader_parameter/palette_speed = 0.1
 shader_parameter/enable_scanlines = false
 shader_parameter/enable_hue_shift = true
 shader_parameter/shift_speed = 0.05
 shader_parameter/saturation_aplitude = 0.3
-shader_parameter/saturation_shift = 0.6
+shader_parameter/saturation_shift = 0.12
 shader_parameter/value_aplitude = 1.0
-shader_parameter/value_shift = 0.15
+shader_parameter/value_shift = 0.0
+shader_parameter/palette = SubResource("GradientTexture1D_787nr")
 
 [sub_resource type="Animation" id="Animation_rala1"]
 resource_name = "Hurt"

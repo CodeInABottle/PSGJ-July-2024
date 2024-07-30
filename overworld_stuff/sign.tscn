@@ -18,6 +18,7 @@ position = Vector2(0, 5)
 shape = SubResource("CircleShape2D_ef2k2")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
 texture = ExtResource("5_wquak")
 region_enabled = true
 region_rect = Rect2(0, 36.3236, 32, 27.5301)
