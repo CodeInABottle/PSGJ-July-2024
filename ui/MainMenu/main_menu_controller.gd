@@ -7,6 +7,7 @@ extends Control
 @onready var menu_buttons: Control = %MenuButtons
 @onready var save_string_container: Control = %SaveStringContainer
 @onready var splash_art: Control = %SplashArt
+@onready var music_settings: Control = %MusicSettings
 
 var _fader_controller: CanvasLayer
 var _save_string: String
@@ -14,6 +15,7 @@ var _save_string: String
 func _ready() -> void:
 	_fader_controller = get_node("/root/Main/FaderLayer")
 	_fader_controller.fade_out_complete.connect(_on_fade_out_complete)
+	music_settings.hide()
 	control_shield.hide()
 	menu_buttons.show()
 	save_string_container.show()
@@ -55,5 +57,17 @@ func _on_credits_pressed() -> void:
 	animation_player.play("Credits")
 	await animation_player.animation_finished
 	animation_player.play_backwards("SlideMainButtonsDown")
+	await animation_player.animation_finished
+	control_shield.hide()
+
+func _on_settings_pressed() -> void:
+	control_shield.show()
+	animation_player.play("VolumeSettings")
+	await animation_player.animation_finished
+	control_shield.hide()
+
+func _on_music_settings_closed() -> void:
+	control_shield.show()
+	animation_player.play_backwards("VolumeSettings")
 	await animation_player.animation_finished
 	control_shield.hide()
