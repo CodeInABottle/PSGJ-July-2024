@@ -1,6 +1,8 @@
 class_name BattlefieldEntityTracker
 extends Node
 
+const MAX_MOD_COUNT: int = 3
+
 signal damage_taken(is_player: bool, data: Dictionary)
 
 class ModData:
@@ -107,18 +109,18 @@ func add_modification_stacks(ability: BattlefieldAbility) -> void:
 
 		if apply_to_player:
 			if modification["is_attacked_triggered"]:
-				if mod_data not in _player_signal_effects:
-					_player_signal_effects.push_back(mod_data)
+				if _at_max_mod_count(modification, _player_signal_effects): continue
+				_player_signal_effects.push_back(mod_data)
 			else:
-				if mod_data not in _player_effects:
-					_player_effects.push_back(mod_data)
+				if _at_max_mod_count(modification, _player_effects): continue
+				_player_effects.push_back(mod_data)
 		else:
 			if modification["is_attacked_triggered"]:
-				if mod_data not in _enemy_signal_effects:
-					_enemy_signal_effects.push_back(mod_data)
+				if _at_max_mod_count(modification, _enemy_signal_effects): continue
+				_enemy_signal_effects.push_back(mod_data)
 			else:
-				if mod_data not in _enemy_effects:
-					_enemy_effects.push_back(mod_data)
+				if _at_max_mod_count(modification, _enemy_effects): continue
+				_enemy_effects.push_back(mod_data)
 	if skip_turn:
 		combat_state_machine.switch_state("SkippingState")
 
@@ -137,18 +139,18 @@ func add_modification(resonate: TypeChart.ResonateType, efficiency_capture_rate:
 
 	if apply_to_player:
 		if modification["is_attacked_triggered"]:
-			if mod_data not in _player_signal_effects:
-				_player_signal_effects.push_back(mod_data)
+			if _at_max_mod_count(modification, _player_signal_effects): return
+			_player_signal_effects.push_back(mod_data)
 		else:
-			if mod_data not in _player_effects:
-				_player_effects.push_back(mod_data)
+			if _at_max_mod_count(modification, _player_effects): return
+			_player_effects.push_back(mod_data)
 	else:
 		if modification["is_attacked_triggered"]:
-			if mod_data not in _enemy_signal_effects:
-				_enemy_signal_effects.push_back(mod_data)
+			if _at_max_mod_count(modification, _enemy_signal_effects): return
+			_enemy_signal_effects.push_back(mod_data)
 		else:
-			if mod_data not in _enemy_effects:
-				_enemy_effects.push_back(mod_data)
+			if _at_max_mod_count(modification, _enemy_effects): return
+			_enemy_effects.push_back(mod_data)
 
 # Returns true on state switch
 func handle_enemy_effects() -> bool:
@@ -249,3 +251,12 @@ func _handle_damage_taken_signal(was_player: bool, data: Dictionary) -> void:
 		_handle_signal_effects(_player_signal_effects, data)
 	else:
 		_handle_signal_effects(_enemy_signal_effects, data)
+
+func _at_max_mod_count(mod: BattlefieldAttackModifier, data: Array[ModData]) -> bool:
+	var count: int = 0
+	for dat: ModData in data:
+		if dat.mod == mod:
+			count += 1
+		if count >= MAX_MOD_COUNT:
+			return true
+	return false
