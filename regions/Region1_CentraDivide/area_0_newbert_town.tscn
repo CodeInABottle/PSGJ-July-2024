@@ -1,4 +1,4 @@
-[gd_scene load_steps=68 format=3 uid="uid://bhmtk1d3c4s68"]
+[gd_scene load_steps=71 format=3 uid="uid://bhmtk1d3c4s68"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_y57qd"]
 [ext_resource type="PackedScene" uid="uid://cm5val12sno1d" path="res://overworld_stuff/checkpoint.tscn" id="2_dyflh"]
@@ -127,6 +127,19 @@ size = Vector2(112, 57)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_r244d"]
 size = Vector2(350, 229)
+
+[sub_resource type="Resource" id="Resource_qeqi5"]
+script = ExtResource("8_6t6fv")
+line_text = "<-- Remembrance"
+
+[sub_resource type="Resource" id="Resource_3wkyg"]
+script = ExtResource("9_47026")
+block_lines = Array[ExtResource("8_6t6fv")]([SubResource("Resource_qeqi5")])
+
+[sub_resource type="Resource" id="Resource_6cwhd"]
+script = ExtResource("10_330ul")
+contents = Array[ExtResource("9_47026")]([SubResource("Resource_3wkyg")])
+content_keys = Array[String](["main"])
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_h8i7d"]
 size = Vector2(87, 90)
@@ -434,6 +447,10 @@ dialogue = ExtResource("25_48e15")
 [node name="CheckpointSign" parent="Interactables" index="5" instance=ExtResource("3_ys51d")]
 position = Vector2(618, 992)
 dialogue = ExtResource("26_flxfm")
+
+[node name="RemembranceSign" parent="Interactables" index="6" instance=ExtResource("3_ys51d")]
+position = Vector2(88, 526)
+dialogue = SubResource("Resource_6cwhd")
 
 [node name="Pickups" parent="." index="6"]
 position = Vector2(32, 25)
