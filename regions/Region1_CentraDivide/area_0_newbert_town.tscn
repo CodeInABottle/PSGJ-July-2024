@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://mkciwd2nh2fb" path="res://regions/Region1_CentraDivide/dialogue_area_0/checkpoint_blocker.tres" id="7_yj2jc"]
 [ext_resource type="Script" path="res://dialogue/DialogueLine.gd" id="8_6t6fv"]
 [ext_resource type="Resource" uid="uid://bo4v8si64wfpo" path="res://regions/Region1_CentraDivide/dialogue_area_0/tree_blocker.tres" id="8_e44q1"]
-[ext_resource type="PackedScene" uid="uid://0lkpdbn1f0j4" path="res://overworld_stuff/hint_area.tscn" id="8_txonc"]
+[ext_resource type="PackedScene" path="res://overworld_stuff/hint_area.tscn" id="8_txonc"]
 [ext_resource type="Script" path="res://overworld_stuff/oneshot_leash_area.gd" id="8_xj5hl"]
 [ext_resource type="Script" path="res://dialogue/DialogueBlock.gd" id="9_47026"]
 [ext_resource type="Resource" uid="uid://bhmdpwd3g4ljn" path="res://regions/Region1_CentraDivide/dialogue_area_0/tree_intro.tres" id="9_mmnsa"]

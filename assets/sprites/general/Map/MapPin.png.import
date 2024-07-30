@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://mej5p3q5u7c4"
-path="res://.godot/imported/interior.png-770a089734074b101f24d8b35d7a5477.ctex"
+uid="uid://75kx32k5jyjf"
+path="res://.godot/imported/MapPin.png-1bf0d3daab5a6f2dfab0f13bbd23d1c3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://assets/placeholders/interior.png"
-dest_files=["res://.godot/imported/interior.png-770a089734074b101f24d8b35d7a5477.ctex"]
+source_file="res://assets/sprites/general/Map/MapPin.png"
+dest_files=["res://.godot/imported/MapPin.png-1bf0d3daab5a6f2dfab0f13bbd23d1c3.ctex"]
 
 [params]
 

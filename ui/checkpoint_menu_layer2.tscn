@@ -1,9 +1,8 @@
-[gd_scene load_steps=28 format=3 uid="uid://bws60pday3bya"]
+[gd_scene load_steps=27 format=3 uid="uid://bws60pday3bya"]
 
 [ext_resource type="Script" path="res://ui/checkpoint_menu_layer_controller2.gd" id="1_qhipo"]
 [ext_resource type="Script" path="res://ui/lore_panel_controller.gd" id="2_y8nyu"]
-[ext_resource type="Texture2D" uid="uid://dricw8clpchv3" path="res://assets/placeholders/concept_map.png" id="3_ae4qe"]
-[ext_resource type="Script" path="res://ui/fast_travel_map_controller.gd" id="4_j67w7"]
+[ext_resource type="PackedScene" uid="uid://ifxjltqf61pd" path="res://ui/Map/map.tscn" id="4_qfdla"]
 [ext_resource type="Texture2D" uid="uid://bs46umtlkhyso" path="res://assets/sprites/general/checkpoint.png" id="5_ld75s"]
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="6_qm2ju"]
 [ext_resource type="Texture2D" uid="uid://diqxdfopg6kw8" path="res://assets/sprites/combat/UI/Page.png" id="7_yehf5"]
@@ -200,31 +199,6 @@ autoplay = "default"
 frame_progress = 0.546567
 metadata/_edit_lock_ = true
 
-[node name="FastTravelMap" type="TextureRect" parent="."]
-unique_name_in_owner = true
-visible = false
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("3_ae4qe")
-expand_mode = 2
-script = ExtResource("4_j67w7")
-
-[node name="MapButtons" type="Control" parent="FastTravelMap"]
-unique_name_in_owner = true
-anchors_preset = 0
-mouse_filter = 1
-
-[node name="Button" type="Button" parent="FastTravelMap/MapButtons"]
-layout_mode = 0
-offset_left = 275.0
-offset_top = 168.0
-offset_right = 361.0
-offset_bottom = 199.0
-text = "Home"
-
 [node name="LorePanelShield" type="Panel" parent="."]
 unique_name_in_owner = true
 anchors_preset = 15
@@ -234,6 +208,9 @@ grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("6_qm2ju")
 theme_override_styles/panel = SubResource("StyleBoxEmpty_4lb0o")
+
+[node name="Map" parent="." instance=ExtResource("4_qfdla")]
+unique_name_in_owner = true
 
 [node name="LorePanel" type="PanelContainer" parent="." node_paths=PackedStringArray("lore_list", "lore_name", "lore_text", "lore_details_panel", "lore_author_label")]
 visible = false
@@ -351,4 +328,5 @@ autowrap_mode = 3
 [connection signal="pressed" from="Buttons/Lore" to="." method="_on_lore_pressed"]
 [connection signal="pressed" from="Buttons/Shadows" to="." method="_on_shadows_pressed"]
 [connection signal="pressed" from="Buttons/FastTravel" to="." method="_on_fast_travel_pressed"]
+[connection signal="fast_travel_started" from="Map" to="." method="_on_map_fast_travel_started"]
 [connection signal="pressed" from="LorePanel/VBoxContainer/HBoxContainer/CloseLoreButton" to="." method="_on_close_lore_button_pressed"]

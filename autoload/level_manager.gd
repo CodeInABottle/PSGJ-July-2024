@@ -57,10 +57,6 @@ var _levels: Dictionary = {
 
 # Remembrance Town
 "Remembrance": "res://regions/Region1_CentraDivide/area_1_remembrance.tscn",
-
-# OLD -- Deprecated
-"area_0": "res://old_areas/area_0.tscn",
-"area_0_player_house_F1": "res://old_areas/area_0_player_house_F1.tscn",
 }
 
 # checkpoints
@@ -108,7 +104,7 @@ var pending_battle: String = ""
 
 # area name: String : pickup indices: Array[int]
 var area_pickup_status: Dictionary = {}
-var unlocked_checkpoints: Array = []
+var unlocked_checkpoints: Array[String] = []
 var temp_statuses: Array[String] = []
 
 var _in_world: bool = false
