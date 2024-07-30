@@ -111,7 +111,7 @@ func get_ability_damage(ability_name: String) -> int:
 
 	var ability: BattlefieldAbility = _abilities[ability_name]
 	var damage: int = ability.damage
-	if ability.precentage_damage > 0:
+	if ability.precentage_damage > 0.0:
 		damage = floori(float(PlayerStats.max_health) * (float(ability.precentage_damage) / 100.0))
 	return damage
 

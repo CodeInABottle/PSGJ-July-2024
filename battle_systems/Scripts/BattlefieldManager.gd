@@ -20,15 +20,16 @@ var battle_state: Dictionary = {
 func _unit_testing() -> void:
 	tutorial_manager._set_tutorial_state("first_combat_wisdom_complete", true)
 	tutorial_manager._set_tutorial_state("first_residue", true)
+	tutorial_manager._set_tutorial_state("first_compound", true)
 	#setup_battle("Earth Worm")
 	#setup_battle("Living Tree")
 	#setup_battle("Mailbox")
 	#setup_battle("Bombardier Beetle")
 	#setup_battle("Armored Snail")
-	#setup_battle("Niter Tiger")
+	setup_battle("Niter Tiger")
 	#setup_battle("Fighting Fish")
 	#setup_battle("Celestial Canine")
-	setup_battle("Chicken")
+	#setup_battle("Chicken")
 	#setup_battle("Shadow")
 	pass
 

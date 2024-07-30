@@ -42,7 +42,7 @@ var _enemy_signal_effects: Array[ModData] = []
 var _player_effects: Array[ModData] = []
 var _player_signal_effects: Array[ModData] = []
 
-var _battle_over: bool = false
+var battle_over: bool = false
 var is_players_turn: bool = false	# False -> Player first
 
 static func do_apply_to_player(is_current_player: bool, apply_to_self: bool) -> bool:
@@ -62,19 +62,19 @@ func initialize(enemy_name_encounter: String) -> void:
 	enemy_entity.actions_completed.connect(end_turn)
 
 func end_turn() -> void:
-	if _battle_over: return
+	if battle_over: return
 
 	# Check if we need to end battle
 	if PlayerStats.health <= 0:
-		_battle_over = true
+		battle_over = true
 		combat_state_machine.switch_state("GameOverState")
 		return
 	elif enemy_entity.is_captured():
-		_battle_over = true
+		battle_over = true
 		combat_state_machine.switch_state("CaptureState")
 		return
 	elif enemy_entity.is_dead():
-		_battle_over = true
+		battle_over = true
 		combat_state_machine.switch_state("RewardState")
 		return
 

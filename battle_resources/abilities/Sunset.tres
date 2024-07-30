@@ -7,6 +7,7 @@
 [resource]
 script = ExtResource("1_bw7om")
 damage = 60
+precentage_damage = 0.0
 description = "Causes enemy to gain 1 less AP on their next turn; Opponent takes 20 damage for 3 turns."
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_gwfkc"), ExtResource("2_siojy")])
 moving_attack = false

@@ -7,7 +7,7 @@
 [resource]
 script = ExtResource("1_2p31j")
 damage = 40
-capture_efficiency = 1.1
+precentage_damage = 0.0
 description = "Deal 20 health to self but opponent takes 20 damage for 2 turns."
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_esmhd"), ExtResource("2_1dj62")])
 moving_attack = false
