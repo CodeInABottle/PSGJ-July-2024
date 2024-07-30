@@ -137,5 +137,7 @@ label_settings = SubResource("LabelSettings_ljuoy")
 horizontal_alignment = 1
 vertical_alignment = 1
 
+[connection signal="hidden" from="." to="." method="_on_hidden"]
 [connection signal="mouse_entered" from="Button" to="." method="_on_button_mouse_entered"]
 [connection signal="mouse_exited" from="Button" to="." method="_on_button_mouse_exited"]
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

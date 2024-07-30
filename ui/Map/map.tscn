@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://ifxjltqf61pd"]
+[gd_scene load_steps=5 format=3 uid="uid://ifxjltqf61pd"]
 
 [ext_resource type="Script" path="res://ui/Map/map.gd" id="1_d608j"]
 [ext_resource type="Texture2D" uid="uid://dimelb3opapwh" path="res://assets/sprites/general/Map/Map.png" id="1_t0e3j"]
 [ext_resource type="PackedScene" uid="uid://uiy4ieql284t" path="res://ui/Map/MapPin/map_pin.tscn" id="2_r26xo"]
+[ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="4_mjuue"]
 
 [node name="Map" type="Control"]
 layout_mode = 3
@@ -21,6 +22,15 @@ offset_bottom = 40.0
 texture = ExtResource("1_t0e3j")
 metadata/_edit_lock_ = true
 
+[node name="Close" type="Button" parent="."]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 322.0
+offset_right = 77.0
+offset_bottom = 354.0
+theme = ExtResource("4_mjuue")
+text = "Close"
+
 [node name="Pins" type="Control" parent="."]
 unique_name_in_owner = true
 layout_mode = 1
@@ -38,6 +48,7 @@ offset_top = 195.0
 offset_right = 386.0
 offset_bottom = 195.0
 location = "Newbert Town"
+checkpoint_tag = "Newbert Town"
 
 [node name="CatBridge" parent="Pins" instance=ExtResource("2_r26xo")]
 offset_left = 346.0
@@ -45,10 +56,7 @@ offset_top = 114.0
 offset_right = 346.0
 offset_bottom = 114.0
 location = "Cat Bridge"
+checkpoint_tag = "Cat Bridge"
 
-[node name="Remembrance" parent="Pins" instance=ExtResource("2_r26xo")]
-offset_left = 313.0
-offset_top = 172.0
-offset_right = 313.0
-offset_bottom = 172.0
-location = "Remembrance"
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
+[connection signal="pressed" from="Close" to="." method="_on_close_pressed"]
