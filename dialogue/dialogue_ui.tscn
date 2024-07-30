@@ -28,6 +28,7 @@ outline_color = Color(0, 0, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_mbb5t"]
 font = ExtResource("4_df6hx")
+font_size = 18
 font_color = Color(0, 0, 0, 1)
 
 [node name="DialogueUI" type="Control" node_paths=PackedStringArray("dialogue_label", "next_button", "close_button", "button_container", "letter_timer", "speaker_icon", "speaker_name_label")]
