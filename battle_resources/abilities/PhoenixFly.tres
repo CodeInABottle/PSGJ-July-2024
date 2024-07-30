@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_a2e7n")
 damage = 50
+precentage_damage = 0.0
 description = "Heal 10HP on use."
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_cf5l4")])
 moving_attack = false

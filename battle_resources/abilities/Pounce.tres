@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_gyytu")
 damage = 80
+precentage_damage = 0.0
 description = "Do 40 more damage if opponent has AP."
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_bw6bk")])
 moving_attack = false

@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_nfbjt")
 damage = 70
+precentage_damage = 0.0
 description = "There's a 50% chance to skip your opponent's turn."
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_civua")])
 moving_attack = false
