@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dgfbiygvyomee" path="res://npc/base_npc/base_npc.tscn" id="1_yoryc"]
 [ext_resource type="Script" path="res://npc/beetle/beetle_npc_controller.gd" id="2_1400h"]
 [ext_resource type="SpriteFrames" uid="uid://d4ay68tljbn8l" path="res://npc/beetle/beetle_sprite_frames.tres" id="2_tlm8c"]
-[ext_resource type="SpriteFrames" uid="uid://cebpkair4avmg" path="res://npc/beetle/afflicted_beetle_sprite_frames.tres" id="3_8kxkd"]
+[ext_resource type="SpriteFrames" uid="uid://c6yrosce855bb" path="res://npc/beetle/afflicted_beetle_sprite_frames.tres" id="3_8kxkd"]
 
 [node name="Beetle" instance=ExtResource("1_yoryc")]
 script = ExtResource("2_1400h")
