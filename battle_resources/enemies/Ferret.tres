@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://b8yvv0gnqfqjv"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=6 format=3 uid="uid://b8yvv0gnqfqjv"]
 
 [ext_resource type="PackedScene" uid="uid://ha3p2jmtvbyb" path="res://battle_resources/CombatAnimations/ferret_sprite_handler.tscn" id="1_3j4d1"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_neiqp"]
 [ext_resource type="Resource" uid="uid://bkx3mtvtsl8vs" path="res://battle_resources/abilities/Sleep.tres" id="1_xwcj8"]
 [ext_resource type="Resource" uid="uid://bajckdhsuwcmc" path="res://battle_resources/abilities/FullCounter.tres" id="2_w74ht"]
+[ext_resource type="Texture2D" uid="uid://jl4kriu3e505" path="res://assets/sprites/mobs/overworld_ferret.png" id="4_y5hjb"]
 
 [resource]
 script = ExtResource("1_neiqp")
@@ -13,6 +14,10 @@ max_health = 360
 resonate = 6
 domain = &"Dumb"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_xwcj8"), ExtResource("2_w74ht")])
+icon = ExtResource("4_y5hjb")
+frame_size = Vector2i(8, 1)
+frame_index = 0
 combat_animation = ExtResource("1_3j4d1")
+special_frame_behavior = 0
 special_frame_idx = -1
 attack_position = Vector2(0, 0)

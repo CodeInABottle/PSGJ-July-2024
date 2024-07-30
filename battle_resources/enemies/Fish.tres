@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://cukn3asdb1m34"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=6 format=3 uid="uid://cukn3asdb1m34"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_affhm"]
 [ext_resource type="Resource" uid="uid://m0vscmkrmnyi" path="res://battle_resources/abilities/Purify.tres" id="1_ppbmj"]
 [ext_resource type="Resource" uid="uid://dn464bphbncd2" path="res://battle_resources/abilities/Retaliate.tres" id="2_26wvj"]
 [ext_resource type="PackedScene" uid="uid://dyl4w7kmq3wao" path="res://battle_resources/CombatAnimations/fish_sprite_handler.tscn" id="3_8cm26"]
+[ext_resource type="Texture2D" uid="uid://b2gnr7rpry4ll" path="res://assets/sprites/mobs/overworld_fish.png" id="4_pg8ho"]
 
 [resource]
 script = ExtResource("1_affhm")
@@ -13,6 +14,10 @@ max_health = 280
 resonate = 4
 domain = &"Dumb"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_ppbmj"), ExtResource("2_26wvj")])
+icon = ExtResource("4_pg8ho")
+frame_size = Vector2i(6, 2)
+frame_index = 1
 combat_animation = ExtResource("3_8cm26")
+special_frame_behavior = 0
 special_frame_idx = -1
 attack_position = Vector2(514, 56)

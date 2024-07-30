@@ -11,26 +11,31 @@ const MAX_BOOKS: int = 17
 @onready var _slot_data: Dictionary = {
 	%ShadowSlot1: {
 		"beaker": $AlchemyBench/TextureRect,
+		"sprite": $ShadowSlots/ShadowSlot1/Sprite2D,
 		"test_tube": null,
 		"full": false
 	},
 	%ShadowSlot2: {
 		"beaker": $AlchemyBench/TextureRect2,
+		"sprite": $ShadowSlots/ShadowSlot2/Sprite2D,
 		"test_tube": null,
 		"full": false
 	},
 	%ShadowSlot3: {
 		"beaker": $AlchemyBench/TextureRect3,
+		"sprite": $ShadowSlots/ShadowSlot3/Sprite2D,
 		"test_tube": null,
 		"full": false
 	},
 	%ShadowSlot4: {
 		"beaker": $AlchemyBench/TextureRect4,
+		"sprite": $ShadowSlots/ShadowSlot4/Sprite2D,
 		"test_tube": null,
 		"full": false
 	},
 	%ShadowSlot5: {
 		"beaker": $AlchemyBench/TextureRect5,
+		"sprite": $ShadowSlots/ShadowSlot5/Sprite2D,
 		"test_tube": null,
 		"full": false
 	}
@@ -72,6 +77,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		slotted_shadows.erase(_slot_data[_area_entered]["test_tube"].shadow_name)
 		_slot_data[_area_entered]["test_tube"].drop()
 		_slot_data[_area_entered]["beaker"].hide()
+		_slot_data[_area_entered]["sprite"].texture = null
 		_slot_data[_area_entered]["test_tube"].show()
 		_area_entered = null
 		slotted_moves_container.refresh_slotted_moves()
@@ -102,12 +108,20 @@ func initialize_shadow_books() -> void:
 		_slot_data[area]["full"] = true
 		_slot_data[area]["beaker"].self_modulate = test_tube.background.self_modulate
 		_slot_data[area]["beaker"].show()
+		_set_sprite_data(area, test_tube.shadow_name)
 	if shadow_container.get_child_count() > 0:
 		slotted_moves_container.refresh_slotted_moves()
 
 func on_fade_out_complete() -> void:
 	MenuManager.fader_controller.fade_out_complete.disconnect(on_fade_out_complete)
 	LevelManager.unload_menu()
+
+func _set_sprite_data(area: Area2D, shadow_name: String) -> void:
+	var enemy_data: Dictionary = EnemyDatabase.get_shadow_icon_data(shadow_name)
+	_slot_data[area]["sprite"].texture = enemy_data["texture"]
+	_slot_data[area]["sprite"].hframes = enemy_data["frame_size"].x
+	_slot_data[area]["sprite"].vframes = enemy_data["frame_size"].y
+	_slot_data[area]["sprite"].frame = enemy_data["frame_index"]
 
 func _on_area_mouse_entered(area: Area2D) -> void:
 	if _area_entered: return
@@ -128,6 +142,7 @@ func _on_slot_requested(area: Area2D, test_tube: TestTube) -> void:
 		_slot_data[area]["full"] = true
 		_slot_data[area]["beaker"].self_modulate = test_tube.background.self_modulate
 		_slot_data[area]["beaker"].show()
+		_set_sprite_data(area, test_tube.shadow_name)
 	else:
 		test_tube.reset_placement()
 

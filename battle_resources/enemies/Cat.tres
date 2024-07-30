@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=6 format=3 uid="uid://coyjvuah4xrk2"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=7 format=3 uid="uid://coyjvuah4xrk2"]
 
 [ext_resource type="Resource" uid="uid://45w0iwb2s5kb" path="res://battle_resources/abilities/WorldlessRoar.tres" id="1_2l20h"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_fdqer"]
 [ext_resource type="Resource" uid="uid://o8qhfxt5q7da" path="res://battle_resources/abilities/Pounce.tres" id="2_ygnaa"]
 [ext_resource type="Resource" uid="uid://0vnynh3rllw3" path="res://battle_resources/abilities/SilverSpire.tres" id="3_tyr4w"]
 [ext_resource type="PackedScene" uid="uid://dabhe6mfi3x11" path="res://battle_resources/CombatAnimations/cat_sprite_handler.tscn" id="4_y7xnh"]
+[ext_resource type="Texture2D" uid="uid://c32ok3i7wrxtu" path="res://assets/sprites/mobs/overworld_cat.png" id="5_nmo0d"]
 
 [resource]
 script = ExtResource("1_fdqer")
@@ -14,6 +15,10 @@ max_health = 600
 resonate = 7
 domain = &"Clever"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_2l20h"), ExtResource("2_ygnaa"), ExtResource("3_tyr4w")])
+icon = ExtResource("5_nmo0d")
+frame_size = Vector2i(6, 10)
+frame_index = 12
 combat_animation = ExtResource("4_y7xnh")
+special_frame_behavior = 0
 special_frame_idx = -1
 attack_position = Vector2(0, 0)

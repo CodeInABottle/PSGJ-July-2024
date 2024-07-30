@@ -55,6 +55,16 @@ func get_enemy_data(enemy_name: String) -> BattlefieldEnemyData:
 
 	return _enemies[enemy_name]
 
+func get_shadow_icon_data(enemy_name: String) -> Dictionary:
+	assert(enemy_name in _enemies, "Enemy name: " + enemy_name + " does not exist/isn't loaded.")
+
+	var enemy_data: BattlefieldEnemyData = _enemies[enemy_name]
+	return {
+		"texture": enemy_data.icon,
+		"frame_size": enemy_data.frame_size,
+		"frame_index": enemy_data.frame_index
+	}
+
 func get_shadow_color(shadow_name: String) -> Color:
 	assert(shadow_name in _enemies, "Enemy name: " + shadow_name + " does not exist/isn't loaded.")
 

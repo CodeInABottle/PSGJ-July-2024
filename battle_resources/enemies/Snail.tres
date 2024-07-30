@@ -1,8 +1,9 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=4 format=3 uid="uid://crgkhd4e2x8ca"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=5 format=3 uid="uid://crgkhd4e2x8ca"]
 
 [ext_resource type="PackedScene" uid="uid://ct3iutsk8dbi2" path="res://battle_resources/CombatAnimations/snail_sprite_handler.tscn" id="1_1atgi"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_a16ia"]
 [ext_resource type="Resource" uid="uid://dc21swljafikr" path="res://battle_resources/abilities/SaltCure.tres" id="1_hfhrq"]
+[ext_resource type="Texture2D" uid="uid://4y8akwtj5y3s" path="res://assets/sprites/mobs/overworld_snail.png" id="3_w8gyp"]
 
 [resource]
 script = ExtResource("1_a16ia")
@@ -12,6 +13,10 @@ max_health = 400
 resonate = 12
 domain = &"Smart"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_hfhrq")])
+icon = ExtResource("3_w8gyp")
+frame_size = Vector2i(6, 1)
+frame_index = 0
 combat_animation = ExtResource("1_1atgi")
+special_frame_behavior = 0
 special_frame_idx = -1
 attack_position = Vector2(0, 0)

@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=6 format=3 uid="uid://cuqkgangt4gin"]
+[gd_resource type="Resource" script_class="BattlefieldEnemyData" load_steps=7 format=3 uid="uid://cuqkgangt4gin"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/EnemyData.gd" id="1_06n1u"]
 [ext_resource type="PackedScene" uid="uid://8ijfxwg4uuvf" path="res://battle_resources/CombatAnimations/dog_sprite_handler.tscn" id="1_br0sl"]
 [ext_resource type="Resource" uid="uid://c88uxo38pkrsl" path="res://battle_resources/abilities/Slash.tres" id="1_r021g"]
 [ext_resource type="Resource" uid="uid://dwlb2w8pr1nm2" path="res://battle_resources/abilities/GoldenPillar.tres" id="1_vh2it"]
 [ext_resource type="Resource" uid="uid://cctmrbcnbdxrn" path="res://battle_resources/abilities/GaiaHowl.tres" id="3_bpdgw"]
+[ext_resource type="Texture2D" uid="uid://cp0fethjooqtj" path="res://assets/sprites/mobs/overworld_dog.png" id="5_bogb1"]
 
 [resource]
 script = ExtResource("1_06n1u")
@@ -14,6 +15,9 @@ max_health = 600
 resonate = 14
 domain = &"Clever"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_vh2it"), ExtResource("1_r021g"), ExtResource("3_bpdgw")])
+icon = ExtResource("5_bogb1")
+frame_size = Vector2i(11, 1)
+frame_index = 0
 combat_animation = ExtResource("1_br0sl")
 special_frame_behavior = 0
 special_frame_idx = -1
