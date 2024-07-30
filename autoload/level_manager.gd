@@ -108,6 +108,8 @@ var pending_battle: String = ""
 
 # area name: String : pickup indices: Array[int]
 var area_pickup_status: Dictionary = {}
+var unlocked_checkpoints: Array = []
+
 var _in_world: bool = false
 
 #endregion
@@ -291,6 +293,7 @@ func get_save_data() -> Dictionary:
 		"modifiers": current_modifiers,
 		"checkpoint": current_checkpoint,
 		"area_pickup_status": area_pickup_status,
+		"unlocked_checkpoints": unlocked_checkpoints,
 	}
 
 func respawn() -> void:
@@ -303,6 +306,8 @@ func fast_travel(checkpoint_name: String) -> void:
 func update_checkpoint(checkpoint_name: String) -> void:
 	if _checkpoints.keys().has(checkpoint_name):
 		current_checkpoint = checkpoint_name
+		if not unlocked_checkpoints.has(checkpoint_name):
+			unlocked_checkpoints.append(checkpoint_name)
 
 func on_fade_out_complete() -> void:
 	MenuManager.fader_controller.fade_out_complete.disconnect(on_fade_out_complete)
@@ -330,7 +335,8 @@ func trigger_battle(enemy_name: String, area_index: int, start_translucent: bool
 func load_save(save_data: Dictionary) -> void:
 	current_checkpoint = save_data.get("checkpoint", "start")
 	current_modifiers = save_data.get("modifiers", [])
-	area_pickup_status = save_data.get("area_pickup_status")
+	area_pickup_status = save_data.get("area_pickup_status", {})
+	unlocked_checkpoints = save_data.get("unlocked_checkpoints", [])
 	load_world(save_data["area"])
 
 # to be use to reset enemy battles if any on checkpoint rest, if needed?
