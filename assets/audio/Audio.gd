@@ -11,6 +11,7 @@ var activateObeliskSound : AudioStream = preload("res://assets/audio/SFX/activat
 var applyComponentSound : AudioStream = preload("res://assets/audio/SFX/apply_component.ogg")
 var attackHitSound : AudioStream = preload("res://assets/audio/SFX/attack_hit.ogg")
 var cleanComponentsSound : AudioStream = preload("res://assets/audio/SFX/clean_components.ogg")
+var enterCombatSound : AudioStream = preload("res://assets/audio/SFX/enter_combat.ogg")
 var itemPickupSound : AudioStream = preload("res://assets/audio/SFX/item_pickup.ogg")
 var pageSound : AudioStream = preload("res://assets/audio/SFX/page.ogg")
 var pickupComponentSound : AudioStream = preload("res://assets/audio/SFX/pickup_component.ogg")
@@ -51,6 +52,8 @@ func play_sfx(soundName : String) -> void:
 			SFX.stream = attackHitSound
 		"clean_components":
 			SFX.stream = cleanComponentsSound
+		"enter_combat":
+			SFX.stream = enterCombatSound
 		"item_pickup":
 			SFX.stream = itemPickupSound
 		"page":
