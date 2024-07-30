@@ -1,4 +1,4 @@
-[gd_scene load_steps=38 format=3 uid="uid://b3gb6j2g64qqa"]
+[gd_scene load_steps=39 format=3 uid="uid://b3gb6j2g64qqa"]
 
 [ext_resource type="Script" path="res://battle_systems/Scripts/BattlefieldManager.gd" id="1_ubwb4"]
 [ext_resource type="Script" path="res://battle_systems/Scripts/EntityTracker.gd" id="2_oep6u"]
@@ -24,6 +24,7 @@
 [ext_resource type="PackedScene" uid="uid://bsa0djc5k7pg8" path="res://battle_systems/UI/EnemyStatusIndicator/Residue/residue.tscn" id="20_uh4xj"]
 [ext_resource type="Texture2D" uid="uid://c3flj6yj5ha7f" path="res://assets/sprites/combat/capture.png" id="21_y5vbx"]
 [ext_resource type="FontFile" uid="uid://bn1yp4fkor0tt" path="res://assets/fonts/Handwriting_V2-Regular.ttf" id="22_hxut8"]
+[ext_resource type="PackedScene" uid="uid://nkil5y42ejrk" path="res://battle_systems/UI/AttackPrompt/attack_prompt.tscn" id="24_f3co5"]
 
 [sub_resource type="Animation" id="Animation_4tlvq"]
 resource_name = "FadeOut"
@@ -1761,6 +1762,9 @@ text = "Captured!"
 label_settings = SubResource("LabelSettings_emx5h")
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[node name="AttackPrompt" parent="CanvasLayer" instance=ExtResource("24_f3co5")]
+unique_name_in_owner = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 visible = false

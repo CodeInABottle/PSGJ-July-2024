@@ -29,6 +29,8 @@ func attack(ability_name: String) -> void:
 	var ability_data: Dictionary = EnemyDatabase.get_ability_attack(ability_name)
 	var enemy_position: Vector2 = entity_tracker.enemy_entity.get_attack_position()
 
+	entity_tracker.attack_prompt.set_data("Blob", ability_name)
+
 	if ability_data["attack"] == null:
 		if _tween:
 			_tween.kill()

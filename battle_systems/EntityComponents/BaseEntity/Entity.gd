@@ -89,7 +89,7 @@ func _play_ap_effect() -> void:
 
 func _spawn_damage_number(amount: int, is_damage: bool) -> void:
 	var damage_instance: Control = BATTLE_NUMBERS.instantiate()
-	add_child(damage_instance)
+	effect_marker.add_child(damage_instance)
 	var value: int = amount
 	if is_damage: value *= -1
 	damage_instance.play(value)

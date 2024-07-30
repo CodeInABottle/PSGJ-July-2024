@@ -10,8 +10,6 @@ func play(value: int) -> void:
 	label.text = str(value)
 	if value < 0:
 		label.add_theme_color_override("font_color", RED)
-		label.add_theme_color_override("font_outline_color", RED)
 	else:
 		label.add_theme_color_override("font_color", GREEN)
-		label.add_theme_color_override("font_outline_color", GREEN)
 	animation_player.play("Fade")

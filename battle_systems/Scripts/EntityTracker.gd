@@ -34,6 +34,7 @@ class ModData:
 @onready var combat_state_machine: BattlefieldCombatStateMachine = %CombatStateMachine
 @onready var player_entity: BattlefieldPlayerEntity = %PlayerEntity
 @onready var enemy_entity: BattlefieldAIEntity = %EnemyEntity
+@onready var attack_prompt: AttackPrompt = %AttackPrompt
 
 var _enemy_effects: Array[ModData] = []
 var _enemy_signal_effects: Array[ModData] = []

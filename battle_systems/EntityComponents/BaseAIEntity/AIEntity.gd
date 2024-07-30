@@ -71,6 +71,7 @@ func load_AI(data: BattlefieldEnemyData) -> void:
 					and _data.special_frame_behavior == EnemyDatabase.SpecialFrameState.ON_ATTACK:
 				await get_tree().create_timer(0.25).timeout
 				animation_holder.get_child(0).reset()
+			#await entity_tracker.attack_prompt.finished
 			actions_completed.emit()
 	)
 	_data = data
@@ -185,11 +186,12 @@ func issue_actions() -> void:
 func activate_ability(ability_idx: int) -> void:
 	if ability_idx < 0 or ability_idx > _data.abilities.size(): return
 
-
 	var ability_data: BattlefieldAbility = _data.abilities[ability_idx]
 	var attack_packed_scene: PackedScene = ability_data["attack"]
 
 	_alchemy_points -= ability_data.ap_cost
+
+	entity_tracker.attack_prompt.set_data(_data.name, ability_data["name"])
 
 	if attack_packed_scene == null:
 		if _tween:
