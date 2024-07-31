@@ -55,3 +55,4 @@ unique_name_in_owner = true
 
 [node name="NavAgent" type="NavigationAgent2D" parent="."]
 unique_name_in_owner = true
+path_desired_distance = 5.0
