@@ -5,6 +5,6 @@
 
 [resource]
 script = ExtResource("1_m87c4")
-item_name = "pebble"
+item_name = "Pebble"
 item_description = "its just a pebble"
 item_icon = ExtResource("1_u553c")

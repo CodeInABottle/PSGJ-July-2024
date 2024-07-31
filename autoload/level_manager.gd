@@ -301,6 +301,7 @@ func get_save_data() -> Dictionary:
 	}
 
 func respawn() -> void:
+	audio_anchor.crossfade_to_overworld()
 	load_world(_checkpoints[current_checkpoint][0], _checkpoints[current_checkpoint][1])
 	PlayerStats.refill_health()
 

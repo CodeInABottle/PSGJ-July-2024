@@ -54,7 +54,7 @@ delete_name = "Earth Worm"
 position = Vector2(13, -9)
 shape = SubResource("RectangleShape2D_qtv62")
 
-[node name="BranchHint" parent="HintAreas" index="1" instance=ExtResource("3_ea7my")]
+[node name="StickHint" parent="HintAreas" index="1" instance=ExtResource("3_ea7my")]
 position = Vector2(106, 89)
 rotation = 0.0237437
 delete_mode = "Shadow"
@@ -63,7 +63,7 @@ hint_dialogue = ExtResource("6_4mgck")
 delete_name = "Earth Worm"
 event_name = "battle_finished"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="HintAreas/BranchHint" index="0"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="HintAreas/StickHint" index="0"]
 position = Vector2(33.2432, 3.8147e-06)
 shape = SubResource("RectangleShape2D_8saw3")
 

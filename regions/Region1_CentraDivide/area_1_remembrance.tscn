@@ -1,4 +1,4 @@
-[gd_scene load_steps=40 format=3 uid="uid://wlkqf1ypp0ik"]
+[gd_scene load_steps=41 format=3 uid="uid://wlkqf1ypp0ik"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_rhbow"]
 [ext_resource type="PackedScene" uid="uid://o0mjq6h1sa3v" path="res://overworld_stuff/transition_area.tscn" id="2_6uu8j"]
@@ -18,6 +18,7 @@
 [ext_resource type="Script" path="res://overworld_stuff/runaway_cat/runaway_cat_controller_2.gd" id="11_g5dcr"]
 [ext_resource type="SpriteFrames" uid="uid://dptdm3kr70q8a" path="res://npc/cat/cat_sprite_frames.tres" id="12_ipf24"]
 [ext_resource type="PackedScene" uid="uid://7g63ugqd7du3" path="res://inventory/pickup_lore.tscn" id="12_xps02"]
+[ext_resource type="PackedScene" uid="uid://cmgjwfs2ucnt7" path="res://inventory/pickup_item.tscn" id="13_gop53"]
 [ext_resource type="PackedScene" uid="uid://ctebwae2j0lq0" path="res://npc/chimkin/chimkin.tscn" id="14_hl43u"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dd83q"]
@@ -249,19 +250,22 @@ dialogue = ExtResource("9_cjt58")
 
 [node name="Lore6" parent="Pickups" index="0" instance=ExtResource("12_xps02")]
 position = Vector2(538, 1205)
-item_name = "Unknown Alchemist's Notes: 4"
+item_name = "Unknown Notes: 4"
 
 [node name="Lore7" parent="Pickups" index="1" instance=ExtResource("12_xps02")]
 position = Vector2(-947, 1237)
-item_name = "Unknown Alchemist's Notes: 5"
+item_name = "Unknown Notes: 5"
 
 [node name="Lore8" parent="Pickups" index="2" instance=ExtResource("12_xps02")]
 position = Vector2(-59, 596)
-item_name = "Adept Alchemist's Notes: 1"
+item_name = "Adept Notes: 1"
 
 [node name="Lore9" parent="Pickups" index="3" instance=ExtResource("12_xps02")]
 position = Vector2(677, 418)
-item_name = "Adept Alchemist's Notes: 2"
+item_name = "Adept Notes: 2"
+
+[node name="Pebble" parent="Pickups" index="4" instance=ExtResource("13_gop53")]
+position = Vector2(880, 55)
 
 [node name="Ferret" parent="Shadows" index="0" instance=ExtResource("7_pguk8")]
 position = Vector2(323, 257)

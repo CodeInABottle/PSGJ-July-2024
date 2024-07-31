@@ -17,6 +17,7 @@ const FIRST_COMPOUND: Array[String] = [
 @onready var sparkles: Control = %Sparkles
 @onready var end: Control = %End
 @onready var residue_1: Control = %Residue1
+@onready var residue_1b: Control = %Residue1b
 @onready var resonating_residues: Control = %ResonatingResidues
 @onready var resonating_residues_b: Control = %ResonatingResiduesB
 
@@ -84,7 +85,8 @@ func _on_tutorial_text_button_pressed() -> void:
 
 func _on_review_pressed() -> void:
 	_on_win_pressed()
-	residue_1.show()
+	#residue_1.show()
+	residue_1b.show()
 
 func _on_win_pressed() -> void:
 	resonating_residues.hide()
