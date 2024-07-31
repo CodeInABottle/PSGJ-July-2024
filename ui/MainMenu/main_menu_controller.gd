@@ -1,5 +1,7 @@
 extends Control
 
+const DISABLE_LOADING: bool = true
+
 @onready var control_shield: Control = %ControlShield
 @onready var animation_player: AnimationPlayer = %AnimationPlayer
 @onready var save_string_edit: LineEdit = %SaveStringEdit
@@ -8,6 +10,7 @@ extends Control
 @onready var save_string_container: Control = %SaveStringContainer
 @onready var splash_art: Control = %SplashArt
 @onready var music_settings: Control = %MusicSettings
+@onready var browser_shield: Control = $BrowserShield
 
 var _fader_controller: CanvasLayer
 var _save_string: String
@@ -19,6 +22,7 @@ func _ready() -> void:
 	control_shield.hide()
 	menu_buttons.show()
 	save_string_container.show()
+	browser_shield.hide()
 
 func _on_fade_out_complete() -> void:
 	_fader_controller.fade_out_complete.disconnect(_on_fade_out_complete)
@@ -33,6 +37,8 @@ func _on_load_pressed() -> void:
 	LevelManager.audio_anchor.play_sfx("accept_button")
 	animation_player.play("SlideMainButtonsDown")
 	await animation_player.animation_finished
+	if DISABLE_LOADING:
+		browser_shield.show()
 	animation_player.play("SlideSaveStringUp")
 	_on_save_string_edit_text_changed(save_string_edit.text)
 
@@ -49,6 +55,8 @@ func _on_save_string_edit_text_changed(new_text: String) -> void:
 
 func _on_back_pressed() -> void:
 	LevelManager.audio_anchor.play_sfx("accept_button")
+	if DISABLE_LOADING:
+		browser_shield.hide()
 	animation_player.play_backwards("SlideSaveStringUp")
 	await animation_player.animation_finished
 	animation_player.play_backwards("SlideMainButtonsDown")

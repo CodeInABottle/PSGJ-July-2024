@@ -1,5 +1,7 @@
 extends Control
 
+const DISABLE_LOADING: bool = true
+
 @export var item_list: ItemList
 @export var item_name_label: Label
 @export var item_icon: TextureRect
@@ -12,6 +14,7 @@ extends Control
 @onready var items_panel: PanelContainer = %ItemsPanel
 @onready var buttons: Control = %Buttons
 @onready var music_settings: Control = %MusicSettings
+@onready var browser_shield: Control = %BrowserShield
 
 var _is_opened: bool = false
 var can_close: bool = false
@@ -22,6 +25,7 @@ func _ready() -> void:
 	background.visibility_changed.connect(_open)
 	hide_all()
 	music_settings.hide()
+	browser_shield.hide()
 
 func hide_all() -> void:
 	item_list.deselect_all()
@@ -75,6 +79,8 @@ func _on_save_pressed() -> void:
 	await animation_player.animation_finished
 	animation_player.play("MoveLeft")
 	await animation_player.animation_finished
+	if DISABLE_LOADING:
+		browser_shield.show()
 	animation_player.play("SlideSaveUp")
 	save_string.text = SaveManager.generate_save_string()
 
@@ -100,6 +106,8 @@ func _on_inventory_pressed() -> void:
 
 func _on_back_from_save_pressed() -> void:
 	LevelManager.audio_anchor.play_sfx("accept_button")
+	if DISABLE_LOADING:
+		browser_shield.hide()
 	animation_player.play_backwards("SlideSaveUp")
 	await animation_player.animation_finished
 	animation_player.play_backwards("MoveLeft")
