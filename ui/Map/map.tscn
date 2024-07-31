@@ -72,7 +72,7 @@ offset_top = 168.0
 offset_right = 231.0
 offset_bottom = 168.0
 location = "West Bank"
-checkpoint_tag = "WestBank"
+checkpoint_tag = "West Bank"
 
 [connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="Close" to="." method="_on_close_pressed"]

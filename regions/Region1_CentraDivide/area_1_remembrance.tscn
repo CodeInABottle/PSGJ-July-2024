@@ -238,7 +238,7 @@ dialogue = ExtResource("7_bq5ub")
 
 [node name="CheckpointWestBank" parent="Interactables" index="1" instance=ExtResource("10_74xfd")]
 position = Vector2(-445, 410)
-checkpoint_name = "WestBank"
+checkpoint_name = "West Bank"
 
 [node name="CheckpointEastBank" parent="Interactables" index="2" instance=ExtResource("10_74xfd")]
 position = Vector2(221, 731)
