@@ -6,7 +6,7 @@
 
 [sub_resource type="Resource" id="Resource_rdsqo"]
 script = ExtResource("1_2d7kv")
-line_text = "Huh, I guess that branch came in handy. A good stick makes anyone feel powerful."
+line_text = "Huh, I guess that stick came in handy. A good stick makes anyone feel powerful."
 
 [sub_resource type="Resource" id="Resource_fucck"]
 script = ExtResource("2_snmuv")
