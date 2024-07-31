@@ -266,6 +266,7 @@ hint_dialogue = ExtResource("6_epoe8")
 redirect_marker = NodePath("../CheckpopintBlocker/CheckpointRedirectMarker")
 disable_leash_name = "Living Tree"
 disable_event_name = "checkpoint_touched"
+status_disable_name = "touched_checkpoint"
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="LeashAreas/CheckpointIntro" index="0"]
 scale = Vector2(1.2164, 0.696753)
