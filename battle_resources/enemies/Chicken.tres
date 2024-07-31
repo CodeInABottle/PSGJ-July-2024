@@ -10,7 +10,7 @@
 script = ExtResource("1_t6edk")
 name = "Chicken"
 description = ""
-max_health = 200
+max_health = 400
 resonate = 2
 domain = &"Dumb"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_cy4jg"), ExtResource("2_31unh")])

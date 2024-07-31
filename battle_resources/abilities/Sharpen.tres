@@ -5,14 +5,14 @@
 
 [resource]
 script = ExtResource("1_q173d")
-damage = 0
+damage = 5
 precentage_damage = 0.0
-description = "Do 10 damage on the next 2 recieving attacks. "
+description = "Do 5 damage on the next 2 recieving attacks. "
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_ilgmh")])
 moving_attack = false
 attack_movement_speed = 0.5
 attack_life_time = 0.5
-resonate_type = 8
+resonate_type = 1
 reagent_a = 1
 reagent_b = 0
 reagent_c = 0

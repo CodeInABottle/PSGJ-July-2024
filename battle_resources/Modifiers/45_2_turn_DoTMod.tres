@@ -4,7 +4,8 @@
 
 [resource]
 script = ExtResource("1_eyo75")
-damage = 45
+damage = 55
 apply_to_self = false
 is_attacked_triggered = false
+immediate = false
 turns = 2

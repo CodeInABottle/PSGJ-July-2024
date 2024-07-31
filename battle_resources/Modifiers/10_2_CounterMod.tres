@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_enenq")
-counter_damage = 10
+counter_damage = 5
 full_counter = false
 apply_to_self = true
 is_attacked_triggered = true

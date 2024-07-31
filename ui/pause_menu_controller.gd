@@ -1,6 +1,6 @@
 extends Control
 
-const DISABLE_LOADING: bool = true
+const DISABLE_LOADING: bool = false
 
 @export var item_list: ItemList
 @export var item_name_label: Label
