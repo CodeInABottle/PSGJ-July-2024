@@ -357,13 +357,16 @@ func on_world_event(world_event_name: String, args: Array) -> void:
 		if args[0]["won_battle"]:
 			audio_anchor.crossfade_to_overworld()
 			if args[0]["shadow_name"] == "Armored Snail":
-				PlayerStats.max_health = 700.0
+				if PlayerStats.max_health < 700.0:
+					PlayerStats.max_health = 700.0
 			elif args[0]["shadow_name"] == "Bombardier Beetle":
-				PlayerStats.max_health = 900.0
+				if PlayerStats.max_health < 900.0:
+					PlayerStats.max_health = 900.0
 	elif world_event_name.begins_with("item_get"):
 		play_sfx("item_pickup")
 	elif world_event_name == "checkpoint_touched":
 		play_sfx("activate_obelisk")
+		PlayerStats.max_health = 900.0
 
 func play_sfx(sound_name: String) -> void:
 	audio_anchor.play_sfx(sound_name)
