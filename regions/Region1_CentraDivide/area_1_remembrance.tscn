@@ -266,7 +266,6 @@ item_name = "Adept Notes: 2"
 
 [node name="Pebble" parent="Pickups" index="4" instance=ExtResource("13_gop53")]
 position = Vector2(880, 55)
-item_name = "Pebble"
 
 [node name="Ferret" parent="Shadows" index="0" instance=ExtResource("7_pguk8")]
 position = Vector2(323, 257)
