@@ -18,7 +18,7 @@ const SHADOW_COLOR: Dictionary = {
 	TypeChart.ResonateType.NITER: Color("323c39"),
 	TypeChart.ResonateType.METAL: Color("696a6a"),
 }
-const CAPTURE_RATE_EFFICENCY: float = 1.25
+const CAPTURE_RATE_EFFICENCY: float = 1.6
 
 enum SpecialFrameState { NONE, ON_HURT, ON_ATTACK, LAST_30_PRECENT }
 

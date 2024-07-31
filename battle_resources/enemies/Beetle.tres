@@ -10,7 +10,7 @@
 script = ExtResource("3_v3qor")
 name = "Bombardier Beetle"
 description = ""
-max_health = 450
+max_health = 585
 resonate = 3
 domain = &"Smart"
 abilities = Array[Resource("res://battle_systems/Scripts/Ability.gd")]([ExtResource("1_w0k2b"), ExtResource("2_yy11u")])
