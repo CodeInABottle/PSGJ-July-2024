@@ -5,7 +5,7 @@
 
 [resource]
 script = ExtResource("1_1nteb")
-damage = 120
+damage = 100
 precentage_damage = 0.0
 description = "Opponent looses 1 AP for 2 turns."
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_vrn36")])

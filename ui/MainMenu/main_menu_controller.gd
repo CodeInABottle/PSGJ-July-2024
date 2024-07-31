@@ -1,6 +1,6 @@
 extends Control
 
-const DISABLE_LOADING: bool = false
+const DISABLE_LOADING: bool = true
 
 @onready var control_shield: Control = %ControlShield
 @onready var animation_player: AnimationPlayer = %AnimationPlayer

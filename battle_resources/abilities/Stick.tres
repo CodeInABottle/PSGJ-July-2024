@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ruybd")
-damage = 20
+damage = 12
 precentage_damage = 0.0
 description = ""
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([])
