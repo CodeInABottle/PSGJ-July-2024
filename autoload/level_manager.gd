@@ -359,9 +359,12 @@ func on_world_event(world_event_name: String, args: Array) -> void:
 			if args[0]["shadow_name"] == "Armored Snail":
 				if PlayerStats.max_health < 700.0:
 					PlayerStats.max_health = 700.0
+			if args[0]["shadow_name"] == "Chicken" and args[0]["captured"]:
+				EnemyDatabase.CAPTURE_RATE_EFFICENCY = 2.0
 			elif args[0]["shadow_name"] == "Bombardier Beetle":
 				if PlayerStats.max_health < 900.0:
 					PlayerStats.max_health = 900.0
+					EnemyDatabase.CAPTURE_RATE_EFFICENCY = 2.0
 	elif world_event_name.begins_with("item_get"):
 		play_sfx("item_pickup")
 	elif world_event_name == "checkpoint_touched":
