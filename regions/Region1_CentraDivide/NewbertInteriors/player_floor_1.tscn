@@ -126,7 +126,7 @@ theme_override_font_sizes/font_size = 15
 text = "E to interact"
 
 [node name="WalkHintLabel" type="Label" parent="." index="17"]
-z_index = 2
+z_index = 1
 offset_left = 102.0
 offset_top = -30.0
 offset_right = 202.0

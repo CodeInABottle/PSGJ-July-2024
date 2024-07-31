@@ -460,7 +460,7 @@ position = Vector2(937, 279)
 
 [node name="Lore1" parent="Pickups" index="1" instance=ExtResource("7_qddya")]
 position = Vector2(841, 834)
-item_name = "Unknown Alchemist's Notes: 1"
+item_name = "Unknown Notes: 1"
 
 [node name="PickupStick" parent="Pickups" index="2" instance=ExtResource("5_aqmjy")]
 position = Vector2(203, 790)
@@ -469,23 +469,23 @@ item_name = "Stick"
 
 [node name="Lore2" parent="Pickups" index="3" instance=ExtResource("7_qddya")]
 position = Vector2(239, 1169)
-item_name = "Unknwon Alchemist's Notes: 2"
+item_name = "Unknwon Notes: 2"
 
 [node name="Lore3" parent="Pickups" index="4" instance=ExtResource("7_qddya")]
 position = Vector2(1046, 454)
-item_name = "Novice Alchemist's Notes: 1"
+item_name = "Novice Notes: 1"
 
 [node name="Lore4" parent="Pickups" index="5" instance=ExtResource("7_qddya")]
 position = Vector2(1216, 32)
-item_name = "Novice Alchemist's Notes: 2"
+item_name = "Novice Notes: 2"
 
 [node name="Lore5" parent="Pickups" index="6" instance=ExtResource("7_qddya")]
 position = Vector2(537, 128)
-item_name = "Unknown Alchemist's Notes: 3"
+item_name = "Unknown Notes: 3"
 
 [node name="Lore10" parent="Pickups" index="7" instance=ExtResource("7_qddya")]
 position = Vector2(237, 8)
-item_name = "Master Alchemist's Notes"
+item_name = "Master Notes"
 
 [node name="Shadows" parent="." index="7"]
 z_index = 1
