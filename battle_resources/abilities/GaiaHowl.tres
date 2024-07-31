@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_mpgn0")
 damage = 60
-capture_efficiency = 1.1
-description = "Opponent takes 90 damage on their turn."
+precentage_damage = 0.0
+description = "Opponent takes 50 damage on their turn."
 modifiers = Array[Resource("res://battle_systems/Scripts/AttackModifier.gd")]([ExtResource("1_npmn5")])
 moving_attack = false
 attack_movement_speed = 0.5
