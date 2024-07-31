@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://c4fqfvleyq3nd"]
+[gd_scene load_steps=25 format=3 uid="uid://c4fqfvleyq3nd"]
 
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="1_gpvpw"]
 [ext_resource type="Script" path="res://ui/pause_menu_controller.gd" id="1_iexfw"]
@@ -695,6 +695,9 @@ anti_aliasing = false
 font = ExtResource("6_rgki2")
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_y863d"]
+bg_color = Color(0, 0, 0, 0.654902)
+
 [node name="PauseMenu" type="Control" node_paths=PackedStringArray("item_list", "item_name_label", "item_icon", "item_description", "details_panel")]
 layout_mode = 3
 anchors_preset = 15
@@ -965,6 +968,84 @@ autowrap_mode = 3
 unique_name_in_owner = true
 visible = false
 layout_mode = 1
+
+[node name="BrowserShield" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="BrowserShield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -158.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y863d")
+
+[node name="Panel2" type="Panel" parent="BrowserShield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 575.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y863d")
+
+[node name="Panel3" type="Panel" parent="BrowserShield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 482.0
+offset_right = -65.0
+offset_bottom = -177.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y863d")
+
+[node name="Panel4" type="Panel" parent="BrowserShield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 482.0
+offset_top = 252.0
+offset_right = -65.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_y863d")
+
+[node name="Panel5" type="Panel" parent="BrowserShield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 34.0
+offset_top = 137.0
+offset_right = -121.0
+offset_bottom = -155.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.224034
+theme_override_styles/panel = SubResource("StyleBoxFlat_y863d")
+
+[node name="Label" type="Label" parent="BrowserShield/Panel5"]
+layout_mode = 0
+offset_left = 39.9754
+offset_top = 9.10876
+offset_right = 427.975
+offset_bottom = 58.1088
+text = "Browsers don't like using the clipboard it seems.
+You can't even copy and paste. D:
+"
 
 [connection signal="pressed" from="Buttons/Close" to="." method="_on_close_pressed"]
 [connection signal="pressed" from="Buttons/Save" to="." method="_on_save_pressed"]

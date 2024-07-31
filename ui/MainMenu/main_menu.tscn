@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://bn4oi0fntaepu"]
+[gd_scene load_steps=23 format=3 uid="uid://bn4oi0fntaepu"]
 
 [ext_resource type="Script" path="res://ui/MainMenu/main_menu_controller.gd" id="1_bkll6"]
 [ext_resource type="Theme" uid="uid://c2ppqoj6pfm85" path="res://ui/MainMenu/MenuTheme.tres" id="1_jnntl"]
@@ -526,6 +526,13 @@ axis_stretch_vertical = 2
 font_size = 14
 font_color = Color(0, 0, 0, 1)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_osd1d"]
+bg_color = Color(0, 0, 0, 0.654902)
+
+[sub_resource type="LabelSettings" id="LabelSettings_uuy2x"]
+font_size = 20
+outline_size = 1
+
 [node name="MainMenu" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -651,7 +658,6 @@ stretch_mode = 5
 
 [node name="SaveStringContainer" type="Control" parent="."]
 unique_name_in_owner = true
-visible = false
 anchors_preset = 0
 offset_right = 40.0
 offset_bottom = 40.0
@@ -688,8 +694,8 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_top = 366.0
-offset_right = 5760.0
-offset_bottom = 3606.0
+offset_right = 6400.0
+offset_bottom = 3966.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -837,6 +843,85 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+
+[node name="BrowserShield" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Panel" type="Panel" parent="BrowserShield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -287.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_osd1d")
+
+[node name="Panel2" type="Panel" parent="BrowserShield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 353.0
+offset_bottom = -108.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_osd1d")
+
+[node name="Panel3" type="Panel" parent="BrowserShield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 504.0
+offset_top = 252.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_osd1d")
+
+[node name="Panel4" type="Panel" parent="BrowserShield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 353.0
+offset_top = 328.0
+offset_right = -136.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_osd1d")
+
+[node name="Panel5" type="Panel" parent="BrowserShield"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 28.0
+offset_top = 74.0
+offset_right = -124.0
+offset_bottom = -211.0
+grow_horizontal = 2
+grow_vertical = 2
+rotation = -0.113894
+theme_override_styles/panel = SubResource("StyleBoxFlat_osd1d")
+
+[node name="Label" type="Label" parent="BrowserShield/Panel5"]
+layout_mode = 0
+offset_left = 7.94817
+offset_top = 0.90918
+offset_right = 474.948
+offset_bottom = 59.9092
+text = "Browsers don't like using the clipboard it seems.
+You can't even copy and paste. D:
+"
+label_settings = SubResource("LabelSettings_uuy2x")
 
 [connection signal="pressed" from="MenuButtons/Play" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="MenuButtons/Load" to="." method="_on_load_pressed"]
