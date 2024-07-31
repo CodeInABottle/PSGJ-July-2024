@@ -8,6 +8,7 @@ extends Area2D
 @export var redirect_marker: Marker2D
 @export var disable_leash_name: String
 @export var disable_event_name: String
+@export var status_disable_name: String
 
 var _is_redirecting: bool = false
 
@@ -26,17 +27,19 @@ func is_disabled() -> bool:
 			if items.keys().has(disable_leash_name):
 				queue_free()
 				return true
-			else:
-				return false
 		"ShadowDefeat", "ShadowCapture":
 			var unlocked_shadows: PackedStringArray = PlayerStats.get_all_unlocked_shadows()
 			if unlocked_shadows.has(disable_leash_name):
 				queue_free()
 				return true
-			else:
-				return false
 		_:
 			return true
+	
+	if LevelManager.temp_statuses.has(status_disable_name):
+		queue_free()
+		return true
+	
+	return false
 
 func is_player_in_area() -> bool:
 	var detected_bodies: Array[Node2D] = get_overlapping_bodies()

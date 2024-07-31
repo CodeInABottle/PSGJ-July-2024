@@ -17,6 +17,9 @@ func _ready() -> void:
 
 func on_interaction_started(_interactable: Interactable) -> void:
 	print("interacted with checkpoint")
+	if not LevelManager.temp_statuses.has("touched_checkpoint"):
+		LevelManager.temp_statuses.append("touched_checkpoint")
+	
 	shiny.stop_shiny()
 	menu_layer.show()
 	obelisk_sprite.play()
