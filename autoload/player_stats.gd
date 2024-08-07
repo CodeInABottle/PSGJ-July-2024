@@ -91,6 +91,14 @@ func _ready() -> void:
 	refill_health()
 	#level = 0
 	alchemy_points = get_max_alchemy_points()
+	#unlock_shadow("Living Tree")
+	#unlock_shadow("Fighting Fish")
+	#unlock_shadow("Armored Snail")
+	#unlock_shadow("Chicken")
+	#unlock_shadow("Bombardier Beetle")
+	#unlock_shadow("Celestial Canine")
+	#PlayerStats.max_health = 1000
+	#EnemyDatabase.CAPTURE_RATE_EFFICENCY = 2.0
 
 func refill_health() -> void:
 	health = max_health

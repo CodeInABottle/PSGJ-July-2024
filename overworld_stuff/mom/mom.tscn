@@ -41,6 +41,7 @@ script = ExtResource("2_cas7r")
 dialogue = SubResource("Resource_2km7i")
 
 [node name="Sprite2D" parent="." index="1"]
+unique_name_in_owner = true
 texture = ExtResource("2_dw6uy")
 offset = Vector2(0, -5.865)
 region_enabled = false

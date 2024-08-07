@@ -8,6 +8,7 @@ const FLIP_THRESHOLD: float = 0.536
 func _ready() -> void:
 	if LevelManager.temp_statuses.has("just_caught_cat"):
 		LevelManager.temp_statuses.erase("just_caught_cat")
+		LevelManager.temp_statuses.append("cat_left_remembrance")
 		run_away()
 
 func _process(_delta: float) -> void:
@@ -26,5 +27,4 @@ func on_path_finished() -> void:
 	path_tween.finished.connect(on_die_finished)
 
 func on_die_finished() -> void:
-	LevelManager.temp_statuses.append("cat_left_remembrance")
 	queue_free()
