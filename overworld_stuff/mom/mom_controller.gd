@@ -21,9 +21,3 @@ func on_interaction_quick_closed() -> void:
 func _on_interaction_ended() -> void:
 	shiny.show_shiny()
 	DialogueManager.dialogue_ended.disconnect(end_interaction)
-	MenuManager.fader_controller.fade_out_complete.connect(on_fade_out_complete)
-	MenuManager.fader_controller.fade_out()
-
-func on_fade_out_complete() -> void:
-	MenuManager.fader_controller.fade_out_complete.disconnect(on_fade_out_complete)
-	LevelManager.load_world("main_menu")

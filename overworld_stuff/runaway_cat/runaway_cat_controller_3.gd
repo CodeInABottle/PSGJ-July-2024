@@ -8,6 +8,7 @@ const FLIP_THRESHOLD: float = 0.536
 func _ready() -> void:
 	if LevelManager.temp_statuses.has("cat_left_remembrance"):
 		LevelManager.temp_statuses.erase("cat_left_remembrance")
+		LevelManager.temp_statuses.append("cat_in_cellar")
 		cat_sprite.flip_h = true
 		run_away()
 
@@ -28,6 +29,5 @@ func on_path_finished() -> void:
 	path_tween.finished.connect(on_die_finished)
 
 func on_die_finished() -> void:
-	LevelManager.temp_statuses.append("cat_in_cellar")
-	LevelManager.world_event_occurred.emit("cat_in_cellar")
+	LevelManager.world_event_occurred.emit("cat_in_cellar", [])
 	queue_free()

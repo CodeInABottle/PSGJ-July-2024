@@ -1,4 +1,4 @@
-[gd_scene load_steps=71 format=3 uid="uid://bhmtk1d3c4s68"]
+[gd_scene load_steps=68 format=3 uid="uid://bhmtk1d3c4s68"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_y57qd"]
 [ext_resource type="PackedScene" uid="uid://cm5val12sno1d" path="res://overworld_stuff/checkpoint.tscn" id="2_dyflh"]
@@ -35,9 +35,8 @@
 [ext_resource type="Resource" uid="uid://kkvsqewrydss" path="res://regions/Region1_CentraDivide/dialogue_area_0/sprint_sign.tres" id="25_48e15"]
 [ext_resource type="Resource" uid="uid://dq2metb7yt7rm" path="res://regions/Region1_CentraDivide/dialogue_area_0/checkpoint_sign.tres" id="26_flxfm"]
 [ext_resource type="PackedScene" uid="uid://bppvi54ifn5rs" path="res://npc/cat/cat.tscn" id="34_uhjnb"]
-[ext_resource type="SpriteFrames" uid="uid://dptdm3kr70q8a" path="res://npc/cat/cat_sprite_frames.tres" id="35_l3n6m"]
-[ext_resource type="Script" path="res://overworld_stuff/runaway_cat/runaway_cat_controller_1.gd" id="36_18kiw"]
-[ext_resource type="Script" path="res://overworld_stuff/runaway_cat/runaway_cat_controller_3.gd" id="37_cdtra"]
+[ext_resource type="PackedScene" uid="uid://lid4c14s01np" path="res://overworld_stuff/runaway_cat/runaway_sequence.tscn" id="36_cai3a"]
+[ext_resource type="PackedScene" uid="uid://b3tnt57x2mevg" path="res://overworld_stuff/runaway_cat/runaway_sequence_2.tscn" id="37_3nu8p"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_3gf41"]
 size = Vector2(20, 48)
@@ -152,18 +151,6 @@ size = Vector2(159, 3)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gtucw"]
 size = Vector2(99, 48)
-
-[sub_resource type="Curve2D" id="Curve2D_l7625"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, 338, 116, -4.24264, 6.45235, 4.24264, -6.45235, 178, 112, 6.59375, 2.0625, -6.59375, -2.0625, 120, 159, 0, 0, 0, 0, 11, 155)
-}
-point_count = 4
-
-[sub_resource type="Curve2D" id="Curve2D_yo5oa"]
-_data = {
-"points": PackedVector2Array(0, 0, 0, 0, -175, 308, -23.1249, 2.35969, 23.1249, -2.35969, 206, 303, 0, 0, 0, 0, 428, 218, -18.4055, -19.8214, 18.4055, 19.8214, 592, 177, 25.0127, -22.653, -25.0127, 22.653, 596, 430, 12.7423, -7.55099, -12.7423, 7.55099, 288, 573, 18.4055, -1.41581, -18.4055, 1.41581, 100, 639, 10.3826, 8.96681, -10.3826, -8.96681, -35, 626, 0, 0, 0, 0, -13, 565)
-}
-point_count = 9
 
 [node name="Area_0_NewbertTown" instance=ExtResource("1_y57qd")]
 
@@ -280,6 +267,7 @@ hint_dialogue = ExtResource("7_yj2jc")
 redirect_marker = NodePath("CheckpointRedirectMarker")
 disable_leash_name = "Living Tree"
 disable_event_name = "checkpoint_touched"
+status_disable_name = "touched_checkpoint"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="LeashAreas/CheckpopintBlocker" index="0"]
 position = Vector2(2.5, 62.5)
@@ -601,41 +589,6 @@ limit_bottom = 1424
 [node name="IntroLayer" parent="." index="14"]
 visible = false
 
-[node name="RunawaySequence" type="Path2D" parent="." index="15"]
-visible = false
-curve = SubResource("Curve2D_l7625")
-script = ExtResource("36_18kiw")
+[node name="RunawaySequence" parent="." index="15" instance=ExtResource("36_cai3a")]
 
-[node name="PathFollow" type="PathFollow2D" parent="RunawaySequence" index="0"]
-unique_name_in_owner = true
-position = Vector2(338, 116)
-rotation = -3.1166
-rotates = false
-
-[node name="RunawayCat" type="AnimatedSprite2D" parent="RunawaySequence/PathFollow" index="0"]
-z_index = 3
-position = Vector2(0, 17.66)
-rotation = 3.14159
-sprite_frames = ExtResource("35_l3n6m")
-animation = &"walk"
-autoplay = "walk"
-
-[node name="RunawaySequence2" type="Path2D" parent="." index="16"]
-visible = false
-position = Vector2(246, 259)
-curve = SubResource("Curve2D_yo5oa")
-script = ExtResource("37_cdtra")
-
-[node name="PathFollow" type="PathFollow2D" parent="RunawaySequence2" index="0"]
-position = Vector2(-175, 308)
-rotation = -3.1166
-rotates = false
-
-[node name="RunawayCat" type="AnimatedSprite2D" parent="RunawaySequence2/PathFollow" index="0"]
-unique_name_in_owner = true
-z_index = 3
-position = Vector2(0, 17.66)
-rotation = 3.14159
-sprite_frames = ExtResource("35_l3n6m")
-animation = &"walk"
-autoplay = "walk"
+[node name="RunawaySequence2" parent="." index="16" instance=ExtResource("37_3nu8p")]

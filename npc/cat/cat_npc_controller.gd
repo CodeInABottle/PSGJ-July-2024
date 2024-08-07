@@ -10,3 +10,9 @@ func wait_at_point(_world_state: Dictionary) -> void:
 	else:
 		npc_sprite.play("idle")
 	await get_tree().create_timer(wait_time).timeout
+
+func on_battle_finished() -> void:
+	LevelManager.menu_unloaded.disconnect(on_battle_finished)
+	battle_finished.emit()
+	MenuManager.fader_controller.fade_in()
+	queue_free()

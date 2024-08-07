@@ -5,7 +5,7 @@ func _ready() -> void:
 
 func _on_world_event(world_event_name: String, args: Array) -> void:
 	if world_event_name == "battle_finished":
-		if args[0]["shadow_name"] == "Shadow":
+		if args[0]["shadow_name"] == "Shadow" and args[0]["won_battle"]:
 			trigger_outro()
 
 func trigger_outro() -> void:
