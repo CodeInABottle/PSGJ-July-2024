@@ -9,4 +9,5 @@ cost_type = 1
 amount = 1
 apply_to_self = false
 is_attacked_triggered = false
-turns = 0
+immediate = false
+turns = 2

@@ -62,7 +62,8 @@ func _on_mouse_left(page_index: int) -> void:
 	description_label.text = "Hover over a page for more info."
 
 func _on_book_close_button_pressed() -> void:
-	LevelManager.audio_anchor.play_sfx("accept_button")
+	if LevelManager.audio_anchor:
+		LevelManager.audio_anchor.play_sfx("accept_button")
 	book_close_button.disabled = true
 	_playing_backwards = true
 	animation_player.play("FlyIn", -1, -1, true)

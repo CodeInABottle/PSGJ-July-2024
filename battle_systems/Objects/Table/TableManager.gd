@@ -47,7 +47,8 @@ func _on_hp_updated() -> void:
 	hp_flask_bar.update_value(PlayerStats.health)
 
 func _on_book_button_pressed() -> void:
-	LevelManager.audio_anchor.play_sfx("accept_button")
+	if LevelManager.audio_anchor:
+		LevelManager.audio_anchor.play_sfx("accept_button")
 	recipe_display_opened.emit()
 	recipe_page_display.open()
 

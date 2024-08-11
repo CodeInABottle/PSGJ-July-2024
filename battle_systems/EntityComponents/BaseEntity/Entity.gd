@@ -61,7 +61,6 @@ func reset_action_counter() -> void:
 	actions_done = 0
 
 func reset_costs() -> void:
-	if not _was_cost_changed: return
 	_costs["Air"] = 1
 	_costs["Earth"] = 1
 	_costs["Fire"] = 1

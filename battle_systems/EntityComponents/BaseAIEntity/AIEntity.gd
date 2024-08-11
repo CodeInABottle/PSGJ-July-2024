@@ -113,7 +113,8 @@ func take_damage(damage_data: Dictionary) -> void:
 	# Skip is its an ability that does no damage
 	if damage_data["damage"] == 0: return
 
-	LevelManager.audio_anchor.play_sfx("attack_hit")
+	if LevelManager.audio_anchor:
+		LevelManager.audio_anchor.play_sfx("attack_hit")
 
 	# Check for special frame data -- On hurt
 	if _data.special_frame_behavior == EnemyDatabase.SpecialFrameState.ON_HURT:

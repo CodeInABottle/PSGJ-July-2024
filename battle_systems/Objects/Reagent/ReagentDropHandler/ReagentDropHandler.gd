@@ -84,7 +84,8 @@ func add(reagent: TypeChart.ResonateType) -> void:
 	if reagent == TypeChart.ResonateType.NONE:
 		clear()
 		return
-	LevelManager.audio_anchor.play_sfx("apply_component")
+	if LevelManager.audio_anchor:
+		LevelManager.audio_anchor.play_sfx("apply_component")
 	_create_floating_reagent(reagent)
 	_validate_recipe()
 
@@ -93,7 +94,8 @@ func clear(return_ap:bool = true) -> void:
 		if data.is_queued_for_deletion(): continue
 		if return_ap:
 			PlayerStats.alchemy_points += entity_tracker.player_entity.get_cost(data.reagent)
-			LevelManager.audio_anchor.play_sfx("clean_components")
+			if LevelManager.audio_anchor:
+				LevelManager.audio_anchor.play_sfx("clean_components")
 		data.follow_node.queue_free()
 	_reagent_data.clear()
 	recipe_controller.hide_pages()

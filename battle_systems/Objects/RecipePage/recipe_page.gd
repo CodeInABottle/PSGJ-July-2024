@@ -51,7 +51,8 @@ func _on_button_pressed() -> void:
 
 func _on_button_mouse_entered() -> void:
 	mouse_hovered.emit()
-	LevelManager.audio_anchor.play_sfx("page")
+	if LevelManager.audio_anchor:
+		LevelManager.audio_anchor.play_sfx("page")
 
 func _on_button_mouse_exited() -> void:
 	mouse_left.emit()

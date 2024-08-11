@@ -36,7 +36,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if _state == State.HOLD_TRIGGER\
 			and mouse_event.is_pressed() and mouse_event.button_index == MOUSE_BUTTON_LEFT:
 			_state = State.HOLDING
-			LevelManager.audio_anchor.play_sfx("pickup_component")
+			if LevelManager.audio_anchor:
+				LevelManager.audio_anchor.play_sfx("pickup_component")
 		elif _state == State.HOLDING\
 			and mouse_event.is_released() and mouse_event.button_index == MOUSE_BUTTON_LEFT:
 			if _at_drop_zone:
