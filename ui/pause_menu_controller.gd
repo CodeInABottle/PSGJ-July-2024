@@ -1,6 +1,6 @@
 extends Control
 
-const DISABLE_LOADING: bool = true
+const DISABLE_LOADING: bool = false
 
 @export var item_list: ItemList
 @export var item_name_label: Label
@@ -79,6 +79,7 @@ func _on_save_pressed() -> void:
 	await animation_player.animation_finished
 	animation_player.play("MoveLeft")
 	await animation_player.animation_finished
+
 	if DISABLE_LOADING:
 		browser_shield.show()
 	animation_player.play("SlideSaveUp")

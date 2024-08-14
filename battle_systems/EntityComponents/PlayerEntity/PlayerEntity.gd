@@ -10,7 +10,8 @@ var _tween: Tween
 func take_damage(damage_data: Dictionary) -> void:
 	if damage_data["damage"] == 0: return
 
-	LevelManager.audio_anchor.play_sfx("attack_hit")
+	if LevelManager.audio_anchor:
+		LevelManager.audio_anchor.play_sfx("attack_hit")
 	animation_player.play("Hurt")
 	entity_tracker.damage_taken.emit(true, damage_data)
 	PlayerStats.health -= damage_data["damage"]

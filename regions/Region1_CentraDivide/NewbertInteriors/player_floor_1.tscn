@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://ds4vibf7tkvds"]
+[gd_scene load_steps=13 format=3 uid="uid://ds4vibf7tkvds"]
 
 [ext_resource type="PackedScene" uid="uid://d4hid5fnkoiqy" path="res://regions/RegionBase/base_area.tscn" id="1_21exl"]
 [ext_resource type="Texture2D" uid="uid://dkqveu4j6mms0" path="res://assets/sprites/tiles/overworld_interior_01.png" id="2_4wey2"]
@@ -17,6 +17,9 @@ size = Vector2(27, 20)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cnqfn"]
 size = Vector2(32, 9)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6bxde"]
+size = Vector2(53, 15)
 
 [node name="PlayerFloor1" instance=ExtResource("1_21exl")]
 
@@ -51,8 +54,7 @@ item_name = "Note From Mom"
 [node name="TileMap" parent="." index="10"]
 layer_0/tile_data = PackedInt32Array(6, 65543, 12, 65542, 65543, 12, 7, 65543, 13, 65543, 65543, 13, 131079, 65543, 13, 8, 65543, 13, 65544, 65543, 13, 131080, 65543, 13, 9, 65543, 13, 65545, 65543, 13, 131081, 65543, 13, 10, 65543, 13, 65546, 65543, 13, 131082, 65543, 13, 11, 65543, 13, 65547, 65543, 13, 131083, 65543, 13, 2, 7, 7, 131074, 65543, 12, 196610, 65543, 12, 262146, 65543, 12, 3, 65543, 12, 65539, 65543, 12, 131075, 65543, 12, 196611, 65543, 12, 262147, 65543, 12, 4, 65543, 12, 65540, 65543, 12, 131076, 65543, 12, 196612, 65543, 12, 262148, 65543, 12, 5, 65543, 12, 65541, 65543, 12, 131077, 65543, 12, 196613, 65543, 12, 262149, 65543, 12, 262150, 65543, 12, 262151, 65543, 12, 262152, 65543, 12, 262153, 65543, 12, 262154, 65543, 12, 262155, 65543, 12, 65538, 65543, 12, 196614, 65543, 12, 196615, 65543, 12, 196616, 65543, 12, 196617, 65543, 12, 196618, 65543, 12, 196619, 65543, 12, 131078, 65543, 12)
 layer_1/tile_data = PackedInt32Array(-65530, 196615, 4, -65529, 65543, 0, -65528, 131079, 0, -65527, 131079, 0, -65526, 131079, 0, -65525, 196615, 0, 1, 131079, 6, 65537, 131079, 6, 131073, 131079, 6, 196609, 131079, 6, 262145, 131079, 7, 262146, 196615, 7, 65542, 131079, 2, 131078, 196615, 5, 6, 131079, 2, -65531, 131079, 4, -65533, 65543, 4, -65532, 131079, 4, 3, 393223, 7, 131074, 65543, 6, 65538, 65543, 6, 2, 65543, 6, 196610, 196615, 6, 262147, 262151, 5, -65534, 131079, 6, 11, 131079, 2, 65547, 262151, 2, 131083, 196615, 4, 12, 65543, 2, 65548, 65543, 2, 131084, 65543, 2, 196620, 65543, 2, 262156, 65543, 2, -65524, 65543, 2, 131079, 196615, 7, 131080, 262151, 5, 131081, 131079, 4, 131082, 327687, 7, 65543, 196615, 6, 65544, 262151, 4, 65545, 262151, 4, 65546, 327687, 6, 196619, 262151, 6, 262155, 262151, 7, 196616, 262151, 4, 262152, 262151, 5, 196617, 262151, 4, 262153, 262151, 5, 196618, 262151, 4, 262154, 262151, 5, 196612, 262151, 4, 262148, 262151, 5, 196613, 262151, 4, 262149, 262151, 5, 196614, 262151, 4, 262150, 262151, 5, 196611, 262151, 4, 7, 65543, 6)
-layer_2/tile_data = PackedInt32Array(-65527, 393223, 4, 2, 458759, 10, 262151, 393223, 5, 11, 131079, 12, 196611, 327687, 12, 6, 196615, 12, 65541, 196615, 14, 65542, 262151, 14)
-layer_4/tile_data = PackedInt32Array(11, 131079, 14, -65525, 196615, 15, 10, 131079, 14, 9, 131079, 14)
+layer_2/tile_data = PackedInt32Array(2, 458759, 10, 196611, 327687, 12, 6, 196615, 12, 65541, 196615, 14, 65542, 262151, 14, -65527, 393223, 4)
 
 [node name="StaticBody2D" type="StaticBody2D" parent="TileMap" index="0"]
 collision_layer = 2
@@ -60,7 +62,7 @@ collision_mask = 0
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="TileMap/StaticBody2D" index="0"]
 position = Vector2(31, 0)
-polygon = PackedVector2Array(216, 11, 241, 11, 253, 8, 337, 8.00001, 338, 16, 350, 15, 349, 0, 215, -1)
+polygon = PackedVector2Array(220, 11, 245, 11, 247, 16, 259, 16, 259, 10, 337, 10, 337, 17, 350, 17, 350, 0, 220, -1)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TileMap/StaticBody2D" index="1"]
 position = Vector2(80.5, 30)
@@ -70,25 +72,55 @@ shape = SubResource("RectangleShape2D_jtekq")
 position = Vector2(240, 157)
 shape = SubResource("RectangleShape2D_cnqfn")
 
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="TileMap/StaticBody2D" index="3"]
+position = Vector2(191.5, 46.5)
+shape = SubResource("RectangleShape2D_6bxde")
+
 [node name="Sprites" type="Node2D" parent="TileMap" index="1"]
+z_index = 1
 
 [node name="Fridge" type="Sprite2D" parent="TileMap/Sprites" index="0"]
-position = Vector2(259, -8)
+position = Vector2(264, -8)
 texture = ExtResource("2_4wey2")
 region_enabled = true
-region_rect = Rect2(163, 5, 26.5, 38)
+region_rect = Rect2(163, 5, 26, 38)
 
 [node name="Sink" type="Sprite2D" parent="TileMap/Sprites" index="1"]
-position = Vector2(304, -8)
+position = Vector2(316, -8)
 texture = ExtResource("2_4wey2")
 region_enabled = true
-region_rect = Rect2(195, 5, 26.5, 38)
+region_rect = Rect2(195, 5, 26, 38)
 
 [node name="Stove" type="Sprite2D" parent="TileMap/Sprites" index="2"]
-position = Vector2(336, -8)
+position = Vector2(342, -10)
 texture = ExtResource("2_4wey2")
 region_enabled = true
-region_rect = Rect2(227, 69, 26.5, 38)
+region_rect = Rect2(227, 66, 26, 40)
+
+[node name="Rug" type="Sprite2D" parent="TileMap/Sprites" index="3"]
+position = Vector2(240, 144)
+texture = ExtResource("2_4wey2")
+region_enabled = true
+region_rect = Rect2(195, 163, 26, 26)
+
+[node name="CornerCounter" type="Sprite2D" parent="TileMap/Sprites" index="4"]
+position = Vector2(368, 3)
+texture = ExtResource("2_4wey2")
+region_enabled = true
+region_rect = Rect2(67, 406, 26, 26)
+
+[node name="CornerCounter2" type="Sprite2D" parent="TileMap/Sprites" index="5"]
+position = Vector2(290, 3)
+scale = Vector2(-1, 1)
+texture = ExtResource("2_4wey2")
+region_enabled = true
+region_rect = Rect2(67, 406, 26, 26)
+
+[node name="Mixer" type="Sprite2D" parent="TileMap/Sprites" index="6"]
+position = Vector2(284, -10)
+texture = ExtResource("2_4wey2")
+region_enabled = true
+region_rect = Rect2(102, 497, 10, 13)
 
 [node name="PlayerPhysicsBody" parent="." index="11"]
 position = Vector2(140, 27)
