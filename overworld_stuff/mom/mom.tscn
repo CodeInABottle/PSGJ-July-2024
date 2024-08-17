@@ -37,6 +37,8 @@ contents = Array[ExtResource("4_4oofi")]([SubResource("Resource_n60md")])
 content_keys = Array[String](["main"])
 
 [node name="Mom" instance=ExtResource("1_p3md5")]
+z_index = 1
+y_sort_enabled = true
 script = ExtResource("2_cas7r")
 dialogue = SubResource("Resource_2km7i")
 

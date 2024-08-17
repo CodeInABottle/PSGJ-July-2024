@@ -24,11 +24,11 @@ func _unit_testing() -> void:
 	#setup_battle("Earth Worm")
 	#setup_battle("Living Tree")
 	#setup_battle("Mailbox")
-	setup_battle("Bombardier Beetle")
+	#setup_battle("Bombardier Beetle")
 	#setup_battle("Armored Snail")
 	#setup_battle("Niter Tiger")
 	#setup_battle("Fighting Fish")
-	#setup_battle("Celestial Canine")
+	setup_battle("Celestial Canine")
 	#setup_battle("Chicken")
 	#setup_battle("Shadow")
 	pass

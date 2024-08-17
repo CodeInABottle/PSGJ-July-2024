@@ -200,6 +200,7 @@ text = "ESC to pause"
 vertical_alignment = 1
 
 [node name="ConditionalSpawner" type="Node2D" parent="." index="20"]
+y_sort_enabled = true
 position = Vector2(326, 25)
 script = ExtResource("7_42aiy")
 npc_scene = ExtResource("8_hh4x5")
