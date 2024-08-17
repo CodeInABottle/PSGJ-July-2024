@@ -17,6 +17,10 @@ const DISABLE_LOADING: bool = false
 @onready var browser_shield: Control = %BrowserShield
 
 var _is_opened: bool = false
+var _is_on_main: bool = false:
+	set(value):
+		_is_on_main = value
+		can_close = _is_on_main
 var can_close: bool = false
 
 func _ready() -> void:
@@ -42,6 +46,7 @@ func _open() -> void:
 	await animation_player.animation_finished
 	_is_opened = true
 	can_close = true
+	_is_on_main = true
 
 func _populate_item_list() -> void:
 	item_list.clear()
@@ -74,6 +79,7 @@ func _on_close_pressed() -> void:
 	MenuManager.toggle_pause()
 
 func _on_save_pressed() -> void:
+	_is_on_main = false
 	LevelManager.audio_anchor.play_sfx("accept_button")
 	animation_player.play_backwards("DisplayButton")
 	await animation_player.animation_finished
@@ -91,6 +97,7 @@ func _on_respawn_pressed() -> void:
 	MenuManager.fader_controller.translucent_to_black()
 
 func _on_inventory_pressed() -> void:
+	_is_on_main = false
 	LevelManager.audio_anchor.play_sfx("accept_button")
 	if items_panel.is_visible_in_tree():
 		hide_all()
@@ -114,6 +121,8 @@ func _on_back_from_save_pressed() -> void:
 	animation_player.play_backwards("MoveLeft")
 	await animation_player.animation_finished
 	animation_player.play("DisplayButton")
+	await animation_player.animation_finished
+	_is_on_main = true
 
 func _on_clipboard_button_pressed() -> void:
 	LevelManager.audio_anchor.play_sfx("accept_button")
@@ -123,11 +132,14 @@ func _on_clipboard_button_pressed() -> void:
 func _on_close_inventory_pressed() -> void:
 	LevelManager.audio_anchor.play_sfx("accept_button")
 	_on_inventory_pressed()
+	_is_on_main = true
 
 func _on_settings_pressed() -> void:
+	_is_on_main = false
 	LevelManager.audio_anchor.play_sfx("accept_button")
 	music_settings.show()
 
 func _on_music_settings_closed() -> void:
 	LevelManager.audio_anchor.play_sfx("accept_button")
 	music_settings.hide()
+	_is_on_main = true
